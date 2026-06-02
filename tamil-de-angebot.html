@@ -36,209 +36,105 @@
     font-size:clamp(14px,1.5vw,16px);
     -webkit-font-smoothing:antialiased;
   }
+  .doc{max-width:1080px;margin:0 auto;background:var(--warmweiss);box-shadow:var(--schatten-l)}
+  .serif{font-family:'Fraunces',Georgia,serif}
 
-  .doc{
-    max-width:1080px;
-    margin:0 auto;
-    background:var(--warmweiss);
-    box-shadow:var(--schatten-l);
-  }
-
-  .serif{font-family:'Fraunces',Georgia,serif;}
-
-  /* ── HK LOGO ──────────────────────────────────── */
-  .hk-logo{
-    display:flex;align-items:center;gap:10px;
-  }
+  /* ── HK LOGO ── */
+  .hk-logo{display:flex;align-items:center;gap:10px}
   .hk-monogram{
-    width:38px;height:38px;border-radius:4px;
-    background:var(--rot);
+    width:38px;height:38px;border-radius:4px;background:var(--rot);
     display:flex;align-items:center;justify-content:center;
-    font-family:'Inter',sans-serif;font-weight:800;
-    font-size:15px;letter-spacing:-0.5px;color:#fff;
-    flex-shrink:0;
+    font-weight:800;font-size:15px;letter-spacing:-0.5px;color:#fff;flex-shrink:0
   }
   .hk-wordmark{display:flex;flex-direction:column}
-  .hk-wordmark .line1{
-    font-size:13px;font-weight:800;color:rgba(255,255,255,.92);
-    letter-spacing:.3px;line-height:1.1
-  }
-  .hk-wordmark .line2{
-    font-size:9px;font-weight:500;color:rgba(255,255,255,.38);
-    letter-spacing:2px;text-transform:uppercase
-  }
-
-  /* footer version */
-  .hk-logo-footer .hk-monogram{background:var(--rot);width:32px;height:32px;font-size:13px}
+  .hk-wordmark .line1{font-size:13px;font-weight:800;color:rgba(255,255,255,.92);letter-spacing:.3px;line-height:1.1}
+  .hk-wordmark .line2{font-size:9px;font-weight:500;color:rgba(255,255,255,.38);letter-spacing:2px;text-transform:uppercase}
+  .hk-logo-footer .hk-monogram{width:32px;height:32px;font-size:13px}
   .hk-logo-footer .hk-wordmark .line1{color:rgba(255,255,255,.8);font-size:12px}
   .hk-logo-footer .hk-wordmark .line2{color:rgba(255,255,255,.3);font-size:8px}
 
-  /* ── VALIDITY STRIP ───────────────────────────── */
+  /* ── STRIP ── */
   .strip{
-    background:var(--anthrazit);
-    color:var(--gold-hell);
-    font-size:clamp(9px,1.1vw,11px);
-    letter-spacing:2.5px;
-    text-transform:uppercase;
-    text-align:center;
-    padding:11px 24px;
-    font-weight:600;
-    border-bottom:1px solid rgba(201,168,76,.25);
+    background:var(--anthrazit);color:var(--gold-hell);
+    font-size:clamp(9px,1.1vw,11px);letter-spacing:2.5px;text-transform:uppercase;
+    text-align:center;padding:11px 24px;font-weight:600;
+    border-bottom:1px solid rgba(201,168,76,.25)
   }
 
-  /* ── COVER ────────────────────────────────────── */
+  /* ── COVER ── */
   .cover{
-    background:var(--anthrazit);
-    color:#fff;
+    background:var(--anthrazit);color:#fff;
     padding:clamp(40px,6vw,80px) clamp(24px,6.5vw,72px) clamp(36px,5.5vw,72px);
-    position:relative;
-    overflow:hidden;
+    position:relative;overflow:hidden
   }
-  .cover::before{
-    content:'';
-    position:absolute;
-    top:-160px;right:-160px;
-    width:480px;height:480px;
-    border-radius:50%;
-    background:radial-gradient(circle,rgba(176,30,44,.22),transparent 65%);
-    pointer-events:none;
-  }
-  .cover::after{
-    content:'';
-    position:absolute;
-    bottom:-200px;left:-120px;
-    width:420px;height:420px;
-    border-radius:50%;
-    background:radial-gradient(circle,rgba(201,168,76,.10),transparent 65%);
-    pointer-events:none;
-  }
-  .cover-top{
-    display:flex;justify-content:space-between;align-items:center;
-    margin-bottom:clamp(32px,5vw,64px);position:relative;z-index:1;
-    flex-wrap:wrap;gap:16px;
-  }
+  .cover::before{content:'';position:absolute;top:-160px;right:-160px;width:480px;height:480px;
+    border-radius:50%;background:radial-gradient(circle,rgba(176,30,44,.22),transparent 65%);pointer-events:none}
+  .cover::after{content:'';position:absolute;bottom:-200px;left:-120px;width:420px;height:420px;
+    border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.10),transparent 65%);pointer-events:none}
+  .cover-top{display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:clamp(32px,5vw,64px);position:relative;z-index:1;flex-wrap:wrap;gap:16px}
   .cover-logo{font-size:clamp(24px,3.5vw,34px);font-weight:800;letter-spacing:-1px}
-  .cover-logo .t{color:#fff}
-  .cover-logo .d{color:var(--rot)}
-  .cover-logo .sub{
-    display:block;font-size:9px;letter-spacing:4px;
-    color:rgba(255,255,255,.4);font-weight:500;margin-top:3px;text-transform:uppercase
-  }
-  .cover-badge{
-    border:1px solid var(--gold);
-    color:var(--gold-hell);
+  .cover-logo .t{color:#fff}.cover-logo .d{color:var(--rot)}
+  .cover-logo .sub{display:block;font-size:9px;letter-spacing:4px;color:rgba(255,255,255,.4);
+    font-weight:500;margin-top:3px;text-transform:uppercase}
+  .cover-badge{border:1px solid var(--gold);color:var(--gold-hell);
     font-size:clamp(9px,1vw,10px);letter-spacing:3px;text-transform:uppercase;
-    padding:9px 20px;font-weight:700;border-radius:2px;
-    white-space:nowrap;
-  }
-  .cover-eyebrow{
-    display:flex;align-items:center;gap:14px;margin-bottom:24px;
-    position:relative;z-index:1;
-  }
+    padding:9px 20px;font-weight:700;border-radius:2px;white-space:nowrap}
+  .cover-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;position:relative;z-index:1}
   .cover-eyebrow .bar{width:40px;height:2px;background:var(--rot)}
-  .cover-eyebrow span{
-    font-size:12px;letter-spacing:4px;text-transform:uppercase;
-    color:var(--rot);font-weight:600
-  }
-  .cover-tamil{
-    font-size:clamp(16px,2.2vw,22px);color:var(--gold-hell);font-weight:400;
-    margin-bottom:14px;position:relative;z-index:1;
-  }
-  .cover h1{
-    font-size:clamp(36px,6.5vw,68px);line-height:1.02;font-weight:900;
-    letter-spacing:clamp(-1px,-0.03em,-2px);
-    margin-bottom:clamp(18px,2.5vw,28px);position:relative;z-index:1;
-  }
+  .cover-eyebrow span{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--rot);font-weight:600}
+  .cover-tamil{font-size:clamp(16px,2.2vw,22px);color:var(--gold-hell);font-weight:400;
+    margin-bottom:14px;position:relative;z-index:1}
+  .cover h1{font-size:clamp(36px,6.5vw,68px);line-height:1.02;font-weight:900;
+    letter-spacing:clamp(-1px,-0.03em,-2px);margin-bottom:clamp(18px,2.5vw,28px);position:relative;z-index:1}
   .cover h1 em{font-style:italic;color:var(--gold-hell)}
-  .cover-intro{
-    font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.6);max-width:560px;
-    line-height:1.75;margin-bottom:clamp(32px,4.5vw,56px);position:relative;z-index:1;font-weight:400;
-  }
-  .cover-meta{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,24px);
-    padding-top:clamp(20px,2.5vw,36px);border-top:1px solid rgba(255,255,255,.12);
-    position:relative;z-index:1;
-  }
-  .cover-meta .label{
-    font-size:9px;letter-spacing:2px;text-transform:uppercase;
-    color:rgba(255,255,255,.35);margin-bottom:7px;font-weight:600
-  }
+  .cover-intro{font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.6);max-width:560px;
+    line-height:1.75;margin-bottom:clamp(32px,4.5vw,56px);position:relative;z-index:1;font-weight:400}
+  .cover-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,24px);
+    padding-top:clamp(20px,2.5vw,36px);border-top:1px solid rgba(255,255,255,.12);position:relative;z-index:1}
+  .cover-meta .label{font-size:9px;letter-spacing:2px;text-transform:uppercase;
+    color:rgba(255,255,255,.35);margin-bottom:7px;font-weight:600}
   .cover-meta .val{font-size:clamp(12px,1.3vw,15px);color:#fff;font-weight:600}
 
-  /* ── SECTION BASE ─────────────────────────────── */
+  /* ── SECTION BASE ── */
   .sec{padding:clamp(36px,5.5vw,72px) clamp(24px,6.5vw,72px)}
-  .sec-head{margin-bottom:clamp(28px,3.5vw,44px);max-width:680px}
-  .sec-eyebrow{
-    display:flex;align-items:center;gap:13px;margin-bottom:16px;
-  }
+  .sec-head{margin-bottom:clamp(28px,3.5vw,44px);max-width:700px}
+  .sec-eyebrow{display:flex;align-items:center;gap:13px;margin-bottom:16px}
   .sec-eyebrow .bar{width:32px;height:2px;background:var(--rot)}
-  .sec-eyebrow span{
-    font-size:11px;letter-spacing:3px;text-transform:uppercase;
-    color:var(--rot);font-weight:700
-  }
-  .sec-head h2{
-    font-size:clamp(26px,3.8vw,40px);font-weight:900;
-    letter-spacing:clamp(-0.5px,-0.03em,-1.2px);
-    line-height:1.1;margin-bottom:8px;color:var(--anthrazit)
-  }
-  .sec-head .tamil-sub{
-    font-size:clamp(15px,1.7vw,18px);color:var(--text-leise);font-weight:400;margin-bottom:18px
-  }
+  .sec-eyebrow span{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rot);font-weight:700}
+  .sec-head h2{font-size:clamp(26px,3.8vw,40px);font-weight:900;
+    letter-spacing:clamp(-0.5px,-0.03em,-1.2px);line-height:1.1;margin-bottom:8px;color:var(--anthrazit)}
+  .sec-head .tamil-sub{font-size:clamp(15px,1.7vw,18px);color:var(--text-leise);font-weight:400;margin-bottom:18px}
   .sec-head p{font-size:clamp(13px,1.4vw,16px);color:var(--text);line-height:1.8}
   .sec-head p + p{margin-top:16px}
 
-  /* ── WEBSITE PREVIEW MOCKUP ───────────────────── */
+  /* ── WEBSITE PREVIEW ── */
   .preview-wrap{background:var(--papier)}
-  .browser{
-    border-radius:10px;overflow:hidden;
-    box-shadow:var(--schatten-m);
-    border:1px solid var(--linie);
-    background:#fff;
-  }
-  .browser-bar{
-    background:#EBE6DD;padding:12px 16px;
-    display:flex;align-items:center;gap:8px;
-    border-bottom:1px solid var(--linie);
-  }
+  .browser{border-radius:10px;overflow:hidden;box-shadow:var(--schatten-m);border:1px solid var(--linie);background:#fff}
+  .browser-bar{background:#EBE6DD;padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--linie)}
   .browser-bar .dot{width:11px;height:11px;border-radius:50%}
   .dot.r{background:#E5614B}.dot.y{background:#E8B04B}.dot.g{background:#5BBF6A}
-  .browser-url{
-    margin-left:14px;background:#fff;border-radius:6px;
-    padding:5px 14px;font-size:12px;color:var(--text-leise);
-    flex:1;max-width:320px;font-weight:500;
-  }
-  /* mock topbar */
-  .m-topbar{
-    background:var(--anthrazit);color:rgba(255,255,255,.55);
-    font-size:clamp(8px,.9vw,10px);padding:7px 22px;display:flex;justify-content:space-between;
-    flex-wrap:wrap;gap:4px;
-  }
-  .m-header{
-    padding:clamp(10px,1.5vw,18px) clamp(12px,2vw,22px);
+  .browser-url{margin-left:14px;background:#fff;border-radius:6px;padding:5px 14px;
+    font-size:12px;color:var(--text-leise);flex:1;max-width:320px;font-weight:500}
+  .m-topbar{background:var(--anthrazit);color:rgba(255,255,255,.55);
+    font-size:clamp(8px,.9vw,10px);padding:7px 22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px}
+  .m-header{padding:clamp(10px,1.5vw,18px) clamp(12px,2vw,22px);
     display:flex;justify-content:space-between;align-items:center;
-    border-bottom:2px solid var(--rot);background:#fff;
-    flex-wrap:wrap;gap:8px;
-  }
+    border-bottom:2px solid var(--rot);background:#fff;flex-wrap:wrap;gap:8px}
   .m-logo{font-size:clamp(16px,2vw,22px);font-weight:800;letter-spacing:-.5px}
   .m-logo .d{color:var(--rot)}
   .m-nav{display:flex;gap:clamp(8px,1.2vw,18px);font-size:clamp(9px,1vw,11px);font-weight:600;color:var(--text);flex-wrap:wrap}
   .m-nav .more{color:var(--rot)}
   .m-cta{background:var(--rot);color:#fff;font-size:clamp(8px,.9vw,10px);font-weight:700;padding:7px 14px;border-radius:4px;white-space:nowrap}
   .m-hero{display:grid;grid-template-columns:2fr 1fr;gap:2px;background:var(--linie)}
-  .m-hero-main{
-    background:linear-gradient(135deg,#3a2a2c,#1A1A1C);
-    aspect-ratio:16/9;position:relative;display:flex;align-items:flex-end;padding:20px;
-  }
-  .m-hero-main .tag{
-    position:absolute;top:16px;left:16px;background:var(--rot);
-    color:#fff;font-size:clamp(7px,.8vw,8px);font-weight:700;letter-spacing:1px;padding:4px 9px;border-radius:3px
-  }
+  .m-hero-main{background:linear-gradient(135deg,#3a2a2c,#1A1A1C);
+    aspect-ratio:16/9;position:relative;display:flex;align-items:flex-end;padding:20px}
+  .m-hero-main .tag{position:absolute;top:16px;left:16px;background:var(--rot);
+    color:#fff;font-size:clamp(7px,.8vw,8px);font-weight:700;letter-spacing:1px;padding:4px 9px;border-radius:3px}
   .m-hero-main .title{color:#fff;font-size:clamp(11px,1.3vw,15px);font-weight:700;line-height:1.3}
   .m-hero-side{display:flex;flex-direction:column;gap:2px}
-  .m-hero-card{
-    background:#fff;flex:1;padding:clamp(8px,1vw,12px) clamp(10px,1.2vw,14px);
-    display:flex;flex-direction:column;justify-content:center;
-  }
+  .m-hero-card{background:#fff;flex:1;padding:clamp(8px,1vw,12px) clamp(10px,1.2vw,14px);
+    display:flex;flex-direction:column;justify-content:center}
   .m-hero-card .ct{font-size:clamp(9px,1vw,11px);font-weight:600;color:var(--text);line-height:1.35}
   .m-hero-card .cd{font-size:clamp(8px,.9vw,9px);color:var(--text-leise);margin-top:5px}
   .m-ticker{background:var(--rot);color:#fff;font-size:clamp(8px,.9vw,10px);font-weight:600;padding:8px 22px;letter-spacing:.3px}
@@ -253,19 +149,15 @@
   .m-banner{margin:clamp(10px,1.5vw,16px) clamp(12px,2vw,22px);
     border:1px dashed var(--gold);background:rgba(201,168,76,.06);
     padding:14px;text-align:center;font-size:clamp(8px,.9vw,10px);font-weight:600;color:var(--gold);letter-spacing:1px}
-  .preview-caption{
-    text-align:center;font-size:13px;color:var(--text-leise);margin-top:22px;font-style:italic
-  }
+  .preview-caption{text-align:center;font-size:13px;color:var(--text-leise);margin-top:22px;font-style:italic}
 
-  /* ── CATEGORY PILLS ───────────────────────────── */
+  /* ── PILLS ── */
   .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-  .pill{
-    background:#fff;border:1px solid var(--linie);
-    padding:9px 18px;border-radius:2px;font-size:13px;font-weight:600;
-    color:var(--anthrazit);
-  }
+  .pill{background:#fff;border:1px solid var(--linie);padding:9px 18px;border-radius:2px;
+    font-size:13px;font-weight:600;color:var(--anthrazit)}
+  .pill.new{border-color:var(--gruen);color:var(--gruen)}
 
-  /* ── FEATURE HIGHLIGHTS ───────────────────────── */
+  /* ── FEATURE GRID ── */
   .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
     background:var(--linie);margin-top:36px;border:1px solid var(--linie)}
   .feat{background:var(--warmweiss);padding:clamp(18px,2.5vw,28px) clamp(16px,2.2vw,26px)}
@@ -273,36 +165,45 @@
   .feat h4{font-size:clamp(13px,1.4vw,16px);font-weight:700;color:var(--anthrazit);margin-bottom:8px}
   .feat p{font-size:clamp(12px,1.2vw,13.5px);color:var(--text-leise);line-height:1.6}
 
-  /* ── PACKAGES ─────────────────────────────────── */
+  /* ── SITEMAP TABLE ── */
+  .smap{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--linie);box-shadow:var(--schatten-s)}
+  .smap thead th{background:var(--anthrazit);color:#fff;padding:14px 20px;
+    font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;text-align:left}
+  .smap tbody td{padding:clamp(10px,1.4vw,15px) clamp(14px,1.8vw,20px);
+    border-bottom:1px solid var(--linie);font-size:clamp(12px,1.3vw,14px);vertical-align:middle}
+  .smap tbody tr:last-child td{border-bottom:none}
+  .smap .pg{font-weight:700;color:var(--anthrazit)}
+  .smap .pgd{font-size:12px;color:var(--text-leise);margin-top:2px}
+  .badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.5px;
+    padding:3px 9px;border-radius:2px;white-space:nowrap}
+  .badge.ja{background:rgba(62,125,90,.12);color:var(--gruen)}
+  .badge.mod{background:rgba(201,168,76,.15);color:#9A7B30}
+  .badge.opt{background:rgba(26,26,28,.07);color:var(--text-leise)}
+
+  /* ── BANNER POSITIONS ── */
+  .banner-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.8vw,20px);margin-top:8px}
+  .bpos{background:#fff;border:1px solid var(--linie);padding:clamp(16px,2vw,24px);position:relative}
+  .bpos::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gold)}
+  .bpos .bnum{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+    color:var(--gold);margin-bottom:8px}
+  .bpos h4{font-size:clamp(13px,1.4vw,15px);font-weight:700;color:var(--anthrazit);margin-bottom:6px}
+  .bpos p{font-size:12.5px;color:var(--text-leise);line-height:1.55}
+  .bpos .bsize{font-size:11px;font-weight:600;color:var(--rot);margin-top:8px}
+
+  /* ── PACKAGES ── */
   .pkgs-sec{background:var(--anthrazit);color:#fff}
   .pkgs-sec .sec-head h2{color:#fff}
   .pkgs-sec .sec-head p{color:rgba(255,255,255,.55)}
   .pkgs-sec .sec-head .tamil-sub{color:var(--gold-hell)}
-
-  .pkg{
-    background:var(--anthrazit-2);
-    border:1px solid rgba(255,255,255,.08);
-    border-left:5px solid var(--rot);
-    padding:clamp(24px,3.5vw,40px) clamp(20px,3.8vw,44px);
-    margin-bottom:24px;
-    position:relative;
-  }
-  .pkg.rec{
-    border-left-color:var(--gold);
-    background:linear-gradient(135deg,#2C2620,#26262A);
-  }
-  .pkg-ribbon{
-    position:absolute;top:0;right:0;
-    background:var(--gold);color:var(--anthrazit);
-    font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
-    padding:8px 18px;
-  }
+  .pkg{background:var(--anthrazit-2);border:1px solid rgba(255,255,255,.08);border-left:5px solid var(--rot);
+    padding:clamp(24px,3.5vw,40px) clamp(20px,3.8vw,44px);margin-bottom:24px;position:relative}
+  .pkg.rec{border-left-color:var(--gold);background:linear-gradient(135deg,#2C2620,#26262A)}
+  .pkg-ribbon{position:absolute;top:0;right:0;background:var(--gold);color:var(--anthrazit);
+    font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:8px 18px}
   .pkg-head{display:flex;justify-content:space-between;align-items:flex-start;
     margin-bottom:clamp(18px,2.5vw,28px);flex-wrap:wrap;gap:20px}
-  .pkg-name-block .kicker{
-    font-size:10px;letter-spacing:3px;text-transform:uppercase;
-    color:var(--gold-hell);font-weight:700;margin-bottom:8px
-  }
+  .pkg-name-block .kicker{font-size:10px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--gold-hell);font-weight:700;margin-bottom:8px}
   .pkg-name{font-size:clamp(22px,2.8vw,30px);font-weight:900;letter-spacing:-.8px;color:#fff}
   .pkg-dur{font-size:13px;color:rgba(255,255,255,.45);margin-top:6px}
   .pkg-price-block{text-align:right}
@@ -319,8 +220,9 @@
   .feat-item.no{color:rgba(255,255,255,.3)}
   .feat-item.no .ind{background:rgba(255,255,255,.06);color:rgba(255,255,255,.3)}
   .feat-item.no span{text-decoration:line-through}
-
-  /* payment bar */
+  .feat-divider{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.08);margin:4px 0;
+    font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);
+    font-weight:700;padding-top:12px}
   .pay{background:rgba(255,255,255,.04);border-radius:6px;padding:20px 24px;margin-top:8px}
   .pay-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;
     color:rgba(255,255,255,.4);font-weight:700;margin-bottom:14px}
@@ -333,17 +235,13 @@
   .pay-row{display:flex;flex-direction:column;gap:3px}
   .pay-row.right{align-items:flex-end}
   .pay-row .pct{font-size:13px;font-weight:800;color:#fff}
-  .pay-row .desc{font-size:11px;color:rgba(255,255,255,.45)}
   .pay-row .amt{font-size:13px;color:var(--gold-hell);font-weight:700}
 
-  /* ── ADD-ONS ──────────────────────────────────── */
+  /* ── ADD-ONS ── */
   .addons-sec{background:var(--papier)}
-  .addons{width:100%;border-collapse:collapse;background:#fff;
-    box-shadow:var(--schatten-s);border:1px solid var(--linie)}
-  .addons thead th{
-    background:var(--anthrazit);color:#fff;text-align:left;
-    font-size:clamp(9px,1vw,10px);letter-spacing:1.5px;text-transform:uppercase;
-    padding:16px 22px;font-weight:700}
+  .addons{width:100%;border-collapse:collapse;background:#fff;box-shadow:var(--schatten-s);border:1px solid var(--linie)}
+  .addons thead th{background:var(--anthrazit);color:#fff;text-align:left;
+    font-size:clamp(9px,1vw,10px);letter-spacing:1.5px;text-transform:uppercase;padding:16px 22px;font-weight:700}
   .addons thead th.right{text-align:right}
   .addons tbody td{padding:clamp(12px,1.6vw,18px) clamp(14px,1.8vw,22px);
     border-bottom:1px solid var(--linie);font-size:clamp(12px,1.3vw,14px);vertical-align:top}
@@ -356,7 +254,26 @@
   .addons tr.rabatt td{background:rgba(201,168,76,.08);font-weight:700}
   .addons tr.rabatt .ao-price{color:var(--rot)}
 
-  /* ── NEXT STEPS ───────────────────────────────── */
+  /* ── DELIVERABLES ── */
+  .del-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.8vw,20px);margin-top:8px}
+  .del-block{background:#fff;border:1px solid var(--linie);padding:clamp(18px,2.2vw,26px)}
+  .del-block h4{font-size:clamp(13px,1.4vw,15px);font-weight:800;color:var(--anthrazit);
+    margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--rot)}
+  .del-block ul{list-style:none;padding:0}
+  .del-block ul li{font-size:clamp(12px,1.3vw,13.5px);color:var(--text);padding:5px 0;
+    border-bottom:1px solid var(--linie);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+  .del-block ul li:last-child{border-bottom:none}
+  .del-block ul li::before{content:'→';color:var(--rot);font-weight:700;flex-shrink:0;margin-top:1px}
+
+  /* ── SCOPE NOTE ── */
+  .scope-box{background:rgba(176,30,44,.06);border:1px solid rgba(176,30,44,.18);
+    border-left:4px solid var(--rot);padding:clamp(16px,2vw,24px);margin-top:24px}
+  .scope-box h4{font-size:14px;font-weight:800;color:var(--rot);margin-bottom:10px}
+  .scope-box ul{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px}
+  .scope-box ul li{font-size:clamp(12px,1.3vw,13px);color:var(--text);display:flex;gap:8px;align-items:flex-start}
+  .scope-box ul li::before{content:'✕';color:var(--rot);font-size:11px;font-weight:800;flex-shrink:0;margin-top:2px}
+
+  /* ── STEPS ── */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px);margin-top:8px}
   .step{position:relative;padding:clamp(20px,2.8vw,32px) clamp(16px,2.2vw,28px);background:#fff;
     border:1px solid var(--linie);border-top:3px solid var(--rot)}
@@ -365,119 +282,87 @@
   .step h4{font-size:clamp(15px,1.6vw,18px);font-weight:800;color:var(--anthrazit);margin-bottom:10px}
   .step p{font-size:clamp(12px,1.3vw,14px);color:var(--text-leise);line-height:1.65}
 
-  /* ── CONTACT CTA ──────────────────────────────── */
+  /* ── CTA ── */
   .cta{background:var(--anthrazit);color:#fff;
-    padding:clamp(48px,6.5vw,72px) clamp(24px,6.5vw,72px);
-    text-align:center;position:relative;overflow:hidden}
+    padding:clamp(48px,6.5vw,72px) clamp(24px,6.5vw,72px);text-align:center;position:relative;overflow:hidden}
   .cta::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);
     width:500px;height:300px;background:radial-gradient(ellipse,rgba(176,30,44,.18),transparent 70%)}
   .cta-tamil{font-size:clamp(15px,1.7vw,18px);color:var(--gold-hell);margin-bottom:14px;position:relative;z-index:1}
   .cta h2{font-size:clamp(28px,4.3vw,46px);font-weight:900;letter-spacing:-1.5px;
     margin-bottom:14px;position:relative;z-index:1}
   .cta h2 em{font-style:italic;color:var(--gold-hell)}
-  .cta p{color:rgba(255,255,255,.5);font-size:clamp(13px,1.5vw,16px);
-    margin-bottom:36px;position:relative;z-index:1}
+  .cta p{color:rgba(255,255,255,.5);font-size:clamp(13px,1.5vw,16px);margin-bottom:36px;position:relative;z-index:1}
   .cta-mail{display:inline-block;font-size:clamp(18px,2.4vw,26px);font-weight:800;color:#fff;
     border-bottom:2px solid var(--rot);padding-bottom:6px;margin-bottom:18px;position:relative;z-index:1}
   .cta-note{font-size:13px;color:var(--gold-hell);letter-spacing:1px;position:relative;z-index:1}
 
-  /* ── FOOTER ───────────────────────────────────── */
+  /* ── FOOTER ── */
   .footer{background:#0F0F11;color:rgba(255,255,255,.4);
     padding:clamp(24px,3vw,36px) clamp(24px,6.5vw,72px);
     display:flex;justify-content:space-between;align-items:center;
     flex-wrap:wrap;gap:16px;font-size:12px}
   .footer .fr{line-height:1.7}
 
-  /* ── PRINT ────────────────────────────────────── */
+  /* ── PRINT ── */
   @media print{
-    body{background:#fff}
-    .doc{box-shadow:none;max-width:100%}
-    .pkg,.feat,.step,.browser{break-inside:avoid}
-    .sec{padding:48px}
+    body{background:#fff}.doc{box-shadow:none;max-width:100%}
+    .pkg,.feat,.step,.browser{break-inside:avoid}.sec{padding:48px}
   }
 
-  /* ── MOBILE 600px ─────────────────────────────── */
+  /* ── MOBILE 600px ── */
   @media(max-width:600px){
-    body{background:var(--warmweiss)}
-    .doc{box-shadow:none}
-
+    body{background:var(--warmweiss)}.doc{box-shadow:none}
     .strip{font-size:9px;letter-spacing:1.5px;padding:10px 16px}
-
-    /* cover */
     .cover{padding:32px 20px 36px}
     .cover-top{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:28px}
     .cover h1{font-size:34px;letter-spacing:-1px}
     .cover-intro{font-size:14px;margin-bottom:28px}
     .cover-meta{grid-template-columns:1fr 1fr;gap:16px 12px}
     .cover-meta .val{font-size:13px}
-
-    /* sections */
     .sec{padding:32px 20px}
     .sec-head h2{font-size:26px}
     .sec-head .tamil-sub{font-size:15px}
-    .sec-head p{font-size:13px}
-
-    /* website mockup */
     .browser-bar .browser-url{max-width:160px;font-size:10px}
     .m-topbar{font-size:9px;padding:6px 14px}
     .m-topbar span:last-child{display:none}
     .m-header{padding:10px 14px}
-    .m-nav{display:none} /* too narrow — hide on mobile mockup */
+    .m-nav{display:none}
     .m-hero{grid-template-columns:1fr}
-    .m-hero-side{display:none} /* hide side cards in mobile mockup */
+    .m-hero-side{display:none}
     .m-hero-main{aspect-ratio:16/8;padding:14px}
     .m-hero-main .title{font-size:12px}
     .m-cards{grid-template-columns:1fr 1fr}
     .m-banner{margin:10px 14px}
-
-    /* feature grid */
     .feat-grid{grid-template-columns:1fr 1fr}
     .feat{padding:18px 14px}
-    .feat h4{font-size:13px}
-    .feat p{font-size:12px}
-
-    /* packages */
+    .banner-grid{grid-template-columns:1fr}
+    .smap tbody .pgd{display:none}
     .pkgs-sec{padding-left:20px;padding-right:20px}
     .pkg{padding:22px 18px;border-left-width:4px}
     .pkg-ribbon{font-size:9px;padding:6px 12px}
     .pkg-head{gap:12px}
     .pkg-name{font-size:22px}
     .pkg-price{font-size:36px}
-    .pkg-price-suf{font-size:12px}
     .pkg-feats{grid-template-columns:1fr;gap:8px}
     .feat-item{font-size:13px}
     .pay{padding:16px}
     .pay-rows{gap:12px}
     .pay-row.right{align-items:flex-start}
-
-    /* add-ons */
     .addons thead .compat-col{display:none}
     .addons tbody .compat-cell{display:none}
     .addons thead th{padding:12px 14px;font-size:9px}
     .addons tbody td{padding:12px 14px;font-size:12px}
-    .addons .ao-price{font-size:13px}
-
-    /* steps */
+    .del-grid{grid-template-columns:1fr}
+    .scope-box ul{grid-template-columns:1fr}
     .steps{grid-template-columns:1fr}
     .step{padding:20px 16px}
-    .step .n{font-size:36px}
-
-    /* cta */
     .cta{padding:40px 20px}
     .cta h2{font-size:28px}
     .cta-mail{font-size:18px;word-break:break-all}
-
-    /* footer */
     .footer{padding:20px;flex-direction:column;align-items:flex-start;gap:12px}
     .footer .fr{text-align:left}
-
-    /* HK logo */
-    .hk-monogram{width:34px;height:34px;font-size:13px}
-    .hk-wordmark .line1{font-size:12px}
-    .hk-wordmark .line2{font-size:8px;letter-spacing:1.5px}
   }
 
-  /* ── MOBILE 400px ─────────────────────────────── */
   @media(max-width:400px){
     .cover h1{font-size:28px}
     .cover-meta{grid-template-columns:1fr 1fr}
@@ -512,8 +397,8 @@
     </div>
     <div class="cover-eyebrow"><span class="bar"></span><span>Website Relaunch 2026</span></div>
     <div class="cover-tamil serif">இணையதள மறுவடிவமைப்பு</div>
-    <h1>Ein neues Zuhause<br>für <em>Ihre Geschichten.</em></h1>
-    <p class="cover-intro">Tamil.de wird zum führenden digitalen Magazin der tamilischen Community in Deutschland — redaktionell stark, technisch modern und gestalterisch auf Premium-Niveau. Dieses Angebot zeigt den Weg dorthin.</p>
+    <h1>Tamil.de — neu gebaut.<br><em>Vertraut geblieben.</em></h1>
+    <p class="cover-intro">Tamil.de wird sauber neu aufgebaut: modernes Theme-System, redaktionelle Struktur für alle neun Themenbereiche, Werbeplätze, Veranstaltungskalender und Social-Media-Anbindung — ohne den Charakter der Marke zu verlieren.</p>
     <div class="cover-meta">
       <div><div class="label">Kunde</div><div class="val">Tamil.de</div></div>
       <div><div class="label">Agentur</div><div class="val">HK Growth Operator</div></div>
@@ -528,9 +413,8 @@
       <div class="sec-eyebrow"><span class="bar"></span><span>Vision</span></div>
       <h2>So wird sich Tamil.de anfühlen</h2>
       <div class="tamil-sub serif">முன்னோட்டம் · Eine erste Vorstellung</div>
-      <p>Ein klares, redaktionelles Layout mit starken Headlines, viel Raum für Bilder und einer Navigation, die alle neun Themenbereiche elegant zusammenführt. Werbeplätze sind bewusst integriert — sichtbar, aber nie störend.</p>
+      <p>Klares, redaktionelles Magazin-Layout mit kräftigen Headlines, integriertem Kontakt-Header, viel Raum für Bilder und einer Navigation, die alle neun Themenbereiche elegant zusammenführt. Werbeplätze sind fest eingeplant — sichtbar, aber nie störend.</p>
     </div>
-
     <div class="browser">
       <div class="browser-bar">
         <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
@@ -567,27 +451,92 @@
     <p class="preview-caption">Designstudie — die finale Gestaltung wird in der Konzeptphase gemeinsam erarbeitet.</p>
   </section>
 
-  <!-- PROJEKT -->
+  <!-- SEITENSTRUKTUR -->
   <section class="sec">
     <div class="sec-head">
-      <div class="sec-eyebrow"><span class="bar"></span><span>Das Projekt</span></div>
-      <h2>Worum es geht</h2>
-      <div class="tamil-sub serif">திட்டம்</div>
-      <p>Tamil.de ist seit Jahren eine feste Anlaufstelle für die tamilische Diaspora in Deutschland. Der Relaunch hebt diese Marke auf ein neues Niveau: schneller, moderner und redaktionell flexibler — ohne den vertrauten Charakter zu verlieren. Das bestehende Farbschema bleibt erhalten, die technische Grundlage wird grundlegend erneuert.</p>
-      <p>Neun Themenbereiche bilden das Herzstück der Seite. Ein durchdachtes Werbeplatz-System, ein Veranstaltungskalender mit Eventim-Anbindung und Social-Media-Integration machen Tamil.de nicht nur zum Magazin, sondern zur digitalen Plattform der Community.</p>
+      <div class="sec-eyebrow"><span class="bar"></span><span>Seitenstruktur</span></div>
+      <h2>Neun Themenbereiche. Eine Plattform.</h2>
+      <div class="tamil-sub serif">வலைத்தள கட்டமைப்பு · Sitemap &amp; Navigation</div>
+      <p>Tamil.de erhält eine klare Navigationsstruktur mit neun Hauptbereichen. Jeder Bereich bekommt ein eigenes Kategorie-Template. Das Farbschema wird modernisiert, bleibt aber in der bewährten Linie.</p>
     </div>
+
     <div class="pills">
-      <span class="pill">Nachrichten</span><span class="pill">Entertainment</span><span class="pill">Kino</span>
-      <span class="pill">Events</span><span class="pill">Küche</span><span class="pill">Sport</span>
-      <span class="pill">News</span><span class="pill">Standard</span><span class="pill">Kontakt</span>
+      <span class="pill">Nachrichten</span>
+      <span class="pill">Community</span>
+      <span class="pill">Entertainment</span>
+      <span class="pill">Kino</span>
+      <span class="pill">Events</span>
+      <span class="pill">Küche</span>
+      <span class="pill">Sport</span>
+      <span class="pill">Kultur</span>
+      <span class="pill">Kontakt</span>
     </div>
-    <div class="feat-grid">
-      <div class="feat"><div class="num">01</div><h4>Werbeplatz-System</h4><p>Definierte Banner-Positionen mit eigener Verwaltungsoberfläche — vermarktbar und messbar.</p></div>
-      <div class="feat"><div class="num">02</div><h4>Veranstaltungskalender</h4><p>Übersichtliche Termindarstellung mit direkter Verlinkung zu Eventim-Ticketseiten.</p></div>
-      <div class="feat"><div class="num">03</div><h4>Social Media</h4><p>Meta, Instagram &amp; YouTube nahtlos eingebunden und zentral steuerbar.</p></div>
-      <div class="feat"><div class="num">04</div><h4>Top Themen</h4><p>Redaktionell kuratierte Schlagzeilen — manuell steuerbar, jederzeit aktualisierbar.</p></div>
-      <div class="feat"><div class="num">05</div><h4>Zweisprachigkeit</h4><p>Inhalte auf Deutsch und Tamil — für die gesamte Community zugänglich.</p></div>
-      <div class="feat"><div class="num">06</div><h4>Performance &amp; SEO</h4><p>Schnelle Ladezeiten, solide SEO-Grundlage und durchgängig mobiles Design.</p></div>
+
+    <div style="margin-top:32px">
+      <table class="smap">
+        <thead>
+          <tr>
+            <th style="width:34%">Seite / Template</th>
+            <th style="width:44%">Funktion</th>
+            <th style="width:22%">Enthalten ab</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><div class="pg">Startseite</div><div class="pgd">Hero, Top Themen, Kategorien, Werbebanner</div></td><td>Wichtigstes Magazin-Layout mit redaktionell steuerbaren Bereichen</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Kategorie-Template</div><div class="pgd">für alle 9 Bereiche</div></td><td>Einheitliches, anpassbares Layout pro Themenbereich</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Artikel-Template</div><div class="pgd">Detail-Seite pro Beitrag</div></td><td>Beitragsseite mit Bild, Text, Teilen-Funktion</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Kontaktseite</div><div class="pgd">+ Kontakt oben im Header</div></td><td>Formular, Adresse, Telefon/E-Mail sichtbar im Header</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Veranstaltungskalender</div><div class="pgd">Liste + Monatsansicht</div></td><td>Events übersichtlich mit Datum, Ort und Ticketlink</td><td><span class="badge mod">Professional</span></td></tr>
+          <tr><td><div class="pg">Event-Detailseite</div></td><td>Einzelne Veranstaltung mit Eventim-Ticketlink</td><td><span class="badge mod">Professional</span></td></tr>
+          <tr><td><div class="pg">Top Themen</div><div class="pgd">redaktionelles Widget</div></td><td>Manuell kuratierter Bereich auf der Startseite</td><td><span class="badge mod">Professional</span></td></tr>
+          <tr><td><div class="pg">Werbung schalten</div><div class="pgd">Media-Kit-Seite</div></td><td>Info für Werbekunden, Bannerformate, Preise</td><td><span class="badge mod">Professional</span></td></tr>
+          <tr><td><div class="pg">Suchseite</div></td><td>Suchergebnisse, gefiltert nach Kategorie</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Impressum / Datenschutz</div></td><td>Pflichtseiten gemäß deutschem Recht</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">404-Fehlerseite</div></td><td>Professionelle Fehlerseite mit Navigation</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Standardseite</div><div class="pgd">für Unterseiten ohne Kategorie</div></td><td>Flexibles Template für weitere Inhaltsseiten</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Rezept-Template</div><div class="pgd">Bereich Küche</div></td><td>Spezielles Layout für Rezepte mit Zutaten &amp; Zubereitung</td><td><span class="badge opt">Growth optional</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- WERBEPLÄTZE -->
+  <section class="sec" style="background:var(--papier)">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Werbeplätze</span></div>
+      <h2>Feste Bannerpositionen — vermarktbar von Tag 1</h2>
+      <div class="tamil-sub serif">விளம்பர இடங்கள்</div>
+      <p>Alle Werbeplätze sind fest in das Theme integriert und über das CMS-Backend verwaltbar. Bannertausch ohne Programmieraufwand — direkt durch die Redaktion.</p>
+    </div>
+    <div class="banner-grid">
+      <div class="bpos">
+        <div class="bnum">Banner 01</div>
+        <h4>Header Leaderboard</h4>
+        <p>Direkt unter der Navigation — maximale Sichtbarkeit auf jeder Seite</p>
+        <div class="bsize">728 × 90 px (Desktop) / 320 × 50 px (Mobile)</div>
+      </div>
+      <div class="bpos">
+        <div class="bnum">Banner 02</div>
+        <h4>Startseite — Mid Content</h4>
+        <p>Zwischen Nachrichten-Block und nächster Kategorie eingebettet</p>
+        <div class="bsize">970 × 250 px Billboard</div>
+      </div>
+      <div class="bpos">
+        <div class="bnum">Banner 03</div>
+        <h4>Kategorieseite — Sidebar</h4>
+        <p>Rechts neben dem Artikel-Grid, sichtbar beim Scrollen durch Beiträge</p>
+        <div class="bsize">300 × 250 px Medium Rectangle</div>
+      </div>
+      <div class="bpos">
+        <div class="bnum">Banner 04 – 05</div>
+        <h4>Artikel-Seite — In-Content</h4>
+        <p>Innerhalb des Artikeltexts platziert — hohe Aufmerksamkeit, wenig Störwirkung</p>
+        <div class="bsize">300 × 600 px Half Page / 728 × 90 px</div>
+      </div>
+    </div>
+    <div class="scope-box" style="border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.05);border-left-color:var(--gold)">
+      <h4 style="color:#9A7B30">Hinweis Eventim-Anbindung</h4>
+      <p style="font-size:13.5px;color:var(--text)">Die Eventim-Verlinkung erfolgt über <strong>manuell gepflegte Ticketlinks</strong> im Veranstaltungskalender — zuverlässig und wartungsarm. Die vollautomatische Echtzeit-API-Integration ist als separates Add-on zubuchbar.</p>
     </div>
   </section>
 
@@ -595,7 +544,7 @@
   <section class="sec pkgs-sec">
     <div class="sec-head">
       <div class="sec-eyebrow"><span class="bar"></span><span>Leistungspakete</span></div>
-      <h2>Vier Wege zum Relaunch</h2>
+      <h2>Vier Stufen. Ein klares Ziel.</h2>
       <div class="tamil-sub serif">தொகுப்புகள் · Wählen Sie, was zu Ihnen passt</div>
       <p>Alle Pakete bauen aufeinander auf. Zahlung jeweils 50 % bei Projektstart, 50 % bei Projektabschluss.</p>
     </div>
@@ -605,20 +554,34 @@
       <div class="pkg-head">
         <div class="pkg-name-block">
           <div class="kicker">Paket 01</div>
-          <div class="pkg-name">Starter</div>
+          <div class="pkg-name">Relaunch Basis</div>
           <div class="pkg-dur">Laufzeit 6–8 Wochen</div>
         </div>
-        <div class="pkg-price-block"><div class="pkg-price">7.900 €</div><span class="pkg-price-suf">netto zzgl. MwSt.</span></div>
+        <div class="pkg-price-block">
+          <div class="pkg-price">7.900 €</div>
+          <span class="pkg-price-suf">netto zzgl. MwSt.</span>
+        </div>
       </div>
       <div class="pkg-feats">
-        <div class="feat-item yes"><span class="ind">✓</span><span>Responsives CMS-System</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>9 Kategorien mit eigenen Templates</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>2 definierte Werbebannerplätze</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Kontaktformular &amp; Impressum</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Basis-SEO-Konfiguration</span></div>
+        <div class="feat-divider">Theme &amp; Seitenstruktur</div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Neues responsives Theme-System</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>9 Kategorie-Templates</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Artikel-Template</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Startseite als Magazin-Layout</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Kontaktseite + Kontakt im Header</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Farbschema übernommen &amp; modernisiert</span></div>
+        <div class="feat-divider">Technik &amp; Werbung</div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>2 Werbebannerplätze (CMS-verwaltbar)</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>SSL, Hosting-Setup, Domain-Anbindung</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Basis-SEO-Konfiguration</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Cookie-Banner (DSGVO)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Mobile Optimierung</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Redaktionseinweisung (2 h)</span></div>
+        <div class="feat-divider">Nicht enthalten</div>
         <div class="feat-item no"><span class="ind">✕</span><span>Veranstaltungskalender</span></div>
         <div class="feat-item no"><span class="ind">✕</span><span>Social-Media-Integration</span></div>
+        <div class="feat-item no"><span class="ind">✕</span><span>Top-Themen-Widget</span></div>
+        <div class="feat-item no"><span class="ind">✕</span><span>Newsletter-Anbindung</span></div>
       </div>
       <div class="pay">
         <div class="pay-label">Zahlungsplan</div>
@@ -630,26 +593,37 @@
       </div>
     </div>
 
-    <!-- Paket 2 -->
+    <!-- Paket 2 EMPFOHLEN -->
     <div class="pkg rec">
-      <div class="pkg-ribbon">★ Empfohlen</div>
+      <div class="pkg-ribbon">★ Empfehlung</div>
       <div class="pkg-head">
         <div class="pkg-name-block">
           <div class="kicker">Paket 02</div>
-          <div class="pkg-name">Professional</div>
+          <div class="pkg-name">Relaunch Professional</div>
           <div class="pkg-dur">Laufzeit 8–10 Wochen</div>
         </div>
-        <div class="pkg-price-block"><div class="pkg-price">12.900 €</div><span class="pkg-price-suf">netto zzgl. MwSt.</span></div>
+        <div class="pkg-price-block">
+          <div class="pkg-price">12.900 €</div>
+          <span class="pkg-price-suf">netto zzgl. MwSt.</span>
+        </div>
       </div>
       <div class="pkg-feats">
-        <div class="feat-item yes"><span class="ind">✓</span><span>Alles aus <strong>Starter</strong></span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Veranstaltungskalender mit Eventim-Links</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>3 Werbeplätze mit Verwaltungsoberfläche</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Social-Media-Setup (Meta / Instagram / YouTube)</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>„Top Themen" – redaktionelles Widget</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Newsletter-Integration</span></div>
+        <div class="feat-divider">Alles aus Relaunch Basis, plus:</div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Veranstaltungskalender (Liste + Monatsansicht)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Event-Detailseiten mit Eventim-Ticketlinks</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>„Top Themen" – redaktionelles Startseiten-Widget</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>3 Werbeplätze mit Backend-Verwaltung</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Social-Media-Integration (Meta / Instagram / YouTube)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Share-Funktion auf Artikelseiten</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Seite „Werbung schalten" (Media-Kit)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Newsletter-Anbindung</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Redaktions-Dashboard</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Google Analytics 4</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Admin-Schulung (4 h)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>URL-Weiterleitungen (301-Redirects)</span></div>
+      </div>
+      <div style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);padding:14px 20px;margin-bottom:20px;border-radius:3px">
+        <p style="font-size:13px;color:var(--gold-hell);line-height:1.6"><strong style="color:var(--gold-hell)">Unsere Empfehlung:</strong> Dieses Paket deckt alle Anforderungen aus dem Briefing vollständig ab — Werbeplätze, Eventkalender, Eventim-Links, Social Media, Top Themen und Kontakt im Header. Der optimale Ausgangspunkt für den Relaunch.</p>
       </div>
       <div class="pay">
         <div class="pay-label">Zahlungsplan</div>
@@ -666,18 +640,26 @@
       <div class="pkg-head">
         <div class="pkg-name-block">
           <div class="kicker">Paket 03</div>
-          <div class="pkg-name">Business</div>
+          <div class="pkg-name">Relaunch Growth</div>
           <div class="pkg-dur">Laufzeit 10–12 Wochen</div>
         </div>
-        <div class="pkg-price-block"><div class="pkg-price">18.900 €</div><span class="pkg-price-suf">netto zzgl. MwSt.</span></div>
+        <div class="pkg-price-block">
+          <div class="pkg-price">18.900 €</div>
+          <span class="pkg-price-suf">netto zzgl. MwSt.</span>
+        </div>
       </div>
       <div class="pkg-feats">
-        <div class="feat-item yes"><span class="ind">✓</span><span>Alles aus <strong>Professional</strong></span></div>
+        <div class="feat-divider">Alles aus Relaunch Professional, plus:</div>
         <div class="feat-item yes"><span class="ind">✓</span><span>5 Werbeplätze mit automatischer Rotation</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Social-Media-Kampagnen (3 Monate)</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>SEO-Optimierungspaket</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Redaktionssystem mit Freigabe-Workflow</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Analytics-Dashboard + Wochenbericht</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Klicktracking für Werbebanner</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Rezept-Template für Küche-Bereich</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>SEO-Struktur für alle Kategorien</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Redaktions-Freigabe-Workflow</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Analytics-Dashboard + Wochenbericht-Vorlage</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Social-Media-Kampagnenplan (3 Monate)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Erweitertes Startseiten-Layout</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Übergabedokumentation</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Admin-Schulung (6 h)</span></div>
       </div>
       <div class="pay">
         <div class="pay-label">Zahlungsplan</div>
@@ -694,20 +676,25 @@
       <div class="pkg-head">
         <div class="pkg-name-block">
           <div class="kicker">Paket 04</div>
-          <div class="pkg-name">Premium</div>
+          <div class="pkg-name">Tamil.de Medienplattform</div>
           <div class="pkg-dur">Laufzeit 12–16 Wochen</div>
         </div>
-        <div class="pkg-price-block"><div class="pkg-price">27.500 €</div><span class="pkg-price-suf">netto zzgl. MwSt.</span></div>
+        <div class="pkg-price-block">
+          <div class="pkg-price">27.500 €</div>
+          <span class="pkg-price-suf">netto zzgl. MwSt.</span>
+        </div>
       </div>
       <div class="pkg-feats">
-        <div class="feat-item yes"><span class="ind">✓</span><span>Alles aus <strong>Business</strong></span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Werbenetzwerk (Google Ad Manager)</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Social-Media-Management (6 Monate)</span></div>
+        <div class="feat-divider">Alles aus Relaunch Growth, plus:</div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Google Ad Manager Integration</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Professionelle Anzeigenverwaltung</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Zweisprachigkeit Tamil &amp; Deutsch</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Progressive Web App (offline-fähig)</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Push-Benachrichtigungen</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Priority-Support (Reaktionszeit 4 Stunden)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Social-Media-Betreuung 6 Monate (begrenzt)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Priority-Support (Reaktionszeit 4 h)</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Dedizierter Projektmanager</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Umfassende Übergabedokumentation</span></div>
       </div>
       <div class="pay">
         <div class="pay-label">Zahlungsplan</div>
@@ -732,25 +719,25 @@
       <thead>
         <tr>
           <th>Leistung</th>
-          <th class="compat-col">Kompatibilität</th>
+          <th class="compat-col">Ab Paket</th>
           <th class="right">Preis</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><div class="ao-name">Zusätzlicher Werbeplatz</div><div class="ao-det">Pro Platzierung, feste Position</div></td>
-          <td class="compat-cell"><span class="ao-compat">Ab Starter</span></td>
+          <td><div class="ao-name">Zusätzlicher Werbeplatz</div><div class="ao-det">Pro Platzierung, feste Position im Theme</div></td>
+          <td class="compat-cell"><span class="ao-compat">Relaunch Basis</span></td>
           <td class="ao-price">450 €</td>
         </tr>
         <tr>
-          <td><div class="ao-name">Social Media – Monatsbetreuung</div><div class="ao-det">2 Beiträge/Woche, 1 Kanal</div></td>
-          <td class="compat-cell"><span class="ao-compat">Ab Professional</span></td>
-          <td class="ao-price">890 €<small> /Mon.</small></td>
+          <td><div class="ao-name">Eventim API-Vollintegration</div><div class="ao-det">Live-Ticketdaten automatisch in Echtzeit (statt manueller Links)</div></td>
+          <td class="compat-cell"><span class="ao-compat">Professional</span></td>
+          <td class="ao-price">2.400 €</td>
         </tr>
         <tr>
-          <td><div class="ao-name">Eventim API-Vollintegration</div><div class="ao-det">Live-Ticketdaten in Echtzeit</div></td>
-          <td class="compat-cell"><span class="ao-compat">Ab Professional</span></td>
-          <td class="ao-price">2.400 €</td>
+          <td><div class="ao-name">Social-Media-Monatsbetreuung</div><div class="ao-det">2 Beiträge/Woche, 1 Kanal</div></td>
+          <td class="compat-cell"><span class="ao-compat">Professional</span></td>
+          <td class="ao-price">890 €<small> /Mon.</small></td>
         </tr>
         <tr>
           <td><div class="ao-name">SEO-Jahrespaket</div><div class="ao-det">Monatliches Reporting &amp; laufende Optimierung</div></td>
@@ -758,7 +745,7 @@
           <td class="ao-price">3.600 €<small> /Jahr</small></td>
         </tr>
         <tr>
-          <td><div class="ao-name">Tamil-Übersetzung &amp; Lokalisierung</div><div class="ao-det">Vollständige Sprachversion auf Tamil</div></td>
+          <td><div class="ao-name">Tamil-Lokalisierung</div><div class="ao-det">Vollständige Sprachversion auf Tamil</div></td>
           <td class="compat-cell"><span class="ao-compat">Alle Pakete</span></td>
           <td class="ao-price">1.800 €</td>
         </tr>
@@ -767,8 +754,13 @@
           <td class="compat-cell"><span class="ao-compat">Alle Pakete</span></td>
           <td class="ao-price">1.200 €</td>
         </tr>
+        <tr>
+          <td><div class="ao-name">Wartung &amp; Support (monatlich)</div><div class="ao-det">Updates, Backups, kleiner Anpassungen, Fehlerbeseitigung</div></td>
+          <td class="compat-cell"><span class="ao-compat">Nach Launch</span></td>
+          <td class="ao-price">390 €<small> /Mon.</small></td>
+        </tr>
         <tr class="rabatt">
-          <td><div class="ao-name">Kombinationsrabatt</div><div class="ao-det">Bei Buchung von 2 oder mehr Add-ons</div></td>
+          <td><div class="ao-name">Kombinationsrabatt</div><div class="ao-det">Bei Buchung von 2 oder mehr Add-ons gleichzeitig</div></td>
           <td class="compat-cell"><span class="ao-compat">—</span></td>
           <td class="ao-price">−10 %</td>
         </tr>
@@ -776,8 +768,78 @@
     </table>
   </section>
 
-  <!-- NÄCHSTE SCHRITTE -->
+  <!-- LIEFERUMFANG -->
   <section class="sec">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Lieferumfang</span></div>
+      <h2>Was Tamil.de am Ende bekommt</h2>
+      <div class="tamil-sub serif">வழங்கல் நோக்கம்</div>
+      <p>Sie kaufen kein generisches Website-Template. Sie bekommen ein vollständiges redaktionelles System — inklusive aller Dateien, Konfigurationen und Anleitungen für einen professionellen Betrieb.</p>
+    </div>
+    <div class="del-grid">
+      <div class="del-block">
+        <h4>Technische Dateien</h4>
+        <ul>
+          <li>WordPress-Theme (eigens entwickelt)</li>
+          <li>CMS-Konfiguration mit allen Templates</li>
+          <li>Plugin-Konfiguration (SEO, Sicherheit, Formular, Cookie, Kalender)</li>
+          <li>301-Redirect-Liste (alte URLs auf neue)</li>
+          <li>Tracking-Konfiguration (Analytics, Search Console)</li>
+          <li>Backup vor und nach Launch</li>
+        </ul>
+      </div>
+      <div class="del-block">
+        <h4>Design-Dateien</h4>
+        <ul>
+          <li>Sitemap / Seitenstruktur</li>
+          <li>Wireframes aller Templates</li>
+          <li>Design-Mockups (Startseite, Kategorie, Artikel)</li>
+          <li>Styleguide (Farben, Schriften, Komponenten)</li>
+          <li>Bannerplatz-Übersicht mit Formaten</li>
+          <li>Mobile-Ansichten aller Hauptseiten</li>
+        </ul>
+      </div>
+      <div class="del-block">
+        <h4>Dokumentation &amp; Übergabe</h4>
+        <ul>
+          <li>Admin-Anleitung für Redaktion</li>
+          <li>Anleitung Veranstaltungskalender pflegen</li>
+          <li>Anleitung Werbebanner austauschen</li>
+          <li>Anleitung Top-Themen steuern</li>
+          <li>Launch-Checkliste</li>
+          <li>Übergabegespräch (video oder vor Ort)</li>
+        </ul>
+      </div>
+      <div class="del-block">
+        <h4>Was Tamil.de liefern muss</h4>
+        <ul>
+          <li>Logo (Vektorformat)</li>
+          <li>Zugangsdaten Hosting / Domain</li>
+          <li>Bestehende Inhalte (Bilder, Texte)</li>
+          <li>Finale Bestätigung Kategorie-Struktur</li>
+          <li>Social-Media-Zugangsdaten (ab Professional)</li>
+          <li>Eventim-Ticketlinks für Events</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="scope-box">
+      <h4>Nicht enthalten (im Basispreis)</h4>
+      <ul>
+        <li>Laufende Inhaltspflege / Texterstellung</li>
+        <li>Fotografie / Bildmaterial</li>
+        <li>Übersetzung bestehender Inhalte</li>
+        <li>Migration von mehr als 50 Beiträgen</li>
+        <li>Hosting-Kosten nach Launch</li>
+        <li>Eventim API-Echtzeit-Integration (→ Add-on)</li>
+        <li>Laufende Social-Media-Betreuung (→ Add-on)</li>
+        <li>Laufende Wartung nach Launch (→ Add-on)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- NÄCHSTE SCHRITTE -->
+  <section class="sec" style="background:var(--papier)">
     <div class="sec-head">
       <div class="sec-eyebrow"><span class="bar"></span><span>Ablauf</span></div>
       <h2>So geht es weiter</h2>
@@ -785,8 +847,8 @@
     </div>
     <div class="steps">
       <div class="step"><div class="n">1</div><h4>Paket auswählen</h4><p>Teilen Sie uns Ihre Wahl mit — den Projektvertrag erhalten Sie innerhalb von 24 Stunden per E-Mail.</p></div>
-      <div class="step"><div class="n">2</div><h4>Kick-off-Call</h4><p>60-minütiges Strategiegespräch: Wir klären Zeitplan, Zugänge und erste Meilensteine gemeinsam.</p></div>
-      <div class="step"><div class="n">3</div><h4>Projektstart</h4><p>Nach Eingang der Anzahlung (50 %) starten wir innerhalb von 5 Werktagen mit der Konzeptphase.</p></div>
+      <div class="step"><div class="n">2</div><h4>Kick-off-Call</h4><p>60-minütiges Strategiegespräch: Wir klären Zeitplan, Zugänge, Kategorien und erste Meilensteine gemeinsam.</p></div>
+      <div class="step"><div class="n">3</div><h4>Projektstart</h4><p>Nach Eingang der Anzahlung (50 %) starten wir innerhalb von 5 Werktagen mit Sitemap, Wireframes und Konzept.</p></div>
     </div>
   </section>
 

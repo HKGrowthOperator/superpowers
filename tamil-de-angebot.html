@@ -39,19 +39,11 @@
   .doc{max-width:1080px;margin:0 auto;background:var(--warmweiss);box-shadow:var(--schatten-l)}
   .serif{font-family:'Fraunces',Georgia,serif}
 
-  /* ── HK LOGO ── */
-  .hk-logo{display:flex;align-items:center;gap:10px}
-  .hk-monogram{
-    width:38px;height:38px;border-radius:4px;background:var(--rot);
-    display:flex;align-items:center;justify-content:center;
-    font-weight:800;font-size:15px;letter-spacing:-0.5px;color:#fff;flex-shrink:0
-  }
-  .hk-wordmark{display:flex;flex-direction:column}
-  .hk-wordmark .line1{font-size:13px;font-weight:800;color:rgba(255,255,255,.92);letter-spacing:.3px;line-height:1.1}
-  .hk-wordmark .line2{font-size:9px;font-weight:500;color:rgba(255,255,255,.38);letter-spacing:2px;text-transform:uppercase}
-  .hk-logo-footer .hk-monogram{width:32px;height:32px;font-size:13px}
-  .hk-logo-footer .hk-wordmark .line1{color:rgba(255,255,255,.8);font-size:12px}
-  .hk-logo-footer .hk-wordmark .line2{color:rgba(255,255,255,.3);font-size:8px}
+  /* ── HK LOGO SVG ── */
+  .hk-svg-logo{display:block;overflow:visible}
+  .hk-svg-logo .ltr{font-family:'Inter',Impact,'Arial Black',system-ui,sans-serif;font-weight:900;letter-spacing:-2px}
+  .hk-svg-logo .sub{font-family:'Inter',system-ui,sans-serif;font-weight:700;letter-spacing:3px}
+  .collab-x{font-size:clamp(16px,2vw,22px);font-weight:800;color:rgba(255,255,255,.2);flex-shrink:0;line-height:1}
 
   /* ── STRIP ── */
   .strip{
@@ -445,14 +437,15 @@
         <span class="t">tamil</span><span class="d">.de</span>
         <span class="sub">portal · lifestyle · entertainment</span>
       </div>
-      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
-        <div class="hk-logo">
-          <div class="hk-monogram">HK</div>
-          <div class="hk-wordmark">
-            <span class="line1">HK Growth Operator</span>
-            <span class="line2">Digital Agency</span>
-          </div>
-        </div>
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <span class="collab-x">×</span>
+        <svg class="hk-svg-logo" width="148" height="60" viewBox="0 0 148 60" xmlns="http://www.w3.org/2000/svg" aria-label="HK Growth Operator">
+          <text x="1" y="43" class="ltr" font-size="46" fill="#ffffff">HK</text>
+          <path d="M 9 40 C 44 25 76 13 110 3" stroke="rgba(255,255,255,.15)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+          <path d="M 9 40 C 44 25 76 13 110 3" stroke="#8DC63F" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <polygon points="110,0 97,8 102,17" fill="#8DC63F"/>
+          <text x="1" y="57" class="sub" font-size="8.5" fill="rgba(255,255,255,.38)">GROWTH OPERATOR</text>
+        </svg>
         <div class="cover-badge">Premium Angebot</div>
       </div>
     </div>
@@ -1154,13 +1147,13 @@
   <!-- FOOTER -->
   <div class="footer">
     <div class="fl">
-      <div class="hk-logo hk-logo-footer">
-        <div class="hk-monogram">HK</div>
-        <div class="hk-wordmark">
-          <span class="line1">HK Growth Operator</span>
-          <span class="line2">Digital Agency</span>
-        </div>
-      </div>
+      <svg class="hk-svg-logo" width="122" height="50" viewBox="0 0 148 60" xmlns="http://www.w3.org/2000/svg" aria-label="HK Growth Operator">
+        <text x="1" y="43" class="ltr" font-size="46" fill="rgba(255,255,255,.75)">HK</text>
+        <path d="M 9 40 C 44 25 76 13 110 3" stroke="rgba(255,255,255,.1)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+        <path d="M 9 40 C 44 25 76 13 110 3" stroke="#6EA832" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <polygon points="110,0 97,8 102,17" fill="#6EA832"/>
+        <text x="1" y="57" class="sub" font-size="8.5" fill="rgba(255,255,255,.28)">GROWTH OPERATOR</text>
+      </svg>
     </div>
     <div class="fr">Dieses Angebot wurde individuell für Tamil.de erstellt und ist nicht übertragbar.<br>
     Ref HKG-2026-TML-004 · Erstellt 02.06.2026 · Gültig bis 30.06.2026</div>

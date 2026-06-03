@@ -295,6 +295,18 @@
     flex-wrap:wrap;gap:16px;font-size:12px}
   .footer .fr{line-height:1.7}
 
+  /* ── PFLICHTUMFANG LIST ── */
+  .pflicht-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--linie);border:1px solid var(--linie);margin-top:8px;counter-reset:pflicht}
+  .pflicht-item{counter-increment:pflicht;background:#fff;
+    padding:clamp(14px,1.8vw,20px) clamp(16px,2vw,22px);
+    display:flex;gap:16px;align-items:flex-start}
+  .pflicht-item::before{content:counter(pflicht,decimal-leading-zero);
+    font-family:'Fraunces',Georgia,serif;font-size:clamp(20px,2.5vw,26px);font-weight:900;
+    color:var(--rot);opacity:.45;line-height:1;flex-shrink:0;width:30px;margin-top:1px}
+  .pflicht-item-body .pt{font-weight:700;font-size:clamp(13px,1.4vw,14.5px);color:var(--anthrazit);line-height:1.3}
+  .pflicht-item-body .pd{font-size:clamp(11px,1.1vw,12.5px);color:var(--text-leise);margin-top:3px;line-height:1.5}
+
   /* ── PRIORITY BLOCKS ── */
   .prio-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:36px;
     border:1px solid var(--linie);overflow:hidden}
@@ -358,6 +370,7 @@
 
   /* ── MOBILE 600px ── */
   @media(max-width:600px){
+    .pflicht-grid{grid-template-columns:1fr}
     .prio-grid{grid-template-columns:1fr}
     .prio-block.p1,.prio-block.p2{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
     .audit-grid{grid-template-columns:1fr}
@@ -452,7 +465,7 @@
     <div class="cover-eyebrow"><span class="bar"></span><span>Website Relaunch 2026</span></div>
     <div class="cover-tamil serif">இணையதள மறுவடிவமைப்பு</div>
     <h1>Kein Theme-Wechsel.<br><em>Ein richtiger Relaunch.</em></h1>
-    <p class="cover-intro">Tamil.de hat bereits eine starke Grundlage: eine klare Community, bestehende Inhalte und relevante Themen. Ziel ist nicht nur ein neues Design — sondern der Aufbau eines modernen News-, Event- und Werbeportals für die tamilische Community im DACH-Raum.</p>
+    <p class="cover-intro">Tamil.de hat einen starken Kern. Was fehlt, ist Struktur. Dieser Relaunch ist kein Theme-Wechsel — es ist der strukturelle Neuaufbau als digitales Magazin-, Event- und Werbeportal für die tamilische Community im DACH-Raum. Fundiert. Analysiert. Planbar.</p>
     <div class="cover-meta">
       <div><div class="label">Kunde</div><div class="val">Tamil.de</div></div>
       <div><div class="label">Agentur</div><div class="val">HK Growth Operator</div></div>
@@ -505,6 +518,30 @@
     <p class="preview-caption">Designstudie — die finale Gestaltung wird in der Konzeptphase gemeinsam erarbeitet.</p>
   </section>
 
+  <!-- PFLICHTUMFANG -->
+  <section class="sec">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Pflichtumfang</span></div>
+      <h2>Was dieser Relaunch leisten muss</h2>
+      <div class="tamil-sub serif">கட்டாய நோக்கம் · Bestätigt vom Auftraggeber</div>
+      <p>Der Relaunch von Tamil.de umfasst nicht nur eine optische Modernisierung, sondern den strukturellen Neuaufbau als digitales Magazin- und Nachrichtenportal. Im Fokus stehen klare Kategorien, bessere Nutzerführung, Werbeflächen, ein Eventbereich mit Ticketverlinkungen sowie eine skalierbare Grundlage für zukünftige Inhalte, Partner und Monetarisierung.</p>
+    </div>
+    <div class="pflicht-grid">
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Modernisierung der bestehenden Website</div><div class="pd">Technischer Neuaufbau auf stabiler CMS-Basis, kein bloßes Template-Update</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Beibehaltung &amp; Veredelung des Farbschemas</div><div class="pd">Das bestehende Erscheinungsbild wird modernisiert und konsistent übertragen — kein Markenbruch</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Neue Seiten- &amp; Kategorienstruktur</div><div class="pd">Nachrichten/News, Entertainment, Kino, Events, Küche, Sport, Kontakt — klar gegliedert in Haupt- und Unterkategorien</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Startseitenstruktur mit Top-Themen</div><div class="pd">Magazin-Layout mit steuerbarem Top-Themen-Bereich zur Hervorhebung relevanter Inhalte</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Eventbereich mit Kalenderfunktion</div><div class="pd">Übersicht kommender Veranstaltungen mit Datum, Ort, Beschreibung und Bildmaterial</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Externe Ticketverlinkung (z. B. Eventim)</div><div class="pd">Jede Veranstaltung erhält einen Button mit Link zum externen Ticketanbieter — zuverlässig ohne API-Abhängigkeit</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Werbebanner-System mit festen Platzierungen</div><div class="pd">Header, Sidebar, In-Article, Footer, Mobile — austauschbar direkt im Backend ohne Programmieraufwand</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Kontakt prominent im Header sichtbar</div><div class="pd">Direkter Zugang für Nutzer, Werbepartner und Veranstalter — sichtbar auf jeder Seite</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Mobile Optimierung</div><div class="pd">Alle Seiten für Smartphone und Tablet optimiert — mobile-first, da die Zielgruppe überwiegend mobil liest</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">CMS-Struktur für eigenständige Pflege</div><div class="pd">Beiträge, Events und Banner können nach dem Launch ohne externe Hilfe selbst verwaltet werden</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">SEO-Grundstruktur</div><div class="pd">Technische SEO für Kategorien, Beiträge und Veranstaltungen — damit Tamil.de in Suchmaschinen sichtbar bleibt</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Saubere Navigationsstruktur</div><div class="pd">Klare, logische Navigation für ein Magazin-/Nachrichtenportal mit schneller Erreichbarkeit aller Bereiche</div></div></div>
+    </div>
+  </section>
+
   <!-- KERNARGUMENTE -->
   <section class="sec" style="background:var(--anthrazit);color:#fff">
     <div class="feat-grid" style="margin-top:0;border-color:rgba(255,255,255,.08);background:rgba(255,255,255,.06)">
@@ -532,11 +569,11 @@
       <div class="sec-eyebrow"><span class="bar"></span><span>Seitenstruktur</span></div>
       <h2>Neun Themenbereiche. Eine Plattform.</h2>
       <div class="tamil-sub serif">வலைத்தள கட்டமைப்பு · Sitemap &amp; Navigation</div>
-      <p>Tamil.de erhält eine klare Navigationsstruktur mit neun Hauptbereichen. Jeder Bereich bekommt ein eigenes Kategorie-Template. Das Farbschema wird modernisiert, bleibt aber in der bewährten Linie.</p>
+      <p>Tamil.de erhält eine klare Navigationsstruktur. Die bestehende und neue Inhaltsstruktur wird in Haupt- und Unterkategorien gegliedert — darunter Nachrichten/News, Entertainment, Kino, Events, Küche und Sport. Falls gewünscht, können Nachrichten und News getrennt dargestellt oder redaktionell sinnvoll zusammengeführt werden.</p>
     </div>
 
     <div class="pills">
-      <span class="pill">Nachrichten</span>
+      <span class="pill">Nachrichten / News</span>
       <span class="pill">Community</span>
       <span class="pill">Entertainment</span>
       <span class="pill">Kino</span>

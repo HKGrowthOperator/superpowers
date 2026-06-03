@@ -303,6 +303,39 @@
     flex-wrap:wrap;gap:16px;font-size:12px}
   .footer .fr{line-height:1.7}
 
+  /* ── PRIORITY BLOCKS ── */
+  .prio-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:36px;
+    border:1px solid var(--linie);overflow:hidden}
+  .prio-block{padding:clamp(24px,3vw,36px) clamp(20px,2.5vw,32px)}
+  .prio-block.p1{background:var(--anthrazit);color:#fff;border-right:1px solid rgba(255,255,255,.08)}
+  .prio-block.p2{background:linear-gradient(160deg,#2C2418,#26262A);border-right:1px solid rgba(201,168,76,.2)}
+  .prio-block.p3{background:#fff}
+  .prio-label{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .prio-block.p1 .prio-label{color:rgba(176,30,44,.8)}
+  .prio-block.p2 .prio-label{color:var(--gold)}
+  .prio-block.p3 .prio-label{color:var(--text-leise)}
+  .prio-label .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .prio-block.p1 .dot{background:var(--rot)}
+  .prio-block.p2 .dot{background:var(--gold)}
+  .prio-block.p3 .dot{background:var(--linie)}
+  .prio-block h3{font-size:clamp(17px,1.8vw,21px);font-weight:800;line-height:1.2;margin-bottom:16px;letter-spacing:-.4px}
+  .prio-block.p1 h3{color:#fff}
+  .prio-block.p2 h3{color:var(--gold-hell)}
+  .prio-block.p3 h3{color:var(--anthrazit)}
+  .prio-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:7px}
+  .prio-list li{font-size:clamp(12px,1.2vw,13.5px);line-height:1.45;display:flex;align-items:flex-start;gap:9px;padding:4px 0;border-bottom:1px solid}
+  .prio-list li:last-child{border-bottom:none}
+  .prio-block.p1 .prio-list li{color:rgba(255,255,255,.75);border-bottom-color:rgba(255,255,255,.06)}
+  .prio-block.p2 .prio-list li{color:rgba(255,255,255,.7);border-bottom-color:rgba(201,168,76,.12)}
+  .prio-block.p3 .prio-list li{color:var(--text);border-bottom-color:var(--linie)}
+  .prio-list li::before{font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px}
+  .prio-block.p1 .prio-list li::before{content:'✓';color:rgba(176,30,44,.8)}
+  .prio-block.p2 .prio-list li::before{content:'★';color:var(--gold)}
+  .prio-block.p3 .prio-list li::before{content:'+';color:var(--text-leise)}
+  .prio-highlight{margin-top:18px;padding:14px 16px;font-size:12.5px;line-height:1.6;border-radius:3px}
+  .prio-block.p2 .prio-highlight{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:rgba(255,255,255,.65)}
+  .prio-block.p2 .prio-highlight strong{color:var(--gold-hell)}
+
   /* ── AUDIT BEFORE/AFTER ── */
   .audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;
     background:var(--linie);border:1px solid var(--linie);margin-top:8px}
@@ -333,6 +366,8 @@
 
   /* ── MOBILE 600px ── */
   @media(max-width:600px){
+    .prio-grid{grid-template-columns:1fr}
+    .prio-block.p1,.prio-block.p2{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
     .audit-grid{grid-template-columns:1fr}
     .audit-col-head.bad,.audit-col-head.good{padding:10px 14px}
     .audit-cell{font-size:12px;padding:12px 14px}
@@ -424,7 +459,7 @@
     <div class="cover-eyebrow"><span class="bar"></span><span>Website Relaunch 2026</span></div>
     <div class="cover-tamil serif">இணையதள மறுவடிவமைப்பு</div>
     <h1>Kein Theme-Wechsel.<br><em>Ein richtiger Relaunch.</em></h1>
-    <p class="cover-intro">Tamil.de wird sauber neu aufgebaut: Die leere Kino-Seite bekommt Leben, der Events-Kalender funktioniert endlich, Top Themen werden steuerbar, Sport bekommt eine Heimat — und Impressum sowie Datenschutz werden rechtssicher integriert. Alles basiert auf unserer eingehenden Analyse des bestehenden Portals.</p>
+    <p class="cover-intro">Tamil.de hat bereits eine starke Grundlage: eine klare Community, bestehende Inhalte und relevante Themen. Ziel ist nicht nur ein neues Design — sondern der Aufbau eines modernen News-, Event- und Werbeportals für die tamilische Community im DACH-Raum.</p>
     <div class="cover-meta">
       <div><div class="label">Kunde</div><div class="val">Tamil.de</div></div>
       <div><div class="label">Agentur</div><div class="val">HK Growth Operator</div></div>
@@ -714,13 +749,83 @@
     </div>
   </section>
 
+  <!-- RELAUNCH-PRIORITÄTEN -->
+  <section class="sec" style="background:var(--papier)">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Strategie</span></div>
+      <h2>Relaunch-Prioritäten &amp; Ausbauempfehlung</h2>
+      <div class="tamil-sub serif">முன்னுரிமைகள் · Nicht alles ist gleich wichtig</div>
+      <p>Tamil.de ist kein kaputtes Projekt — es ist ein Portal mit starkem Kern und ungenutztem Potenzial. Wir haben analysiert, priorisiert und denken strategisch: Hier ist, was zählt.</p>
+    </div>
+    <div class="prio-grid">
+
+      <!-- Block 1: Pflicht -->
+      <div class="prio-block p1">
+        <div class="prio-label"><span class="dot"></span>Pflicht für den Relaunch</div>
+        <h3>Was technisch und strukturell sein muss</h3>
+        <ul class="prio-list">
+          <li>Neue Seitenstruktur mit klarer Navigation</li>
+          <li>Moderne Magazin-Startseite</li>
+          <li>Neue Artikel- &amp; Kategorie-Templates</li>
+          <li>Eventkalender mit Ticketlinks</li>
+          <li>Kino-Seite komplett neu aufbauen</li>
+          <li>Definierte Werbebanner-Platzierungen</li>
+          <li>Kontaktseite mit Anfrageformularen</li>
+          <li>Impressum &amp; Datenschutz technisch sauber</li>
+          <li>Mobile Optimierung (mobile-first)</li>
+          <li>Content-Migration + 301-Redirects</li>
+          <li>Cookie-/Consent-System</li>
+        </ul>
+      </div>
+
+      <!-- Block 2: Empfehlung -->
+      <div class="prio-block p2">
+        <div class="prio-label"><span class="dot"></span>Unsere höchste Empfehlung</div>
+        <h3>Tamil.de als Portal-System aufbauen</h3>
+        <ul class="prio-list">
+          <li>Newsportal — moderne Redaktionsstruktur</li>
+          <li>Eventkalender — professionell &amp; aktuell</li>
+          <li>Kino-Übersicht — eigene Kategorie</li>
+          <li>Werbeplattform — Banner &amp; Sponsoring</li>
+          <li>Community-Anlaufstelle — Sport, Küche, Kultur</li>
+          <li>WhatsApp-Integration überall sichtbar</li>
+          <li>Admin-Bereich einfach zu pflegen</li>
+        </ul>
+        <div class="prio-highlight">
+          <strong>Warum das der entscheidende Unterschied ist:</strong><br>
+          So entsteht nicht nur eine modernere Website, sondern eine Plattform, die langfristig Reichweite, Werbeeinnahmen und Community-Bindung aufbaut. Veranstalter, Unternehmen und Vereine können gezielt eingebunden werden.
+        </div>
+      </div>
+
+      <!-- Block 3: Optional -->
+      <div class="prio-block p3">
+        <div class="prio-label"><span class="dot"></span>Optionale Erweiterungen</div>
+        <h3>Was Tamil.de noch stärker macht</h3>
+        <ul class="prio-list">
+          <li>„Werben auf Tamil.de"-Landingpage</li>
+          <li>Media Kit für Werbekunden</li>
+          <li>Newsletter-System (Double-Opt-in)</li>
+          <li>WhatsApp-/Telegram-Broadcast-Konzept</li>
+          <li>Event-Promotion-Pakete für Veranstalter</li>
+          <li>Social-Media-Automation</li>
+          <li>SEO-Content-Cluster (Rezepte, Kino, Events)</li>
+          <li>Business-/Vereins-/Tempel-Verzeichnis</li>
+          <li>Premium Event Landingpages</li>
+          <li>Monatliche Wartung &amp; Content-Betreuung</li>
+          <li>Reporting-Dashboard (Traffic, Banner, Events)</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
   <!-- PAKETE -->
   <section class="sec pkgs-sec">
     <div class="sec-head">
       <div class="sec-eyebrow"><span class="bar"></span><span>Leistungspakete</span></div>
       <h2>Vier Stufen. Ein klares Ziel.</h2>
       <div class="tamil-sub serif">தொகுப்புகள் · Wählen Sie, was zu Ihnen passt</div>
-      <p>Alle Pakete bauen aufeinander auf. Zahlung jeweils 50 % bei Projektstart, 50 % bei Projektabschluss.</p>
+      <p>Nicht Paket 1 — das ist der Einstieg. Das sinnvollste Angebot für Tamil.de ist <strong>Portal Professional</strong> oder <strong>Media &amp; Ads System</strong>. Alle Pakete bauen aufeinander auf. Zahlung 50 % bei Projektstart, 50 % bei Projektabschluss.</p>
     </div>
 
     <!-- Paket 1 -->

@@ -41,8 +41,6 @@
 
   /* ── HK LOGO SVG ── */
   .hk-svg-logo{display:block;overflow:visible}
-  .hk-svg-logo .ltr{font-family:'Inter',Impact,'Arial Black',system-ui,sans-serif;font-weight:900;letter-spacing:-2px}
-  .hk-svg-logo .sub{font-family:'Inter',system-ui,sans-serif;font-weight:700;letter-spacing:3px}
   .collab-x{font-size:clamp(16px,2vw,22px);font-weight:800;color:rgba(255,255,255,.2);flex-shrink:0;line-height:1}
 
   /* ── STRIP ── */
@@ -453,11 +451,22 @@
       <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
         <span class="collab-x">×</span>
         <svg class="hk-svg-logo" width="148" height="60" viewBox="0 0 148 60" xmlns="http://www.w3.org/2000/svg" aria-label="HK Growth Operator">
-          <text x="1" y="43" class="ltr" font-size="46" fill="#ffffff">HK</text>
-          <path d="M 9 40 C 44 25 76 13 110 3" stroke="rgba(255,255,255,.15)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
-          <path d="M 9 40 C 44 25 76 13 110 3" stroke="#8DC63F" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <polygon points="110,0 97,8 102,17" fill="#8DC63F"/>
-          <text x="1" y="57" class="sub" font-size="8.5" fill="rgba(255,255,255,.38)">GROWTH OPERATOR</text>
+          <!-- H: left bar, right bar, crossbar -->
+          <rect x="2"  y="2" width="13" height="46" fill="#fff"/>
+          <rect x="35" y="2" width="13" height="46" fill="#fff"/>
+          <rect x="15" y="19" width="20" height="9"  fill="#fff"/>
+          <!-- K: vertical bar, upper arm, lower arm -->
+          <rect x="54" y="2" width="13" height="46" fill="#fff"/>
+          <polygon points="67,9 112,2 112,11 67,24"   fill="#fff"/>
+          <polygon points="67,27 112,48 100,48 67,37" fill="#fff"/>
+          <!-- Dark slash cuts through letters (matches cover bg) -->
+          <path d="M 7 40 C 36 27 70 14 112 4" stroke="#1A1A1C" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <!-- Green swoosh -->
+          <path d="M 7 40 C 36 27 70 14 112 4" stroke="#8DC63F" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <!-- Arrow tip -->
+          <polygon points="112,1 100,9 104,18" fill="#8DC63F"/>
+          <!-- GROWTH OPERATOR wordmark -->
+          <text x="1" y="57" font-family="'Inter',Arial,sans-serif" font-weight="700" font-size="8.5" letter-spacing="2.8" fill="rgba(255,255,255,.38)">GROWTH OPERATOR</text>
         </svg>
         <div class="cover-badge">Premium Angebot</div>
       </div>
@@ -1184,12 +1193,17 @@
   <!-- FOOTER -->
   <div class="footer">
     <div class="fl">
-      <svg class="hk-svg-logo" width="122" height="50" viewBox="0 0 148 60" xmlns="http://www.w3.org/2000/svg" aria-label="HK Growth Operator">
-        <text x="1" y="43" class="ltr" font-size="46" fill="rgba(255,255,255,.75)">HK</text>
-        <path d="M 9 40 C 44 25 76 13 110 3" stroke="rgba(255,255,255,.1)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
-        <path d="M 9 40 C 44 25 76 13 110 3" stroke="#6EA832" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <polygon points="110,0 97,8 102,17" fill="#6EA832"/>
-        <text x="1" y="57" class="sub" font-size="8.5" fill="rgba(255,255,255,.28)">GROWTH OPERATOR</text>
+      <svg class="hk-svg-logo" width="118" height="48" viewBox="0 0 148 60" xmlns="http://www.w3.org/2000/svg" aria-label="HK Growth Operator">
+          <rect x="2"  y="2" width="13" height="46" fill="rgba(255,255,255,.65)"/>
+          <rect x="35" y="2" width="13" height="46" fill="rgba(255,255,255,.65)"/>
+          <rect x="15" y="19" width="20" height="9"  fill="rgba(255,255,255,.65)"/>
+          <rect x="54" y="2" width="13" height="46" fill="rgba(255,255,255,.65)"/>
+          <polygon points="67,9 112,2 112,11 67,24"   fill="rgba(255,255,255,.65)"/>
+          <polygon points="67,27 112,48 100,48 67,37" fill="rgba(255,255,255,.65)"/>
+          <path d="M 7 40 C 36 27 70 14 112 4" stroke="#0F0F11" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <path d="M 7 40 C 36 27 70 14 112 4" stroke="#6EA832" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <polygon points="112,1 100,9 104,18" fill="#6EA832"/>
+          <text x="1" y="57" font-family="'Inter',Arial,sans-serif" font-weight="700" font-size="8.5" letter-spacing="2.8" fill="rgba(255,255,255,.28)">GROWTH OPERATOR</text>
       </svg>
     </div>
     <div class="fr">Dieses Angebot wurde individuell für Tamil.de erstellt und ist nicht übertragbar.<br>

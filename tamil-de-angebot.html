@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Tamil.de — Website Relaunch · Premium Angebot · HK Growth Operator</title>
+<title>Tamil.de — Website Relaunch · Premium Angebot v4 · HK Growth Operator</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -303,6 +303,28 @@
     flex-wrap:wrap;gap:16px;font-size:12px}
   .footer .fr{line-height:1.7}
 
+  /* ── AUDIT BEFORE/AFTER ── */
+  .audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--linie);border:1px solid var(--linie);margin-top:8px}
+  .audit-col-head{background:var(--anthrazit-2);padding:12px 20px;
+    font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.5)}
+  .audit-col-head.bad{background:#2C1A1C;color:rgba(176,30,44,.7)}
+  .audit-col-head.good{background:#1A2C1E;color:rgba(62,125,90,.8)}
+  .audit-row{display:contents}
+  .audit-cell{padding:clamp(12px,1.6vw,18px) clamp(14px,1.8vw,20px);
+    border-bottom:1px solid var(--linie);vertical-align:middle;background:#fff;
+    font-size:clamp(12px,1.3vw,13.5px);line-height:1.55}
+  .audit-cell.bad{background:#FFF9F9}
+  .audit-cell.good{background:#F7FBF8}
+  .audit-cell .area{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--text-leise);margin-bottom:5px}
+  .audit-cell.bad .area{color:rgba(176,30,44,.6)}
+  .audit-cell.good .area{color:rgba(62,125,90,.7)}
+  .audit-cell .issue{font-weight:600;color:var(--anthrazit)}
+  .audit-cell.bad .issue{color:#8A1722}
+  .audit-cell.good .issue{color:#2D6343}
+  .audit-cell .detail{font-size:12px;color:var(--text-leise);margin-top:3px}
+
   /* ── PRINT ── */
   @media print{
     body{background:#fff}.doc{box-shadow:none;max-width:100%}
@@ -311,6 +333,10 @@
 
   /* ── MOBILE 600px ── */
   @media(max-width:600px){
+    .audit-grid{grid-template-columns:1fr}
+    .audit-col-head.bad,.audit-col-head.good{padding:10px 14px}
+    .audit-cell{font-size:12px;padding:12px 14px}
+
     body{background:var(--warmweiss)}.doc{box-shadow:none}
     .strip{font-size:9px;letter-spacing:1.5px;padding:10px 16px}
     .cover{padding:32px 20px 36px}
@@ -375,7 +401,7 @@
 <body>
 <div class="doc">
 
-  <div class="strip">Angebot gültig bis 30. Juni 2026 · Erstellt für Tamil.de · Ref HKG-2026-TML-003</div>
+  <div class="strip">Angebot gültig bis 30. Juni 2026 · Erstellt für Tamil.de · Ref HKG-2026-TML-004</div>
 
   <!-- COVER -->
   <section class="cover">
@@ -397,8 +423,8 @@
     </div>
     <div class="cover-eyebrow"><span class="bar"></span><span>Website Relaunch 2026</span></div>
     <div class="cover-tamil serif">இணையதள மறுவடிவமைப்பு</div>
-    <h1>Tamil.de — neu gebaut.<br><em>Vertraut geblieben.</em></h1>
-    <p class="cover-intro">Tamil.de wird sauber neu aufgebaut: modernes Theme-System, redaktionelle Struktur für alle neun Themenbereiche, Werbeplätze, Veranstaltungskalender und Social-Media-Anbindung — ohne den Charakter der Marke zu verlieren.</p>
+    <h1>Kein Theme-Wechsel.<br><em>Ein richtiger Relaunch.</em></h1>
+    <p class="cover-intro">Tamil.de wird sauber neu aufgebaut: Die leere Kino-Seite bekommt Leben, der Events-Kalender funktioniert endlich, Top Themen werden steuerbar, Sport bekommt eine Heimat — und Impressum sowie Datenschutz werden rechtssicher integriert. Alles basiert auf unserer eingehenden Analyse des bestehenden Portals.</p>
     <div class="cover-meta">
       <div><div class="label">Kunde</div><div class="val">Tamil.de</div></div>
       <div><div class="label">Agentur</div><div class="val">HK Growth Operator</div></div>
@@ -451,6 +477,27 @@
     <p class="preview-caption">Designstudie — die finale Gestaltung wird in der Konzeptphase gemeinsam erarbeitet.</p>
   </section>
 
+  <!-- KERNARGUMENTE -->
+  <section class="sec" style="background:var(--anthrazit);color:#fff">
+    <div class="feat-grid" style="margin-top:0;border-color:rgba(255,255,255,.08);background:rgba(255,255,255,.06)">
+      <div class="feat" style="background:transparent">
+        <div class="num" style="color:var(--gold-hell)">01</div>
+        <h4 style="color:#fff">Kein neues Theme — eine neue Plattform</h4>
+        <p style="color:rgba(255,255,255,.5)">Tamil.de hat einen starken Kern: klare Nische, treue Community, viele bestehende Inhalte. Aber das Potenzial wird nicht genutzt. Der Relaunch baut die Struktur, die Tamil.de wirklich braucht.</p>
+      </div>
+      <div class="feat" style="background:transparent">
+        <div class="num" style="color:var(--gold-hell)">02</div>
+        <h4 style="color:#fff">Echte Probleme — direkte Lösungen</h4>
+        <p style="color:rgba(255,255,255,.5)">Kino leer. Events veraltet. Kontakt nicht erreichbar. Sport nicht vorhanden. Wir haben Tamil.de eingehend analysiert — und wissen genau, was neu gebaut werden muss.</p>
+      </div>
+      <div class="feat" style="background:transparent">
+        <div class="num" style="color:var(--gold-hell)">03</div>
+        <h4 style="color:#fff">Werbung verdienen vom ersten Tag an</h4>
+        <p style="color:rgba(255,255,255,.5)">Definierte Bannerpositionen, verwaltbar im CMS. Eine Media-Kit-Seite. Ein Anfrageformular für Werbekunden. Tamil.de kann ab Launch Werbepartner professionell ansprechen.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- SEITENSTRUKTUR -->
   <section class="sec">
     <div class="sec-head">
@@ -486,15 +533,18 @@
           <tr><td><div class="pg">Kategorie-Template</div><div class="pgd">für alle 9 Bereiche</div></td><td>Einheitliches, anpassbares Layout pro Themenbereich</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
           <tr><td><div class="pg">Artikel-Template</div><div class="pgd">Detail-Seite pro Beitrag</div></td><td>Beitragsseite mit Bild, Text, Teilen-Funktion</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
           <tr><td><div class="pg">Kontaktseite</div><div class="pgd">+ Kontakt oben im Header</div></td><td>Formular, Adresse, Telefon/E-Mail sichtbar im Header</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
-          <tr><td><div class="pg">Veranstaltungskalender</div><div class="pgd">Liste + Monatsansicht</div></td><td>Events übersichtlich mit Datum, Ort und Ticketlink</td><td><span class="badge mod">Professional</span></td></tr>
-          <tr><td><div class="pg">Event-Detailseite</div></td><td>Einzelne Veranstaltung mit Eventim-Ticketlink</td><td><span class="badge mod">Professional</span></td></tr>
-          <tr><td><div class="pg">Top Themen</div><div class="pgd">redaktionelles Widget</div></td><td>Manuell kuratierter Bereich auf der Startseite</td><td><span class="badge mod">Professional</span></td></tr>
-          <tr><td><div class="pg">Werbung schalten</div><div class="pgd">Media-Kit-Seite</div></td><td>Info für Werbekunden, Bannerformate, Preise</td><td><span class="badge mod">Professional</span></td></tr>
+          <tr><td><div class="pg">Veranstaltungskalender</div><div class="pgd">Liste + Monatsansicht</div></td><td>Events übersichtlich mit Datum, Ort und Ticketlink</td><td><span class="badge mod">Portal Professional</span></td></tr>
+          <tr><td><div class="pg">Event-Detailseite</div></td><td>Einzelne Veranstaltung mit Eventim-Ticketlink</td><td><span class="badge mod">Portal Professional</span></td></tr>
+          <tr><td><div class="pg">Top Themen</div><div class="pgd">redaktionelles Widget</div></td><td>Manuell kuratierter Bereich auf der Startseite</td><td><span class="badge mod">Portal Professional</span></td></tr>
+          <tr><td><div class="pg">Werbung schalten</div><div class="pgd">Media-Kit-Seite</div></td><td>Info für Werbekunden, Bannerformate, Preise</td><td><span class="badge mod">Portal Professional</span></td></tr>
           <tr><td><div class="pg">Suchseite</div></td><td>Suchergebnisse, gefiltert nach Kategorie</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
           <tr><td><div class="pg">Impressum / Datenschutz</div></td><td>Pflichtseiten gemäß deutschem Recht</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
           <tr><td><div class="pg">404-Fehlerseite</div></td><td>Professionelle Fehlerseite mit Navigation</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
           <tr><td><div class="pg">Standardseite</div><div class="pgd">für Unterseiten ohne Kategorie</div></td><td>Flexibles Template für weitere Inhaltsseiten</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
-          <tr><td><div class="pg">Rezept-Template</div><div class="pgd">Bereich Küche</div></td><td>Spezielles Layout für Rezepte mit Zutaten &amp; Zubereitung</td><td><span class="badge opt">Growth optional</span></td></tr>
+          <tr><td><div class="pg">Rezept-Template</div><div class="pgd">Bereich Küche</div></td><td>Zutatenbox, Zubereitungsschritte, Kochzeit, Druckansicht</td><td><span class="badge mod">Media &amp; Ads</span></td></tr>
+          <tr><td><div class="pg">Kino-Übersicht</div><div class="pgd">Filmkritiken, Kinostarts, Trailer</div></td><td>Tamilische Filme mit Ticketlink, Stadt, Startdatum und Filmarchiv</td><td><span class="badge mod">Portal Professional</span></td></tr>
+          <tr><td><div class="pg">Werbung anfragen</div><div class="pgd">Formular für Werbekunden</div></td><td>Direkte Anfrage für Bannerbuchung, Eventsponsoring, Kooperationen</td><td><span class="badge mod">Portal Professional</span></td></tr>
+          <tr><td><div class="pg">Event einreichen</div><div class="pgd">Community-Formular</div></td><td>Veranstalter können Events direkt über ein Formular einreichen</td><td><span class="badge mod">Portal Professional</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -537,6 +587,130 @@
     <div class="scope-box" style="border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.05);border-left-color:var(--gold)">
       <h4 style="color:#9A7B30">Hinweis Eventim-Anbindung</h4>
       <p style="font-size:13.5px;color:var(--text)">Die Eventim-Verlinkung erfolgt über <strong>manuell gepflegte Ticketlinks</strong> im Veranstaltungskalender — zuverlässig und wartungsarm. Die vollautomatische Echtzeit-API-Integration ist als separates Add-on zubuchbar.</p>
+    </div>
+  </section>
+
+  <!-- SITE-ANALYSE -->
+  <section class="sec">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Site-Analyse</span></div>
+      <h2>Was Tamil.de heute hat — was danach steht</h2>
+      <div class="tamil-sub serif">இப்போது vs. பிறகு · Jetzt vs. Nach dem Relaunch</div>
+      <p>Wir haben Tamil.de eingehend analysiert. Diese Gegenüberstellung zeigt konkret, was der Relaunch behebt — und was aus dem bestehenden Portal erhalten und verbessert wird.</p>
+    </div>
+    <div class="audit-grid">
+      <div class="audit-col-head bad">Heute: offen / fehlend</div>
+      <div class="audit-col-head good">Nach dem Relaunch</div>
+
+      <div class="audit-cell bad">
+        <div class="area">Kino</div>
+        <div class="issue">Seite leer — kein Inhalt, kein Template</div>
+        <div class="detail">Die Kategorie existiert in der Navigation, hat aber keine Funktion</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Kino</div>
+        <div class="issue">Vollständige Kategorie mit eigenem Template</div>
+        <div class="detail">Film-Reviews, Kollywood-Premieren, strukturiertes Artikel-Layout</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Events</div>
+        <div class="issue">Nur ein einziges Konzert aus 2019 sichtbar</div>
+        <div class="detail">Der Events-Bereich zeigt veraltete Inhalte, kein Kalender, keine Struktur</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Events</div>
+        <div class="issue">Echter Kalender: Liste + Monatsansicht</div>
+        <div class="detail">Events mit Datum, Ort, Beschreibung und manuellem Eventim-Ticketlink</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Top Themen</div>
+        <div class="issue">Statisch, zeigt Artikel aus 2021–2022</div>
+        <div class="detail">Kann nicht durch die Redaktion aktualisiert werden — fest im Code</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Top Themen</div>
+        <div class="issue">Redaktionell steuerbar — immer aktuell</div>
+        <div class="detail">Beliebige Beiträge wählbar, Reihenfolge änderbar, direkt im CMS</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Artikel-Template</div>
+        <div class="issue">Kein Hero-Bild, kein Autor, keine verwandten Beiträge</div>
+        <div class="detail">Textwüste ohne journalistische Struktur — schwache Leserbindung</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Artikel-Template</div>
+        <div class="issue">Professionelles Layout mit Hero, Autor &amp; Related Posts</div>
+        <div class="detail">Teilen-Funktion, Breadcrumb, Kategorie-Tag, Lesezeit-Schätzung</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Impressum / Datenschutz</div>
+        <div class="issue">Unvollständig — verweist noch auf etracker &amp; veraltete Dienste</div>
+        <div class="detail">Rechtliches Risiko durch nicht aktualisierte Datenschutzerklärung</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Impressum / Datenschutz</div>
+        <div class="issue">Technisch sauber integriert, DSGVO-konformes Cookie-Banner</div>
+        <div class="detail">Texts liefert Tamil.de juristisch geprüft — wir integrieren &amp; pflegen technisch</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Kontakt &amp; Navigation</div>
+        <div class="issue">Keine Kontaktseite erreichbar, kein Kontakt im Header</div>
+        <div class="detail">Werbetreibende und Leser finden keinen Ansprechpartner</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Kontakt &amp; Navigation</div>
+        <div class="issue">Kontakt sichtbar im Header + eigene Kontaktseite</div>
+        <div class="detail">Telefon, E-Mail, Formular — direkt erreichbar für Werbekunden &amp; Leser</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Sport</div>
+        <div class="issue">Bereich fehlt komplett in der Navigation</div>
+        <div class="detail">Tamilische Sport-Community in Deutschland hat keine Anlaufstelle</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Sport</div>
+        <div class="issue">Eigene Sport-Kategorie mit Template &amp; Navigation</div>
+        <div class="detail">Eigene Rubrik für tamilischen Vereinssport, Turniere &amp; Sportberichte</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Werbung</div>
+        <div class="issue">Nur ein Gravity Club Banner — nicht verwaltbar</div>
+        <div class="detail">Kein System für eigene Werbekunden, keine Preisliste, kein Media-Kit</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Werbung</div>
+        <div class="issue">Bis zu 5 verwaltbare Werbeplätze + Media-Kit-Seite</div>
+        <div class="detail">Bannertausch direkt im CMS, feste Positionen, eigene Werbetarife vermarktbar</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Küche / Rezepte</div>
+        <div class="issue">Rezepte als einfache Artikel ohne Struktur</div>
+        <div class="detail">Kottu Roti, Payasam & Co. ohne Zutaten, Kochzeit oder Schritt-für-Schritt</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Küche / Rezepte</div>
+        <div class="issue">Echtes Rezept-Template (ab Media &amp; Ads System)</div>
+        <div class="detail">Zutatenbox, Zubereitungsschritte, Kochzeit, Portionen, Druckansicht, Related Recipes</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Navigation / Struktur</div>
+        <div class="issue">„Blog" als Kategorie — unklar, was dahinter steckt</div>
+        <div class="detail">Inhalte wie Kultur, Community, Religion, Gesellschaft vermischt ohne Trennung</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Navigation / Struktur</div>
+        <div class="issue">Klare Navigation: Community, Kultur, Leben statt „Blog"</div>
+        <div class="detail">Alle neun Themenbereiche sichtbar — keine Sackgassen mehr in der Navigation</div>
+      </div>
     </div>
   </section>
 
@@ -599,7 +773,7 @@
       <div class="pkg-head">
         <div class="pkg-name-block">
           <div class="kicker">Paket 02</div>
-          <div class="pkg-name">Relaunch Professional</div>
+          <div class="pkg-name">Portal Professional</div>
           <div class="pkg-dur">Laufzeit 8–10 Wochen</div>
         </div>
         <div class="pkg-price-block">
@@ -609,21 +783,23 @@
       </div>
       <div class="pkg-feats">
         <div class="feat-divider">Alles aus Relaunch Basis, plus:</div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Kino-Kategorie vollständig aufgebaut (Filmkritiken, Premieren, Ticketlinks, Kinostarts)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Sport-Kategorie neu eingerichtet (Cricket, Fußball, Turniere)</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Veranstaltungskalender (Liste + Monatsansicht)</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Event-Detailseiten mit Eventim-Ticketlinks</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>„Top Themen" – redaktionelles Startseiten-Widget</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Event-Detailseiten mit Eventim-Ticketlinks + WhatsApp-Teilen</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>„Top Themen" – redaktionell steuerbar, nach Kategorie trennbar</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Modernes Artikeltemplate: Hero, Autor, Tags, Quellenbox, Related Posts</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>WhatsApp-Sharing modernisiert (Sticky Mobile-Leiste)</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>3 Werbeplätze mit Backend-Verwaltung</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Social-Media-Integration (Meta / Instagram / YouTube)</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Share-Funktion auf Artikelseiten</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Seite „Werbung schalten" (Media-Kit)</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Newsletter-Anbindung</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Redaktions-Dashboard</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Google Analytics 4</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Kontaktformulare: Werbung anfragen, Event einreichen, allg. Kontakt</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Content-Migration (bis 100 Beiträge, inkl. 301-Redirects)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Google Analytics 4 + Search Console</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Admin-Schulung (4 h)</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>URL-Weiterleitungen (301-Redirects)</span></div>
       </div>
       <div style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);padding:14px 20px;margin-bottom:20px;border-radius:3px">
-        <p style="font-size:13px;color:var(--gold-hell);line-height:1.6"><strong style="color:var(--gold-hell)">Unsere Empfehlung:</strong> Dieses Paket deckt alle Anforderungen aus dem Briefing vollständig ab — Werbeplätze, Eventkalender, Eventim-Links, Social Media, Top Themen und Kontakt im Header. Der optimale Ausgangspunkt für den Relaunch.</p>
+        <p style="font-size:13px;color:var(--gold-hell);line-height:1.6"><strong style="color:var(--gold-hell)">Unsere Empfehlung:</strong> Portal Professional löst alle konkreten Schwachstellen von Tamil.de: Kino wird aufgebaut, Sport bekommt eine Heimat, der Events-Kalender funktioniert, Top Themen ist steuerbar, Kontakt ist sichtbar — und Impressum &amp; Datenschutz werden sauber integriert. Der optimale Ausgangspunkt.</p>
       </div>
       <div class="pay">
         <div class="pay-label">Zahlungsplan</div>
@@ -640,7 +816,7 @@
       <div class="pkg-head">
         <div class="pkg-name-block">
           <div class="kicker">Paket 03</div>
-          <div class="pkg-name">Relaunch Growth</div>
+          <div class="pkg-name">Media &amp; Ads System</div>
           <div class="pkg-dur">Laufzeit 10–12 Wochen</div>
         </div>
         <div class="pkg-price-block">
@@ -649,17 +825,17 @@
         </div>
       </div>
       <div class="pkg-feats">
-        <div class="feat-divider">Alles aus Relaunch Professional, plus:</div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>5 Werbeplätze mit automatischer Rotation</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Klicktracking für Werbebanner</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Rezept-Template für Küche-Bereich</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>SEO-Struktur für alle Kategorien</span></div>
+        <div class="feat-divider">Alles aus Portal Professional, plus:</div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>5 Werbeplätze mit automatischer Rotation + Klicktracking</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Werben-auf-Tamil.de Landingpage (für Anzeigenkunden)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Event-Promotion-System (Artikel + Banner + Startseitenplatzierung)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Rezept-Template: Zutaten, Zubereitung, Kochzeit, Portionen, Druckansicht</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Suchfunktion mit Kategorie-Filter</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>SEO-Struktur + strukturierte Daten für alle Kategorien</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Redaktions-Freigabe-Workflow</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Analytics-Dashboard + Wochenbericht-Vorlage</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Social-Media-Kampagnenplan (3 Monate)</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Erweitertes Startseiten-Layout</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Übergabedokumentation</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Admin-Schulung (6 h)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Content-Migration bis 300 Beiträge</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Übergabedokumentation + Admin-Schulung (6 h)</span></div>
       </div>
       <div class="pay">
         <div class="pay-label">Zahlungsplan</div>
@@ -676,7 +852,7 @@
       <div class="pkg-head">
         <div class="pkg-name-block">
           <div class="kicker">Paket 04</div>
-          <div class="pkg-name">Tamil.de Medienplattform</div>
+          <div class="pkg-name">Premium Plattform</div>
           <div class="pkg-dur">Laufzeit 12–16 Wochen</div>
         </div>
         <div class="pkg-price-block">
@@ -685,13 +861,16 @@
         </div>
       </div>
       <div class="pkg-feats">
-        <div class="feat-divider">Alles aus Relaunch Growth, plus:</div>
+        <div class="feat-divider">Alles aus Media &amp; Ads System, plus:</div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Google Ad Manager Integration</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Professionelle Anzeigenverwaltung</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Zweisprachigkeit Tamil &amp; Deutsch</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Newsletter-System mit Double-Opt-in</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>WhatsApp-Broadcast-Konzept für Community</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Artikel → Social-Media-Post-Automation</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Business-/Vereins-/Tempel-Verzeichnis</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Progressive Web App (offline-fähig)</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Push-Benachrichtigungen</span></div>
-        <div class="feat-item yes"><span class="ind">✓</span><span>Social-Media-Betreuung 6 Monate (begrenzt)</span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span>Reporting-Dashboard (Traffic, Banner, Events)</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Priority-Support (Reaktionszeit 4 h)</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Dedizierter Projektmanager</span></div>
         <div class="feat-item yes"><span class="ind">✓</span><span>Umfassende Übergabedokumentation</span></div>
@@ -731,12 +910,12 @@
         </tr>
         <tr>
           <td><div class="ao-name">Eventim API-Vollintegration</div><div class="ao-det">Live-Ticketdaten automatisch in Echtzeit (statt manueller Links)</div></td>
-          <td class="compat-cell"><span class="ao-compat">Professional</span></td>
+          <td class="compat-cell"><span class="ao-compat">Portal Professional</span></td>
           <td class="ao-price">2.400 €</td>
         </tr>
         <tr>
           <td><div class="ao-name">Social-Media-Monatsbetreuung</div><div class="ao-det">2 Beiträge/Woche, 1 Kanal</div></td>
-          <td class="compat-cell"><span class="ao-compat">Professional</span></td>
+          <td class="compat-cell"><span class="ao-compat">Portal Professional</span></td>
           <td class="ao-price">890 €<small> /Mon.</small></td>
         </tr>
         <tr>
@@ -783,6 +962,7 @@
           <li>WordPress-Theme (eigens entwickelt)</li>
           <li>CMS-Konfiguration mit allen Templates</li>
           <li>Plugin-Konfiguration (SEO, Sicherheit, Formular, Cookie, Kalender)</li>
+          <li>Impressum &amp; Datenschutz technisch integriert (DSGVO-konform)</li>
           <li>301-Redirect-Liste (alte URLs auf neue)</li>
           <li>Tracking-Konfiguration (Analytics, Search Console)</li>
           <li>Backup vor und nach Launch</li>
@@ -815,10 +995,12 @@
         <ul>
           <li>Logo (Vektorformat)</li>
           <li>Zugangsdaten Hosting / Domain</li>
-          <li>Bestehende Inhalte (Bilder, Texte)</li>
+          <li>Bestehende Inhalte (Bilder, Texte) — Bildrechte bereits geprüft</li>
           <li>Finale Bestätigung Kategorie-Struktur</li>
-          <li>Social-Media-Zugangsdaten (ab Professional)</li>
+          <li>Social-Media-Zugangsdaten (ab Portal Professional)</li>
           <li>Eventim-Ticketlinks für Events</li>
+          <li>Impressum &amp; Datenschutz Texte (juristisch geprüft)</li>
+          <li>Redaktionsverantwortlichen benennen (für Content-Freigabe)</li>
         </ul>
       </div>
     </div>
@@ -826,14 +1008,17 @@
     <div class="scope-box">
       <h4>Nicht enthalten (im Basispreis)</h4>
       <ul>
-        <li>Laufende Inhaltspflege / Texterstellung</li>
+        <li>Rechtstexte (Impressum, Datenschutz) — Tamil.de liefert, wir integrieren technisch</li>
+        <li>Prüfung oder Erstellung von Bildrechten — Verantwortung liegt beim Kunden</li>
+        <li>Laufende Inhaltspflege / Texterstellung nach Launch</li>
         <li>Fotografie / Bildmaterial</li>
         <li>Übersetzung bestehender Inhalte</li>
-        <li>Migration von mehr als 50 Beiträgen</li>
+        <li>Content-Migration über das im Paket definierte Limit hinaus</li>
         <li>Hosting-Kosten nach Launch</li>
         <li>Eventim API-Echtzeit-Integration (→ Add-on)</li>
         <li>Laufende Social-Media-Betreuung (→ Add-on)</li>
         <li>Laufende Wartung nach Launch (→ Add-on)</li>
+        <li>Redaktionsverantwortung / juristische Freigabe von Inhalten</li>
       </ul>
     </div>
   </section>
@@ -873,7 +1058,7 @@
       </div>
     </div>
     <div class="fr">Dieses Angebot wurde individuell für Tamil.de erstellt und ist nicht übertragbar.<br>
-    Ref HKG-2026-TML-003 · Erstellt 02.06.2026 · Gültig bis 30.06.2026</div>
+    Ref HKG-2026-TML-004 · Erstellt 02.06.2026 · Gültig bis 30.06.2026</div>
   </div>
 
 </div>

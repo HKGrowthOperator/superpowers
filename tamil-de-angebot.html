@@ -241,6 +241,32 @@
   .pkg.rec .pkg-roi{border-left-color:var(--gold)}
   .pkg.rec .pkg-roi::before{color:var(--gold)}
 
+  /* ── MONETARISIERUNG ── */
+  .mono-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--linie);border:1px solid var(--linie);margin-top:8px}
+  .mono-card{background:#fff;padding:clamp(20px,2.5vw,30px) clamp(16px,2vw,26px)}
+  .mono-icon{font-size:28px;margin-bottom:12px;line-height:1}
+  .mono-card h4{font-size:clamp(15px,1.6vw,18px);font-weight:800;color:var(--anthrazit);
+    margin-bottom:6px;letter-spacing:-.3px}
+  .mono-card .mono-sub{font-size:12px;color:var(--text-leise);margin-bottom:16px;line-height:1.5}
+  .mono-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px}
+  .mono-list li{font-size:clamp(12px,1.2vw,13.5px);color:var(--text);line-height:1.5;
+    display:flex;flex-direction:column;gap:2px;padding-bottom:10px;border-bottom:1px solid var(--linie)}
+  .mono-list li:last-child{border-bottom:none;padding-bottom:0}
+  .mono-list .ml{font-weight:700;color:var(--anthrazit)}
+  .mono-list .mp{font-size:11.5px;color:var(--gruen);font-weight:700;margin-top:2px}
+  .mono-list .md{font-size:11.5px;color:var(--text-leise)}
+  .mono-system{background:var(--anthrazit);color:#fff;
+    padding:clamp(20px,2.5vw,30px) clamp(16px,2vw,26px);margin-top:1px;
+    border:1px solid var(--linie);border-top:none}
+  .mono-system h4{font-size:clamp(14px,1.5vw,17px);font-weight:800;color:var(--gold-hell);
+    margin-bottom:14px}
+  .mono-system-flows{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.5vw,20px)}
+  .mono-flow{background:rgba(255,255,255,.05);padding:14px 16px;border-radius:3px;
+    border-left:3px solid var(--rot)}
+  .mono-flow p{font-size:clamp(11.5px,1.2vw,13px);color:rgba(255,255,255,.7);line-height:1.65}
+  .mono-flow strong{color:#fff}
+
   /* ── ADD-ONS ── */
   .addons-sec{background:var(--papier)}
   .addons{width:100%;border-collapse:collapse;background:#fff;box-shadow:var(--schatten-s);border:1px solid var(--linie)}
@@ -1040,6 +1066,131 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- MONETARISIERUNG -->
+  <section class="sec" style="background:var(--warmweiss)">
+    <div class="sec-head">
+      <div class="eyebrow">Monetarisierung</div>
+      <h2>Wie Tamil.de Geld verdient —<br>auf drei Kanälen gleichzeitig</h2>
+      <div class="tamil-sub serif">வருவாய் · Einnahmen · Revenue</div>
+      <p>Tamil.de ist kein Blog — es ist ein Medienportal mit Community-Bindung. Wer das richtig aufstellt, kann auf drei Kanälen gleichzeitig Einnahmen erzielen: über die Website, über Instagram und über WhatsApp. Die Kanäle verstärken sich gegenseitig. Wer auf einem Kanal zahlt, sieht es auf allen anderen.</p>
+    </div>
+
+    <div class="mono-grid">
+
+      <!-- WEBSITE -->
+      <div class="mono-card">
+        <div class="mono-icon">🌐</div>
+        <h4>Website</h4>
+        <div class="mono-sub">Tamil.de als digitales Schaufenster der Community — sichtbar für jeden, der die Seite besucht</div>
+        <ul class="mono-list">
+          <li>
+            <span class="ml">Banner &amp; Display-Werbung</span>
+            <span class="mp">500 – 2.000 €/Monat</span>
+            <span class="md">Feste Werbeplätze auf Start-, Event- und Rezeptseiten — Restaurants, Reisebüros, Kulturveranstalter zahlen für Sichtbarkeit</span>
+          </li>
+          <li>
+            <span class="ml">Sponsored Articles</span>
+            <span class="mp">300 – 800 € pro Artikel</span>
+            <span class="md">Redaktionell aufbereiteter Werbebeitrag — ein Restaurant stellt sich vor, ein Event wird beworben, ein Produkt wird empfohlen</span>
+          </li>
+          <li>
+            <span class="ml">Featured Events</span>
+            <span class="mp">50 – 200 € pro Event</span>
+            <span class="md">Veranstalter zahlen, um ihren Event oben in der Liste, mit Bild und Hervorhebung, zu erscheinen</span>
+          </li>
+          <li>
+            <span class="ml">Eventim-Affiliate</span>
+            <span class="mp">5 – 12 % Provision</span>
+            <span class="md">Tamil.de verlinkt auf Ticket-Seiten — bei jedem Ticketkauf über Tamil.de fließt automatisch eine Provision</span>
+          </li>
+          <li>
+            <span class="ml">Branchenverzeichnis</span>
+            <span class="mp">10 – 50 €/Monat</span>
+            <span class="md">Restaurants, Friseure, Anwälte, Ärzte — jeder Eintrag in der Community-Datenbank ist ein monatliches Abo</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- INSTAGRAM -->
+      <div class="mono-card">
+        <div class="mono-icon">📸</div>
+        <h4>Instagram</h4>
+        <div class="mono-sub">Tamil.de als Reichweiten-Multiplikator — Marken zahlen für Zugang zur Community</div>
+        <ul class="mono-list">
+          <li>
+            <span class="ml">Sponsored Posts</span>
+            <span class="mp">150 – 600 € pro Post</span>
+            <span class="md">Ein Beitrag, der wie ein normaler Tamil.de-Post wirkt — mit dem Hinweis "Bezahlte Partnerschaft". Reichweite ohne Misstrauen</span>
+          </li>
+          <li>
+            <span class="ml">Story-Platzierungen</span>
+            <span class="mp">80 – 250 € pro Story-Set</span>
+            <span class="md">3–5 Stories für einen Sponsor — mit Swipe-Up-Link direkt zu seiner Seite oder seinem Ticket-Shop</span>
+          </li>
+          <li>
+            <span class="ml">Event-Ankündigungen</span>
+            <span class="mp">100 – 300 € pro Ankündigung</span>
+            <span class="md">Veranstalter wollen ihre Events in der Tamil-Community bekannt machen — Instagram-Reichweite ist das schnellste Mittel</span>
+          </li>
+          <li>
+            <span class="ml">Cross-Promotions</span>
+            <span class="mp">nach Vereinbarung</span>
+            <span class="md">Kooperationen mit anderen Community-Accounts, Tamil-Restaurants-Ketten oder Kulturinitiativen — gegenseitige Sichtbarkeit</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- WHATSAPP -->
+      <div class="mono-card">
+        <div class="mono-icon">💬</div>
+        <h4>WhatsApp</h4>
+        <div class="mono-sub">Tamil.de direkt im Smartphone der Community — der intimste und wirkungsvollste Kanal</div>
+        <ul class="mono-list">
+          <li>
+            <span class="ml">Broadcast-Sponsoring</span>
+            <span class="mp">200 – 500 € pro Nachricht</span>
+            <span class="md">Eine gesponserte Nachricht am Anfang oder Ende eines Broadcasts — z. B. "Diese Nachricht wurde präsentiert von Restaurant Tamil Kitchen"</span>
+          </li>
+          <li>
+            <span class="ml">Event-Ankündigungen mit Ticket-Link</span>
+            <span class="mp">150 – 400 € + Affiliate</span>
+            <span class="md">Veranstalter zahlen für den WhatsApp-Blast — Tamil.de bekommt zusätzlich Provision auf jeden Ticketkauf über den Link</span>
+          </li>
+          <li>
+            <span class="ml">Exklusive Community-Deals</span>
+            <span class="mp">Provision 5 – 15 %</span>
+            <span class="md">Tamil.de handelt Sonderkonditionen aus — z. B. 10 % Rabatt bei Restaurant X nur für WhatsApp-Abonnenten. Tamil.de bekommt eine Provision auf jede Einlösung</span>
+          </li>
+          <li>
+            <span class="ml">Premium-Gruppen (Zukunft)</span>
+            <span class="mp">5 – 15 €/Monat pro Nutzer</span>
+            <span class="md">Exklusive WhatsApp-Gruppen mit Mehrwert — Frühzugang zu Events, Rabatte, Tamil-Nachrichten zuerst. Nutzerzahl × Abo = passives Einkommen</span>
+          </li>
+        </ul>
+      </div>
+
+    </div><!-- /mono-grid -->
+
+    <div class="mono-system">
+      <h4>Das System: Wie alle drei Kanäle zusammen mehr einbringen als einzeln</h4>
+      <div class="mono-system-flows">
+        <div class="mono-flow">
+          <p><strong>Ein Veranstalter, drei Kanäle</strong><br>
+          Ein Event wird auf der Website als Featured Event gelistet → Tamil.de postet auf Instagram → Tamil.de schickt einen WhatsApp-Blast. Der Veranstalter zahlt einmal, erreicht aber drei Zielgruppen auf drei verschiedenen Ebenen. Tamil.de rechnet das als Kombipaket ab.</p>
+        </div>
+        <div class="mono-flow">
+          <p><strong>Ein Sponsor, maximale Sichtbarkeit</strong><br>
+          Ein Restaurant bezahlt einen Banner auf der Website → Tamil.de erwähnt sie in einem Instagram-Post → ein WhatsApp-Broadcast nennt das Restaurant als "Partner der Woche". Drei Touchpoints. Ein Deal. Tamil.de kann das für 500 – 1.500 € als Monatspaket anbieten.</p>
+        </div>
+        <div class="mono-flow">
+          <p><strong>Affiliate-Stacking</strong><br>
+          Tamil.de verlinkt auf Eventim-Tickets über die Website, über Instagram und über WhatsApp. Drei Links — drei Quellen, aus denen Provisionen fließen. Je mehr Tickets verkauft werden, desto mehr passives Einkommen für Tamil.de — ohne extra Aufwand.</p>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- ADD-ONS -->

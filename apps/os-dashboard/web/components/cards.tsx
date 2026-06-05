@@ -65,7 +65,7 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
-export function ModuleCard({ model }: { model: CardModel }) {
+export function ModuleCard({ model, actions }: { model: CardModel; actions?: React.ReactNode }) {
   return (
     <article
       className={cn(
@@ -138,6 +138,10 @@ export function ModuleCard({ model }: { model: CardModel }) {
           {model.pre && <CopyButton text={model.pre} />}
         </div>
       )}
+
+      {actions ? (
+        <div className="border-border mt-1 flex justify-end gap-2 border-t pt-3">{actions}</div>
+      ) : null}
     </article>
   );
 }

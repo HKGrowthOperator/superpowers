@@ -1,25 +1,18 @@
-import { CardGrid } from "@/components/cards";
-import { concepts } from "@/lib/data/concepts";
-import type { CardModel, Tone } from "@/lib/data/types";
+import { ModuleView } from "@/components/module-view";
+import { loadModule } from "@/lib/store";
+import { MODULES } from "@/lib/modules";
 
-const statusTone = (s: string): Tone =>
-  s === "live" ? "ok" : s === "ready" ? "brand" : s === "draft" ? "warn" : "neutral";
+export const dynamic = "force-dynamic";
 
-const cards: CardModel[] = concepts.map((c) => ({
-  id: c.id,
-  accent: "brand",
-  badges: [{ text: c.type, tone: "neutral" }, { text: c.status, tone: statusTone(c.status) }],
-  title: c.title,
-  description: c.summary,
-  metas: [{ label: "Wert", value: c.value }],
-  bullets: [{ label: "Schritte", items: c.steps }],
-}));
-
-export default function Page() {
+export default async function Page() {
+  const items = await loadModule("concepts");
+  const def = MODULES.concepts;
   return (
     <>
-      <p className="text-muted-foreground mb-6 text-sm">Angebote, Strategien und Kampagnen in Entwicklung.</p>
-      <CardGrid items={cards} />
+      <p className="text-muted-foreground mb-6 text-sm">
+        Angebote, Strategien und Kampagnen in Entwicklung.
+      </p>
+      <ModuleView module="concepts" path="/konzepte" noun={def.noun} fields={def.fields} items={items} />
     </>
   );
 }

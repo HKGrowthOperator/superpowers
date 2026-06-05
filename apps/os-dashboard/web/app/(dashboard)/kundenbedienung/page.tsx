@@ -1,37 +1,22 @@
-import { TabbedCards } from "@/components/cards";
-import { clients, templates } from "@/lib/data/customer-service";
-import type { CardModel, Tone } from "@/lib/data/types";
+import { TabbedModules } from "@/components/tabbed-modules";
+import { loadModule } from "@/lib/store";
+import { MODULES } from "@/lib/modules";
 
-const statusTone = (s: string): Tone =>
-  s === "active" ? "ok" : s === "lead" ? "brand" : s === "paused" ? "warn" : "bad";
+export const dynamic = "force-dynamic";
+const PATH = "/kundenbedienung";
 
-const clientCards: CardModel[] = clients.map((c) => ({
-  id: c.id,
-  accent: statusTone(c.status) === "bad" ? "bad" : statusTone(c.status) === "warn" ? "warn" : statusTone(c.status) === "ok" ? "ok" : "brand",
-  badges: [{ text: c.status, tone: statusTone(c.status) }],
-  title: c.name,
-  metas: [{ label: "Kontakt", value: c.contact }, { label: "Kunde seit", value: c.since }],
-  description: c.notes,
-  tags: c.tags,
-}));
-
-const templateCards: CardModel[] = templates.map((t) => ({
-  id: t.id,
-  badges: [{ text: t.channel, tone: "brand" }, { text: t.category, tone: "neutral" }],
-  title: t.title,
-  pre: t.body,
-}));
-
-export default function Page() {
+export default async function Page() {
+  const [clients, templates] = await Promise.all([loadModule("clients"), loadModule("templates")]);
   return (
     <>
-      <p className="text-muted-foreground mb-6 text-sm">Kunden verwalten und Antwortvorlagen nutzen ({"{{Platzhalter}}"} vor dem Senden ersetzen).</p>
-      <TabbedCards
+      <p className="text-muted-foreground mb-6 text-sm">
+        Kunden verwalten und Antwortvorlagen pflegen ({"{{Platzhalter}}"} vor dem Senden ersetzen).
+      </p>
+      <TabbedModules
         sections={[
-          { label: "Kunden", items: clientCards },
-          { label: "Vorlagen", items: templateCards },
+          { label: "Kunden", module: "clients", path: PATH, noun: MODULES.clients.noun, fields: MODULES.clients.fields, items: clients, min: "360px" },
+          { label: "Vorlagen", module: "templates", path: PATH, noun: MODULES.templates.noun, fields: MODULES.templates.fields, items: templates, min: "360px" },
         ]}
-        min="360px"
       />
     </>
   );

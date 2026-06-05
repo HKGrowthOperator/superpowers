@@ -1,27 +1,18 @@
-import { CardGrid } from "@/components/cards";
-import { sops } from "@/lib/data/sops";
-import type { CardModel } from "@/lib/data/types";
+import { ModuleView } from "@/components/module-view";
+import { loadModule } from "@/lib/store";
+import { MODULES } from "@/lib/modules";
 
-const cards: CardModel[] = sops.map((s) => ({
-  id: s.id,
-  accent: "brand",
-  badges: [
-    { text: s.area, tone: "brand" },
-    { text: `aktualisiert ${s.updated}`, tone: "neutral" },
-  ],
-  title: s.title,
-  description: s.summary,
-  bullets: [{ label: "Schritte", items: s.steps }],
-  metas: [{ label: "Verantwortlich", value: s.owner }],
-  footBadges: s.tools.map((t) => ({ text: t, tone: "outline" as const })),
-  tags: s.tags,
-}));
+export const dynamic = "force-dynamic";
 
-export default function Page() {
+export default async function Page() {
+  const items = await loadModule("sops");
+  const def = MODULES.sops;
   return (
     <>
-      <p className="text-muted-foreground mb-6 text-sm">Wiederholbare Abläufe & Playbooks — durchsuchbar.</p>
-      <CardGrid items={cards} />
+      <p className="text-muted-foreground mb-6 text-sm">
+        Wiederholbare Abläufe & Playbooks — anlegen, bearbeiten, löschen.
+      </p>
+      <ModuleView module="sops" path="/sops" noun={def.noun} fields={def.fields} items={items} />
     </>
   );
 }

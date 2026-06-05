@@ -11,7 +11,10 @@ type NavGroup = { group: string; items: NavItem[] };
 
 const NAV: NavGroup[] = [
   { group: "Start", items: [{ href: "/", label: "Magical Wall", icon: "wall" }] },
-  { group: "Intelligenz", items: [{ href: "/ai-intelligence", label: "AI Intelligence", icon: "brain" }] },
+  { group: "Intelligenz", items: [
+    { href: "/assistent", label: "Assistent", icon: "spark" },
+    { href: "/ai-intelligence", label: "AI Intelligence", icon: "brain" },
+  ] },
   { group: "Betrieb", items: [
     { href: "/sops", label: "SOPs", icon: "list" },
     { href: "/kundenbedienung", label: "Kundenbedienung", icon: "users" },
@@ -38,6 +41,7 @@ function Icon({ name }: { name: string }) {
   const paths: Record<string, React.ReactNode> = {
     wall: <><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 9v12M3 15h6" /></>,
     brain: <><path d="M12 5a3 3 0 0 0-3 3 3 3 0 0 0-1 5.8V17a2 2 0 0 0 4 0V5z" /><path d="M12 5a3 3 0 0 1 3 3 3 3 0 0 1 1 5.8V17a2 2 0 0 1-4 0" /></>,
+    spark: <><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18" /></>,
     list: <><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" /></>,
     users: <><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /></>,
     bolt: <><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" /></>,

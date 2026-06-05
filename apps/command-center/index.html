@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Command Center</title>
+  <meta name="description" content="Deine zentrale Schaltzentrale: ein System, viele Module." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234f7cff'/><text x='50' y='66' font-size='46' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'>CC</text></svg>" />
+  <link rel="stylesheet" href="./assets/styles.css" />
+  <script>
+    try {
+      var t = localStorage.getItem('cc.theme');
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <div id="app" class="app"></div>
+  <noscript>Diese App benötigt aktiviertes JavaScript.</noscript>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

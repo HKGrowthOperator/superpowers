@@ -63,28 +63,28 @@ export function AppShell({ email, children }: { email?: string; children: React.
         )}
       >
         <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-lg bg-blue-600 text-sm font-extrabold text-white">CC</span>
+          <span className="bg-gold grid h-10 w-10 place-items-center rounded-lg font-serif text-base font-bold text-[#2e3a2a]">HK</span>
           <span className="flex flex-col leading-tight">
-            <strong className="text-sm">Command Center</strong>
-            <span className="text-muted-foreground text-xs">Deine Schaltzentrale</span>
+            <strong className="font-serif text-base">HK Growth</strong>
+            <span className="text-xs text-[#efebe1]/55">Verwurzeltes Wachstum</span>
           </span>
         </Link>
 
         <nav className="flex flex-col gap-1" aria-label="Module">
           {NAV.map((g) => (
             <div key={g.group} className="flex flex-col gap-1">
-              <p className="text-muted-foreground mt-3 mb-1 px-2 text-[11px] font-medium tracking-wider uppercase">{g.group}</p>
+              <p className="mt-3 mb-1 px-2 text-[11px] font-medium tracking-wider text-[#efebe1]/45 uppercase">{g.group}</p>
               {g.items.map((i) =>
                 i.external ? (
                   <a key={i.href} href={i.href} target="_blank" rel="noopener noreferrer"
-                    className="text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex items-center gap-3 rounded-md px-3 py-2 text-sm">
+                    className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex items-center gap-3 rounded-md px-3 py-2 text-sm text-[#efebe1]/75">
                     <Icon name={i.icon} /> {i.label}
                   </a>
                 ) : (
                   <Link key={i.href} href={i.href} onClick={() => setOpen(false)}
                     className={cn(
                       "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
-                      isActive(i) ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold" : "text-muted-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground",
+                      isActive(i) ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold" : "text-[#efebe1]/75 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground",
                     )}>
                     <Icon name={i.icon} /> {i.label}
                   </Link>
@@ -102,7 +102,7 @@ export function AppShell({ email, children }: { email?: string; children: React.
         <header className="border-border bg-background/85 sticky top-0 z-10 flex items-center gap-3 border-b px-5 py-3 backdrop-blur">
           <button type="button" aria-label="Navigation" onClick={() => setOpen((v) => !v)}
             className="border-border bg-card grid h-9 w-9 place-items-center rounded-md border md:hidden">☰</button>
-          <h1 className="text-lg font-bold">{titleFor(pathname)}</h1>
+          <h1 className="font-serif text-xl font-bold">{titleFor(pathname)}</h1>
           <div className="flex-1" />
           {email && <span className="text-muted-foreground hidden text-xs sm:block">{email}</span>}
           <LogoutButton />

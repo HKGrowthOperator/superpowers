@@ -77,7 +77,7 @@ export function EntityForm({
             <div key={f.name} className={cn("flex flex-col gap-1", f.full && "sm:col-span-2")}>
               <label className="text-muted-foreground text-xs font-medium">
                 {f.label}
-                {f.required && <span className="text-red-400"> *</span>}
+                {f.required && <span className="text-rust"> *</span>}
               </label>
               {f.type === "textarea" || f.type === "list" ? (
                 <textarea
@@ -105,7 +105,7 @@ export function EntityForm({
             </div>
           ))}
 
-          {error && <p className="text-sm text-red-400 sm:col-span-2">{error}</p>}
+          {error && <p className="text-rust text-sm sm:col-span-2">{error}</p>}
 
           <div className="mt-2 flex justify-end gap-2 sm:col-span-2">
             <button
@@ -118,7 +118,7 @@ export function EntityForm({
             <button
               type="submit"
               disabled={saving}
-              className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 disabled:opacity-60"
+              className="bg-primary text-primary-foreground rounded-md px-4 py-2 text-sm font-semibold hover:bg-[#3a4734] disabled:opacity-60"
             >
               {saving ? "Speichern…" : "Speichern"}
             </button>

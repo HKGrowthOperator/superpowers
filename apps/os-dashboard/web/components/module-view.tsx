@@ -74,7 +74,7 @@ export function ModuleView({
         <button
           type="button"
           onClick={() => setEditing({ mode: "add" })}
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500"
+          className="bg-primary text-primary-foreground rounded-md px-4 py-2 text-sm font-semibold hover:bg-[#3a4734]"
         >
           + Neu: {noun}
         </button>
@@ -102,7 +102,7 @@ export function ModuleView({
                     type="button"
                     disabled={busyId === it.id}
                     onClick={() => handleDelete(it)}
-                    className="rounded-md border border-red-500/40 px-3 py-1.5 text-xs font-semibold text-red-400 hover:bg-red-500/10 disabled:opacity-50"
+                    className="border-rust/40 text-rust hover:bg-rust/10 rounded-md border px-3 py-1.5 text-xs font-semibold disabled:opacity-50"
                   >
                     {busyId === it.id ? "Löschen…" : "Löschen"}
                   </button>

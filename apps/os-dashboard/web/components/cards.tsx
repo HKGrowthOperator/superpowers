@@ -6,18 +6,18 @@ import type { CardModel, Tone } from "@/lib/data/types";
 
 const toneClasses: Record<Tone, string> = {
   neutral: "bg-secondary text-muted-foreground",
-  brand: "bg-blue-500/15 text-blue-400",
-  ok: "bg-emerald-500/15 text-emerald-400",
-  warn: "bg-amber-500/15 text-amber-400",
-  bad: "bg-red-500/15 text-red-400",
+  brand: "bg-gold/15 text-gold-ink",
+  ok: "bg-primary/10 text-primary",
+  warn: "bg-amber-500/20 text-amber-800",
+  bad: "bg-rust/12 text-rust",
   outline: "border border-border text-muted-foreground",
 };
 
 const accentBorder: Record<NonNullable<CardModel["accent"]>, string> = {
-  brand: "border-l-4 border-l-blue-500",
-  ok: "border-l-4 border-l-emerald-500",
+  brand: "border-l-4 border-l-gold",
+  ok: "border-l-4 border-l-primary",
   warn: "border-l-4 border-l-amber-500",
-  bad: "border-l-4 border-l-red-500",
+  bad: "border-l-4 border-l-rust",
 };
 
 export function Badge({ text, tone = "neutral" }: { text: string; tone?: Tone }) {
@@ -30,11 +30,11 @@ export function Badge({ text, tone = "neutral" }: { text: string; tone?: Tone })
 
 function ScoreRing({ value }: { value: number }) {
   const v = Math.max(0, Math.min(100, Math.round(value)));
-  const color = v >= 75 ? "#34d399" : v >= 45 ? "#fbbf24" : "#f87171";
+  const color = v >= 75 ? "#2e3a2a" : v >= 45 ? "#a2854f" : "#a9472f";
   return (
     <div
       className="relative grid h-12 w-12 shrink-0 place-items-center rounded-full"
-      style={{ background: `conic-gradient(${color} ${v * 3.6}deg, rgba(255,255,255,0.08) 0deg)` }}
+      style={{ background: `conic-gradient(${color} ${v * 3.6}deg, rgba(46,58,42,0.12) 0deg)` }}
       role="img"
       aria-label={`Relevanz ${v} von 100`}
     >
@@ -98,7 +98,7 @@ export function ModuleCard({ model, actions }: { model: CardModel; actions?: Rea
 
       {model.highlight && (
         <div className="flex flex-col gap-0.5">
-          <span className={cn("text-[11px] font-bold tracking-wide uppercase", model.highlight.tone === "bad" ? "text-red-400" : model.highlight.tone === "warn" ? "text-amber-400" : "text-blue-400")}>
+          <span className={cn("text-[11px] font-bold tracking-wide uppercase", model.highlight.tone === "bad" ? "text-rust" : model.highlight.tone === "warn" ? "text-amber-800" : "text-gold-ink")}>
             {model.highlight.label}
           </span>
           <span className="text-sm">{model.highlight.value}</span>
@@ -133,7 +133,7 @@ export function ModuleCard({ model, actions }: { model: CardModel; actions?: Rea
       {(model.link || model.pre) && (
         <div className="mt-auto flex items-center justify-between gap-2 pt-1">
           {model.link ? (
-            <a className="text-sm text-blue-400 break-all hover:underline" href={model.link.href} target="_blank" rel="noopener noreferrer">{model.link.text}</a>
+            <a className="text-gold-ink text-sm break-all hover:underline" href={model.link.href} target="_blank" rel="noopener noreferrer">{model.link.text}</a>
           ) : <span />}
           {model.pre && <CopyButton text={model.pre} />}
         </div>

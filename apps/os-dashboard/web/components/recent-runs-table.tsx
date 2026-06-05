@@ -2,9 +2,9 @@ import type { Run } from "@/lib/queries";
 import { cn } from "@/lib/utils";
 
 const statusStyle: Record<Run["status"], string> = {
-  success: "bg-emerald-500/15 text-emerald-400",
-  error: "bg-red-500/15 text-red-400",
-  running: "bg-amber-500/15 text-amber-400",
+  success: "bg-primary/10 text-primary",
+  error: "bg-rust/12 text-rust",
+  running: "bg-amber-500/20 text-amber-800",
 };
 
 const statusLabel: Record<Run["status"], string> = {

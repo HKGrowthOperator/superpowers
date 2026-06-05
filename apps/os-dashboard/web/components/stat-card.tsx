@@ -5,9 +5,9 @@ type Tone = "default" | "good" | "warn" | "bad";
 
 const toneClass: Record<Tone, string> = {
   default: "text-foreground",
-  good: "text-emerald-400",
-  warn: "text-amber-400",
-  bad: "text-red-400",
+  good: "text-primary",
+  warn: "text-amber-700",
+  bad: "text-rust",
 };
 
 export function StatCard({

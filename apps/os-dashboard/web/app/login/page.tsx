@@ -34,9 +34,9 @@ export default function LoginPage() {
     <main className="flex flex-1 items-center justify-center px-6 py-12">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle className="text-xl">Magical Wall</CardTitle>
+          <CardTitle className="font-serif text-2xl">HK Growth</CardTitle>
           <p className="text-muted-foreground text-sm">
-            Bitte melde dich an, um das Cockpit zu sehen.
+            Verwurzeltes Wachstum — bitte melde dich an.
           </p>
         </CardHeader>
         <CardContent>
@@ -69,7 +69,7 @@ export default function LoginPage() {
                 className="border-input bg-background focus-visible:ring-ring h-10 rounded-md border px-3 text-sm outline-none focus-visible:ring-2"
               />
             </div>
-            {error ? <p className="text-sm text-red-400">{error}</p> : null}
+            {error ? <p className="text-rust text-sm">{error}</p> : null}
             <button
               type="submit"
               disabled={loading}

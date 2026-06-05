@@ -1,0 +1,16 @@
+# Caddy besorgt automatisch ein gültiges https-Zertifikat für deine Adressen
+# und leitet den Verkehr intern weiter. Die Domains kommen aus der .env-Datei.
+
+{
+	email {$ACME_EMAIL}
+}
+
+# Die App (das Dashboard) — z. B. cockpit.deinefirma.de
+{$APP_DOMAIN} {
+	reverse_proxy web:3000
+}
+
+# Die Werkstatt (n8n) — z. B. automationen.deinefirma.de
+{$N8N_DOMAIN} {
+	reverse_proxy n8n:5678
+}

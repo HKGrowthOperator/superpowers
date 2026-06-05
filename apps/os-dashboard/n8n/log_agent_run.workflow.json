@@ -1,0 +1,44 @@
+{
+  "name": "log_agent_run",
+  "meta": {
+    "description": "Wiederverwendbarer Sub-Workflow. Jede Automation ruft ihn am Start (status=running) und am Ende (status=success|error) auf. Schreibt per UPSERT einen Datensatz in agent_runs. Per 'Execute Workflow'-Node aus anderen Workflows aufrufen."
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "trigger",
+      "name": "Wird aufgerufen",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [260, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO agent_runs (id, automation, trigger, status, finished_at, tokens_in, tokens_out, cost_eur, summary, error)\nVALUES ($1, $2, $3, $4, CASE WHEN $4 = 'running' THEN NULL ELSE now() END, $5, $6, $7, $8, $9)\nON CONFLICT (id) DO UPDATE SET\n  status      = EXCLUDED.status,\n  finished_at = CASE WHEN EXCLUDED.status = 'running' THEN agent_runs.finished_at ELSE now() END,\n  tokens_in   = EXCLUDED.tokens_in,\n  tokens_out  = EXCLUDED.tokens_out,\n  cost_eur    = EXCLUDED.cost_eur,\n  summary     = COALESCE(EXCLUDED.summary, agent_runs.summary),\n  error       = COALESCE(EXCLUDED.error,   agent_runs.error)\nRETURNING id;",
+        "options": {
+          "queryReplacement": "={{ $json.id }},{{ $json.automation }},{{ $json.trigger || 'manual' }},{{ $json.status }},{{ $json.tokens_in || 0 }},{{ $json.tokens_out || 0 }},{{ $json.cost_eur || 0 }},{{ $json.summary || null }},{{ $json.error || null }}"
+        }
+      },
+      "id": "upsert",
+      "name": "agent_runs UPSERT",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [520, 300],
+      "credentials": {
+        "postgres": {
+          "id": "REPLACE_WITH_YOUR_POSTGRES_CREDENTIAL_ID",
+          "name": "Cockpit Postgres"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Wird aufgerufen": {
+      "main": [[{ "node": "agent_runs UPSERT", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

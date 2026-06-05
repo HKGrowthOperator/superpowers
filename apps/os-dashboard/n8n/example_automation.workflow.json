@@ -1,0 +1,75 @@
+{
+  "name": "Beispiel: Posteingang zusammenfassen",
+  "meta": {
+    "description": "Vorlage, wie eine Automation aussieht: (1) Run-Meta + UUID erzeugen und 'running' loggen, (2) eigentliche Arbeit (hier Platzhalter), (3) Ergebnis als 'success'/'error' loggen. Den 'Execute Workflow'-Nodes nach dem Import den Workflow 'log_agent_run' zuweisen."
+  },
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "start",
+      "name": "Manuell starten",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "a1", "name": "id", "value": "={{ $randomUUID }}", "type": "string" },
+            { "id": "a2", "name": "automation", "value": "Posteingang zusammenfassen", "type": "string" },
+            { "id": "a3", "name": "trigger", "value": "manual", "type": "string" },
+            { "id": "a4", "name": "status", "value": "running", "type": "string" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "meta",
+      "name": "Run-Meta + UUID",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "source": "database",
+        "workflowId": { "__rl": true, "mode": "list", "value": "REPLACE_WITH_log_agent_run_WORKFLOW_ID" },
+        "options": {}
+      },
+      "id": "logstart",
+      "name": "Log: Start (running)",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// === Hier kommt die eigentliche Arbeit der Automation hin ===\n// z. B. Mails holen, an Claude schicken, Zusammenfassung erzeugen.\n// Für die Vorlage simulieren wir ein Ergebnis inkl. Token-/Kostenwerte.\nconst run = $('Run-Meta + UUID').first().json;\nreturn [{ json: {\n  id: run.id,\n  automation: run.automation,\n  trigger: run.trigger,\n  status: 'success',\n  tokens_in: 1240,\n  tokens_out: 380,\n  cost_eur: 0.05,\n  summary: '12 Mails zusammengefasst, 2 als dringend markiert.',\n  error: null\n} }];"
+      },
+      "id": "work",
+      "name": "Arbeit (Platzhalter)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [880, 300]
+    },
+    {
+      "parameters": {
+        "source": "database",
+        "workflowId": { "__rl": true, "mode": "list", "value": "REPLACE_WITH_log_agent_run_WORKFLOW_ID" },
+        "options": {}
+      },
+      "id": "logend",
+      "name": "Log: Ende (success/error)",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [1100, 300]
+    }
+  ],
+  "connections": {
+    "Manuell starten": { "main": [[{ "node": "Run-Meta + UUID", "type": "main", "index": 0 }]] },
+    "Run-Meta + UUID": { "main": [[{ "node": "Log: Start (running)", "type": "main", "index": 0 }]] },
+    "Log: Start (running)": { "main": [[{ "node": "Arbeit (Platzhalter)", "type": "main", "index": 0 }]] },
+    "Arbeit (Platzhalter)": { "main": [[{ "node": "Log: Ende (success/error)", "type": "main", "index": 0 }]] }
+  },
+  "settings": {}
+}

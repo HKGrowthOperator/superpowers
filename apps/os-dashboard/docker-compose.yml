@@ -1,0 +1,90 @@
+# Magical Wall — Agent-/Automation-Cockpit
+# Alles auf einem Host: Postgres (Daten) + n8n (Automationen) + web (die Wand)
+# + caddy (sicherer https-Eingang aus dem Internet).
+# Start:  cp .env.example .env  &&  docker compose up -d
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      TZ: ${TZ}
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+      # Init-Skripte laufen NUR beim allerersten Start (leeres Datenverzeichnis):
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    # Kein offener Port nach außen — die Datenbank ist nur intern erreichbar (sicher).
+
+  n8n:
+    image: n8nio/n8n:latest
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      # n8n nutzt Postgres (DB "n8n" wird vom Init-Skript angelegt)
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_DATABASE: n8n
+      DB_POSTGRESDB_USER: ${POSTGRES_USER}
+      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
+      # Zugangsschutz für die Oberfläche
+      N8N_BASIC_AUTH_ACTIVE: "true"
+      N8N_BASIC_AUTH_USER: ${N8N_BASIC_AUTH_USER}
+      N8N_BASIC_AUTH_PASSWORD: ${N8N_BASIC_AUTH_PASSWORD}
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}
+      # Adresse, unter der n8n läuft (eigene Subdomain), hinter dem Caddy-Proxy:
+      N8N_HOST: ${N8N_DOMAIN}
+      N8N_PROTOCOL: https
+      N8N_PROXY_HOPS: 1
+      WEBHOOK_URL: https://${N8N_DOMAIN}/
+      GENERIC_TIMEZONE: ${TZ}
+      TZ: ${TZ}
+      # An die Automationen weitergereicht (z. B. für den Anthropic-Node)
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+    # Kein offener Port — von außen nur über Caddy (https) erreichbar.
+
+  # Die "magische Wand": integrierte Next.js-App, liest agent_runs direkt aus Postgres.
+  web:
+    build: ./web
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      AUTH_SECRET: ${AUTH_SECRET}
+      NODE_ENV: production
+      TZ: ${TZ}
+    # Kein offener Port — von außen nur über Caddy (https) erreichbar.
+
+  # Der "Pförtner": besorgt automatisch https-Zertifikate (Let's Encrypt)
+  # und leitet Besucher an die App bzw. an n8n weiter.
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - web
+      - n8n
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN}
+      N8N_DOMAIN: ${N8N_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy_data:/data
+      - ./caddy_config:/config

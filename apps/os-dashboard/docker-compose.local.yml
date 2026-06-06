@@ -54,7 +54,7 @@ services:
       # KI-Assistent: trage deinen Schlüssel in eine Datei ".env" im Projektordner ein:
       #   ANTHROPIC_API_KEY=sk-ant-...
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
-      # Optional anderes Modell (günstiger): ANTHROPIC_MODEL=claude-sonnet-4-6
-      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-opus-4-8}
+      # Standardmodell (im Chat umschaltbar). Günstiger: claude-haiku-4-5 · stärker: claude-opus-4-8
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-sonnet-4-6}
     ports:
       - "3000:3000" # das Dashboard: http://localhost:3000

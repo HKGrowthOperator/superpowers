@@ -89,3 +89,73 @@ export async function buildSystem(): Promise<string> {
   const [guide, context] = [fieldGuide(), await buildContext()];
   return `${SYSTEM_PREAMBLE}\n\n# Module & Felder\n${guide}\n\n# Aktuelle Daten\n${context}`;
 }
+
+export type Proposal = {
+  key: string;
+  aktion: "anlegen" | "bearbeiten";
+  modul: string;
+  id?: string;
+  titel: string;
+  felder: Record<string, unknown>;
+};
+
+/** Zentraler Assistenten-Aufruf: liefert Antworttext + Aktions-Vorschläge. */
+export async function runAssistant(
+  messages: ChatMessage[],
+  model?: string,
+): Promise<{ reply: string; proposals: Proposal[] }> {
+  const client = getClient();
+  if (!client) {
+    return {
+      reply:
+        "⚠️ Es ist noch kein Anthropic-API-Schlüssel hinterlegt. Trage ANTHROPIC_API_KEY in die .env ein und starte den Web-Container neu.",
+      proposals: [],
+    };
+  }
+  const system = await buildSystem();
+  const response = await client.messages.create({
+    model: resolveModel(model),
+    max_tokens: 4000,
+    system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
+    tools: OS_TOOLS,
+    messages: messages.map((m) => ({ role: m.role, content: m.content })),
+  });
+
+  const reply = response.content
+    .filter((b): b is Anthropic.TextBlock => b.type === "text")
+    .map((b) => b.text)
+    .join("")
+    .trim();
+
+  const proposals: Proposal[] = response.content
+    .filter((b): b is Anthropic.ToolUseBlock => b.type === "tool_use" && b.name === "os_vorschlag")
+    .map((b): Proposal => {
+      const inp = b.input as Partial<Proposal>;
+      return {
+        key: b.id,
+        aktion: inp.aktion === "bearbeiten" ? "bearbeiten" : "anlegen",
+        modul: String(inp.modul ?? ""),
+        id: inp.id ? String(inp.id) : undefined,
+        titel: String(inp.titel ?? "Vorschlag"),
+        felder: (inp.felder as Record<string, unknown>) ?? {},
+      };
+    })
+    .filter((p) => p.modul && p.felder && Object.keys(p.felder).length > 0);
+
+  return { reply, proposals };
+}
+
+/** Wandelt beliebigen Text (z. B. aus Google Drive) in Eintrags-Vorschläge um. */
+export async function proposeFromText(text: string, model?: string) {
+  return runAssistant(
+    [
+      {
+        role: "user",
+        content:
+          "Wandle den folgenden Inhalt aus Google Drive in passende OS-Einträge um. Nutze das Werkzeug os_vorschlag für jeden sinnvollen Eintrag (Anleitung/Prozess → SOP, Kundeninfos → Kunde, Angebot/Strategie/Kampagne → Konzept, Textbaustein/E-Mail → Vorlage, Projekt/Website → Webseite). Lege keine Dubletten zu bereits vorhandenen Einträgen an. Fasse dich im Antworttext kurz.\n\n--- INHALT ---\n" +
+          text,
+      },
+    ],
+    model,
+  );
+}

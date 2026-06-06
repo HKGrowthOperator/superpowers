@@ -25,7 +25,10 @@ const NAV: NavGroup[] = [
     { href: "/konzepte", label: "Konzepte", icon: "bulb" },
     { href: "/webseiten", label: "Webseiten", icon: "globe" },
   ] },
-  { group: "System", items: [{ href: "http://localhost:5678", label: "n8n (Automationen)", icon: "flow", external: true }] },
+  { group: "System", items: [
+    { href: "/drive", label: "Google Drive", icon: "drive" },
+    { href: "http://localhost:5678", label: "n8n (Automationen)", icon: "flow", external: true },
+  ] },
 ];
 
 const ALL_ITEMS = NAV.flatMap((g) => g.items);
@@ -50,6 +53,7 @@ function Icon({ name }: { name: string }) {
     globe: <><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z" /></>,
     flow: <><circle cx="6" cy="6" r="3" /><circle cx="18" cy="18" r="3" /><path d="M9 6h6a3 3 0 0 1 3 3v6" /></>,
     report: <><path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /><path d="M14 3v5h5M9 13h6M9 17h4" /></>,
+    drive: <><path d="M7 17a4 4 0 0 1-.5-7.97 5 5 0 0 1 9.6-1.3A3.5 3.5 0 0 1 17 17z" /></>,
   };
   return <svg {...common}>{paths[name] ?? null}</svg>;
 }

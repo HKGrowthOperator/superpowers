@@ -56,5 +56,9 @@ services:
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
       # Standardmodell (im Chat umschaltbar). Günstiger: claude-haiku-4-5 · stärker: claude-opus-4-8
       ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-sonnet-4-6}
+      # Google Drive (optional) — aus deiner eigenen Google-Cloud-App, in die .env eintragen:
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-http://localhost:3000/api/google/callback}
     ports:
       - "3000:3000" # das Dashboard: http://localhost:3000

@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { authUrl, googleConfigured } from "@/lib/google";
+import { authUrl, googleConfigured, publicOrigin } from "@/lib/google";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
-  const origin = new URL(req.url).origin;
+  const origin = publicOrigin(req);
   if (!googleConfigured()) {
     return NextResponse.redirect(`${origin}/drive?error=not-configured`);
   }

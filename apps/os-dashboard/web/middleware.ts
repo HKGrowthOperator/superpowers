@@ -7,6 +7,14 @@ export async function middleware(req: NextRequest) {
   if (!session) {
     const url = req.nextUrl.clone();
     url.pathname = "/login";
+    url.search = "";
+    // Hinter einem TLS-terminierenden Proxy (Tailscale Funnel) ist die interne
+    // Verbindung HTTP. Ziel-URL aus den Forwarded-Headern bauen, damit nicht auf
+    // ein internes http:// umgeleitet wird (sonst geht das Secure-Cookie verloren).
+    const xfProto = req.headers.get("x-forwarded-proto")?.split(",")[0].trim();
+    const xfHost = req.headers.get("x-forwarded-host");
+    if (xfHost) url.host = xfHost;
+    if (xfProto) url.protocol = `${xfProto}:`;
     return NextResponse.redirect(url);
   }
   return NextResponse.next();

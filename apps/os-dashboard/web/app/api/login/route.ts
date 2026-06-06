@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifyCredentials } from "@/lib/users";
-import { createSession, SESSION_COOKIE } from "@/lib/auth";
+import { createSession, SESSION_COOKIE, isSecureRequest } from "@/lib/auth";
 
 export async function POST(req: Request) {
   const { email, password } = await req.json().catch(() => ({}));
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
   res.cookies.set(SESSION_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: isSecureRequest(req), // hinter Funnel via X-Forwarded-Proto erkannt
     path: "/",
     maxAge: 60 * 60 * 24 * 7, // 7 Tage
   });

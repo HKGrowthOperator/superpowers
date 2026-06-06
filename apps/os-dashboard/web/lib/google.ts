@@ -15,6 +15,14 @@ export type DriveFile = { id: string; name: string; mimeType: string; modifiedTi
 export function googleConfigured(): boolean {
   return !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET);
 }
+
+/** Öffentliche Origin der App (hinter Funnel via Forwarded-Header rekonstruiert). */
+export function publicOrigin(req: Request): string {
+  const proto = req.headers.get("x-forwarded-proto")?.split(",")[0].trim();
+  const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host");
+  if (proto && host) return `${proto}://${host}`;
+  return new URL(req.url).origin;
+}
 function redirectUri(): string {
   return process.env.GOOGLE_REDIRECT_URI || "http://localhost:3000/api/google/callback";
 }

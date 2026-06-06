@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { exchangeCode } from "@/lib/google";
+import { exchangeCode, publicOrigin } from "@/lib/google";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
-  const origin = url.origin;
+  const origin = publicOrigin(req);
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
   const jar = await cookies();

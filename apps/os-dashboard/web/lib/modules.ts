@@ -1,6 +1,6 @@
-// lib/modules.ts — central definition of every editable module:
-// its form fields (used to render add/edit forms) and how a stored record
-// maps to the generic card UI. Seed content lives in lib/data/*.
+// lib/modules.ts — zentrale Definition jedes editierbaren Moduls:
+// Formularfelder (für Anlegen/Bearbeiten) und Abbildung Datensatz → Karten-UI.
+// Startinhalte liegen in lib/data/*.
 import type { CardModel, Tone } from "@/lib/data/types";
 import { riskTone } from "@/lib/data/types";
 import { sops } from "@/lib/data/sops";
@@ -18,25 +18,25 @@ export type Field = {
   options?: string[];
   placeholder?: string;
   required?: boolean;
-  full?: boolean; // span both columns in the form grid
+  full?: boolean; // über beide Spalten im Formularraster
 };
 export type Rec = { id: string; data: Record<string, unknown> };
 export type ModuleDef = {
   key: string;
   label: string;
-  noun: string; // used in the "+ Neu" button / titles
+  noun: string; // für den „+ Neu"-Button / Titel
   fields: Field[];
   toCard: (rec: Rec) => CardModel;
 };
 
-// ── small helpers ───────────────────────────────────────────────────────────
+// ── kleine Helfer ───────────────────────────────────────────────────────────
 const arr = (v: unknown): string[] => (Array.isArray(v) ? (v as string[]) : []);
 const str = (v: unknown): string => (v == null ? "" : String(v));
 const num = (v: unknown): number => (typeof v === "number" ? v : Number(v) || 0);
-const lvlBadge = (l: string): Tone => (l === "high" ? "bad" : l === "medium" ? "warn" : "ok");
-const hypeBadge = (l: string): Tone => (l === "hype" ? "bad" : l === "mixed" ? "warn" : "ok");
+const lvlBadge = (l: string): Tone => (l === "hoch" ? "bad" : l === "mittel" ? "warn" : "ok");
+const hypeBadge = (l: string): Tone => (l === "Hype" ? "bad" : l === "gemischt" ? "warn" : "ok");
 
-// ── module definitions ──────────────────────────────────────────────────────
+// ── Moduldefinitionen ───────────────────────────────────────────────────────
 export const MODULES: Record<string, ModuleDef> = {
   sops: {
     key: "sops", label: "SOPs", noun: "SOP",
@@ -46,7 +46,7 @@ export const MODULES: Record<string, ModuleDef> = {
       { name: "owner", label: "Verantwortlich", type: "text" },
       { name: "summary", label: "Kurzbeschreibung", type: "textarea", full: true },
       { name: "steps", label: "Schritte (eine Zeile = ein Schritt)", type: "list", full: true },
-      { name: "tools", label: "Tools", type: "tags" },
+      { name: "tools", label: "Werkzeuge", type: "tags" },
       { name: "tags", label: "Schlagwörter", type: "tags" },
     ],
     toCard: ({ id, data: d }) => ({
@@ -65,14 +65,14 @@ export const MODULES: Record<string, ModuleDef> = {
     fields: [
       { name: "name", label: "Name", type: "text", required: true, full: true },
       { name: "contact", label: "Kontakt (E-Mail/Tel.)", type: "text" },
-      { name: "status", label: "Status", type: "select", options: ["active", "lead", "paused", "churned"] },
+      { name: "status", label: "Status", type: "select", options: ["aktiv", "Interessent", "pausiert", "verloren"] },
       { name: "since", label: "Kunde seit", type: "text" },
       { name: "notes", label: "Notizen", type: "textarea", full: true },
       { name: "tags", label: "Schlagwörter", type: "tags", full: true },
     ],
     toCard: ({ id, data: d }) => {
       const s = str(d.status);
-      const tone: Tone = s === "active" ? "ok" : s === "lead" ? "brand" : s === "paused" ? "warn" : "bad";
+      const tone: Tone = s === "aktiv" ? "ok" : s === "Interessent" ? "brand" : s === "pausiert" ? "warn" : "bad";
       return {
         id, accent: tone === "bad" ? "bad" : tone === "warn" ? "warn" : tone === "ok" ? "ok" : "brand",
         badges: [{ text: s || "—", tone }],
@@ -90,13 +90,13 @@ export const MODULES: Record<string, ModuleDef> = {
     key: "templates", label: "Vorlagen", noun: "Vorlage",
     fields: [
       { name: "title", label: "Titel", type: "text", required: true, full: true },
-      { name: "channel", label: "Kanal", type: "select", options: ["email", "chat", "sms"] },
+      { name: "channel", label: "Kanal", type: "select", options: ["E-Mail", "Chat", "SMS"] },
       { name: "category", label: "Kategorie", type: "text" },
       { name: "body", label: "Text ({{Platzhalter}} erlaubt)", type: "textarea", full: true },
     ],
     toCard: ({ id, data: d }) => ({
       id,
-      badges: [{ text: str(d.channel) || "text", tone: "brand" }, ...(d.category ? [{ text: str(d.category), tone: "neutral" as const }] : [])],
+      badges: [{ text: str(d.channel) || "Text", tone: "brand" }, ...(d.category ? [{ text: str(d.category), tone: "neutral" as const }] : [])],
       title: str(d.title), pre: str(d.body),
     }),
   },
@@ -105,15 +105,15 @@ export const MODULES: Record<string, ModuleDef> = {
     key: "concepts", label: "Konzepte", noun: "Konzept",
     fields: [
       { name: "title", label: "Titel", type: "text", required: true, full: true },
-      { name: "type", label: "Art", type: "select", options: ["offer", "strategy", "campaign"] },
-      { name: "status", label: "Status", type: "select", options: ["idea", "draft", "ready", "live"] },
+      { name: "type", label: "Art", type: "select", options: ["Angebot", "Strategie", "Kampagne"] },
+      { name: "status", label: "Status", type: "select", options: ["Idee", "Entwurf", "bereit", "live"] },
       { name: "summary", label: "Kurzbeschreibung", type: "textarea", full: true },
       { name: "value", label: "Wert / Nutzen", type: "textarea", full: true },
       { name: "steps", label: "Schritte", type: "list", full: true },
     ],
     toCard: ({ id, data: d }) => {
       const s = str(d.status);
-      const tone: Tone = s === "live" ? "ok" : s === "ready" ? "brand" : s === "draft" ? "warn" : "neutral";
+      const tone: Tone = s === "live" ? "ok" : s === "bereit" ? "brand" : s === "Entwurf" ? "warn" : "neutral";
       return {
         id, accent: "brand",
         badges: [{ text: str(d.type) || "—", tone: "neutral" }, { text: s || "—", tone }],
@@ -128,16 +128,16 @@ export const MODULES: Record<string, ModuleDef> = {
     key: "automations", label: "Automationen", noun: "Automation",
     fields: [
       { name: "title", label: "Titel", type: "text", required: true, full: true },
-      { name: "status", label: "Status", type: "select", options: ["idea", "building", "live", "paused"] },
+      { name: "status", label: "Status", type: "select", options: ["Idee", "im Bau", "live", "pausiert"] },
       { name: "trigger", label: "Auslöser", type: "textarea", full: true },
       { name: "action", label: "Aktion", type: "textarea", full: true },
       { name: "value", label: "Nutzen", type: "textarea", full: true },
-      { name: "tools", label: "Tools", type: "tags", full: true },
+      { name: "tools", label: "Werkzeuge", type: "tags", full: true },
     ],
     toCard: ({ id, data: d }) => {
       const s = str(d.status);
-      const tone: Tone = s === "live" ? "ok" : s === "building" ? "warn" : s === "paused" ? "bad" : "neutral";
-      const accent = s === "live" ? "ok" : s === "building" ? "warn" : s === "paused" ? "bad" : undefined;
+      const tone: Tone = s === "live" ? "ok" : s === "im Bau" ? "warn" : s === "pausiert" ? "bad" : "neutral";
+      const accent = s === "live" ? "ok" : s === "im Bau" ? "warn" : s === "pausiert" ? "bad" : undefined;
       return {
         id, accent,
         badges: [{ text: s || "—", tone }],
@@ -157,15 +157,15 @@ export const MODULES: Record<string, ModuleDef> = {
     fields: [
       { name: "name", label: "Name", type: "text", required: true, full: true },
       { name: "client", label: "Kunde", type: "text" },
-      { name: "status", label: "Status", type: "select", options: ["planned", "building", "live", "maintenance"] },
+      { name: "status", label: "Status", type: "select", options: ["geplant", "im Bau", "live", "Wartung"] },
       { name: "url", label: "URL", type: "text", full: true },
       { name: "stack", label: "Technik", type: "text" },
       { name: "notes", label: "Notizen", type: "textarea", full: true },
     ],
     toCard: ({ id, data: d }) => {
       const s = str(d.status);
-      const tone: Tone = s === "live" ? "ok" : s === "building" ? "warn" : s === "maintenance" ? "brand" : "neutral";
-      const accent = s === "live" ? "ok" : s === "building" ? "warn" : s === "maintenance" ? "brand" : undefined;
+      const tone: Tone = s === "live" ? "ok" : s === "im Bau" ? "warn" : s === "Wartung" ? "brand" : "neutral";
+      const accent = s === "live" ? "ok" : s === "im Bau" ? "warn" : s === "Wartung" ? "brand" : undefined;
       return {
         id, accent,
         badges: [{ text: s || "—", tone }],
@@ -189,16 +189,16 @@ export const MODULES: Record<string, ModuleDef> = {
       { name: "category", label: "Kategorie", type: "text" },
       { name: "date", label: "Datum", type: "text" },
       { name: "relevanceScore", label: "Relevanz (0–100)", type: "number" },
-      { name: "businessImpact", label: "Business impact", type: "textarea", full: true },
+      { name: "businessImpact", label: "Business-Impact", type: "textarea", full: true },
       { name: "businessRelevance", label: "Warum für uns", type: "textarea", full: true },
       { name: "recommendedAction", label: "Empfohlene Aktion", type: "textarea", full: true },
-      { name: "riskLevel", label: "Risiko", type: "select", options: ["low", "medium", "high"] },
-      { name: "hypeLevel", label: "Hype", type: "select", options: ["grounded", "mixed", "hype"] },
+      { name: "riskLevel", label: "Risiko", type: "select", options: ["niedrig", "mittel", "hoch"] },
+      { name: "hypeLevel", label: "Hype", type: "select", options: ["fundiert", "gemischt", "Hype"] },
       { name: "riskTypes", label: "Risiko-Typen", type: "tags" },
       { name: "tags", label: "Schlagwörter", type: "tags" },
     ],
     toCard: ({ id, data: d }) => ({
-      id, accent: riskTone((str(d.riskLevel) || "low") as "low" | "medium" | "high"),
+      id, accent: riskTone(str(d.riskLevel) || "niedrig"),
       score: d.relevanceScore != null ? num(d.relevanceScore) : undefined,
       badges: [
         ...(d.company ? [{ text: str(d.company), tone: "brand" as const }] : []),
@@ -207,7 +207,7 @@ export const MODULES: Record<string, ModuleDef> = {
       ],
       title: str(d.title), description: str(d.summary),
       metas: [
-        ...(d.businessImpact ? [{ label: "Business impact", value: str(d.businessImpact) }] : []),
+        ...(d.businessImpact ? [{ label: "Business-Impact", value: str(d.businessImpact) }] : []),
         ...(d.businessRelevance ? [{ label: "Warum es für uns zählt", value: str(d.businessRelevance) }] : []),
       ],
       highlight: d.recommendedAction ? { label: "Empfohlene Aktion", value: str(d.recommendedAction), tone: "brand" } : undefined,
@@ -225,15 +225,15 @@ export const MODULES: Record<string, ModuleDef> = {
     fields: [
       { name: "title", label: "Titel", type: "text", required: true, full: true },
       { name: "week", label: "Woche", type: "text" },
-      { name: "status", label: "Status", type: "select", options: ["proposed", "running", "validated", "dropped"] },
+      { name: "status", label: "Status", type: "select", options: ["vorgeschlagen", "läuft", "validiert", "verworfen"] },
       { name: "value", label: "Wert", type: "textarea", full: true },
       { name: "validation", label: "Validierung", type: "textarea", full: true },
       { name: "steps", label: "Schritte", type: "list", full: true },
-      { name: "tools", label: "Tools", type: "tags", full: true },
+      { name: "tools", label: "Werkzeuge", type: "tags", full: true },
     ],
     toCard: ({ id, data: d }) => {
       const s = str(d.status);
-      const tone: Tone = s === "validated" ? "ok" : s === "dropped" ? "bad" : "warn";
+      const tone: Tone = s === "validiert" ? "ok" : s === "verworfen" ? "bad" : "warn";
       return {
         id,
         badges: [...(d.week ? [{ text: str(d.week), tone: "neutral" as const }] : []), { text: s || "—", tone }],
@@ -252,11 +252,11 @@ export const MODULES: Record<string, ModuleDef> = {
     key: "ai_opportunities", label: "Chancen", noun: "Chance",
     fields: [
       { name: "title", label: "Titel", type: "text", required: true, full: true },
-      { name: "effort", label: "Aufwand", type: "select", options: ["low", "medium", "high"] },
+      { name: "effort", label: "Aufwand", type: "select", options: ["niedrig", "mittel", "hoch"] },
       { name: "value", label: "Verkaufbarer Wert", type: "textarea", full: true },
       { name: "validate", label: "Nachfrage validieren", type: "textarea", full: true },
       { name: "steps", label: "Schritte", type: "list", full: true },
-      { name: "tools", label: "Tools", type: "tags", full: true },
+      { name: "tools", label: "Werkzeuge", type: "tags", full: true },
     ],
     toCard: ({ id, data: d }) => ({
       id, accent: "brand",
@@ -292,13 +292,13 @@ export const MODULES: Record<string, ModuleDef> = {
     key: "ai_risks", label: "Risiken", noun: "Risiko",
     fields: [
       { name: "title", label: "Titel", type: "text", required: true, full: true },
-      { name: "riskLevel", label: "Risiko", type: "select", options: ["low", "medium", "high"] },
+      { name: "riskLevel", label: "Risiko", type: "select", options: ["niedrig", "mittel", "hoch"] },
       { name: "riskTypes", label: "Risiko-Typen", type: "tags" },
       { name: "description", label: "Beschreibung", type: "textarea", full: true },
       { name: "mitigation", label: "Gegenmaßnahme", type: "textarea", full: true },
     ],
     toCard: ({ id, data: d }) => ({
-      id, accent: riskTone((str(d.riskLevel) || "low") as "low" | "medium" | "high"),
+      id, accent: riskTone(str(d.riskLevel) || "niedrig"),
       badges: [
         ...(d.riskLevel ? [{ text: `Risiko: ${str(d.riskLevel)}`, tone: lvlBadge(str(d.riskLevel)) }] : []),
         ...arr(d.riskTypes).map((t) => ({ text: t, tone: "outline" as const })),
@@ -311,7 +311,7 @@ export const MODULES: Record<string, ModuleDef> = {
 
 export const MODULE_KEYS = Object.keys(MODULES);
 
-// Seed content used the first time a module's table is empty.
+// Startinhalte beim ersten leeren Zustand eines Moduls.
 export const SEEDS: Record<string, unknown[]> = {
   sops, clients, templates, concepts, automations, websites,
   ai_updates: updates, ai_experiments: experiments, ai_opportunities: opportunities,

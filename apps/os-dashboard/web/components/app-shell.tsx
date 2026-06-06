@@ -10,7 +10,7 @@ type NavItem = { href: string; label: string; icon: string; external?: boolean }
 type NavGroup = { group: string; items: NavItem[] };
 
 const NAV: NavGroup[] = [
-  { group: "Start", items: [{ href: "/", label: "Magical Wall", icon: "wall" }] },
+  { group: "Start", items: [{ href: "/", label: "Übersicht", icon: "wall" }] },
   { group: "Intelligenz", items: [
     { href: "/assistent", label: "Assistent", icon: "spark" },
     { href: "/ai-intelligence", label: "AI Intelligence", icon: "brain" },

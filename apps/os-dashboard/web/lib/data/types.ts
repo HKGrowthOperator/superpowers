@@ -27,8 +27,8 @@ export type CardModel = {
 };
 
 // ── semantic entity types ─────────────────────────────────────────────────
-export type RiskLevel = "low" | "medium" | "high";
-export type HypeLevel = "grounded" | "mixed" | "hype";
+export type RiskLevel = "niedrig" | "mittel" | "hoch";
+export type HypeLevel = "fundiert" | "gemischt" | "Hype";
 
 export type AIUpdate = {
   id: string;
@@ -84,5 +84,5 @@ export type Website = {
 };
 
 // ── tone helpers ──────────────────────────────────────────────────────────
-export const riskTone = (l: RiskLevel): Accent => (l === "high" ? "bad" : l === "medium" ? "warn" : "ok");
-export const hypeTone = (l: HypeLevel): Accent => (l === "hype" ? "bad" : l === "mixed" ? "warn" : "ok");
+export const riskTone = (l: string): Accent => (l === "hoch" ? "bad" : l === "mittel" ? "warn" : "ok");
+export const hypeTone = (l: string): Accent => (l === "Hype" ? "bad" : l === "gemischt" ? "warn" : "ok");

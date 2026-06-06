@@ -1,9 +1,9 @@
-// lib/data/websites.ts — client websites and their build status.
+// lib/data/websites.ts — Kundenwebseiten und ihr Build-Status.
 import type { Website } from "./types";
 
 export const websites: Website[] = [
-  { id: "web-nordwind", name: "Nordwind — corporate site", client: "Nordwind GmbH", status: "live", url: "https://nordwind.example", stack: "Static + CMS", notes: "Quarterly content refresh due in July." },
-  { id: "web-helios", name: "Helios Praxis — landing page", client: "Helios Praxis", status: "building", url: "", stack: "Static", notes: "Privacy-first; no third-party trackers. Awaiting copy." },
-  { id: "web-brandt", name: "Brandt & Partner — relaunch", client: "Brandt & Partner", status: "planned", url: "", stack: "TBD", notes: "Scope workshop scheduled. Accessibility is a hard requirement." },
-  { id: "web-maekelei", name: "Mäkelei — one-pager", client: "Mäkelei Handwerk", status: "maintenance", url: "https://maekelei.example", stack: "Static", notes: "Minimal upkeep while client is paused." },
+  { id: "web-nordwind", name: "Nordwind — Unternehmensseite", client: "Nordwind GmbH", status: "live", url: "https://nordwind.example", stack: "Statisch + CMS", notes: "Quartals-Inhaltsauffrischung im Juli fällig." },
+  { id: "web-helios", name: "Helios Praxis — Landingpage", client: "Helios Praxis", status: "im Bau", url: "", stack: "Statisch", notes: "Datenschutz-first; keine Drittanbieter-Tracker. Wartet auf Texte." },
+  { id: "web-brandt", name: "Brandt & Partner — Relaunch", client: "Brandt & Partner", status: "geplant", url: "", stack: "Offen", notes: "Scope-Workshop terminiert. Barrierefreiheit ist Pflichtanforderung." },
+  { id: "web-maekelei", name: "Mäkelei — Onepager", client: "Mäkelei Handwerk", status: "Wartung", url: "https://maekelei.example", stack: "Statisch", notes: "Minimale Pflege, solange der Kunde pausiert." },
 ];

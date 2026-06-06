@@ -18,6 +18,7 @@ const NAV: NavGroup[] = [
   { group: "Betrieb", items: [
     { href: "/sops", label: "SOPs", icon: "list" },
     { href: "/kundenbedienung", label: "Kundenbedienung", icon: "users" },
+    { href: "/berichte", label: "Berichte", icon: "report" },
     { href: "/automation", label: "Automation", icon: "bolt" },
   ] },
   { group: "Wachstum", items: [
@@ -48,6 +49,7 @@ function Icon({ name }: { name: string }) {
     bulb: <><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z" /></>,
     globe: <><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z" /></>,
     flow: <><circle cx="6" cy="6" r="3" /><circle cx="18" cy="18" r="3" /><path d="M9 6h6a3 3 0 0 1 3 3v6" /></>,
+    report: <><path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /><path d="M14 3v5h5M9 13h6M9 17h4" /></>,
   };
   return <svg {...common}>{paths[name] ?? null}</svg>;
 }

@@ -17,6 +17,7 @@ const OVERVIEW: { key: string; label: string; href: string; hint: string }[] = [
   { key: "concepts", label: "Konzepte", href: "/konzepte", hint: "Angebote & Kampagnen" },
   { key: "automations", label: "Automationen", href: "/automation", hint: "Idee → live" },
   { key: "websites", label: "Webseiten", href: "/webseiten", hint: "Projekte & Status" },
+  { key: "reports", label: "Berichte", href: "/berichte", hint: "Wochenreports" },
   { key: "ai_updates", label: "AI-Updates", href: "/ai-intelligence", hint: "Markt im Blick" },
 ];
 

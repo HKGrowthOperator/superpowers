@@ -6,12 +6,12 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 120;
 
 export async function POST(req: Request) {
-  const body = (await req.json().catch(() => ({}))) as { agentId?: string; task?: string; model?: string };
+  const body = (await req.json().catch(() => ({}))) as { agentId?: string; task?: string; model?: string; priorWork?: string };
   if (!body.agentId || !body.task?.trim()) {
     return NextResponse.json({ error: "Agent und Auftrag sind nötig." }, { status: 400 });
   }
   try {
-    const result = await runAgent(body.agentId, body.task.trim(), body.model);
+    const result = await runAgent(body.agentId, body.task.trim(), body.model, body.priorWork);
     return NextResponse.json(result);
   } catch (err) {
     const msg =

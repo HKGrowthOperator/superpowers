@@ -8,7 +8,9 @@ export type ClientAgent = {
   id: string; name: string; role: string; emoji: string; accent: string;
   blurb: string; focus?: boolean; tasks: string[]; placeholder: string;
 };
+export type ClientPipeline = { id: string; name: string; blurb: string; steps: string[] };
 type Stat = { today: number; total: number; running: number };
+type Step = { agentId: string; status: "wartet" | "arbeitet" | "fertig" | "fehler"; output: string };
 
 const MODELS = [
   { id: "claude-haiku-4-5", label: "Haiku · schnell" },
@@ -17,13 +19,16 @@ const MODELS = [
 ];
 
 export function AgentTeam({
-  agents, stats, aggregate,
+  agents, pipelines, stats, aggregate,
 }: {
   agents: ClientAgent[];
+  pipelines: ClientPipeline[];
   stats: Record<string, Stat>;
   aggregate: { today: number; total: number; running: number };
 }) {
   const router = useRouter();
+  const byId = new Map(agents.map((a) => [a.id, a]));
+  const [mode, setMode] = useState<"single" | "team">("single");
   const [active, setActive] = useState<ClientAgent | null>(null);
   const [task, setTask] = useState("");
   const [model, setModel] = useState("claude-sonnet-4-6");
@@ -32,8 +37,59 @@ export function AgentTeam({
   const [meta, setMeta] = useState<{ costEur: number; tokensOut: number } | null>(null);
   const [toast, setToast] = useState<string | null>(null);
 
+  // Team-Auftrag (Pipeline)
+  const [pipe, setPipe] = useState<ClientPipeline>(pipelines[0]);
+  const [brief, setBrief] = useState("");
+  const [steps, setSteps] = useState<Step[]>([]);
+  const [running, setRunning] = useState(false);
+
   function flash(m: string) { setToast(m); setTimeout(() => setToast(null), 2500); }
   function statFor(a: ClientAgent): Stat { return stats[`${a.name} · ${a.role}`] ?? { today: 0, total: 0, running: 0 }; }
+
+  async function runPipeline() {
+    if (!brief.trim() || running) return;
+    setRunning(true);
+    const init: Step[] = pipe.steps.map((id) => ({ agentId: id, status: "wartet", output: "" }));
+    setSteps(init);
+    let prior = "";
+    for (let i = 0; i < pipe.steps.length; i++) {
+      const agentId = pipe.steps[i];
+      setSteps((s) => s.map((st, idx) => (idx === i ? { ...st, status: "arbeitet" } : st)));
+      try {
+        const res = await fetch("/api/agents/run", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ agentId, task: brief, model, priorWork: prior || undefined }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (data.error) {
+          setSteps((s) => s.map((st, idx) => (idx === i ? { ...st, status: "fehler", output: data.error } : st)));
+          break;
+        }
+        const out = data.output ?? "";
+        const a = byId.get(agentId);
+        prior += `\n### ${a?.role ?? agentId}\n${out}\n`;
+        setSteps((s) => s.map((st, idx) => (idx === i ? { ...st, status: "fertig", output: out } : st)));
+      } catch {
+        setSteps((s) => s.map((st, idx) => (idx === i ? { ...st, status: "fehler", output: "Schritt fehlgeschlagen." } : st)));
+        break;
+      }
+    }
+    setRunning(false);
+    router.refresh();
+  }
+
+  async function savePipelineResult() {
+    const done = steps.filter((s) => s.status === "fertig");
+    if (!done.length) return;
+    const body = done.map((s) => `## ${byId.get(s.agentId)?.role ?? s.agentId}\n${s.output}`).join("\n\n");
+    try {
+      await saveItem({
+        module: "templates", path: "/kundenbedienung",
+        data: { title: `${pipe.name}: ${brief.slice(0, 50)}`, channel: "Chat", category: "Team-Auftrag", body },
+      });
+      flash("Als Vorlage gespeichert ✓");
+    } catch { flash("Speichern fehlgeschlagen."); }
+  }
 
   function open(a: ClientAgent) {
     setActive(a); setTask(""); setOutput(""); setMeta(null);
@@ -76,7 +132,72 @@ export function AgentTeam({
         <StatTile label="Gerade aktiv" value={aggregate.running} accent />
       </div>
 
+      {/* Modus-Umschalter */}
+      <div className="border-border inline-flex rounded-lg border p-1 text-sm">
+        <button type="button" onClick={() => setMode("single")}
+          className={`rounded-md px-3 py-1 font-semibold ${mode === "single" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}>Einzelauftrag</button>
+        <button type="button" onClick={() => setMode("team")}
+          className={`rounded-md px-3 py-1 font-semibold ${mode === "team" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}>Team-Auftrag</button>
+      </div>
+
+      {mode === "team" && (
+        <section className="border-l-gold bg-card border-border space-y-4 rounded-xl border border-l-4 p-5 shadow-sm">
+          <p className="text-muted-foreground text-sm">Mehrere Agenten arbeiten nacheinander — jeder baut auf dem Ergebnis des vorigen auf.</p>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {pipelines.map((p) => (
+              <button key={p.id} type="button" onClick={() => setPipe(p)}
+                className={`rounded-lg border p-3 text-left ${pipe.id === p.id ? "border-primary ring-primary ring-1" : "border-border hover:border-foreground/30"}`}>
+                <div className="flex items-center gap-1 text-sm font-semibold">
+                  {p.steps.map((id, i) => (
+                    <span key={i} className="flex items-center gap-1">
+                      <span>{byId.get(id)?.emoji}</span>{i < p.steps.length - 1 && <span className="text-muted-foreground">→</span>}
+                    </span>
+                  ))}
+                  <span className="ml-1">{p.name}</span>
+                </div>
+                <div className="text-muted-foreground mt-1 text-xs">{p.blurb}</div>
+              </button>
+            ))}
+          </div>
+          <textarea value={brief} onChange={(e) => setBrief(e.target.value)} rows={3}
+            placeholder="Das Ziel in einem Satz, z. B. „Neukunden für unser Retainer-Angebot bei Handwerksbetrieben gewinnen.“"
+            className="bg-background border-border focus:ring-ring w-full rounded-md border px-3 py-2 text-sm focus:ring-2 focus:outline-none" />
+          <div className="flex items-center gap-2">
+            <select value={model} onChange={(e) => setModel(e.target.value)} className="bg-background border-border rounded-md border px-2 py-1.5 text-xs">
+              {MODELS.map((m) => <option key={m.id} value={m.id}>{m.label}</option>)}
+            </select>
+            <button type="button" onClick={runPipeline} disabled={running || !brief.trim()}
+              className="bg-primary text-primary-foreground rounded-md px-4 py-1.5 text-sm font-semibold hover:bg-[#3a4734] disabled:opacity-50">
+              {running ? "Team arbeitet…" : "Pipeline starten"}
+            </button>
+            {steps.some((s) => s.status === "fertig") && !running && (
+              <button type="button" onClick={savePipelineResult} className="border-border hover:bg-secondary rounded-md border px-3 py-1.5 text-xs font-semibold">Gesamt als Vorlage speichern</button>
+            )}
+          </div>
+          {steps.length > 0 && (
+            <ol className="space-y-3">
+              {steps.map((s, i) => {
+                const a = byId.get(s.agentId);
+                return (
+                  <li key={i} className="border-border rounded-lg border p-3">
+                    <div className="flex items-center gap-2 text-sm font-semibold">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-md" style={{ backgroundColor: (a?.accent ?? "#888") + "22" }}>{a?.emoji}</span>
+                      <span>{a?.name}</span><span className="text-muted-foreground text-xs">{a?.role}</span>
+                      <span className={`ml-auto text-xs ${s.status === "fehler" ? "text-destructive" : s.status === "fertig" ? "text-primary" : "text-muted-foreground"}`}>
+                        {s.status === "arbeitet" ? "● arbeitet…" : s.status === "fertig" ? "✓ fertig" : s.status === "fehler" ? "Fehler" : "wartet"}
+                      </span>
+                    </div>
+                    {s.output && <div className="bg-background border-border mt-2 max-h-72 overflow-auto rounded-md border p-3 text-sm whitespace-pre-wrap">{s.output}</div>}
+                  </li>
+                );
+              })}
+            </ol>
+          )}
+        </section>
+      )}
+
       {/* Team-Karten */}
+      {mode === "single" && (<>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {agents.map((a) => {
           const s = statFor(a);
@@ -153,6 +274,7 @@ export function AgentTeam({
           )}
         </section>
       )}
+      </>)}
 
       {toast && <div className="bg-primary text-primary-foreground fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full px-4 py-2 text-sm font-semibold shadow-lg">{toast}</div>}
     </div>

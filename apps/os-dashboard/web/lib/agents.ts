@@ -120,6 +120,16 @@ export function getAgent(id: string): Agent | undefined {
   return AGENTS.find((a) => a.id === id);
 }
 
+// Team-Aufträge: mehrere Agenten arbeiten nacheinander, jeder baut auf dem
+// Ergebnis des vorigen auf. Schwerpunkt: Content & Outreach.
+export type Pipeline = { id: string; name: string; blurb: string; steps: string[] };
+export const PIPELINES: Pipeline[] = [
+  { id: "campaign", name: "Kampagne aus dem Nichts", blurb: "Von der Recherche bis zur fertigen Outreach — alles in einem Lauf.", steps: ["research", "cmo", "content", "outreach"] },
+  { id: "content-sprint", name: "Content-Sprint", blurb: "Recherche-gestützter, fertiger Content.", steps: ["research", "content"] },
+  { id: "outreach-sprint", name: "Outreach-Sprint", blurb: "Zielkunden verstehen, dann persönliche Ansprache schreiben.", steps: ["research", "outreach"] },
+  { id: "full", name: "Voll-Pipeline", blurb: "Strategie, Content, Outreach und Kunden-Briefing am Stück.", steps: ["research", "cmo", "content", "outreach", "account"] },
+];
+
 // grobe €-Schätzung pro 1M Tokens (in/out) je Modell — für die Kostenkachel.
 const RATES: Record<string, { in: number; out: number }> = {
   "claude-haiku-4-5": { in: 0.8, out: 4 },
@@ -133,8 +143,9 @@ function estimateCost(model: string, tin: number, tout: number): number {
 
 export type AgentResult = { output: string; model: string; tokensIn: number; tokensOut: number; costEur: number };
 
-/** Führt einen Agenten echt aus (Claude + Cockpit-Kontext) und protokolliert den Lauf. */
-export async function runAgent(agentId: string, task: string, model?: string): Promise<AgentResult> {
+/** Führt einen Agenten echt aus (Claude + Cockpit-Kontext) und protokolliert den Lauf.
+ *  priorWork = Ergebnisse vorheriger Team-Mitglieder (für Pipeline-Aufträge). */
+export async function runAgent(agentId: string, task: string, model?: string, priorWork?: string): Promise<AgentResult> {
   const agent = getAgent(agentId);
   if (!agent) throw new Error("Unbekannter Agent.");
   const client = getClient();
@@ -144,6 +155,9 @@ export async function runAgent(agentId: string, task: string, model?: string): P
   const usedModel = resolveModel(model);
   const context = await buildContext();
   const system = `${agent.system}\n\n# Kontext aus dem Cockpit (echte Daten — nutze sie)\n${context}`;
+  const userMsg = priorWork
+    ? `${task}\n\n# Bisherige Arbeit des Teams (baue darauf auf, wiederhole sie nicht)\n${priorWork}`
+    : task;
 
   // Lauf als "running" anlegen
   const { rows } = await pool.query<{ id: string }>(
@@ -157,7 +171,7 @@ export async function runAgent(agentId: string, task: string, model?: string): P
       model: usedModel,
       max_tokens: 2000,
       system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
-      messages: [{ role: "user", content: task }],
+      messages: [{ role: "user", content: userMsg }],
     });
     const output = res.content
       .filter((b): b is Anthropic.TextBlock => b.type === "text")

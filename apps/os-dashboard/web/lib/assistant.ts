@@ -6,6 +6,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { listItems } from "./store";
 import { MODULES, MODULE_KEYS } from "./modules";
 import { getSecret } from "./secrets";
+import { HK_BRIEF } from "./hk";
 
 export const API_KEY_SECRET = "anthropic_api_key";
 
@@ -133,7 +134,7 @@ Regeln:
 /** Baut den vollständigen System-Prompt (cachebar). */
 export async function buildSystem(): Promise<string> {
   const [guide, context] = [fieldGuide(), await buildContext()];
-  return `${SYSTEM_PREAMBLE}\n\n# Module & Felder\n${guide}\n\n# Aktuelle Daten\n${context}`;
+  return `${SYSTEM_PREAMBLE}\n\n${HK_BRIEF}\n\n# Module & Felder\n${guide}\n\n# Aktuelle Daten\n${context}`;
 }
 
 export type Proposal = {

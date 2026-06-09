@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <>
       <p className="text-muted-foreground mb-6 text-sm">
-        Finde echte Betriebe in deiner Zielbranche & Region. Jeder Lead wird gegen euer AI-First-Leistungsspektrum geprüft (Content & Branding, E-Mail/Outreach, Automatisierung & KI) — du siehst pro Betrieb die Lücken und die passenden Leistungen. Speichern als Interessent oder direkt eine Cold-Mail im AI-First-Ton erzeugen.
+        Finde echte Betriebe in deiner Zielbranche & Region (Standard: Gummersbach). Jeder Lead wird gegen HKs Angebote geprüft (Wachstums-Check, Website, Social Media) — du siehst pro Betrieb die Lücken und passenden Hebel. „🔍 Analysieren" erstellt ein Dossier, „Cold-Mail" lädt im HK-Ton zum Wachstums-Check ein.
       </p>
       <LeadRadar categories={categories} services={LEAD_SERVICES} />
     </>

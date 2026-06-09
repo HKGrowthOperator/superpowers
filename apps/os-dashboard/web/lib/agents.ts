@@ -4,6 +4,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { pool } from "./db";
 import { getClientAsync, resolveModel, buildContext } from "./assistant";
+import { HK_BRIEF } from "./hk";
 
 export type Agent = {
   id: string;
@@ -164,7 +165,7 @@ export async function runAgent(agentId: string, task: string, model?: string, pr
   }
   const usedModel = resolveModel(model);
   const context = await buildContext();
-  const system = `${agent.system}\n\n# Kontext aus dem Cockpit (echte Daten — nutze sie)\n${context}`;
+  const system = `${HK_BRIEF}\n\n${agent.system}\n\n# Kontext aus dem Cockpit (echte Daten — nutze sie)\n${context}`;
   const userMsg = priorWork
     ? `${task}\n\n# Bisherige Arbeit des Teams (baue darauf auf, wiederhole sie nicht)\n${priorWork}`
     : task;

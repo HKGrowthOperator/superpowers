@@ -32,9 +32,9 @@ export function getCategory(id: string): LeadCategory | undefined {
 // rote Faden und passt grundsätzlich für jeden Betrieb.
 export type Service = { id: string; label: string };
 export const LEAD_SERVICES: Service[] = [
-  { id: "automation", label: "Automatisierung & KI" },
-  { id: "content", label: "Content & Branding" },
-  { id: "outreach", label: "E-Mail / Outreach" },
+  { id: "check", label: "HK Wachstums-Check" },
+  { id: "website", label: "Website" },
+  { id: "social", label: "Social Media" },
 ];
 
 export type Lead = {
@@ -134,20 +134,19 @@ export async function searchLeads(categoryId: string, place: string, limit = 40)
     if (noSocial) gaps.push("keine Social-Media-Profile");
     if (noEmail) gaps.push("keine E-Mail hinterlegt");
 
-    // Lücken → passende Leistungen aus eurem Spektrum
+    // Lücken → passende HK-Angebote
     const services: Service[] = [];
-    if (noWebsite || noSocial) services.push({ id: "content", label: "Content & Branding" });
-    if (noEmail) services.push({ id: "outreach", label: "E-Mail / Outreach" });
-    // AI-First ist immer relevant: schwache Präsenz → von Grund auf aufbauen;
-    // vorhandene Präsenz → manuelle Abläufe automatisieren.
-    services.push({ id: "automation", label: "Automatisierung & KI" });
+    if (noWebsite) services.push({ id: "website", label: "Website" });
+    if (noSocial) services.push({ id: "social", label: "Social Media" });
+    // Der HK Wachstums-Check ist immer der Einstieg (Diagnose statt Pitch).
+    services.push({ id: "check", label: "HK Wachstums-Check" });
 
     const score = gaps.length;
     const hot = score >= 2 || noWebsite;
     const priority: "A" | "B" | "C" = score >= 2 ? "A" : score === 1 ? "B" : "C";
     const reason =
       score === 0
-        ? "Digital gut aufgestellt — Ansatz: Abläufe & Anfragen mit KI automatisieren."
+        ? "Digital ordentlich aufgestellt — Einstieg über den HK Wachstums-Check (Feintuning Anfrageweg & Conversion)."
         : `${gaps.join(", ")} — Ansatzpunkt für ${services.map((s) => s.label).join(" · ")}.`;
 
     leads.push({ name: t.name, address, phone, email, website, instagram, facebook, gaps, services, score, priority, hot, reason });

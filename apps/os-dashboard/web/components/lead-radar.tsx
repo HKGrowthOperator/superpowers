@@ -14,7 +14,7 @@ type Result = { area: string; leads: Lead[]; total: number; hotCount: number };
 
 export function LeadRadar({ categories, services }: { categories: ClientCategory[]; services: ClientService[] }) {
   const [cat, setCat] = useState(categories[0]);
-  const [place, setPlace] = useState("");
+  const [place, setPlace] = useState("Gummersbach");
   const [limit, setLimit] = useState(40);
   const [serviceFilter, setServiceFilter] = useState("all");
   const [busy, setBusy] = useState(false);
@@ -65,7 +65,7 @@ export function LeadRadar({ categories, services }: { categories: ClientCategory
     setMail((m) => ({ ...m, [i]: { busy: true, text: "" } }));
     const leistungen = lead.services.map((s) => s.label).join(", ");
     const luecken = lead.gaps.length ? `Erkannte Lücken: ${lead.gaps.join(", ")}.` : "Digital schon ordentlich aufgestellt.";
-    const task = `Schreibe eine kurze, persönliche Cold-Mail an „${lead.name}" (${cat.label}${result?.area ? ` in ${result.area}` : ""}) im Namen einer AI-First-Wachstumsagentur. ${luecken} Positioniere uns als Partner, der mit KI & Automatisierung Anfragen, Termine und Marketing vereinfacht. Pitch die passenden Leistungen: ${leistungen}. Konkreter Nutzen statt Buzzwords, niedrigschwellige CTA (15-Minuten-Kennenlern-Call), inkl. Betreffzeile.`;
+    const task = `Schreibe eine kurze, persönliche Cold-Mail an „${lead.name}" (${cat.label}${result?.area ? ` in ${result.area}` : ""}) im Namen von HK Growth Operator. ${luecken} Ton: klar, ehrlich, kein Hype — „keine Agentur für Aktionismus". Aufhänger: online zeigt sich ihre Qualität noch nicht stark genug. CTA: der HK Wachstums-Check (kurze, unverbindliche Diagnose, kein Verkaufsgespräch), 15-Minuten-Call. Passende Hebel andeuten: ${leistungen}. Konkreter Nutzen statt Buzzwords, inkl. Betreffzeile.`;
     try {
       const res = await fetch("/api/agents/run", {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -83,7 +83,7 @@ export function LeadRadar({ categories, services }: { categories: ClientCategory
       lead.instagram || lead.facebook ? "Social vorhanden" : "keine Social-Media-Profile",
       lead.email ? `E-Mail: ${lead.email}` : "keine E-Mail",
     ].join(", ");
-    const task = `Erstelle ein kurzes Lead-Dossier für „${lead.name}" (${cat.label}${result?.area ? ` in ${result.area}` : ""}) aus Sicht einer AI-First-Wachstumsagentur. Bekannt: ${known}. Erkannte Lücken: ${lead.gaps.join(", ") || "keine offensichtlichen"}. Passende Leistungen: ${lead.services.map((s) => s.label).join(", ")}. Gib genau diese Punkte aus (kurz, konkret, keine Floskeln):\n1) Haupt-Pain (1 Satz)\n2) Empfohlenes HK-Angebot\n3) Opener-Aufhänger für den Erstkontakt (1 Satz)\n4) Einschätzung/Confidence (hoch/mittel/niedrig + kurze Begründung). Hinweis: Die Einschätzung beruht nur auf öffentlichen Kartendaten, kennzeichne Unsicherheiten ehrlich.`;
+    const task = `Erstelle ein kurzes Lead-Dossier für „${lead.name}" (${cat.label}${result?.area ? ` in ${result.area}` : ""}) für HK Growth Operator. Bekannt: ${known}. Erkannte Lücken: ${lead.gaps.join(", ") || "keine offensichtlichen"}. Passende Hebel: ${lead.services.map((s) => s.label).join(", ")}. Gib genau diese Punkte aus (kurz, konkret, HK-Ton, keine Floskeln):\n1) Haupt-Pain (1 Satz)\n2) Empfohlenes HK-Angebot (mit Preisanker, falls passend)\n3) Opener-Aufhänger für den Wachstums-Check (1 Satz)\n4) Einschätzung/Confidence (hoch/mittel/niedrig + kurze Begründung). Hinweis: Einschätzung beruht nur auf öffentlichen Kartendaten — Unsicherheiten ehrlich kennzeichnen.`;
     try {
       const res = await fetch("/api/agents/run", {
         method: "POST", headers: { "Content-Type": "application/json" },

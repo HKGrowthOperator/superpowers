@@ -13,6 +13,7 @@ const NAV: NavGroup[] = [
   { group: "Start", items: [{ href: "/", label: "Übersicht", icon: "wall" }] },
   { group: "Intelligenz", items: [
     { href: "/team", label: "Agenten-Team", icon: "team" },
+    { href: "/bibliothek", label: "Bibliothek", icon: "library" },
     { href: "/assistent", label: "Assistent", icon: "spark" },
     { href: "/ai-intelligence", label: "AI Intelligence", icon: "brain" },
   ] },
@@ -58,6 +59,7 @@ function Icon({ name }: { name: string }) {
     drive: <><path d="M7 17a4 4 0 0 1-.5-7.97 5 5 0 0 1 9.6-1.3A3.5 3.5 0 0 1 17 17z" /></>,
     team: <><circle cx="9" cy="8" r="3" /><path d="M3 20v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1" /><circle cx="17" cy="9" r="2.2" /><path d="M16 14h1a4 4 0 0 1 4 4v1" /></>,
     radar: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4.5" /><path d="M12 12 19 5M12 12v9" /></>,
+    library: <><path d="M4 5v14M8 5v14M13 5l4 14" /><path d="M3 19h18" /></>,
   };
   return <svg {...common}>{paths[name] ?? null}</svg>;
 }

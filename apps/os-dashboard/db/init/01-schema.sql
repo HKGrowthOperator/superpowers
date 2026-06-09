@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS agent_runs (
     tokens_out  integer     NOT NULL DEFAULT 0,
     cost_eur    numeric(10,4) NOT NULL DEFAULT 0,
     summary     text,                                  -- 1-Satz-Ergebnis vom Agent
+    output      text,                                  -- voller Output (Agenten-Bibliothek)
     error       text
 );
 

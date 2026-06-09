@@ -141,6 +141,16 @@ function estimateCost(model: string, tin: number, tout: number): number {
   return +(tin / 1e6 * r.in + tout / 1e6 * r.out).toFixed(4);
 }
 
+// Läuft einmal lazy: ergänzt bestehende DBs um die Spalte für den vollen Output
+// (frische Installationen haben sie bereits aus 01-schema.sql).
+let schemaReady: Promise<void> | null = null;
+function ensureAgentSchema(): Promise<void> {
+  if (!schemaReady) {
+    schemaReady = pool.query("ALTER TABLE agent_runs ADD COLUMN IF NOT EXISTS output text").then(() => undefined);
+  }
+  return schemaReady;
+}
+
 export type AgentResult = { output: string; model: string; tokensIn: number; tokensOut: number; costEur: number };
 
 /** Führt einen Agenten echt aus (Claude + Cockpit-Kontext) und protokolliert den Lauf.
@@ -159,6 +169,7 @@ export async function runAgent(agentId: string, task: string, model?: string, pr
     ? `${task}\n\n# Bisherige Arbeit des Teams (baue darauf auf, wiederhole sie nicht)\n${priorWork}`
     : task;
 
+  await ensureAgentSchema();
   // Lauf als "running" anlegen
   const { rows } = await pool.query<{ id: string }>(
     "INSERT INTO agent_runs (automation, trigger, status, summary) VALUES ($1, 'agent', 'running', $2) RETURNING id",
@@ -183,8 +194,8 @@ export async function runAgent(agentId: string, task: string, model?: string, pr
     const costEur = estimateCost(usedModel, tin, tout);
     if (runId) {
       await pool.query(
-        "UPDATE agent_runs SET status='success', finished_at=now(), tokens_in=$2, tokens_out=$3, cost_eur=$4 WHERE id=$1",
-        [runId, tin, tout, costEur],
+        "UPDATE agent_runs SET status='success', finished_at=now(), tokens_in=$2, tokens_out=$3, cost_eur=$4, output=$5 WHERE id=$1",
+        [runId, tin, tout, costEur, output],
       );
     }
     return { output, model: usedModel, tokensIn: tin, tokensOut: tout, costEur };
@@ -215,4 +226,61 @@ export async function getAgentStats(): Promise<Record<string, AgentStat>> {
     map[r.automation] = { today: +r.today, total: +r.total, running: +r.running };
   }
   return map;
+}
+
+export type SavedOutput = {
+  id: string;
+  agentId: string; // aus dem Agent-Namen abgeleitet
+  name: string;
+  role: string;
+  task: string;
+  output: string;
+  tokensOut: number;
+  costEur: number;
+  createdAt: string;
+};
+
+/** Die Agenten-Bibliothek: alle gespeicherten Outputs, neueste zuerst. */
+export async function getSavedOutputs(opts: { agentName?: string; search?: string; limit?: number } = {}): Promise<SavedOutput[]> {
+  await ensureAgentSchema();
+  const where: string[] = ["trigger = 'agent'", "output IS NOT NULL", "output <> ''"];
+  const params: unknown[] = [];
+  if (opts.agentName) { params.push(opts.agentName); where.push(`automation = $${params.length}`); }
+  if (opts.search?.trim()) { params.push(`%${opts.search.trim()}%`); where.push(`(summary ILIKE $${params.length} OR output ILIKE $${params.length})`); }
+  params.push(Math.min(opts.limit ?? 100, 200));
+  const { rows } = await pool.query<{ id: string; automation: string; summary: string | null; output: string; tokens_out: number; cost_eur: string; started_at: string }>(
+    `SELECT id, automation, summary, output, tokens_out, cost_eur, started_at
+     FROM agent_runs WHERE ${where.join(" AND ")}
+     ORDER BY started_at DESC LIMIT $${params.length}`,
+    params,
+  );
+  return rows.map((r) => {
+    const [name, role] = (r.automation ?? "").split(" · ");
+    const agent = AGENTS.find((a) => a.name === name);
+    return {
+      id: r.id,
+      agentId: agent?.id ?? "",
+      name: name ?? r.automation ?? "Agent",
+      role: role ?? "",
+      task: r.summary ?? "",
+      output: r.output,
+      tokensOut: r.tokens_out ?? 0,
+      costEur: +r.cost_eur || 0,
+      createdAt: r.started_at,
+    };
+  });
+}
+
+/** Distinkte Agentennamen, die schon Outputs erzeugt haben (für den Filter). */
+export async function getOutputAgents(): Promise<string[]> {
+  await ensureAgentSchema();
+  const { rows } = await pool.query<{ automation: string }>(
+    "SELECT DISTINCT automation FROM agent_runs WHERE trigger='agent' AND output IS NOT NULL AND output <> '' ORDER BY automation",
+  );
+  return rows.map((r) => r.automation);
+}
+
+/** Löscht einen gespeicherten Output (Lauf). */
+export async function deleteOutput(id: string): Promise<void> {
+  await pool.query("DELETE FROM agent_runs WHERE id = $1", [id]);
 }

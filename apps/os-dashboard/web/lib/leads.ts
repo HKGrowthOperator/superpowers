@@ -26,14 +26,29 @@ export function getCategory(id: string): LeadCategory | undefined {
   return LEAD_CATEGORIES.find((c) => c.id === id);
 }
 
+// Euer Leistungs-Spektrum (AI-First-Positionierung). Jede Leistung wird über ein
+// im Kartendatensatz erkennbares Signal einem Lead zugeordnet — ehrlich, also nur
+// was sich aus öffentlichen Daten ableiten lässt. Automatisierung & KI ist der
+// rote Faden und passt grundsätzlich für jeden Betrieb.
+export type Service = { id: string; label: string };
+export const LEAD_SERVICES: Service[] = [
+  { id: "automation", label: "Automatisierung & KI" },
+  { id: "content", label: "Content & Branding" },
+  { id: "outreach", label: "E-Mail / Outreach" },
+];
+
 export type Lead = {
   name: string;
   address: string;
   phone?: string;
   email?: string;
   website?: string;
-  hasWebsite: boolean;
-  hot: boolean; // kein Website-Eintrag → heiß
+  instagram?: string;
+  facebook?: string;
+  gaps: string[]; // erkannte Lücken (Belege)
+  services: Service[]; // passende Leistungen aus eurem Spektrum
+  score: number; // Anzahl Lücken → Größe der Chance (0–3)
+  hot: boolean; // klare Chance (≥2 Lücken oder keine Website)
   reason: string;
 };
 
@@ -106,18 +121,38 @@ export async function searchLeads(categoryId: string, place: string, limit = 40)
     const phone = t.phone || t["contact:phone"] || t["contact:mobile"];
     const email = t.email || t["contact:email"];
     const website = t.website || t["contact:website"] || t.url;
-    const hasWebsite = !!website;
-    const hot = !hasWebsite;
-    const reason = hot
-      ? phone
-        ? "Keine Website, aber telefonisch erreichbar — verschenkt Online-Anfragen."
-        : "Keine Website hinterlegt — fehlende Online-Präsenz."
-      : "Hat eine Website — Potenzial für Optimierung/Ads.";
-    leads.push({ name: t.name, address, phone, email, website, hasWebsite, hot, reason });
+    const instagram = t["contact:instagram"] || t.instagram;
+    const facebook = t["contact:facebook"] || t.facebook;
+
+    // Erkennbare Lücken aus den öffentlichen Kartendaten
+    const noWebsite = !website;
+    const noSocial = !instagram && !facebook;
+    const noEmail = !email;
+    const gaps: string[] = [];
+    if (noWebsite) gaps.push("keine Website");
+    if (noSocial) gaps.push("keine Social-Media-Profile");
+    if (noEmail) gaps.push("keine E-Mail hinterlegt");
+
+    // Lücken → passende Leistungen aus eurem Spektrum
+    const services: Service[] = [];
+    if (noWebsite || noSocial) services.push({ id: "content", label: "Content & Branding" });
+    if (noEmail) services.push({ id: "outreach", label: "E-Mail / Outreach" });
+    // AI-First ist immer relevant: schwache Präsenz → von Grund auf aufbauen;
+    // vorhandene Präsenz → manuelle Abläufe automatisieren.
+    services.push({ id: "automation", label: "Automatisierung & KI" });
+
+    const score = gaps.length;
+    const hot = score >= 2 || noWebsite;
+    const reason =
+      score === 0
+        ? "Digital gut aufgestellt — Ansatz: Abläufe & Anfragen mit KI automatisieren."
+        : `${gaps.join(", ")} — Ansatzpunkt für ${services.map((s) => s.label).join(" · ")}.`;
+
+    leads.push({ name: t.name, address, phone, email, website, instagram, facebook, gaps, services, score, hot, reason });
   }
 
-  // Heiße Leads (ohne Website) zuerst, darunter die mit Telefon priorisiert.
-  leads.sort((a, b) => Number(b.hot) - Number(a.hot) || Number(!!b.phone) - Number(!!a.phone));
+  // Größte Chancen zuerst (meiste Lücken), darunter die mit Telefon priorisiert.
+  leads.sort((a, b) => b.score - a.score || Number(!!b.phone) - Number(!!a.phone));
   const sliced = leads.slice(0, limit);
   return { area: place.trim(), leads: sliced, total: leads.length, hotCount: leads.filter((l) => l.hot).length };
 }

@@ -4,16 +4,19 @@ import { useState } from "react";
 import { saveItem } from "@/app/actions";
 
 export type ClientCategory = { id: string; label: string; emoji: string };
+export type ClientService = { id: string; label: string };
 type Lead = {
   name: string; address: string; phone?: string; email?: string; website?: string;
-  hasWebsite: boolean; hot: boolean; reason: string;
+  instagram?: string; facebook?: string;
+  gaps: string[]; services: ClientService[]; score: number; hot: boolean; reason: string;
 };
 type Result = { area: string; leads: Lead[]; total: number; hotCount: number };
 
-export function LeadRadar({ categories }: { categories: ClientCategory[] }) {
+export function LeadRadar({ categories, services }: { categories: ClientCategory[]; services: ClientService[] }) {
   const [cat, setCat] = useState(categories[0]);
   const [place, setPlace] = useState("");
   const [limit, setLimit] = useState(40);
+  const [serviceFilter, setServiceFilter] = useState("all");
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
   const [saved, setSaved] = useState<Set<number>>(new Set());
@@ -21,6 +24,7 @@ export function LeadRadar({ categories }: { categories: ClientCategory[] }) {
   const [toast, setToast] = useState<string | null>(null);
 
   function flash(m: string) { setToast(m); setTimeout(() => setToast(null), 2500); }
+  const shownLeads = (result?.leads ?? []).filter((l) => serviceFilter === "all" || l.services.some((s) => s.id === serviceFilter));
 
   async function search() {
     if (!place.trim() || busy) return;
@@ -39,11 +43,17 @@ export function LeadRadar({ categories }: { categories: ClientCategory[] }) {
 
   async function saveLead(lead: Lead, i: number) {
     const contact = [lead.phone, lead.email].filter(Boolean).join(" · ");
-    const notes = [lead.address, lead.website ? `Web: ${lead.website}` : "Keine Website", `Gefunden via Lead-Radar (${cat.label})`].filter(Boolean).join("\n");
+    const notes = [
+      lead.address,
+      lead.website ? `Web: ${lead.website}` : null,
+      lead.gaps.length ? `Lücken: ${lead.gaps.join(", ")}` : null,
+      `Passende Leistungen: ${lead.services.map((s) => s.label).join(", ")}`,
+      `Gefunden via Lead-Radar (${cat.label})`,
+    ].filter(Boolean).join("\n");
     try {
       await saveItem({
         module: "clients", path: "/kundenbedienung",
-        data: { name: lead.name, contact, status: "Interessent", notes, tags: [cat.label, "Lead-Radar", ...(lead.hot ? ["heiß"] : [])] },
+        data: { name: lead.name, contact, status: "Interessent", notes, tags: [cat.label, "Lead-Radar", ...lead.services.map((s) => s.label), ...(lead.hot ? ["heiß"] : [])] },
       });
       setSaved((s) => new Set(s).add(i));
       flash("Als Interessent gespeichert ✓");
@@ -52,10 +62,9 @@ export function LeadRadar({ categories }: { categories: ClientCategory[] }) {
 
   async function coldMail(lead: Lead, i: number) {
     setMail((m) => ({ ...m, [i]: { busy: true, text: "" } }));
-    const angle = lead.hasWebsite
-      ? "Aufhänger: ihre Online-Präsenz ausbauen / mehr Anfragen über die bestehende Website."
-      : "Aufhänger: sie haben noch keine Website hinterlegt und verschenken dadurch Online-Anfragen.";
-    const task = `Schreibe eine kurze, persönliche Cold-Mail an „${lead.name}" (${cat.label}${result?.area ? ` in ${result.area}` : ""}). ${angle} Niedrigschwellige CTA: 15-Minuten-Kennenlern-Call. Inkl. Betreffzeile.`;
+    const leistungen = lead.services.map((s) => s.label).join(", ");
+    const luecken = lead.gaps.length ? `Erkannte Lücken: ${lead.gaps.join(", ")}.` : "Digital schon ordentlich aufgestellt.";
+    const task = `Schreibe eine kurze, persönliche Cold-Mail an „${lead.name}" (${cat.label}${result?.area ? ` in ${result.area}` : ""}) im Namen einer AI-First-Wachstumsagentur. ${luecken} Positioniere uns als Partner, der mit KI & Automatisierung Anfragen, Termine und Marketing vereinfacht. Pitch die passenden Leistungen: ${leistungen}. Konkreter Nutzen statt Buzzwords, niedrigschwellige CTA (15-Minuten-Kennenlern-Call), inkl. Betreffzeile.`;
     try {
       const res = await fetch("/api/agents/run", {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -90,7 +99,7 @@ export function LeadRadar({ categories }: { categories: ClientCategory[] }) {
             {busy ? "Suche läuft…" : "Leads finden"}
           </button>
         </div>
-        <p className="text-muted-foreground text-xs">Echte Betriebsdaten aus OpenStreetMap. Tipp: Betriebe ohne Website sind die heißesten Leads.</p>
+        <p className="text-muted-foreground text-xs">Echte Betriebsdaten aus OpenStreetMap. Jeder Lead wird gegen euer Leistungsspektrum geprüft — je mehr Lücken, desto größer die Chance.</p>
       </section>
 
       {/* Ergebnis */}
@@ -98,14 +107,26 @@ export function LeadRadar({ categories }: { categories: ClientCategory[] }) {
         <>
           <div className="grid grid-cols-3 gap-3">
             <Tile label="Gefunden" value={result.leads.length} />
-            <Tile label="🔥 Heiße Leads (ohne Website)" value={result.hotCount} accent />
+            <Tile label="🔥 Heiße Leads (≥2 Lücken)" value={result.hotCount} accent />
             <Tile label="Region" text={result.area} />
           </div>
 
-          {result.leads.length === 0 && <p className="text-muted-foreground text-sm">Keine Treffer — anderen Ort oder Branche versuchen.</p>}
+          {/* Filter nach Leistung */}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-muted-foreground text-xs">Leistung:</span>
+            {[{ id: "all", label: "Alle" }, ...services].map((s) => (
+              <button key={s.id} type="button" onClick={() => setServiceFilter(s.id)}
+                className={`rounded-full border px-2.5 py-1 text-xs ${serviceFilter === s.id ? "border-primary bg-primary/10 text-foreground font-semibold" : "border-border text-muted-foreground hover:bg-secondary"}`}>
+                {s.label}
+              </button>
+            ))}
+            <span className="text-muted-foreground ml-auto text-xs">{shownLeads.length} angezeigt</span>
+          </div>
+
+          {shownLeads.length === 0 && <p className="text-muted-foreground text-sm">Keine Treffer — anderen Ort, andere Branche oder Leistung „Alle" wählen.</p>}
 
           <div className="space-y-3">
-            {result.leads.map((lead, i) => (
+            {shownLeads.map((lead, i) => (
               <div key={i} className={`bg-card rounded-xl border p-4 shadow-sm ${lead.hot ? "border-l-4 border-l-[#c0532f]" : "border-border"}`}>
                 <div className="flex flex-wrap items-start gap-2">
                   <div className="min-w-0 flex-1">
@@ -119,11 +140,23 @@ export function LeadRadar({ categories }: { categories: ClientCategory[] }) {
                     <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm">
                       {lead.phone && <a href={`tel:${lead.phone}`} className="text-primary hover:underline">{lead.phone}</a>}
                       {lead.email && <a href={`mailto:${lead.email}`} className="text-primary hover:underline">{lead.email}</a>}
-                      {lead.website
-                        ? <a href={lead.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Website ↗</a>
-                        : <span className="font-medium text-[#c0532f]">keine Website</span>}
+                      {lead.website && <a href={lead.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Website ↗</a>}
+                      {lead.instagram && <span className="text-muted-foreground">Instagram ✓</span>}
+                      {lead.facebook && <span className="text-muted-foreground">Facebook ✓</span>}
                     </div>
-                    <div className="text-muted-foreground mt-1 text-xs italic">{lead.reason}</div>
+                    {lead.gaps.length > 0 && (
+                      <div className="mt-1.5 flex flex-wrap gap-1">
+                        {lead.gaps.map((g) => (
+                          <span key={g} className="rounded-full bg-[#c0532f]/10 px-2 py-0.5 text-[11px] font-medium text-[#c0532f]">{g}</span>
+                        ))}
+                      </div>
+                    )}
+                    <div className="mt-1.5 flex flex-wrap items-center gap-1">
+                      <span className="text-muted-foreground text-[11px]">passt:</span>
+                      {lead.services.map((s) => (
+                        <span key={s.id} className="bg-primary/10 text-primary rounded-full px-2 py-0.5 text-[11px] font-semibold">{s.label}</span>
+                      ))}
+                    </div>
                   </div>
                   <div className="flex shrink-0 flex-col gap-1.5">
                     <button type="button" onClick={() => saveLead(lead, i)} disabled={saved.has(i)}

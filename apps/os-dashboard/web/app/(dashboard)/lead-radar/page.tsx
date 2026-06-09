@@ -1,5 +1,5 @@
 import { LeadRadar } from "@/components/lead-radar";
-import { LEAD_CATEGORIES } from "@/lib/leads";
+import { LEAD_CATEGORIES, LEAD_SERVICES } from "@/lib/leads";
 
 export const dynamic = "force-dynamic";
 
@@ -8,9 +8,9 @@ export default function Page() {
   return (
     <>
       <p className="text-muted-foreground mb-6 text-sm">
-        Finde echte Betriebe in deiner Zielbranche & Region. Wer keine Website hat, verschenkt Online-Anfragen — das sind deine heißesten Leads. Speichere sie als Interessent oder lass Tobias direkt eine Cold-Mail schreiben.
+        Finde echte Betriebe in deiner Zielbranche & Region. Jeder Lead wird gegen euer AI-First-Leistungsspektrum geprüft (Content & Branding, E-Mail/Outreach, Automatisierung & KI) — du siehst pro Betrieb die Lücken und die passenden Leistungen. Speichern als Interessent oder direkt eine Cold-Mail im AI-First-Ton erzeugen.
       </p>
-      <LeadRadar categories={categories} />
+      <LeadRadar categories={categories} services={LEAD_SERVICES} />
     </>
   );
 }

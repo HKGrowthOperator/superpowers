@@ -3,7 +3,7 @@
 // agent_runs protokolliert (Kosten/Tokens), damit das Dashboard sie live zeigt.
 import Anthropic from "@anthropic-ai/sdk";
 import { pool } from "./db";
-import { getClient, resolveModel, buildContext } from "./assistant";
+import { getClientAsync, resolveModel, buildContext } from "./assistant";
 
 export type Agent = {
   id: string;
@@ -158,9 +158,9 @@ export type AgentResult = { output: string; model: string; tokensIn: number; tok
 export async function runAgent(agentId: string, task: string, model?: string, priorWork?: string): Promise<AgentResult> {
   const agent = getAgent(agentId);
   if (!agent) throw new Error("Unbekannter Agent.");
-  const client = getClient();
+  const client = await getClientAsync();
   if (!client) {
-    return { output: "⚠️ Kein ANTHROPIC_API_KEY hinterlegt — bitte in der .env setzen und Web-Container neu starten.", model: "", tokensIn: 0, tokensOut: 0, costEur: 0 };
+    return { output: "⚠️ Kein API-Schlüssel hinterlegt — trage ihn unter Einstellungen im Dashboard ein (oder in der .env).", model: "", tokensIn: 0, tokensOut: 0, costEur: 0 };
   }
   const usedModel = resolveModel(model);
   const context = await buildContext();

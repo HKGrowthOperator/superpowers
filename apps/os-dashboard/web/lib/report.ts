@@ -1,6 +1,6 @@
 // lib/report.ts — erzeugt fertige Wochenreports pro Kunde aus den OS-Daten.
 import type Anthropic from "@anthropic-ai/sdk";
-import { getClient, resolveModel } from "./assistant";
+import { getClientAsync, resolveModel } from "./assistant";
 import { listItems } from "./store";
 
 const SYSTEM = `Du schreibst professionelle, freundliche WOCHENREPORTS auf Deutsch, adressiert direkt an den Kunden (Sie-Form).
@@ -23,7 +23,7 @@ export async function generateReport(opts: {
   notes: string;
   model?: string;
 }): Promise<{ report?: string; error?: string }> {
-  const client = getClient();
+  const client = await getClientAsync();
   if (!client) return { error: "no-key" };
 
   const [clients, websites] = await Promise.all([listItems("clients"), listItems("websites")]);

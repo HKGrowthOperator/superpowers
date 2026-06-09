@@ -5,6 +5,9 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { listItems } from "./store";
 import { MODULES, MODULE_KEYS } from "./modules";
+import { getSecret } from "./secrets";
+
+export const API_KEY_SECRET = "anthropic_api_key";
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -20,9 +23,35 @@ export function resolveModel(m?: string): string {
   return m && MODEL_OPTIONS.some((o) => o.id === m) ? m : DEFAULT_MODEL;
 }
 
-/** Returns an Anthropic client, or null if no API key is configured. */
+/** Returns an Anthropic client from the env key only (sync, legacy). */
 export function getClient(): Anthropic | null {
   const apiKey = process.env.ANTHROPIC_API_KEY;
+  return apiKey ? new Anthropic({ apiKey }) : null;
+}
+
+/** Der aktive Schlüssel: .env hat Vorrang, sonst der im Dashboard hinterlegte. */
+export async function getApiKey(): Promise<string | null> {
+  const envKey = process.env.ANTHROPIC_API_KEY;
+  if (envKey) return envKey;
+  const dbKey = await getSecret<string>(API_KEY_SECRET);
+  return dbKey && dbKey.trim() ? dbKey.trim() : null;
+}
+
+/** Woher der Schlüssel kommt — für die Einstellungen-Anzeige (ohne ihn preiszugeben). */
+export async function getApiKeyStatus(): Promise<{ configured: boolean; source: "env" | "dashboard" | "none"; masked: string | null }> {
+  if (process.env.ANTHROPIC_API_KEY) return { configured: true, source: "env", masked: mask(process.env.ANTHROPIC_API_KEY) };
+  const dbKey = await getSecret<string>(API_KEY_SECRET);
+  if (dbKey && dbKey.trim()) return { configured: true, source: "dashboard", masked: mask(dbKey.trim()) };
+  return { configured: false, source: "none", masked: null };
+}
+
+function mask(k: string): string {
+  return k.length <= 12 ? "••••" : `${k.slice(0, 7)}…${k.slice(-4)}`;
+}
+
+/** Anthropic-Client aus .env ODER Dashboard-Schlüssel. */
+export async function getClientAsync(): Promise<Anthropic | null> {
+  const apiKey = await getApiKey();
   return apiKey ? new Anthropic({ apiKey }) : null;
 }
 
@@ -104,11 +133,11 @@ export async function runAssistant(
   messages: ChatMessage[],
   model?: string,
 ): Promise<{ reply: string; proposals: Proposal[] }> {
-  const client = getClient();
+  const client = await getClientAsync();
   if (!client) {
     return {
       reply:
-        "⚠️ Es ist noch kein Anthropic-API-Schlüssel hinterlegt. Trage ANTHROPIC_API_KEY in die .env ein und starte den Web-Container neu.",
+        "⚠️ Es ist noch kein Anthropic-API-Schlüssel hinterlegt. Trage ihn unter Einstellungen im Dashboard ein (oder als ANTHROPIC_API_KEY in die .env).",
       proposals: [],
     };
   }

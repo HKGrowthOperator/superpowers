@@ -29,6 +29,7 @@ const NAV: NavGroup[] = [
     { href: "/webseiten", label: "Webseiten", icon: "globe" },
   ] },
   { group: "System", items: [
+    { href: "/einstellungen", label: "Einstellungen", icon: "cog" },
     { href: "/drive", label: "Google Drive", icon: "drive" },
     { href: "http://localhost:5678", label: "n8n (Automationen)", icon: "flow", external: true },
   ] },
@@ -60,6 +61,7 @@ function Icon({ name }: { name: string }) {
     team: <><circle cx="9" cy="8" r="3" /><path d="M3 20v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1" /><circle cx="17" cy="9" r="2.2" /><path d="M16 14h1a4 4 0 0 1 4 4v1" /></>,
     radar: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4.5" /><path d="M12 12 19 5M12 12v9" /></>,
     library: <><path d="M4 5v14M8 5v14M13 5l4 14" /><path d="M3 19h18" /></>,
+    cog: <><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1" /></>,
   };
   return <svg {...common}>{paths[name] ?? null}</svg>;
 }

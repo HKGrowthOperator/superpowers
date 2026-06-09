@@ -23,6 +23,7 @@ const NAV: NavGroup[] = [
     { href: "/automation", label: "Automation", icon: "bolt" },
   ] },
   { group: "Wachstum", items: [
+    { href: "/lead-radar", label: "Lead-Radar", icon: "radar" },
     { href: "/konzepte", label: "Konzepte", icon: "bulb" },
     { href: "/webseiten", label: "Webseiten", icon: "globe" },
   ] },
@@ -56,6 +57,7 @@ function Icon({ name }: { name: string }) {
     report: <><path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /><path d="M14 3v5h5M9 13h6M9 17h4" /></>,
     drive: <><path d="M7 17a4 4 0 0 1-.5-7.97 5 5 0 0 1 9.6-1.3A3.5 3.5 0 0 1 17 17z" /></>,
     team: <><circle cx="9" cy="8" r="3" /><path d="M3 20v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1" /><circle cx="17" cy="9" r="2.2" /><path d="M16 14h1a4 4 0 0 1 4 4v1" /></>,
+    radar: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4.5" /><path d="M12 12 19 5M12 12v9" /></>,
   };
   return <svg {...common}>{paths[name] ?? null}</svg>;
 }

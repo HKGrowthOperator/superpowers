@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamil.de Relaunch — Projektablauf & Was wir brauchen</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,900&family=Inter:wght@400;600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --rot:#B01E2C;--gold:#C9A84C;--gold-hell:#E3C778;
+  --anthrazit:#1A1A1C;--warmweiss:#FAF7F2;--papier:#F3EFE8;
+  --text:#2A2A2C;--leise:#86827B;--linie:#E2DCD1;--gruen:#3E7D5A;
+}
+body{font-family:'Inter',system-ui,sans-serif;background:#D8D2C7;color:var(--text);-webkit-font-smoothing:antialiased}
+.doc{max-width:960px;margin:0 auto;background:var(--warmweiss);box-shadow:0 24px 80px rgba(26,26,28,.18)}
+.serif{font-family:'Fraunces',Georgia,serif}
+.strip{background:var(--anthrazit);color:var(--gold-hell);font-size:10px;letter-spacing:2.5px;
+  text-transform:uppercase;text-align:center;padding:10px 24px;font-weight:600}
+.cover{background:var(--anthrazit);color:#fff;padding:clamp(36px,5vw,64px) clamp(24px,6vw,72px)}
+.cover h1{font-size:clamp(28px,4.5vw,50px);font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin-bottom:12px}
+.cover h1 em{font-style:italic;color:var(--gold-hell)}
+.cover-sub{font-size:clamp(13px,1.5vw,16px);color:rgba(255,255,255,.5);line-height:1.7}
+.sec{padding:clamp(32px,5vw,60px) clamp(24px,6vw,72px)}
+.eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rot);font-weight:700;
+  display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.eyebrow::before{content:'';width:28px;height:2px;background:var(--rot);flex-shrink:0}
+h2{font-size:clamp(22px,3.2vw,34px);font-weight:900;letter-spacing:-1px;color:var(--anthrazit);margin-bottom:8px}
+.sub{font-size:clamp(13px,1.4vw,15px);color:var(--leise);margin-bottom:28px;line-height:1.7}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:8px}
+.tl-item{display:flex;gap:0;position:relative}
+.tl-left{width:100px;flex-shrink:0;text-align:right;padding-right:24px;padding-top:4px}
+.tl-week{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--rot)}
+.tl-dur{font-size:11px;color:var(--leise);margin-top:2px}
+.tl-line{width:2px;background:var(--linie);flex-shrink:0;position:relative;margin-top:8px}
+.tl-line::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:12px;height:12px;border-radius:50%;background:var(--rot);margin-left:-5px;margin-top:-1px}
+.tl-item.done .tl-line::before{background:var(--gruen)}
+.tl-item.gold .tl-line::before{background:var(--gold)}
+.tl-body{flex:1;padding:0 0 32px 24px}
+.tl-body h4{font-size:clamp(14px,1.5vw,16px);font-weight:800;color:var(--anthrazit);margin-bottom:6px}
+.tl-body p{font-size:clamp(12px,1.3vw,13.5px);color:var(--leise);line-height:1.65}
+.tl-body ul{list-style:none;padding:0;margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.tl-body ul li{font-size:clamp(11.5px,1.2vw,13px);color:var(--text);display:flex;gap:8px;
+  align-items:flex-start;line-height:1.4}
+.tl-body ul li::before{content:'→';color:var(--rot);font-weight:700;flex-shrink:0;font-size:11px;margin-top:1px}
+.tl-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  padding:3px 9px;border-radius:2px;margin-bottom:8px}
+.tl-tag.rot{background:rgba(176,30,44,.12);color:var(--rot)}
+.tl-tag.gold{background:rgba(201,168,76,.15);color:#9A7B30}
+.tl-tag.gruen{background:rgba(62,125,90,.12);color:var(--gruen)}
+
+/* CHECKLISTE was Tamil.de liefern muss */
+.check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:var(--linie);border:1px solid var(--linie);margin-top:8px}
+.check-card{background:#fff;padding:clamp(18px,2.2vw,26px)}
+.check-card h4{font-size:clamp(13px,1.4vw,15px);font-weight:800;color:var(--anthrazit);
+  margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--rot)}
+.check-card ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px}
+.check-card ul li{font-size:clamp(12px,1.3vw,13.5px);color:var(--text);
+  display:flex;gap:10px;align-items:flex-start;line-height:1.45;
+  padding-bottom:8px;border-bottom:1px solid var(--linie)}
+.check-card ul li:last-child{border-bottom:none;padding-bottom:0}
+.check-card ul li .box{width:16px;height:16px;border:2px solid var(--linie);border-radius:3px;
+  flex-shrink:0;margin-top:1px}
+.check-card ul li .txt{}
+.check-card ul li .txt .hint{font-size:11px;color:var(--leise);margin-top:2px}
+
+/* WICHTIGE REGELN */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--linie);border:1px solid var(--linie);margin-top:8px}
+.rule{background:#fff;padding:clamp(16px,2vw,24px)}
+.rule .icon{font-size:20px;margin-bottom:10px}
+.rule h4{font-size:13px;font-weight:800;color:var(--anthrazit);margin-bottom:6px}
+.rule p{font-size:12px;color:var(--leise);line-height:1.6}
+
+/* KONTAKT */
+.kontakt{background:var(--anthrazit);color:#fff;padding:clamp(32px,5vw,56px) clamp(24px,6vw,72px);text-align:center}
+.kontakt h2{color:#fff;font-size:clamp(22px,3vw,34px);margin-bottom:8px}
+.kontakt p{color:rgba(255,255,255,.5);margin-bottom:28px;font-size:15px}
+.kontakt-info{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.ki{text-align:center}
+.ki .label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);
+  font-weight:700;margin-bottom:6px}
+.ki .val{font-size:clamp(14px,1.8vw,18px);font-weight:800;color:#fff}
+
+.footer{background:#0F0F11;color:rgba(255,255,255,.4);padding:20px clamp(24px,6vw,72px);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:11.5px}
+
+@media(max-width:600px){
+  .check-grid,.rules{grid-template-columns:1fr}
+  .tl-left{width:60px;padding-right:14px}
+  .tl-left .tl-week{font-size:9px}
+  .kontakt-info{gap:20px}
+}
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="strip">Dokument 2 von 3 · Projektablauf &amp; Checkliste · Tamil.de Relaunch 2026</div>
+
+  <div class="cover">
+    <h1>Was wann passiert —<br><em>und was wir von euch brauchen.</em></h1>
+    <p class="cover-sub">Dieses Dokument zeigt den genauen Ablauf des Projekts — von der ersten Woche bis zum Go-Live. Und welche Unterlagen und Entscheidungen Tamil.de beisteuern muss, damit alles reibungslos läuft.</p>
+  </div>
+
+  <!-- TIMELINE -->
+  <section class="sec">
+    <div class="eyebrow">Projektablauf</div>
+    <h2>Was wann passiert — Woche für Woche</h2>
+    <p class="sub">Das folgende Beispiel zeigt den Ablauf für Paket 02 (Portal Professional, 8–10 Wochen). Bei anderen Paketen verlängert oder verkürzt sich die Laufzeit entsprechend.</p>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-week">Woche 0</div><div class="tl-dur">Vor Start</div></div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-tag rot">Vertragsphase</div>
+          <h4>Angebot annehmen &amp; Anzahlung</h4>
+          <p>Tamil.de unterzeichnet das Angebot und überweist 50 % der Projektsumme. Nach Eingang der Anzahlung beginnt die Planung.</p>
+          <ul>
+            <li>Angebot unterschreiben</li>
+            <li>50 % Anzahlung überweisen (Paket 02: 6.450 €)</li>
+            <li>Zugangsdaten für bestehende Website bereitstellen (CMS-Login, FTP, Hosting)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-week">Woche 1–2</div></div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-tag rot">Kick-off</div>
+          <h4>Analyse, Sitemap &amp; Konzept</h4>
+          <p>Wir analysieren die bestehende Website, entwickeln die neue Seitenstruktur und stimmen das Konzept mit Tamil.de ab.</p>
+          <ul>
+            <li>Kick-off-Meeting (Videocall, ca. 1 Stunde)</li>
+            <li>Finale Sitemap und Navigationsstruktur werden abgestimmt</li>
+            <li>Farbschema und Design-Richtung bestätigt</li>
+            <li>Bestehende Inhalte werden gesichtet und kategorisiert</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-week">Woche 3–5</div></div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-tag gold">Entwicklung</div>
+          <h4>Theme, Templates &amp; Kernfunktionen</h4>
+          <p>Das neue Theme wird entwickelt. Alle Kategorie-Templates, das Artikel-Template und die Startseite entstehen in dieser Phase.</p>
+          <ul>
+            <li>Theme-System und Farbschema umgesetzt</li>
+            <li>Alle 9 Kategorie-Seiten aufgebaut</li>
+            <li>Startseite als Magazin-Layout fertiggestellt</li>
+            <li>Veranstaltungskalender implementiert</li>
+            <li>Werbeplätze eingerichtet und CMS-verwaltbar</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-week">Woche 6–7</div></div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-tag gold">Content &amp; Migration</div>
+          <h4>Inhalte migrieren &amp; befüllen</h4>
+          <p>Bis zu 100 bestehende Artikel werden übertragen. Alle Weiterleitungen werden eingerichtet, damit Google die neue Seite erkennt.</p>
+          <ul>
+            <li>Artikel-Migration (bis 100 Beiträge inkl. Bilder)</li>
+            <li>301-Weiterleitungen für alle alten URLs</li>
+            <li>Google Analytics 4 und Search Console einrichten</li>
+            <li>Kontaktformulare, Event-Einreich-Formular, Werbeanfrage-Formular aktivieren</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-week">Woche 8</div></div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-tag gruen">Abnahme</div>
+          <h4>Review, Feedback &amp; Korrekturen</h4>
+          <p>Die fertige Website wird Tamil.de in einer Testumgebung präsentiert. Feedback wird eingeholt, letzte Korrekturen werden eingebaut.</p>
+          <ul>
+            <li>Präsentation der fertigen Website (Videocall oder persönlich)</li>
+            <li>Feedback-Runde: Tamil.de gibt Änderungswünsche bekannt</li>
+            <li>Korrekturen werden innerhalb von 5 Werktagen umgesetzt</li>
+            <li>Finale Freigabe durch Tamil.de</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-week">Woche 9–10</div></div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-tag gruen">Go-Live</div>
+          <h4>Launch, Schulung &amp; Übergabe</h4>
+          <p>Die neue Tamil.de geht live. Die Redaktion wird geschult. Das Projekt wird offiziell übergeben.</p>
+          <ul>
+            <li>Domain wird auf neue Website umgeschaltet (Go-Live)</li>
+            <li>Admin-Schulung (4 Stunden Videocall mit Aufzeichnung)</li>
+            <li>Übergabe: Login-Daten, Dokumentation, Anleitung</li>
+            <li>50 % Abschlusspayment fällig (Paket 02: 6.450 €)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHECKLISTE -->
+  <section class="sec" style="background:var(--papier)">
+    <div class="eyebrow">Checkliste Tamil.de</div>
+    <h2>Was wir von euch brauchen</h2>
+    <p class="sub">Damit das Projekt reibungslos laufen kann, brauchen wir folgende Unterlagen und Entscheidungen von Tamil.de. Je früher desto besser — manche Punkte werden schon in Woche 1 benötigt.</p>
+    <div class="check-grid">
+
+      <div class="check-card">
+        <h4>📁 Zugänge &amp; Technik</h4>
+        <ul>
+          <li><div class="box"></div><div class="txt">CMS-Login (WordPress-Backend)<div class="hint">Benötigt in Woche 0 — für Analyse und spätere Migration</div></div></li>
+          <li><div class="box"></div><div class="txt">Hosting-Zugangsdaten (FTP oder cPanel)<div class="hint">Für Servereinrichtung und Deployment</div></div></li>
+          <li><div class="box"></div><div class="txt">Domain-Zugangsdaten (bei IONOS, Strato o.ä.)<div class="hint">Für DNS-Umstellung beim Go-Live</div></div></li>
+          <li><div class="box"></div><div class="txt">Bestehende Google Analytics / Search Console Zugänge<div class="hint">Damit wir Daten übernehmen können</div></div></li>
+        </ul>
+      </div>
+
+      <div class="check-card">
+        <h4>🎨 Marke &amp; Design</h4>
+        <ul>
+          <li><div class="box"></div><div class="txt">Logo in Vektorformat (SVG oder AI/EPS)<div class="hint">Hochauflösend für alle Bildschirmgrößen</div></div></li>
+          <li><div class="box"></div><div class="txt">Bestätigung: Farbschema beibehalten (Rot + Weiß)<div class="hint">Oder: neue Farbwünsche mitteilen</div></div></li>
+          <li><div class="box"></div><div class="txt">Bilder für Startseite &amp; Kategorien<div class="hint">Hochauflösende Bilder (min. 1200px breit) für Header-Bereiche</div></div></li>
+          <li><div class="box"></div><div class="txt">Kontaktdaten (Telefon, E-Mail, Adresse) für Header<div class="hint">Werden auf jeder Seite sichtbar angezeigt</div></div></li>
+        </ul>
+      </div>
+
+      <div class="check-card">
+        <h4>📝 Inhalte &amp; Entscheidungen</h4>
+        <ul>
+          <li><div class="box"></div><div class="txt">Welche Artikel sollen migriert werden?<div class="hint">Liste der wichtigsten Beiträge oder: alle übernehmen lassen</div></div></li>
+          <li><div class="box"></div><div class="txt">Kategorienstruktur freigeben<div class="hint">Nachrichten / News zusammen oder getrennt? Weitere Wünsche?</div></div></li>
+          <li><div class="box"></div><div class="txt">Impressum &amp; Datenschutzerklärung bereitstellen<div class="hint">Aktueller Text oder Erstellung durch Rechtsanwalt veranlassen</div></div></li>
+          <li><div class="box"></div><div class="txt">Erste Werbepartner / Sponsoren benennen<div class="hint">Damit wir Werbeplätze direkt einrichten können</div></div></li>
+        </ul>
+      </div>
+
+      <div class="check-card">
+        <h4>📅 Events &amp; Kalender</h4>
+        <ul>
+          <li><div class="box"></div><div class="txt">Liste aktueller &amp; geplanter Veranstaltungen<div class="hint">Mit Datum, Uhrzeit, Ort, Beschreibung, Link — für ersten Befüllungsstand</div></div></li>
+          <li><div class="box"></div><div class="txt">Bestehende Eventim-/Ticketlinks<div class="hint">Für manuelle Verlinkung im Veranstaltungskalender</div></div></li>
+          <li><div class="box"></div><div class="txt">Wer pflegt den Eventkalender nach dem Launch?<div class="hint">Person benennen, die Events einträgt — wird in der Schulung berücksichtigt</div></div></li>
+          <li><div class="box"></div><div class="txt">Community-Veranstaltungen: Formular öffentlich?<div class="hint">Soll jeder Events einreichen können, oder nur die Redaktion?</div></div></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WICHTIGE REGELN -->
+  <section class="sec">
+    <div class="eyebrow">Wichtig zu wissen</div>
+    <h2>Diese Punkte sollten klar sein</h2>
+    <p class="sub">Damit es keine Missverständnisse gibt — hier die wichtigsten Rahmenbedingungen des Projekts.</p>
+    <div class="rules">
+      <div class="rule">
+        <div class="icon">⏱️</div>
+        <h4>Laufzeiten sind Richtwerte</h4>
+        <p>Die angegebenen Laufzeiten (6–8 Wochen etc.) gelten bei normaler Rückmeldungszeit von Tamil.de. Verzögerungen bei Feedback oder fehlenden Unterlagen verlängern den Zeitplan.</p>
+      </div>
+      <div class="rule">
+        <div class="icon">🔄</div>
+        <h4>2 Korrekturschleifen inklusive</h4>
+        <p>Jedes Paket beinhaltet 2 kostenlose Korrekturschleifen nach der Präsentation. Weitere Änderungen darüber hinaus werden nach Aufwand abgerechnet.</p>
+      </div>
+      <div class="rule">
+        <div class="icon">📦</div>
+        <h4>Inhalte liefert Tamil.de</h4>
+        <p>Wir bauen die Struktur — Artikel, Bilder, Texte für die Kategorien liefert die Redaktion. Content-Erstellung ist kein Bestandteil der Pakete (außer Add-on Social-Media-Betreuung).</p>
+      </div>
+      <div class="rule">
+        <div class="icon">🔒</div>
+        <h4>Alle Zugänge bleiben bei Tamil.de</h4>
+        <p>Nach dem Projekt gehört alles Tamil.de: CMS-Zugang, Hosting, Domain, alle Passwörter. Wir haben nach der Übergabe keinen Zugriff mehr, es sei denn, ein Support-Paket wird gebucht.</p>
+      </div>
+      <div class="rule">
+        <div class="icon">📋</div>
+        <h4>Scope: Was ist nicht enthalten</h4>
+        <p>Laufende Content-Erstellung, Social-Media-Management, bezahlte Werbeanzeigen (Google Ads, Facebook Ads) und rechtliche Beratung sind nicht im Paket enthalten. Für diese Leistungen gibt es Add-ons.</p>
+      </div>
+      <div class="rule">
+        <div class="icon">💬</div>
+        <h4>Kommunikation über einen Kanal</h4>
+        <p>Für ein reibungsloses Projekt bitten wir darum, dass es eine Hauptansprechperson bei Tamil.de gibt. Alle Anfragen, Feedback und Freigaben laufen über diese eine Person.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="kontakt">
+    <h2>Fragen? Wir sind erreichbar.</h2>
+    <p>Für alle Rückfragen zum Angebot, zum Projektablauf oder zur Zusammenarbeit:</p>
+    <div class="kontakt-info">
+      <div class="ki"><div class="label">E-Mail</div><div class="val">info@hkgrowth-operator.de</div></div>
+      <div class="ki"><div class="label">Agentur</div><div class="val">HK Growth Operator</div></div>
+      <div class="ki"><div class="label">Referenz</div><div class="val">HKG-2026-TML-004</div></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span style="font-weight:700;color:rgba(255,255,255,.55)">HK Growth Operator</span>
+    <span>Dokument 2 von 3 · Ref HKG-2026-TML-004 · Gültig bis 30.06.2026</span>
+  </div>
+</div>
+</body>
+</html>

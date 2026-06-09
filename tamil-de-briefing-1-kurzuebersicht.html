@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamil.de Relaunch — Kurzübersicht</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,900&family=Inter:wght@400;600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --rot:#B01E2C;--gold:#C9A84C;--gold-hell:#E3C778;
+  --anthrazit:#1A1A1C;--warmweiss:#FAF7F2;--papier:#F3EFE8;
+  --text:#2A2A2C;--leise:#86827B;--linie:#E2DCD1;--gruen:#3E7D5A;
+}
+body{font-family:'Inter',system-ui,sans-serif;background:#D8D2C7;color:var(--text);-webkit-font-smoothing:antialiased}
+.doc{max-width:960px;margin:0 auto;background:var(--warmweiss);box-shadow:0 24px 80px rgba(26,26,28,.18)}
+.serif{font-family:'Fraunces',Georgia,serif}
+
+/* STRIP */
+.strip{background:var(--anthrazit);color:var(--gold-hell);font-size:10px;letter-spacing:2.5px;
+  text-transform:uppercase;text-align:center;padding:10px 24px;font-weight:600}
+
+/* COVER */
+.cover{background:var(--anthrazit);color:#fff;padding:clamp(36px,5vw,64px) clamp(24px,6vw,72px)}
+.cover h1{font-size:clamp(32px,5vw,54px);font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin-bottom:12px}
+.cover h1 em{font-style:italic;color:var(--gold-hell)}
+.cover-sub{font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.5);margin-bottom:32px;line-height:1.7}
+.cover-row{display:flex;gap:24px;flex-wrap:wrap}
+.cover-chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  padding:10px 18px;font-size:13px;color:rgba(255,255,255,.7);font-weight:600}
+.cover-chip span{color:var(--gold-hell);display:block;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;font-weight:700;margin-bottom:3px}
+
+/* SECTION */
+.sec{padding:clamp(32px,5vw,64px) clamp(24px,6vw,72px)}
+.eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rot);font-weight:700;
+  display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.eyebrow::before{content:'';width:28px;height:2px;background:var(--rot);flex-shrink:0}
+h2{font-size:clamp(24px,3.5vw,36px);font-weight:900;letter-spacing:-1px;color:var(--anthrazit);margin-bottom:8px}
+.sub{font-size:clamp(13px,1.4vw,15px);color:var(--leise);margin-bottom:24px;line-height:1.7}
+
+/* PROBLEM GRID */
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linie);border:1px solid var(--linie);margin-top:8px}
+.prob-card{background:#fff;padding:clamp(16px,2vw,24px)}
+.prob-card .icon{font-size:22px;margin-bottom:10px}
+.prob-card h4{font-size:clamp(13px,1.4vw,15px);font-weight:800;color:var(--anthrazit);margin-bottom:6px}
+.prob-card p{font-size:clamp(11.5px,1.2vw,13px);color:var(--leise);line-height:1.6}
+.prob-card .fix{font-size:11.5px;color:var(--gruen);font-weight:700;margin-top:8px}
+
+/* PAKETE */
+.pkts{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}
+.pkt{background:var(--anthrazit);color:#fff;padding:clamp(20px,2.5vw,30px);position:relative;
+  border-left:4px solid var(--rot)}
+.pkt.rec{border-left-color:var(--gold);background:linear-gradient(135deg,#2C2620,#26262A)}
+.pkt .ribbon{position:absolute;top:0;right:0;background:var(--gold);color:var(--anthrazit);
+  font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:6px 14px}
+.pkt .nr{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-hell);
+  font-weight:700;margin-bottom:6px}
+.pkt h3{font-size:clamp(18px,2.2vw,24px);font-weight:900;color:#fff;margin-bottom:4px;letter-spacing:-.5px}
+.pkt.rec h3{color:var(--gold-hell)}
+.pkt .dur{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px}
+.pkt .price{font-size:clamp(30px,3.8vw,42px);font-weight:900;color:#fff;letter-spacing:-1.5px;line-height:1}
+.pkt.rec .price{color:var(--gold-hell)}
+.pkt .price-suf{font-size:11px;color:rgba(255,255,255,.4);margin-bottom:16px;display:block;margin-top:3px}
+.pkt ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px;
+  border-top:1px solid rgba(255,255,255,.1);padding-top:16px}
+.pkt ul li{font-size:clamp(11.5px,1.2vw,13px);color:rgba(255,255,255,.65);
+  display:flex;gap:8px;align-items:flex-start;line-height:1.45}
+.pkt ul li::before{content:'✓';color:#6FCF97;font-weight:800;flex-shrink:0;font-size:10px;margin-top:2px}
+.pkt ul li.no::before{content:'✕';color:rgba(255,255,255,.2)}
+.pkt ul li.no{color:rgba(255,255,255,.25);text-decoration:line-through}
+.pkt .pay-note{background:rgba(255,255,255,.05);padding:10px 14px;margin-top:14px;
+  font-size:11.5px;color:rgba(255,255,255,.5);border-left:2px solid var(--gold)}
+.pkt .pay-note strong{color:var(--gold-hell)}
+
+/* ZAHLUNG */
+.zahl{background:var(--papier);border:1px solid var(--linie);padding:clamp(20px,2.5vw,32px);margin-top:8px}
+.zahl h3{font-size:16px;font-weight:800;color:var(--anthrazit);margin-bottom:16px}
+.zahl-row{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--linie)}
+.zahl-row:last-child{border-bottom:none}
+.zahl-step{width:28px;height:28px;border-radius:50%;background:var(--rot);color:#fff;
+  font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.zahl-text{font-size:clamp(12px,1.3vw,14px);color:var(--text);line-height:1.5}
+.zahl-text strong{color:var(--anthrazit)}
+.zahl-amt{margin-left:auto;font-size:14px;font-weight:800;color:var(--gold);white-space:nowrap}
+
+/* ADDONS */
+.ao-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--linie);
+  border:1px solid var(--linie);margin-top:8px}
+.ao-item{background:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ao-item .ao-n{font-size:13px;font-weight:700;color:var(--anthrazit)}
+.ao-item .ao-d{font-size:11px;color:var(--leise);margin-top:2px}
+.ao-item .ao-p{font-size:13px;font-weight:800;color:var(--rot);white-space:nowrap;flex-shrink:0}
+
+/* FOOTER */
+.footer{background:#0F0F11;color:rgba(255,255,255,.4);padding:20px clamp(24px,6vw,72px);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:11.5px}
+
+@media(max-width:600px){
+  .prob-grid,.pkts,.ao-list{grid-template-columns:1fr}
+  .cover-row{flex-direction:column;gap:12px}
+  .pkt{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="strip">Ref HKG-2026-TML-004 · Tamil.de Website Relaunch 2026 · HK Growth Operator</div>
+
+  <div class="cover">
+    <h1>Tamil.de Relaunch.<br><em>Alles auf einen Blick.</em></h1>
+    <p class="cover-sub">Dieses Dokument fasst das komplette Angebot zusammen — Pakete, Preise, Zahlungsplan, Add-ons. Für alle, die einen schnellen Überblick brauchen.</p>
+    <div class="cover-row">
+      <div class="cover-chip"><span>Kunde</span>Tamil.de</div>
+      <div class="cover-chip"><span>Agentur</span>HK Growth Operator</div>
+      <div class="cover-chip"><span>Datum</span>02. Juni 2026</div>
+      <div class="cover-chip"><span>Gültig bis</span>30. Juni 2026</div>
+      <div class="cover-chip"><span>Referenz</span>HKG-2026-TML-004</div>
+    </div>
+  </div>
+
+  <!-- WARUM RELAUNCH -->
+  <section class="sec">
+    <div class="eyebrow">Ausgangslage</div>
+    <h2>Was Tamil.de heute bremst</h2>
+    <p class="sub">Tamil.de hat eine treue Community und eine einzigartige Stellung im deutschsprachigen Raum. Aber die aktuelle Website verhindert Wachstum. Diese Probleme sind konkret, lösbar — und bekannt:</p>
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="icon">🎬</div>
+        <h4>Kino-Seite leer</h4>
+        <p>Die Kino-Kategorie existiert in der Navigation, hat aber keinen einzigen Inhalt. Besucher, die Tamil-Filme suchen, verlassen Tamil.de sofort.</p>
+        <div class="fix">→ Lösung: Vollständige Kino-Kategorie ab Paket 02</div>
+      </div>
+      <div class="prob-card">
+        <div class="icon">📅</div>
+        <h4>Events veraltet</h4>
+        <p>Der Events-Bereich zeigt ein einziges Konzert aus dem Jahr 2019. Kein Kalender, keine aktuellen Veranstaltungen, keine Ticketlinks.</p>
+        <div class="fix">→ Lösung: Echter Kalender ab Paket 02</div>
+      </div>
+      <div class="prob-card">
+        <div class="icon">📌</div>
+        <h4>Top Themen statisch</h4>
+        <p>Das Top-Themen-Widget auf der Startseite zeigt Artikel aus 2021–2022. Die Redaktion kann es nicht selbst aktualisieren.</p>
+        <div class="fix">→ Lösung: Redaktionell steuerbar ab Paket 02</div>
+      </div>
+      <div class="prob-card">
+        <div class="icon">📞</div>
+        <h4>Kein Kontakt sichtbar</h4>
+        <p>Es gibt keine Kontaktseite, keinen Kontaktlink im Header. Werbekunden, Veranstalter und Leser haben keine einfache Möglichkeit Tamil.de zu erreichen.</p>
+        <div class="fix">→ Lösung: Kontakt im Header ab Paket 01</div>
+      </div>
+      <div class="prob-card">
+        <div class="icon">⚽</div>
+        <h4>Sport fehlt komplett</h4>
+        <p>Es gibt keine Sport-Kategorie. Tamilische Cricket- und Fußball-Ereignisse finden nirgends auf Tamil.de statt.</p>
+        <div class="fix">→ Lösung: Sport-Kategorie ab Paket 02</div>
+      </div>
+      <div class="prob-card">
+        <div class="icon">💰</div>
+        <h4>Kein Werbesystem</h4>
+        <p>Werbebanner sind nicht professionell verwaltet. Es gibt keine Media-Kit-Seite, kein Anfrageformular für Werbekunden.</p>
+        <div class="fix">→ Lösung: Vollständiges Werbesystem ab Paket 01</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAKETE -->
+  <section class="sec" style="background:var(--anthrazit)">
+    <div class="eyebrow" style="color:var(--gold-hell)"><span style="background:var(--gold-hell);width:28px;height:2px;display:block"></span>Leistungspakete</div>
+    <h2 style="color:#fff">Vier Pakete. Ein Ziel.</h2>
+    <p class="sub">Empfohlen für Tamil.de: <strong style="color:var(--gold-hell)">Paket 02 — Portal Professional</strong> oder <strong style="color:var(--gold-hell)">Paket 03 — Media &amp; Ads System</strong>. Alle Pakete bauen aufeinander auf.</p>
+    <div class="pkts">
+
+      <div class="pkt">
+        <div class="nr">Paket 01</div>
+        <h3>Relaunch Basis</h3>
+        <div class="dur">6–8 Wochen</div>
+        <div class="price">7.900 €</div>
+        <span class="price-suf">netto zzgl. MwSt.</span>
+        <ul>
+          <li>Neues responsives Theme + alle 9 Kategorie-Templates</li>
+          <li>Startseite als Magazin-Layout</li>
+          <li>2 verwaltbare Werbebanner-Plätze</li>
+          <li>Kontaktseite + Kontakt sichtbar im Header</li>
+          <li>SSL, SEO-Basis, Cookie-Banner (DSGVO)</li>
+          <li>Mobile Optimierung</li>
+          <li>Redaktionseinweisung 2 Stunden</li>
+          <li class="no">Veranstaltungskalender</li>
+          <li class="no">Social-Media-Integration</li>
+        </ul>
+        <div class="pay-note"><strong>Zahlung:</strong> 50 % bei Start (3.950 €) · 50 % bei Abschluss (3.950 €)</div>
+      </div>
+
+      <div class="pkt rec">
+        <div class="ribbon">★ Empfehlung</div>
+        <div class="nr">Paket 02</div>
+        <h3>Portal Professional</h3>
+        <div class="dur">8–10 Wochen</div>
+        <div class="price">12.900 €</div>
+        <span class="price-suf">netto zzgl. MwSt.</span>
+        <ul>
+          <li>Alles aus Paket 01, plus:</li>
+          <li>Kino-Kategorie vollständig aufgebaut</li>
+          <li>Sport-Kategorie neu eingerichtet</li>
+          <li>Veranstaltungskalender (Liste + Monatsansicht)</li>
+          <li>Event-Detailseiten mit Ticketlinks + WhatsApp-Teilen</li>
+          <li>Top Themen redaktionell steuerbar</li>
+          <li>3 Werbeplätze + Media-Kit-Seite + Buchungsformular</li>
+          <li>Social-Media-Integration (Instagram, YouTube)</li>
+          <li>Content-Migration bis 100 Beiträge + Weiterleitungen</li>
+          <li>Google Analytics 4 + Search Console</li>
+          <li>Admin-Schulung 4 Stunden</li>
+        </ul>
+        <div class="pay-note"><strong>Zahlung:</strong> 50 % bei Start (6.450 €) · 50 % bei Abschluss (6.450 €)</div>
+      </div>
+
+      <div class="pkt">
+        <div class="nr">Paket 03</div>
+        <h3>Media &amp; Ads System</h3>
+        <div class="dur">10–12 Wochen</div>
+        <div class="price">18.900 €</div>
+        <span class="price-suf">netto zzgl. MwSt.</span>
+        <ul>
+          <li>Alles aus Paket 02, plus:</li>
+          <li>5 Werbeplätze mit Rotation + Klicktracking</li>
+          <li>Landingpage für Werbekunden</li>
+          <li>Event-Promotion-System (Artikel + Banner + Startseite)</li>
+          <li>Rezept-Template für Küche-Kategorie</li>
+          <li>Suchfunktion mit Kategorie-Filter</li>
+          <li>SEO-Struktur + strukturierte Daten (Schema.org)</li>
+          <li>Redaktions-Freigabe-Workflow</li>
+          <li>Analytics-Dashboard + Wochenbericht-Vorlage</li>
+          <li>Content-Migration bis 300 Beiträge</li>
+          <li>Admin-Schulung 6 Stunden + Dokumentation</li>
+        </ul>
+        <div class="pay-note"><strong>Zahlung:</strong> 50 % bei Start (9.450 €) · 50 % bei Abschluss (9.450 €)</div>
+      </div>
+
+      <div class="pkt">
+        <div class="nr">Paket 04</div>
+        <h3>Premium Plattform</h3>
+        <div class="dur">12–16 Wochen</div>
+        <div class="price">27.500 €</div>
+        <span class="price-suf">netto zzgl. MwSt.</span>
+        <ul>
+          <li>Alles aus Paket 03, plus:</li>
+          <li>Google Ad Manager Integration</li>
+          <li>Zweisprachigkeit Tamil &amp; Deutsch</li>
+          <li>Newsletter-System mit Double-Opt-in</li>
+          <li>WhatsApp-Broadcast-Konzept für Community</li>
+          <li>Artikel → Social-Media-Post-Automation</li>
+          <li>Business- / Vereins- / Tempel-Verzeichnis</li>
+          <li>Progressive Web App (auf Handy installierbar)</li>
+          <li>Push-Benachrichtigungen</li>
+          <li>Vollständiges Reporting-Dashboard</li>
+          <li>Priority-Support + Dedizierter Projektmanager</li>
+        </ul>
+        <div class="pay-note"><strong>Zahlung:</strong> 50 % bei Start (13.750 €) · 50 % bei Abschluss (13.750 €)</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ADD-ONS -->
+  <section class="sec">
+    <div class="eyebrow">Zusatzleistungen</div>
+    <h2>Add-ons — zubuchbar zu jedem Paket</h2>
+    <p class="sub">Alle Add-ons sind optional und können zu jedem Paket kombiniert werden. Bei Buchung von 3 oder mehr Add-ons gilt automatisch 10 % Kombinationsrabatt.</p>
+    <div class="ao-list">
+      <div class="ao-item">
+        <div><div class="ao-n">Zusätzlicher Werbeplatz</div><div class="ao-d">Jeder weitere Banner-Platz über den Paket-Umfang hinaus</div></div>
+        <div class="ao-p">450 €</div>
+      </div>
+      <div class="ao-item">
+        <div><div class="ao-n">Eventim API-Vollintegration</div><div class="ao-d">Automatische Echtzeit-Ticketdaten von Eventim</div></div>
+        <div class="ao-p">2.400 €</div>
+      </div>
+      <div class="ao-item">
+        <div><div class="ao-n">Social-Media-Monatsbetreuung</div><div class="ao-d">Content-Erstellung und Posting für Instagram + Facebook</div></div>
+        <div class="ao-p">890 €/Mon.</div>
+      </div>
+      <div class="ao-item">
+        <div><div class="ao-n">SEO-Jahrespaket</div><div class="ao-d">Monatliches Reporting &amp; laufende Optimierung</div></div>
+        <div class="ao-p">3.600 €/Jahr</div>
+      </div>
+      <div class="ao-item">
+        <div><div class="ao-n">Tamil-Lokalisierung</div><div class="ao-d">Vollständige Sprachversion auf Tamil</div></div>
+        <div class="ao-p">1.800 €</div>
+      </div>
+      <div class="ao-item">
+        <div><div class="ao-n">Fotoproduktion Tamil.de</div><div class="ao-d">1 Tag Shooting, bis zu 50 lizenzierte Bilder</div></div>
+        <div class="ao-p">1.200 €</div>
+      </div>
+      <div class="ao-item">
+        <div><div class="ao-n">Wartung &amp; Support-Paket</div><div class="ao-d">Monatliche Wartung, Updates, 4h-Reaktionszeit</div></div>
+        <div class="ao-p">390 €/Mon.</div>
+      </div>
+      <div class="ao-item" style="background:rgba(201,168,76,.06)">
+        <div><div class="ao-n" style="color:var(--rot)">Kombinationsrabatt</div><div class="ao-d">Bei 3 oder mehr Add-ons automatisch</div></div>
+        <div class="ao-p" style="color:var(--rot)">−10 %</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZAHLUNGSÜBERSICHT -->
+  <section class="sec" style="background:var(--papier)">
+    <div class="eyebrow">Zahlungsplan</div>
+    <h2>So funktioniert die Zahlung</h2>
+    <p class="sub">Bei allen vier Paketen gilt dasselbe Prinzip: 50 % bei Projektstart, 50 % bei Projektabschluss. Keine versteckten Kosten, keine Zwischenzahlungen.</p>
+    <div class="zahl">
+      <h3>Zahlungsplan — alle Pakete</h3>
+      <div class="zahl-row">
+        <div class="zahl-step">1</div>
+        <div class="zahl-text"><strong>Angebot annehmen</strong><br>Paket auswählen, Angebot unterschreiben, erste Rate anweisen.</div>
+      </div>
+      <div class="zahl-row">
+        <div class="zahl-step">2</div>
+        <div class="zahl-text"><strong>50 % bei Projektstart</strong><br>Nach Eingang der Anzahlung starten wir innerhalb von 5 Werktagen. Paket 01: 3.950 € · Paket 02: 6.450 € · Paket 03: 9.450 € · Paket 04: 13.750 €</div>
+      </div>
+      <div class="zahl-row">
+        <div class="zahl-step">3</div>
+        <div class="zahl-text"><strong>Projekt läuft</strong><br>Wir bauen, testen und präsentieren alles. Tamil.de gibt Feedback und nimmt ab.</div>
+      </div>
+      <div class="zahl-row">
+        <div class="zahl-step">4</div>
+        <div class="zahl-text"><strong>50 % bei Projektabschluss</strong><br>Nach finaler Abnahme und Go-Live wird die zweite Rate fällig. Paket 01: 3.950 € · Paket 02: 6.450 € · Paket 03: 9.450 € · Paket 04: 13.750 €</div>
+      </div>
+      <div class="zahl-row">
+        <div class="zahl-step">5</div>
+        <div class="zahl-text"><strong>Go-Live &amp; Übergabe</strong><br>Website live, Schulung abgeschlossen, Dokumentation übergeben. Tamil.de ist eigenständig.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span style="font-weight:700;color:rgba(255,255,255,.55)">HK Growth Operator · info@hkgrowth-operator.de</span>
+    <span>Ref HKG-2026-TML-004 · Gültig bis 30.06.2026</span>
+  </div>
+</div>
+</body>
+</html>

@@ -48,6 +48,7 @@ export type Lead = {
   gaps: string[]; // erkannte Lücken (Belege)
   services: Service[]; // passende Leistungen aus eurem Spektrum
   score: number; // Anzahl Lücken → Größe der Chance (0–3)
+  priority: "A" | "B" | "C"; // A = größte Chance
   hot: boolean; // klare Chance (≥2 Lücken oder keine Website)
   reason: string;
 };
@@ -143,12 +144,13 @@ export async function searchLeads(categoryId: string, place: string, limit = 40)
 
     const score = gaps.length;
     const hot = score >= 2 || noWebsite;
+    const priority: "A" | "B" | "C" = score >= 2 ? "A" : score === 1 ? "B" : "C";
     const reason =
       score === 0
         ? "Digital gut aufgestellt — Ansatz: Abläufe & Anfragen mit KI automatisieren."
         : `${gaps.join(", ")} — Ansatzpunkt für ${services.map((s) => s.label).join(" · ")}.`;
 
-    leads.push({ name: t.name, address, phone, email, website, instagram, facebook, gaps, services, score, hot, reason });
+    leads.push({ name: t.name, address, phone, email, website, instagram, facebook, gaps, services, score, priority, hot, reason });
   }
 
   // Größte Chancen zuerst (meiste Lücken), darunter die mit Telefon priorisiert.

@@ -8,7 +8,7 @@ export type ClientService = { id: string; label: string };
 type Lead = {
   name: string; address: string; phone?: string; email?: string; website?: string;
   instagram?: string; facebook?: string;
-  gaps: string[]; services: ClientService[]; score: number; hot: boolean; reason: string;
+  gaps: string[]; services: ClientService[]; score: number; priority: "A" | "B" | "C"; hot: boolean; reason: string;
 };
 type Result = { area: string; leads: Lead[]; total: number; hotCount: number };
 
@@ -21,6 +21,7 @@ export function LeadRadar({ categories, services }: { categories: ClientCategory
   const [result, setResult] = useState<Result | null>(null);
   const [saved, setSaved] = useState<Set<number>>(new Set());
   const [mail, setMail] = useState<Record<number, { busy: boolean; text: string }>>({});
+  const [dossier, setDossier] = useState<Record<number, { busy: boolean; text: string }>>({});
   const [toast, setToast] = useState<string | null>(null);
 
   function flash(m: string) { setToast(m); setTimeout(() => setToast(null), 2500); }
@@ -28,7 +29,7 @@ export function LeadRadar({ categories, services }: { categories: ClientCategory
 
   async function search() {
     if (!place.trim() || busy) return;
-    setBusy(true); setResult(null); setSaved(new Set()); setMail({});
+    setBusy(true); setResult(null); setSaved(new Set()); setMail({}); setDossier({});
     try {
       const res = await fetch("/api/leads/search", {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -73,6 +74,24 @@ export function LeadRadar({ categories, services }: { categories: ClientCategory
       const data = await res.json().catch(() => ({}));
       setMail((m) => ({ ...m, [i]: { busy: false, text: data.error ? `⚠️ ${data.error}` : (data.output ?? "") } }));
     } catch { setMail((m) => ({ ...m, [i]: { busy: false, text: "Fehlgeschlagen." } })); }
+  }
+
+  async function analyze(lead: Lead, i: number) {
+    setDossier((d) => ({ ...d, [i]: { busy: true, text: "" } }));
+    const known = [
+      lead.website ? `Website: ${lead.website}` : "keine Website",
+      lead.instagram || lead.facebook ? "Social vorhanden" : "keine Social-Media-Profile",
+      lead.email ? `E-Mail: ${lead.email}` : "keine E-Mail",
+    ].join(", ");
+    const task = `Erstelle ein kurzes Lead-Dossier für „${lead.name}" (${cat.label}${result?.area ? ` in ${result.area}` : ""}) aus Sicht einer AI-First-Wachstumsagentur. Bekannt: ${known}. Erkannte Lücken: ${lead.gaps.join(", ") || "keine offensichtlichen"}. Passende Leistungen: ${lead.services.map((s) => s.label).join(", ")}. Gib genau diese Punkte aus (kurz, konkret, keine Floskeln):\n1) Haupt-Pain (1 Satz)\n2) Empfohlenes HK-Angebot\n3) Opener-Aufhänger für den Erstkontakt (1 Satz)\n4) Einschätzung/Confidence (hoch/mittel/niedrig + kurze Begründung). Hinweis: Die Einschätzung beruht nur auf öffentlichen Kartendaten, kennzeichne Unsicherheiten ehrlich.`;
+    try {
+      const res = await fetch("/api/agents/run", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ agentId: "research", task }),
+      });
+      const data = await res.json().catch(() => ({}));
+      setDossier((d) => ({ ...d, [i]: { busy: false, text: data.error ? `⚠️ ${data.error}` : (data.output ?? "") } }));
+    } catch { setDossier((d) => ({ ...d, [i]: { busy: false, text: "Fehlgeschlagen." } })); }
   }
 
   return (
@@ -131,6 +150,7 @@ export function LeadRadar({ categories, services }: { categories: ClientCategory
                 <div className="flex flex-wrap items-start gap-2">
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
+                      <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded text-[11px] font-bold text-white ${lead.priority === "A" ? "bg-[#c0532f]" : lead.priority === "B" ? "bg-[#b5852f]" : "bg-[#5b6b7d]"}`} title={`Priorität ${lead.priority}`}>{lead.priority}</span>
                       <strong className="truncate">{lead.name}</strong>
                       {lead.hot
                         ? <span className="rounded-full bg-[#c0532f]/15 px-2 py-0.5 text-[11px] font-semibold text-[#c0532f]">🔥 heiß</span>
@@ -159,6 +179,10 @@ export function LeadRadar({ categories, services }: { categories: ClientCategory
                     </div>
                   </div>
                   <div className="flex shrink-0 flex-col gap-1.5">
+                    <button type="button" onClick={() => analyze(lead, i)} disabled={dossier[i]?.busy}
+                      className="border-border hover:bg-secondary rounded-md border px-3 py-1.5 text-xs font-semibold disabled:opacity-50">
+                      {dossier[i]?.busy ? "analysiert…" : "🔍 Analysieren"}
+                    </button>
                     <button type="button" onClick={() => saveLead(lead, i)} disabled={saved.has(i)}
                       className="border-border hover:bg-secondary rounded-md border px-3 py-1.5 text-xs font-semibold disabled:opacity-50">
                       {saved.has(i) ? "✓ Interessent" : "Als Interessent"}
@@ -169,6 +193,14 @@ export function LeadRadar({ categories, services }: { categories: ClientCategory
                     </button>
                   </div>
                 </div>
+                {dossier[i]?.text && (
+                  <div className="mt-3">
+                    <div className="text-muted-foreground mb-1 text-[11px] font-semibold tracking-wide uppercase">🔍 Lead-Dossier (KI-Einschätzung)</div>
+                    <div className="bg-background border-border max-h-80 overflow-auto rounded-md border p-3 text-sm whitespace-pre-wrap">{dossier[i].text}</div>
+                    <button type="button" onClick={() => { navigator.clipboard?.writeText(dossier[i].text); flash("Kopiert ✓"); }}
+                      className="border-border hover:bg-secondary mt-1.5 rounded-md border px-2.5 py-1 text-xs font-semibold">Kopieren</button>
+                  </div>
+                )}
                 {mail[i]?.text && (
                   <div className="mt-3">
                     <div className="bg-background border-border max-h-72 overflow-auto rounded-md border p-3 text-sm whitespace-pre-wrap">{mail[i].text}</div>

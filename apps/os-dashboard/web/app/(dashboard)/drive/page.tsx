@@ -15,7 +15,7 @@ export default async function Page({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const sp = await searchParams;
-  const configured = googleConfigured();
+  const configured = await googleConfigured();
   const status = configured ? await getStatus() : { connected: false as boolean, email: undefined };
 
   const err = typeof sp.error === "string" ? sp.error : undefined;

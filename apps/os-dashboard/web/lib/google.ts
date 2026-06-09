@@ -2,6 +2,7 @@
 import { getSecret, setSecret, delSecret } from "./secrets";
 
 const TOKEN_KEY = "google_drive";
+const CONFIG_KEY = "google_config";
 const AUTH_ENDPOINT = "https://accounts.google.com/o/oauth2/v2/auth";
 const TOKEN_ENDPOINT = "https://oauth2.googleapis.com/token";
 const SCOPES = [
@@ -11,9 +12,38 @@ const SCOPES = [
 
 export type GoogleTokens = { access_token: string; refresh_token: string; expiry: number; email?: string };
 export type DriveFile = { id: string; name: string; mimeType: string; modifiedTime?: string; webViewLink?: string };
+export type GoogleConfig = { clientId: string; clientSecret: string; redirectUri: string };
 
-export function googleConfigured(): boolean {
-  return !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET);
+const DEFAULT_REDIRECT = "http://localhost:3000/api/google/callback";
+
+/** OAuth-Eckdaten: .env hat Vorrang, sonst das im Dashboard Hinterlegte. */
+export async function getGoogleConfig(): Promise<GoogleConfig> {
+  const db = (await getSecret<Partial<GoogleConfig>>(CONFIG_KEY)) ?? {};
+  return {
+    clientId: process.env.GOOGLE_CLIENT_ID || db.clientId || "",
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || db.clientSecret || "",
+    redirectUri: process.env.GOOGLE_REDIRECT_URI || db.redirectUri || DEFAULT_REDIRECT,
+  };
+}
+
+export async function googleConfigured(): Promise<boolean> {
+  const c = await getGoogleConfig();
+  return !!(c.clientId && c.clientSecret);
+}
+
+/** Status für die Einstellungen — ohne das Secret preiszugeben. */
+export async function getGoogleConfigStatus(): Promise<{ configured: boolean; source: "env" | "dashboard" | "none"; clientId: string; redirectUri: string }> {
+  const c = await getGoogleConfig();
+  const source = process.env.GOOGLE_CLIENT_ID ? "env" : c.clientId ? "dashboard" : "none";
+  return { configured: !!(c.clientId && c.clientSecret), source, clientId: c.clientId, redirectUri: c.redirectUri };
+}
+
+export async function setGoogleConfig(cfg: GoogleConfig): Promise<void> {
+  await setSecret(CONFIG_KEY, { clientId: cfg.clientId.trim(), clientSecret: cfg.clientSecret.trim(), redirectUri: (cfg.redirectUri || DEFAULT_REDIRECT).trim() });
+}
+
+export async function clearGoogleConfig(): Promise<void> {
+  await delSecret(CONFIG_KEY);
 }
 
 /** Öffentliche Origin der App (hinter Funnel via Forwarded-Header rekonstruiert). */
@@ -23,14 +53,12 @@ export function publicOrigin(req: Request): string {
   if (proto && host) return `${proto}://${host}`;
   return new URL(req.url).origin;
 }
-function redirectUri(): string {
-  return process.env.GOOGLE_REDIRECT_URI || "http://localhost:3000/api/google/callback";
-}
 
-export function authUrl(state: string): string {
+export async function authUrl(state: string): Promise<string> {
+  const c = await getGoogleConfig();
   const p = new URLSearchParams({
-    client_id: process.env.GOOGLE_CLIENT_ID ?? "",
-    redirect_uri: redirectUri(),
+    client_id: c.clientId,
+    redirect_uri: c.redirectUri,
     response_type: "code",
     scope: SCOPES.join(" "),
     access_type: "offline",
@@ -41,14 +69,15 @@ export function authUrl(state: string): string {
 }
 
 export async function exchangeCode(code: string): Promise<void> {
+  const c = await getGoogleConfig();
   const res = await fetch(TOKEN_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
       code,
-      client_id: process.env.GOOGLE_CLIENT_ID ?? "",
-      client_secret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-      redirect_uri: redirectUri(),
+      client_id: c.clientId,
+      client_secret: c.clientSecret,
+      redirect_uri: c.redirectUri,
       grant_type: "authorization_code",
     }),
   });
@@ -84,13 +113,14 @@ async function accessToken(): Promise<string> {
   if (!t) throw new Error("not-connected");
   if (Date.now() < t.expiry - 60000) return t.access_token;
   if (!t.refresh_token) throw new Error("not-connected");
+  const c = await getGoogleConfig();
   const res = await fetch(TOKEN_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
       refresh_token: t.refresh_token,
-      client_id: process.env.GOOGLE_CLIENT_ID ?? "",
-      client_secret: process.env.GOOGLE_CLIENT_SECRET ?? "",
+      client_id: c.clientId,
+      client_secret: c.clientSecret,
       grant_type: "refresh_token",
     }),
   });

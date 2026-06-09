@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hkgrowth/operator/lead-contract.schema.json",
+  "title": "HK-App Lead Contract",
+  "description": "Festes Format, in dem das Radar der HK-App einen Lead an die Adapter-Funktion sendLead() uebergibt. Sprach-neutral. Externes Zielsystem (Sales-App) und Server sind NICHT Teil dieses Vertrags.",
+  "type": "object",
+  "required": ["lead_id", "timestamp", "source", "status", "company", "kontakt", "signale"],
+  "additionalProperties": false,
+  "properties": {
+    "lead_id":   { "type": "string", "description": "Eindeutige ID, von der HK-App vergeben." },
+    "timestamp": { "type": "string", "format": "date-time", "description": "ISO 8601, z.B. 2026-06-10T09:30:00Z" },
+    "source":    { "type": "string", "const": "hk-app-radar" },
+    "status":    { "type": "string", "enum": ["neu", "qualifiziert", "uebergeben"] },
+    "company": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name":    { "type": "string" },
+        "domain":  { "type": "string" },
+        "branche": { "type": "string" },
+        "groesse": { "type": "string" },
+        "ort":     { "type": "string" }
+      }
+    },
+    "kontakt": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name":    { "type": "string" },
+        "rolle":   { "type": "string" },
+        "email":   { "type": "string" },
+        "telefon": { "type": "string" }
+      }
+    },
+    "signale": {
+      "type": "object",
+      "required": ["score"],
+      "additionalProperties": false,
+      "properties": {
+        "trigger":           { "type": "string", "description": "Welches Radar-Kriterium hat ausgeloest." },
+        "score":             { "type": "integer", "minimum": 0, "maximum": 100, "description": "Wie gut passt der Lead." },
+        "matched_kriterien": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "notiz": { "type": "string" },
+        "raw":   { "type": "object", "description": "Roh-Daten aus dem Radar, optional." }
+      }
+    }
+  }
+}

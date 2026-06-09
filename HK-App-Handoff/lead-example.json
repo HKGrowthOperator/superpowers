@@ -1,0 +1,28 @@
+{
+  "lead_id": "lead_2026-06-10_0001",
+  "timestamp": "2026-06-10T09:30:00Z",
+  "source": "hk-app-radar",
+  "status": "qualifiziert",
+  "company": {
+    "name": "Beispiel GmbH",
+    "domain": "beispiel.de",
+    "branche": "[PLATZHALTER]",
+    "groesse": "[PLATZHALTER]",
+    "ort": "[PLATZHALTER]"
+  },
+  "kontakt": {
+    "name": "Max Mustermann",
+    "rolle": "[PLATZHALTER]",
+    "email": "max@beispiel.de",
+    "telefon": ""
+  },
+  "signale": {
+    "trigger": "[welches Radar-Kriterium hat ausgeloest]",
+    "score": 82,
+    "matched_kriterien": ["[Kriterium 1]", "[Kriterium 2]"]
+  },
+  "meta": {
+    "notiz": "Beispiel-Lead zum Testen der Pipeline.",
+    "raw": {}
+  }
+}

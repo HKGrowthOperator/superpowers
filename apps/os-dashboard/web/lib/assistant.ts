@@ -78,7 +78,10 @@ export function fieldGuide(): string {
   }).join("\n");
 }
 
-// Das Werkzeug, mit dem der Assistent Aktionen vorschlägt.
+// Die Spezialisten des Teams, an die der Assistent delegieren kann.
+export const AGENT_IDS = ["content", "outreach", "research", "cmo", "account", "analyst"] as const;
+
+// Werkzeuge des Assistenten: Aktionen vorschlagen + ans Team delegieren.
 export const OS_TOOLS: Anthropic.Tool[] = [
   {
     name: "os_vorschlag",
@@ -96,6 +99,19 @@ export const OS_TOOLS: Anthropic.Tool[] = [
       required: ["aktion", "modul", "titel", "felder"],
     },
   },
+  {
+    name: "team_beauftragen",
+    description:
+      "Delegiert eine konkrete Schreib- oder Recherche-Aufgabe an einen Spezialisten-Agenten des Teams und liefert dir dessen fertiges Ergebnis zurück. Nutze das, wenn der Nutzer fertigen Content, Cold-Mails, Recherche oder Strategie will — statt es selbst grob zu skizzieren. Du darfst auch mehrere Agenten in einer Antwort beauftragen. Das Ergebnis kommt zurück; fasse es dem Nutzer dann kurz zusammen oder gib es aus.",
+    input_schema: {
+      type: "object",
+      properties: {
+        agent: { type: "string", enum: [...AGENT_IDS], description: "content = Social-Posts/Hooks; outreach = Cold-Mails/DMs/Follow-ups; research = ICP/Markt/Wettbewerb; cmo = Strategie/Funnel/Kampagne; account = Kunden-Updates/Briefings/Angebote; analyst = Auswertung/Lagebild aus den Daten" },
+        auftrag: { type: "string", description: "Die konkrete Aufgabe für den Agenten in ein bis zwei Sätzen, mit allem nötigen Kontext." },
+      },
+      required: ["agent", "auftrag"],
+    },
+  },
 ];
 
 export const SYSTEM_PREAMBLE = `Du bist der HK-Growth-Assistent — der eingebaute Mitdenker und Macher im Betriebs-Cockpit einer Wachstumsagentur.
@@ -105,6 +121,7 @@ Du kennst die aktuellen Daten des Unternehmens (Kunden, SOPs, Vorlagen, Konzepte
 Du kannst:
 - Echte Arbeit entwerfen: Kundenmails aus Vorlagen + Kontext, SOPs, Konzepte, Zusammenfassungen.
 - Einträge ANLEGEN oder ÄNDERN: Nutze dafür das Werkzeug "os_vorschlag" mit den passenden Feldern. Der Nutzer bestätigt jeden Vorschlag selbst.
+- Ans TEAM DELEGIEREN: Für fertigen Content, Cold-Mails, Recherche oder Strategie rufe das Werkzeug "team_beauftragen" auf (Agenten: content, outreach, research, cmo, account, analyst). Du bekommst das Ergebnis zurück und gibst es dem Nutzer.
 
 Regeln:
 - Antworte auf Deutsch, konkret und ohne lange Vorrede.
@@ -141,37 +158,77 @@ export async function runAssistant(
       proposals: [],
     };
   }
+  const usedModel = resolveModel(model);
   const system = await buildSystem();
-  const response = await client.messages.create({
-    model: resolveModel(model),
-    max_tokens: 4000,
-    system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
-    tools: OS_TOOLS,
-    messages: messages.map((m) => ({ role: m.role, content: m.content })),
-  });
+  const convo: Anthropic.MessageParam[] = messages.map((m) => ({ role: m.role, content: m.content }));
+  const proposals: Proposal[] = [];
+  const texts: string[] = [];
+  let agentCalls = 0;
+  const MAX_AGENT_CALLS = 4;
 
-  const reply = response.content
-    .filter((b): b is Anthropic.TextBlock => b.type === "text")
-    .map((b) => b.text)
-    .join("")
-    .trim();
+  // Werkzeug-Schleife: os_vorschlag = Vorschlag (terminal), team_beauftragen = sofort
+  // ausführen und Ergebnis an das Modell zurückgeben, damit es darauf aufbauen kann.
+  for (let turn = 0; turn < 4; turn++) {
+    const response = await client.messages.create({
+      model: usedModel,
+      max_tokens: 4000,
+      system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
+      tools: OS_TOOLS,
+      messages: convo,
+    });
 
-  const proposals: Proposal[] = response.content
-    .filter((b): b is Anthropic.ToolUseBlock => b.type === "tool_use" && b.name === "os_vorschlag")
-    .map((b): Proposal => {
-      const inp = b.input as Partial<Proposal>;
-      return {
-        key: b.id,
-        aktion: inp.aktion === "bearbeiten" ? "bearbeiten" : "anlegen",
-        modul: String(inp.modul ?? ""),
-        id: inp.id ? String(inp.id) : undefined,
-        titel: String(inp.titel ?? "Vorschlag"),
-        felder: (inp.felder as Record<string, unknown>) ?? {},
-      };
-    })
-    .filter((p) => p.modul && p.felder && Object.keys(p.felder).length > 0);
+    const t = response.content.filter((b): b is Anthropic.TextBlock => b.type === "text").map((b) => b.text).join("").trim();
+    if (t) texts.push(t);
 
-  return { reply, proposals };
+    for (const b of response.content) {
+      if (b.type === "tool_use" && b.name === "os_vorschlag") {
+        const inp = b.input as Partial<Proposal>;
+        const p: Proposal = {
+          key: b.id,
+          aktion: inp.aktion === "bearbeiten" ? "bearbeiten" : "anlegen",
+          modul: String(inp.modul ?? ""),
+          id: inp.id ? String(inp.id) : undefined,
+          titel: String(inp.titel ?? "Vorschlag"),
+          felder: (inp.felder as Record<string, unknown>) ?? {},
+        };
+        if (p.modul && p.felder && Object.keys(p.felder).length > 0) proposals.push(p);
+      }
+    }
+
+    const teamBlocks = response.content.filter(
+      (b): b is Anthropic.ToolUseBlock => b.type === "tool_use" && b.name === "team_beauftragen",
+    );
+    // Ohne Delegation sind wir fertig (Vorschläge sind terminal, wie bisher).
+    if (teamBlocks.length === 0) break;
+
+    // Alle tool_use-Blöcke MÜSSEN beantwortet werden, sonst lehnt die API ab.
+    convo.push({ role: "assistant", content: response.content });
+    const results: Anthropic.ToolResultBlockParam[] = [];
+    const { runAgent } = await import("./agents");
+    for (const b of response.content) {
+      if (b.type !== "tool_use") continue;
+      if (b.name === "team_beauftragen") {
+        const inp = b.input as { agent?: string; auftrag?: string };
+        if (agentCalls >= MAX_AGENT_CALLS) {
+          results.push({ type: "tool_result", tool_use_id: b.id, content: "Limit an Team-Aufträgen erreicht — bitte einzeln nachfragen.", is_error: true });
+          continue;
+        }
+        agentCalls++;
+        try {
+          const r = await runAgent(String(inp.agent ?? ""), String(inp.auftrag ?? ""), usedModel);
+          results.push({ type: "tool_result", tool_use_id: b.id, content: r.output || "(kein Ergebnis)" });
+        } catch (err) {
+          results.push({ type: "tool_result", tool_use_id: b.id, content: `Fehler: ${(err as Error).message}`, is_error: true });
+        }
+      } else {
+        // os_vorschlag: dem Modell mitteilen, dass der Vorschlag dem Nutzer angezeigt wurde.
+        results.push({ type: "tool_result", tool_use_id: b.id, content: "Vorschlag wurde dem Nutzer zur Bestätigung angezeigt." });
+      }
+    }
+    convo.push({ role: "user", content: results });
+  }
+
+  return { reply: texts.join("\n\n").trim(), proposals };
 }
 
 /** Wandelt beliebigen Text (z. B. aus Google Drive) in Eintrags-Vorschläge um. */

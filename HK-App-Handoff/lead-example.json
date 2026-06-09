@@ -1,28 +1,29 @@
 {
-  "lead_id": "lead_2026-06-10_0001",
+  "lead_id": "hk_8x2k1f",
   "timestamp": "2026-06-10T09:30:00Z",
   "source": "hk-app-radar",
   "status": "qualifiziert",
+  "area": "Gummersbach",
+  "category": "Zahnärzte",
   "company": {
-    "name": "Beispiel GmbH",
-    "domain": "beispiel.de",
-    "branche": "[PLATZHALTER]",
-    "groesse": "[PLATZHALTER]",
-    "ort": "[PLATZHALTER]"
-  },
-  "kontakt": {
-    "name": "Max Mustermann",
-    "rolle": "[PLATZHALTER]",
-    "email": "max@beispiel.de",
-    "telefon": ""
+    "name": "Zahnarztpraxis Dr. Beispiel",
+    "address": "Hauptstraße 12, 51643 Gummersbach",
+    "phone": "+49 2261 123456",
+    "website": "",
+    "instagram": "",
+    "facebook": ""
   },
   "signale": {
-    "trigger": "[welches Radar-Kriterium hat ausgeloest]",
-    "score": 82,
-    "matched_kriterien": ["[Kriterium 1]", "[Kriterium 2]"]
+    "score": 2,
+    "priority": "A",
+    "hot": true,
+    "gaps": ["keine Website", "keine Social-Media-Profile"],
+    "reason": "keine Website, keine Social-Media-Profile — Ansatzpunkt für Website · Social Media · HK Wachstums-Check."
   },
-  "meta": {
-    "notiz": "Beispiel-Lead zum Testen der Pipeline.",
-    "raw": {}
-  }
+  "services": [
+    { "id": "website", "label": "Website" },
+    { "id": "social", "label": "Social Media" },
+    { "id": "check", "label": "HK Wachstums-Check" }
+  ],
+  "meta": { "raw": {} }
 }

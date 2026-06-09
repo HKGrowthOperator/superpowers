@@ -2,54 +2,56 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://hkgrowth/operator/lead-contract.schema.json",
   "title": "HK-App Lead Contract",
-  "description": "Festes Format, in dem das Radar der HK-App einen Lead an die Adapter-Funktion sendLead() uebergibt. Sprach-neutral. Externes Zielsystem (Sales-App) und Server sind NICHT Teil dieses Vertrags.",
+  "description": "Festes Format, in dem die HK-App (Lead-Radar, lib/leads.ts) einen Lead an die Sales-App übergibt. Entspricht 1:1 dem realen Lead-Typ der App. Server und Sales-App sind NICHT Teil dieses Vertrags.",
   "type": "object",
-  "required": ["lead_id", "timestamp", "source", "status", "company", "kontakt", "signale"],
+  "required": ["lead_id", "timestamp", "source", "status", "area", "category", "company", "signale", "services"],
   "additionalProperties": false,
   "properties": {
-    "lead_id":   { "type": "string", "description": "Eindeutige ID, von der HK-App vergeben." },
-    "timestamp": { "type": "string", "format": "date-time", "description": "ISO 8601, z.B. 2026-06-10T09:30:00Z" },
+    "lead_id":   { "type": "string", "description": "Stabile ID aus Name+Adresse (hk_...)." },
+    "timestamp": { "type": "string", "format": "date-time" },
     "source":    { "type": "string", "const": "hk-app-radar" },
     "status":    { "type": "string", "enum": ["neu", "qualifiziert", "uebergeben"] },
+    "area":      { "type": "string", "description": "Suchort (z.B. Gummersbach)." },
+    "category":  { "type": "string", "description": "Branche, Label (z.B. Zahnärzte)." },
     "company": {
       "type": "object",
-      "required": ["name"],
+      "required": ["name", "address"],
       "additionalProperties": false,
       "properties": {
-        "name":    { "type": "string" },
-        "domain":  { "type": "string" },
-        "branche": { "type": "string" },
-        "groesse": { "type": "string" },
-        "ort":     { "type": "string" }
-      }
-    },
-    "kontakt": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "name":    { "type": "string" },
-        "rolle":   { "type": "string" },
-        "email":   { "type": "string" },
-        "telefon": { "type": "string" }
+        "name":      { "type": "string" },
+        "address":   { "type": "string" },
+        "phone":     { "type": "string" },
+        "email":     { "type": "string" },
+        "website":   { "type": "string" },
+        "instagram": { "type": "string" },
+        "facebook":  { "type": "string" }
       }
     },
     "signale": {
       "type": "object",
-      "required": ["score"],
+      "required": ["score", "priority", "hot", "gaps", "reason"],
       "additionalProperties": false,
       "properties": {
-        "trigger":           { "type": "string", "description": "Welches Radar-Kriterium hat ausgeloest." },
-        "score":             { "type": "integer", "minimum": 0, "maximum": 100, "description": "Wie gut passt der Lead." },
-        "matched_kriterien": { "type": "array", "items": { "type": "string" } }
+        "score":    { "type": "integer", "minimum": 0, "maximum": 3, "description": "Anzahl erkannter Lücken." },
+        "priority": { "type": "string", "enum": ["A", "B", "C"], "description": "A = größte Chance." },
+        "hot":      { "type": "boolean", "description": "score>=2 ODER keine Website." },
+        "gaps":     { "type": "array", "items": { "type": "string" } },
+        "reason":   { "type": "string" }
+      }
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label"],
+        "additionalProperties": false,
+        "properties": { "id": { "type": "string" }, "label": { "type": "string" } }
       }
     },
     "meta": {
       "type": "object",
       "additionalProperties": true,
-      "properties": {
-        "notiz": { "type": "string" },
-        "raw":   { "type": "object", "description": "Roh-Daten aus dem Radar, optional." }
-      }
+      "properties": { "raw": { "description": "Original-Lead-Objekt, optional." } }
     }
   }
 }

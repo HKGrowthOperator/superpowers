@@ -1,0 +1,174 @@
+{
+  "name": "Lead-OS Standardworkflow (Lead → KI → CRM → E-Mail → Aufgabe → Reporting)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lead-in",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "node-webhook",
+      "name": "1 · Lead rein (Webhook)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [200, 300],
+      "webhookId": "lead-in"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            { "name": "name", "value": "={{ $json.body.name || $json.name }}" },
+            { "name": "email", "value": "={{ $json.body.email || $json.email }}" },
+            { "name": "phone", "value": "={{ $json.body.phone || $json.phone }}" },
+            { "name": "source", "value": "={{ $json.body.source || 'Formular' }}" },
+            { "name": "message", "value": "={{ $json.body.message || $json.message }}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node-normalize",
+      "name": "2 · Lead normalisieren",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [420, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.LLM_ENDPOINT }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "content-type", "value": "application/json" },
+            { "name": "x-api-key", "value": "={{ $env.LLM_API_KEY }}" },
+            { "name": "anthropic-version", "value": "2023-06-01" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"{{ $env.LLM_MODEL }}\",\n  \"max_tokens\": 400,\n  \"messages\": [\n    { \"role\": \"user\", \"content\": \"Du bist Lead-Qualifizierer fuer eine B2B-Agentur. Analysiere diesen Lead und antworte NUR als JSON mit den Feldern summary (1 Satz), score (1-100), naechster_schritt. Lead: Name={{ $json.name }}, Quelle={{ $json.source }}, Nachricht={{ $json.message }}\" }\n  ]\n}",
+        "options": {}
+      },
+      "id": "node-llm",
+      "name": "3 · KI: Zusammenfassung + Lead-Score",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [640, 300]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": false,
+        "values": {
+          "string": [
+            { "name": "ki_summary", "value": "={{ JSON.parse($json.content[0].text).summary }}" },
+            { "name": "ki_naechster_schritt", "value": "={{ JSON.parse($json.content[0].text).naechster_schritt }}" }
+          ],
+          "number": [
+            { "name": "ki_score", "value": "={{ JSON.parse($json.content[0].text).score }}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node-parse",
+      "name": "4 · KI-Ergebnis auslesen",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [860, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.APP_API_URL }}/api/leads",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "content-type", "value": "application/json" },
+            { "name": "authorization", "value": "=Bearer {{ $env.APP_API_TOKEN }}" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"name\": \"{{ $('2 · Lead normalisieren').item.json.name }}\",\n  \"email\": \"{{ $('2 · Lead normalisieren').item.json.email }}\",\n  \"phone\": \"{{ $('2 · Lead normalisieren').item.json.phone }}\",\n  \"source\": \"{{ $('2 · Lead normalisieren').item.json.source }}\",\n  \"status\": \"Neu\",\n  \"score\": {{ $json.ki_score }},\n  \"summary\": \"{{ $json.ki_summary }}\"\n}",
+        "options": {}
+      },
+      "id": "node-crm",
+      "name": "5 · CRM: Lead anlegen",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1080, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.MAIL_FROM }}",
+        "toEmail": "={{ $('2 · Lead normalisieren').item.json.email }}",
+        "subject": "Danke fuer Ihre Anfrage – so geht es weiter",
+        "html": "<!-- HIER den Inhalt aus 03-willkommen.html einfuegen und {{Felder}} durch n8n-Ausdruecke ersetzen -->",
+        "options": {}
+      },
+      "id": "node-email",
+      "name": "6 · E-Mail senden",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [1300, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.APP_API_URL }}/api/tasks",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "content-type", "value": "application/json" },
+            { "name": "authorization", "value": "=Bearer {{ $env.APP_API_TOKEN }}" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"title\": \"Follow-up: {{ $('2 · Lead normalisieren').item.json.name }}\",\n  \"due_in_hours\": 24,\n  \"note\": \"{{ $('4 · KI-Ergebnis auslesen').item.json.ki_naechster_schritt }}\"\n}",
+        "options": {}
+      },
+      "id": "node-task",
+      "name": "7 · Aufgabe anlegen",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1520, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.APP_API_URL }}/api/reporting",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "content-type", "value": "application/json" },
+            { "name": "authorization", "value": "=Bearer {{ $env.APP_API_TOKEN }}" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"event\": \"lead_processed\",\n  \"source\": \"{{ $('2 · Lead normalisieren').item.json.source }}\",\n  \"score\": {{ $('4 · KI-Ergebnis auslesen').item.json.ki_score }}\n}",
+        "options": {}
+      },
+      "id": "node-report",
+      "name": "8 · Reporting",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1740, 300]
+    }
+  ],
+  "connections": {
+    "1 · Lead rein (Webhook)": { "main": [[{ "node": "2 · Lead normalisieren", "type": "main", "index": 0 }]] },
+    "2 · Lead normalisieren": { "main": [[{ "node": "3 · KI: Zusammenfassung + Lead-Score", "type": "main", "index": 0 }]] },
+    "3 · KI: Zusammenfassung + Lead-Score": { "main": [[{ "node": "4 · KI-Ergebnis auslesen", "type": "main", "index": 0 }]] },
+    "4 · KI-Ergebnis auslesen": { "main": [[{ "node": "5 · CRM: Lead anlegen", "type": "main", "index": 0 }]] },
+    "5 · CRM: Lead anlegen": { "main": [[{ "node": "6 · E-Mail senden", "type": "main", "index": 0 }]] },
+    "6 · E-Mail senden": { "main": [[{ "node": "7 · Aufgabe anlegen", "type": "main", "index": 0 }]] },
+    "7 · Aufgabe anlegen": { "main": [[{ "node": "8 · Reporting", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "Lead-OS" }]
+}

@@ -1,0 +1,64 @@
+<!--
+  ONBOARDING-E-MAIL 1/6 — VEREINBARUNG ("SEND AGREEMENT")
+  Auslöser: Lead-Status wechselt auf "Gewonnen"
+  Merge-Felder: {{KUNDE_NAME}} {{PROJEKT_NAME}} {{AGREEMENT_LINK}} {{ABSENDER_NAME}} {{FIRMA}}
+  Farben anpassbar: --header (#14151a) und --accent (#4f46e5)
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vereinbarung zur Unterschrift</title>
+</head>
+<body style="margin:0;padding:0;background:#f2f3f5;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f3f5;padding:24px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+
+        <!-- Header -->
+        <tr><td style="background:#14151a;padding:28px 32px;">
+          <span style="color:#ffffff;font-size:18px;font-weight:700;letter-spacing:.3px;">{{FIRMA}}</span>
+          <span style="color:#8b8d94;font-size:12px;float:right;padding-top:5px;">SCHRITT 1 VON 6 · VEREINBARUNG</span>
+        </td></tr>
+
+        <!-- Body -->
+        <tr><td style="padding:36px 32px 8px 32px;">
+          <p style="margin:0 0 4px 0;color:#4f46e5;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Bevor wir starten</p>
+          <h1 style="margin:0 0 16px 0;color:#14151a;font-size:24px;line-height:1.3;">Ihre Vereinbarung zur Unterschrift</h1>
+          <p style="margin:0 0 16px 0;color:#3c3f45;font-size:15px;line-height:1.6;">Hallo {{KUNDE_NAME}},</p>
+          <p style="margin:0 0 16px 0;color:#3c3f45;font-size:15px;line-height:1.6;">
+            wir freuen uns auf die Zusammenarbeit an <strong>{{PROJEKT_NAME}}</strong>. Bevor irgendetwas startet, klären wir die Rahmenbedingungen — schriftlich. Das schützt uns beide und sorgt für einen sauberen Start.
+          </p>
+
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f7f8fa;border-radius:10px;margin:8px 0 24px 0;">
+            <tr><td style="padding:18px 20px;">
+              <p style="margin:0 0 10px 0;color:#14151a;font-size:14px;font-weight:700;">Die Vereinbarung regelt:</p>
+              <p style="margin:0 0 6px 0;color:#3c3f45;font-size:14px;line-height:1.5;">✓ Leistungsumfang &amp; Deliverables</p>
+              <p style="margin:0 0 6px 0;color:#3c3f45;font-size:14px;line-height:1.5;">✓ Zeitplan &amp; Meilensteine</p>
+              <p style="margin:0;color:#3c3f45;font-size:14px;line-height:1.5;">✓ Revisionspolitik &amp; Zusammenarbeit</p>
+            </td></tr>
+          </table>
+
+          <!-- CTA -->
+          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 28px 0;">
+            <tr><td style="border-radius:8px;background:#4f46e5;">
+              <a href="{{AGREEMENT_LINK}}" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;border-radius:8px;">Vereinbarung unterschreiben →</a>
+            </td></tr>
+          </table>
+
+          <p style="margin:0 0 24px 0;color:#6a6d74;font-size:13px;line-height:1.6;">
+            Sobald die Unterschrift da ist, schicken wir Ihnen direkt die Rechnung und die nächsten Schritte. Bei Fragen einfach auf diese E-Mail antworten.
+          </p>
+        </td></tr>
+
+        <!-- Footer -->
+        <tr><td style="padding:20px 32px 28px 32px;border-top:1px solid #ececef;">
+          <p style="margin:0;color:#3c3f45;font-size:14px;line-height:1.5;">{{ABSENDER_NAME}}<br><span style="color:#8b8d94;">{{FIRMA}}</span></p>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>

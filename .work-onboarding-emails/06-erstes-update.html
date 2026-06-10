@@ -1,0 +1,53 @@
+<!--
+  ONBOARDING-E-MAIL 6/6 — ERSTES UPDATE ("REMOVE BUYER'S REMORSE / IMMEDIATE MOMENTUM")
+  Auslöser: 24-48h nach Zahlung / nach Kickoff — zeigt sofortiges Momentum
+  Merge-Felder: {{KUNDE_NAME}} {{PROJEKT_NAME}} {{UPDATE_TEXT}} {{NAECHSTER_SCHRITT}} {{PORTAL_LINK}} {{ABSENDER_NAME}} {{FIRMA}}
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erstes Update – Ihr Projekt läuft</title>
+</head>
+<body style="margin:0;padding:0;background:#f2f3f5;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f3f5;padding:24px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+
+        <tr><td style="background:#14151a;padding:28px 32px;">
+          <span style="color:#ffffff;font-size:18px;font-weight:700;letter-spacing:.3px;">{{FIRMA}}</span>
+          <span style="color:#8b8d94;font-size:12px;float:right;padding-top:5px;">SCHRITT 6 VON 6 · ERSTES UPDATE</span>
+        </td></tr>
+
+        <tr><td style="padding:36px 32px 8px 32px;">
+          <p style="margin:0 0 4px 0;color:#4f46e5;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Schon in Bewegung</p>
+          <h1 style="margin:0 0 16px 0;color:#14151a;font-size:24px;line-height:1.3;">Ihr Projekt läuft bereits</h1>
+          <p style="margin:0 0 16px 0;color:#3c3f45;font-size:15px;line-height:1.6;">Hallo {{KUNDE_NAME}},</p>
+          <p style="margin:0 0 18px 0;color:#3c3f45;font-size:15px;line-height:1.6;">
+            kurzes Update zu <strong>{{PROJEKT_NAME}}</strong> — damit Sie von Anfang an sehen, dass es vorangeht:
+          </p>
+
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-left:3px solid #4f46e5;background:#f7f8fa;border-radius:0 10px 10px 0;margin:0 0 20px 0;">
+            <tr><td style="padding:16px 20px;color:#3c3f45;font-size:14px;line-height:1.6;">{{UPDATE_TEXT}}</td></tr>
+          </table>
+
+          <p style="margin:0 0 6px 0;color:#14151a;font-size:14px;font-weight:700;">Nächster Schritt:</p>
+          <p style="margin:0 0 22px 0;color:#3c3f45;font-size:14px;line-height:1.6;">{{NAECHSTER_SCHRITT}}</p>
+
+          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px 0;">
+            <tr><td style="border-radius:8px;background:#4f46e5;">
+              <a href="{{PORTAL_LINK}}" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;border-radius:8px;">Fortschritt im Portal ansehen →</a>
+            </td></tr>
+          </table>
+        </td></tr>
+
+        <tr><td style="padding:20px 32px 28px 32px;border-top:1px solid #ececef;">
+          <p style="margin:0;color:#3c3f45;font-size:14px;line-height:1.5;">{{ABSENDER_NAME}}<br><span style="color:#8b8d94;">{{FIRMA}}</span></p>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>

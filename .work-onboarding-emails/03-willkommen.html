@@ -1,0 +1,58 @@
+<!--
+  ONBOARDING-E-MAIL 3/6 — WILLKOMMEN ("WELCOME DOCUMENT")
+  Auslöser: Zahlung erhalten
+  Merge-Felder: {{KUNDE_NAME}} {{PROJEKT_NAME}} {{PORTAL_LINK}} {{ANSPRECHPARTNER}} {{ABSENDER_NAME}} {{FIRMA}}
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Willkommen an Bord</title>
+</head>
+<body style="margin:0;padding:0;background:#f2f3f5;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f3f5;padding:24px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+
+        <tr><td style="background:#14151a;padding:28px 32px;">
+          <span style="color:#ffffff;font-size:18px;font-weight:700;letter-spacing:.3px;">{{FIRMA}}</span>
+          <span style="color:#8b8d94;font-size:12px;float:right;padding-top:5px;">SCHRITT 3 VON 6 · WILLKOMMEN</span>
+        </td></tr>
+
+        <tr><td style="padding:36px 32px 8px 32px;">
+          <p style="margin:0 0 4px 0;color:#4f46e5;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Zahlung erhalten ✓</p>
+          <h1 style="margin:0 0 16px 0;color:#14151a;font-size:26px;line-height:1.3;">Willkommen an Bord, {{KUNDE_NAME}}!</h1>
+          <p style="margin:0 0 16px 0;color:#3c3f45;font-size:15px;line-height:1.6;">
+            Alles ist bereit — wir starten jetzt mit <strong>{{PROJEKT_NAME}}</strong>. Damit Sie von Anfang an den Überblick haben, hier kurz, wie es weitergeht.
+          </p>
+
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f7f8fa;border-radius:10px;margin:8px 0 24px 0;">
+            <tr><td style="padding:18px 20px;">
+              <p style="margin:0 0 10px 0;color:#14151a;font-size:14px;font-weight:700;">Das passiert als Nächstes:</p>
+              <p style="margin:0 0 6px 0;color:#3c3f45;font-size:14px;line-height:1.5;">1. Sie bekommen Zugang zu Ihrem Projekt-Portal</p>
+              <p style="margin:0 0 6px 0;color:#3c3f45;font-size:14px;line-height:1.5;">2. Wir stimmen den Kickoff-Termin ab</p>
+              <p style="margin:0;color:#3c3f45;font-size:14px;line-height:1.5;">3. Die Arbeit beginnt — Sie sehen jeden Fortschritt live</p>
+            </td></tr>
+          </table>
+
+          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px 0;">
+            <tr><td style="border-radius:8px;background:#4f46e5;">
+              <a href="{{PORTAL_LINK}}" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;border-radius:8px;">Zum Projekt-Portal →</a>
+            </td></tr>
+          </table>
+
+          <p style="margin:0 0 24px 0;color:#6a6d74;font-size:13px;line-height:1.6;">
+            Ihr direkter Ansprechpartner ist <strong>{{ANSPRECHPARTNER}}</strong>. Schreiben Sie jederzeit — wir sind für Sie da.
+          </p>
+        </td></tr>
+
+        <tr><td style="padding:20px 32px 28px 32px;border-top:1px solid #ececef;">
+          <p style="margin:0;color:#3c3f45;font-size:14px;line-height:1.5;">{{ABSENDER_NAME}}<br><span style="color:#8b8d94;">{{FIRMA}}</span></p>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>

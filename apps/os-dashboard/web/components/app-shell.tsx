@@ -25,6 +25,8 @@ const NAV: NavGroup[] = [
   ] },
   { group: "Wachstum", items: [
     { href: "/lead-radar", label: "Lead-Radar", icon: "radar" },
+    { href: "/posteingang", label: "Posteingang", icon: "inbox" },
+    { href: "/angebote", label: "Angebote", icon: "doc" },
     { href: "/konzepte", label: "Konzepte", icon: "bulb" },
     { href: "/webseiten", label: "Webseiten", icon: "globe" },
   ] },
@@ -60,6 +62,8 @@ function Icon({ name }: { name: string }) {
     drive: <><path d="M7 17a4 4 0 0 1-.5-7.97 5 5 0 0 1 9.6-1.3A3.5 3.5 0 0 1 17 17z" /></>,
     team: <><circle cx="9" cy="8" r="3" /><path d="M3 20v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1" /><circle cx="17" cy="9" r="2.2" /><path d="M16 14h1a4 4 0 0 1 4 4v1" /></>,
     radar: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4.5" /><path d="M12 12 19 5M12 12v9" /></>,
+    inbox: <><path d="M22 12h-6l-2 3h-4l-2-3H2" /><path d="M5.5 5h13l3.5 7v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z" /></>,
+    doc: <><path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /><path d="M14 3v5h5" /></>,
     library: <><path d="M4 5v14M8 5v14M13 5l4 14" /><path d="M3 19h18" /></>,
     cog: <><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1" /></>,
   };

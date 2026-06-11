@@ -1,0 +1,11 @@
+{
+  "name": "ai-lead-qualification-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI Lead Qualification System — wiederverwendbarer Agentur-Baustein von HK Growth Operator",
+  "type": "module",
+  "scripts": {
+    "demo": "node src/run-demo.js"
+  },
+  "engines": { "node": ">=18" }
+}

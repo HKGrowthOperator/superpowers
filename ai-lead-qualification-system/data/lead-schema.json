@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hkgrowth-operator.de/schemas/lead-qualification.schema.json",
+  "title": "AI Lead Qualification — Lead",
+  "description": "Datenmodell für einen qualifizierten Inbound-Lead. Felder mit 'von Pipeline befüllt' sind beim Roh-Eingang leer/null.",
+  "type": "object",
+  "required": ["lead_id", "created_at", "source", "original_message", "status"],
+  "additionalProperties": false,
+  "properties": {
+    "lead_id": { "type": "string", "description": "Eindeutige ID, Format lq_<datum>_<random>." },
+    "created_at": { "type": "string", "format": "date-time" },
+    "source": {
+      "type": "string",
+      "enum": ["website_form", "email", "whatsapp", "social_dm", "phone_note", "referral", "hk_radar", "marketplace", "other"]
+    },
+    "name": { "type": ["string", "null"] },
+    "company": { "type": ["string", "null"] },
+    "contact_email": { "type": ["string", "null"] },
+    "contact_phone": { "type": ["string", "null"] },
+    "original_message": { "type": "string", "description": "Originaltext der Anfrage, unverändert." },
+    "detected_intent": { "type": ["string", "null"], "description": "Erkannte Absicht in einem Satz. Von Pipeline befüllt." },
+    "category": {
+      "type": ["string", "null"],
+      "enum": ["website", "social_media", "recruiting", "ecommerce", "local_service", "marketing_general", "price_inquiry", "unclear", "other", null]
+    },
+    "budget_range": {
+      "type": ["string", "null"],
+      "enum": ["unknown", "under_1k", "1k_5k", "5k_10k", "10k_25k", "over_25k", null]
+    },
+    "urgency": { "type": ["string", "null"], "enum": ["low", "medium", "high", "critical", null] },
+    "decision_stage": { "type": ["string", "null"], "enum": ["researching", "comparing", "ready_to_buy", "unknown", null] },
+    "extracted_requirements": { "type": "array", "items": { "type": "string" } },
+    "missing_information": { "type": "array", "items": { "type": "string" } },
+    "lead_score": { "type": ["integer", "null"], "minimum": 0, "maximum": 100 },
+    "lead_temperature": { "type": ["string", "null"], "enum": ["hot", "warm", "cold", null], "description": "hot >= 70, warm 40-69, cold < 40." },
+    "recommended_next_step": { "type": ["string", "null"], "description": "Konkrete Handlung inkl. Zeitvorgabe." },
+    "suggested_reply": { "type": ["string", "null"], "description": "Antwortentwurf. Immer Entwurf, nie Auto-Versand." },
+    "assigned_to": { "type": ["string", "null"] },
+    "status": {
+      "type": "string",
+      "enum": ["new", "qualified", "contacted", "meeting_scheduled", "proposal_sent", "won", "lost", "on_hold"]
+    }
+  }
+}

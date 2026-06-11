@@ -1,0 +1,240 @@
+[
+  {
+    "lead_id": "lq_20260608_k2m4",
+    "created_at": "2026-06-08T09:14:00+02:00",
+    "source": "email",
+    "name": "Thomas Müller",
+    "company": "Müller Maschinenbau GmbH",
+    "contact_email": "t.mueller@mueller-maschinenbau.de",
+    "contact_phone": null,
+    "original_message": "Guten Tag, unsere Website ist von 2017 und sieht auf dem Handy furchtbar aus. Wir möchten einen kompletten Relaunch: modernes Design, unsere 12 Produktkategorien sauber dargestellt, und wir wollen endlich über Google gefunden werden. Wir schauen uns gerade verschiedene Anbieter an. Budgetrahmen liegt bei etwa 8.000 Euro. Können Sie uns ein Beispielkonzept zeigen?",
+    "detected_intent": "Kompletter Website-Relaunch mit responsivem Design und besserer Google-Auffindbarkeit, Anbieter werden aktuell verglichen.",
+    "category": "website",
+    "budget_range": "5k_10k",
+    "urgency": "medium",
+    "decision_stage": "comparing",
+    "extracted_requirements": [
+      "Responsives, modernes Design (mobil nutzbar)",
+      "Darstellung von 12 Produktkategorien",
+      "SEO / Google-Auffindbarkeit"
+    ],
+    "missing_information": [
+      "Telefonnummer für Rückruf",
+      "Gewünschter Zeitrahmen für den Relaunch",
+      "Bestehendes CMS / technische Basis"
+    ],
+    "lead_score": 73,
+    "lead_temperature": "hot",
+    "recommended_next_step": "Heute antworten: Beispielkonzept zusagen und direkt 2 Termine für ein 20-Minuten-Erstgespräch anbieten. Im Vergleichsmodus gewinnt, wer zuerst konkret wird.",
+    "suggested_reply": "Hallo Herr Müller,\n\ndanke für Ihre Nachricht — eine Website von 2017 mit 12 Produktkategorien ist ein klarer Fall für einen strukturierten Relaunch, das machen wir gern.\n\nEin Beispielkonzept zeige ich Ihnen am liebsten direkt am Bildschirm, dann können wir es gleich auf Ihre Produktwelt beziehen. Passt Ihnen Donnerstag 10 Uhr oder Freitag 14 Uhr für 20 Minuten?\n\nViele Grüße\nHaris",
+    "assigned_to": "haris",
+    "status": "qualified"
+  },
+  {
+    "lead_id": "lq_20260608_p7q1",
+    "created_at": "2026-06-08T21:47:00+02:00",
+    "source": "social_dm",
+    "name": "Elena Rossi",
+    "company": "Trattoria Rossi",
+    "contact_email": null,
+    "contact_phone": null,
+    "original_message": "Hi! Ich hab euren Beitrag über das Café in Köln gesehen 😍 Wir sind ein Familienrestaurant und unser Instagram ist total eingeschlafen. Macht ihr sowas auch für Restaurants? Was müsste man da machen?",
+    "detected_intent": "Interesse an laufender Social-Media-Betreuung für ein Restaurant, noch in früher Informationsphase.",
+    "category": "social_media",
+    "budget_range": "unknown",
+    "urgency": "medium",
+    "decision_stage": "researching",
+    "extracted_requirements": [
+      "Instagram-Kanal reaktivieren und betreuen"
+    ],
+    "missing_information": [
+      "E-Mail-Adresse und Telefonnummer",
+      "Budgetvorstellung",
+      "Bisherige Aktivitäten und Zuständigkeit im Team"
+    ],
+    "lead_score": 51,
+    "lead_temperature": "warm",
+    "recommended_next_step": "Innerhalb von 24 h in der DM antworten: Referenz Köln kurz aufgreifen, ein konkretes Beispiel nennen und auf einen kurzen Telefontermin lenken (Kontaktdaten einsammeln).",
+    "suggested_reply": "Hallo Elena! Ja, Restaurants sind bei uns sogar ein Schwerpunkt — beim Café in Köln haben wir mit 3 Reels pro Woche angefangen, der Rest kam fast von allein. Bei einem Familienrestaurant würde ich zuerst auf eure Geschichte setzen, das funktioniert besser als Food-Fotos allein. Magst du mir eure Nummer dalassen? Dann rufe ich kurz durch und erzähle dir in 10 Minuten, was bei euch am meisten bringen würde.",
+    "assigned_to": "vertrieb",
+    "status": "new"
+  },
+  {
+    "lead_id": "lq_20260609_w3r8",
+    "created_at": "2026-06-09T08:02:00+02:00",
+    "source": "website_form",
+    "name": "Sandra Krüger",
+    "company": "Pflegedienst Sonnenschein GmbH",
+    "contact_email": "krueger@pflegedienst-sonnenschein.de",
+    "contact_phone": "+49 221 9876543",
+    "original_message": "Wir finden seit Monaten keine Pflegefachkräfte. Stellenanzeigen auf den üblichen Portalen bringen nichts mehr. Eine befreundete Einrichtung hat über Social-Media-Anzeigen 4 Leute eingestellt. Wir bräuchten so etwas auch, möglichst bald — uns fehlen aktuell 3 Vollzeitkräfte und wir mussten schon Klienten absagen. Wir vergleichen gerade zwei Agenturen.",
+    "detected_intent": "Social-Recruiting-Kampagne für Pflegefachkräfte, hoher Handlungsdruck durch akuten Personalmangel, zwei Agenturen im Vergleich.",
+    "category": "recruiting",
+    "budget_range": "unknown",
+    "urgency": "high",
+    "decision_stage": "comparing",
+    "extracted_requirements": [
+      "Social-Recruiting-Kampagne (Meta/TikTok) für Pflegefachkräfte",
+      "Besetzung von 3 Vollzeitstellen"
+    ],
+    "missing_information": [
+      "Budgetrahmen für Anzeigen und Betreuung",
+      "Einzugsgebiet / Standorte",
+      "Karriereseite oder Landingpage vorhanden?"
+    ],
+    "lead_score": 72,
+    "lead_temperature": "hot",
+    "recommended_next_step": "Innerhalb von 2 Stunden anrufen (Nummer liegt vor). Konkreten Fall der befreundeten Einrichtung spiegeln, Kampagnenstart-Datum nennen — Geschwindigkeit ist hier das Entscheidungskriterium.",
+    "suggested_reply": "Hallo Frau Krüger,\n\nKlienten absagen zu müssen, weil das Personal fehlt, ist genau die Situation, in der Stellenportale nicht mehr helfen — da hat Ihre befreundete Einrichtung den richtigen Weg gezeigt.\n\nDamit Sie schnell vergleichen können: Ich rufe Sie heute Vormittag kurz an und sage Ihnen konkret, wie eine Pflege-Kampagne bei uns aufgebaut ist, was sie kostet und wann die ersten Bewerbungen realistisch eintreffen. Falls ein anderer Zeitpunkt besser passt, geben Sie mir kurz Bescheid.\n\nViele Grüße\nHaris",
+    "assigned_to": "haris",
+    "status": "qualified"
+  },
+  {
+    "lead_id": "lq_20260609_t5n2",
+    "created_at": "2026-06-09T14:33:00+02:00",
+    "source": "email",
+    "name": "Jonas Weber",
+    "company": "Weber Naturkosmetik",
+    "contact_email": "jonas@weber-naturkosmetik.de",
+    "contact_phone": null,
+    "original_message": "Hallo, wir verkaufen unsere Naturkosmetik bisher nur über Etsy und ein paar Läden. Nächstes Jahr wollen wir einen eigenen Shopify-Shop. Wichtig wären: Anbindung an unsere Warenwirtschaft (Billbee), ein Abo-Modell für unsere Pflegesets und ein Design, das zu unserer Marke passt. Für das Gesamtprojekt haben wir 15.000 bis 20.000 Euro eingeplant. Wir sind noch früh dran und sammeln erstmal Informationen.",
+    "detected_intent": "Aufbau eines eigenen Shopify-Shops mit Billbee-Anbindung und Abo-Modell, Projektstart erst nächstes Jahr, frühe Informationsphase.",
+    "category": "ecommerce",
+    "budget_range": "10k_25k",
+    "urgency": "low",
+    "decision_stage": "researching",
+    "extracted_requirements": [
+      "Shopify-Shop mit markengerechtem Design",
+      "Anbindung an Warenwirtschaft Billbee",
+      "Abo-Modell für Pflegesets"
+    ],
+    "missing_information": [
+      "Telefonnummer",
+      "Konkreter Wunsch-Starttermin im nächsten Jahr",
+      "Anzahl Produkte / Varianten"
+    ],
+    "lead_score": 66,
+    "lead_temperature": "warm",
+    "recommended_next_step": "Am selben Werktag antworten: kompetent auf Billbee + Abo-Modell eingehen (Fachlichkeit zeigen), unverbindliches Beratungsgespräch anbieten, Wiedervorlage in 30 Tagen setzen — Budget ist stark, nur der Zeithorizont ist lang.",
+    "suggested_reply": "Hallo Herr Weber,\n\nschön, dass Sie so früh planen — gerade die Billbee-Anbindung und ein sauberes Abo-Modell (wir setzen dafür meist auf Shopify Subscriptions oder Recharge) sind Themen, die man besser vor dem Design klärt als danach.\n\nWenn Sie mögen, nehme ich mir 30 Minuten und skizziere Ihnen, wie wir das Projekt aufbauen würden — inklusive der Stolperfallen beim Umstieg von Etsy. Das hilft Ihnen auch beim Vergleichen, völlig unverbindlich. Wann passt es Ihnen?\n\nViele Grüße\nHaris",
+    "assigned_to": "vertrieb",
+    "status": "new"
+  },
+  {
+    "lead_id": "lq_20260610_b9c3",
+    "created_at": "2026-06-10T11:20:00+02:00",
+    "source": "phone_note",
+    "name": "Frau Demirci",
+    "company": "Physiotherapie Demirci",
+    "contact_email": null,
+    "contact_phone": "+49 2261 445566",
+    "original_message": "Telefonnotiz (Anruf 11:15, aufgenommen von Lisa): Frau Demirci, Physiopraxis in Gummersbach. Neue Patienten kommen fast nur über Empfehlungen, bei Google findet man die Praxis kaum. Will 'irgendwas mit Google' machen, genaues Budget hat sie nicht genannt. Bittet um Rückruf, vormittags am besten.",
+    "detected_intent": "Lokale Sichtbarkeit bei Google verbessern (Google Business Profil / lokales SEO) für eine Physiotherapie-Praxis.",
+    "category": "local_service",
+    "budget_range": "unknown",
+    "urgency": "medium",
+    "decision_stage": "unknown",
+    "extracted_requirements": [
+      "Bessere Auffindbarkeit bei Google (lokale Suche)"
+    ],
+    "missing_information": [
+      "E-Mail-Adresse",
+      "Budgetvorstellung",
+      "Website vorhanden? Google-Business-Profil gepflegt?"
+    ],
+    "lead_score": 47,
+    "lead_temperature": "warm",
+    "recommended_next_step": "Morgen vormittag zurückrufen (Wunschzeit beachten). Vor dem Anruf 5 Minuten investieren: Google-Business-Profil und Website der Praxis prüfen, um im Gespräch konkret zu sein.",
+    "suggested_reply": "Gesprächsleitfaden für den Rückruf: (1) Bezug nehmen auf den Anruf bei Lisa. (2) Kurz schildern, was beim Blick auf das Google-Profil aufgefallen ist. (3) Erklären, dass lokales SEO für Praxen meist in 2–3 Monaten sichtbare Ergebnisse bringt. (4) E-Mail-Adresse erfragen und einen kostenlosen Kurz-Check der Online-Sichtbarkeit als nächsten Schritt anbieten.",
+    "assigned_to": "vertrieb",
+    "status": "new"
+  },
+  {
+    "lead_id": "lq_20260610_x4j7",
+    "created_at": "2026-06-10T16:05:00+02:00",
+    "source": "website_form",
+    "name": "M. Schulte",
+    "company": null,
+    "contact_email": "m.schulte84@gmx.de",
+    "contact_phone": null,
+    "original_message": "Hallo, ich habe Ihre Seite gefunden. Was machen Sie denn genau alles? Können Sie mir mal Unterlagen schicken? Danke.",
+    "detected_intent": "Unspezifische Informationsanfrage ohne erkennbares Projekt oder Bedarf.",
+    "category": "unclear",
+    "budget_range": "unknown",
+    "urgency": "low",
+    "decision_stage": "unknown",
+    "extracted_requirements": [],
+    "missing_information": [
+      "Konkretes Anliegen / Projekt",
+      "Firma und Branche",
+      "Telefonnummer",
+      "Zeitrahmen und Budget"
+    ],
+    "lead_score": 29,
+    "lead_temperature": "cold",
+    "recommended_next_step": "Freundliche Standardantwort mit maximal 2 Rückfragen senden (Branche? Anliegen?). Keine Unterlagen-Schlacht starten. Wiedervorlage in 7 Tagen, danach schließen falls keine Reaktion.",
+    "suggested_reply": "Hallo Herr/Frau Schulte,\n\ndanke für Ihre Nachricht! Wir unterstützen Unternehmen bei Website, Online-Sichtbarkeit, Social Media und Mitarbeitergewinnung — was davon am meisten bringt, hängt aber stark von der Situation ab.\n\nDamit ich Ihnen etwas Passendes schicken kann statt eines dicken Allgemein-PDFs: Um welches Unternehmen bzw. welche Branche geht es, und was ist der Anlass Ihrer Anfrage?\n\nViele Grüße\nHaris",
+    "assigned_to": "vertrieb",
+    "status": "new"
+  },
+  {
+    "lead_id": "lq_20260611_f6d9",
+    "created_at": "2026-06-11T07:48:00+02:00",
+    "source": "email",
+    "name": "Ralf Steinmann",
+    "company": "Steinmann Elektrotechnik",
+    "contact_email": "info@steinmann-elektro.de",
+    "contact_phone": null,
+    "original_message": "Guten Tag, was kostet bei Ihnen eine einfache Website? Bitte nur den Preis nennen, ich hole gerade mehrere Angebote ein und entscheide nach Preis. Viel darf es nicht kosten, ein Bekannter macht sowas sonst für 500 Euro.",
+    "detected_intent": "Reine Preisabfrage für eine einfache Website, Entscheidung explizit über den Preis, sehr niedrige Budgeterwartung.",
+    "category": "price_inquiry",
+    "budget_range": "under_1k",
+    "urgency": "low",
+    "decision_stage": "comparing",
+    "extracted_requirements": [
+      "Einfache Website zum niedrigstmöglichen Preis"
+    ],
+    "missing_information": [
+      "Telefonnummer",
+      "Umfang der Website (Seitenzahl, Funktionen)",
+      "Was die Website geschäftlich erreichen soll"
+    ],
+    "lead_score": 35,
+    "lead_temperature": "cold",
+    "recommended_next_step": "Innerhalb von 2 Werktagen mit Wert-Argumentation antworten: Preisspanne nennen, aber den Unterschied zur 500-Euro-Lösung an einem konkreten Nutzen festmachen. Nicht in Preisverhandlung einsteigen. Wiedervorlage in 5 Tagen, geringe Priorität.",
+    "suggested_reply": "Hallo Herr Steinmann,\n\ngern eine ehrliche Antwort: Unsere Websites starten bei 2.900 € — wenn es wirklich nur um die günstigste Visitenkarte im Netz geht, ist das Angebot Ihres Bekannten vermutlich die passendere Wahl, und das sage ich ohne Ironie.\n\nDer Unterschied liegt darin, was die Seite einbringt: Bei uns ist sie darauf gebaut, dass Sie über Google von Kunden in Ihrer Region gefunden werden und Anfragen reinkommen. Eine einzige zusätzliche Elektro-Baustelle im Jahr rechnet die Differenz in der Regel.\n\nWenn Sie das interessiert, zeige ich es Ihnen gern an einem Beispiel aus dem Handwerk. Wenn nicht — auch gut, dann wünsche ich gutes Gelingen!\n\nViele Grüße\nHaris",
+    "assigned_to": "vertrieb",
+    "status": "new"
+  },
+  {
+    "lead_id": "lq_20260611_h1z5",
+    "created_at": "2026-06-11T10:12:00+02:00",
+    "source": "referral",
+    "name": "Katharina Vogt",
+    "company": "Autohaus Vogt & Söhne GmbH",
+    "contact_email": "k.vogt@autohaus-vogt.de",
+    "contact_phone": "+49 2202 334455",
+    "original_message": "Guten Morgen, Sie wurden uns von Herrn Becker (Becker Immobilien) wärmstens empfohlen. Wir haben in genau 6 Wochen unsere Hausmesse zum 50-jährigen Jubiläum und brauchen bis dahin zwingend: eine neue Website mit Fahrzeugbörse-Anbindung (mobile.de Schnittstelle), eine Landingpage für die Messe und Social-Media-Anzeigen im Umkreis. Budget haben wir mit der Geschäftsführung abgestimmt: bis 20.000 Euro. Die Entscheidung treffe ich diese Woche — können wir telefonieren? Sie erreichen mich jederzeit unter der Nummer unten.",
+    "detected_intent": "Komplettpaket aus Website mit mobile.de-Anbindung, Messe-Landingpage und regionalen Social Ads mit harter Deadline (Hausmesse in 6 Wochen), Budget freigegeben, Entscheidung noch diese Woche.",
+    "category": "website",
+    "budget_range": "10k_25k",
+    "urgency": "critical",
+    "decision_stage": "ready_to_buy",
+    "extracted_requirements": [
+      "Neue Website mit mobile.de-Schnittstelle (Fahrzeugbörse)",
+      "Landingpage für Jubiläums-Hausmesse",
+      "Regionale Social-Media-Anzeigen",
+      "Fertigstellung in 6 Wochen (harte Deadline)"
+    ],
+    "missing_information": [
+      "Bestehende Website / Hosting-Zugänge",
+      "Vorhandenes Bild-/Markenmaterial für die Messe"
+    ],
+    "lead_score": 97,
+    "lead_temperature": "hot",
+    "recommended_next_step": "SOFORT anrufen (innerhalb von 1 Stunde) — Budget freigegeben, Entscheidung diese Woche, Empfehlung im Rücken. Im Gespräch Machbarkeit der 6 Wochen bestätigen, Kickoff-Termin noch für diese Woche fixieren, Angebot binnen 24 h zusagen.",
+    "suggested_reply": "Guten Morgen Frau Vogt,\n\nvielen Dank — über die Empfehlung von Herrn Becker freue ich mich sehr, das Projekt mit ihm lief großartig.\n\n6 Wochen bis zur Hausmesse sind sportlich, aber machbar, wenn wir diese Woche starten: Landingpage und Anzeigen zuerst (die brauchen Vorlauf für die Reichweite), die Website mit mobile.de-Anbindung parallel. Ich rufe Sie heute Vormittag an, dann klären wir die Eckpunkte — mein Angebot haben Sie innerhalb von 24 Stunden auf dem Tisch.\n\nViele Grüße\nHaris",
+    "assigned_to": "haris",
+    "status": "qualified"
+  }
+]

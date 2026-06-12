@@ -64,6 +64,39 @@ export function InboxView({
     }
   }
 
+  async function makeOffer(m: InboxMessage) {
+    setBusy(true);
+    try {
+      const res = await fetch("/api/angebote", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          action: "createLead",
+          email: m.from.includes("@") ? m.from : "",
+          quelle: m.channel,
+          beschreibung: `${m.subject ? m.subject + "\n" : ""}${m.body}`,
+        }),
+      });
+      if (!res.ok) {
+        const e = (await res.json().catch(() => ({}))) as { error?: string };
+        alert(e.error ?? "Angebot konnte nicht erstellt werden");
+        return;
+      }
+      // Anfrage als in Bearbeitung markieren
+      await fetch("/api/inbox", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ action: "patchMessage", id: m.id, status: "In Bearbeitung" }),
+      });
+      await reload();
+      if (confirm("Angebotsentwurf erstellt. Jetzt zu „Angebote“ wechseln?")) {
+        window.location.href = "/angebote";
+      }
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function submitIngest(e: React.FormEvent) {
     e.preventDefault();
     if (!form.from.trim() || !(form.subject.trim() || form.body.trim())) return;
@@ -136,11 +169,19 @@ export function InboxView({
                   ) : null}
                   <div className="flex flex-wrap items-center gap-2 pt-1">
                     <span className="text-muted-foreground text-xs">Zuständig: {m.zustaendig}</span>
+                    <button
+                      onClick={() => makeOffer(m)}
+                      disabled={busy}
+                      className="border-border ml-auto rounded-md border px-2.5 py-1 text-xs hover:bg-muted disabled:opacity-50"
+                      title="Aus dieser Anfrage ein Angebot erstellen"
+                    >
+                      → Angebot
+                    </button>
                     <select
                       value={m.status}
                       disabled={busy}
                       onChange={(e) => post({ action: "patchMessage", id: m.id, status: e.target.value })}
-                      className="border-border bg-card ml-auto rounded-md border px-2 py-1 text-xs"
+                      className="border-border bg-card rounded-md border px-2 py-1 text-xs"
                     >
                       {statuses.map((s) => (
                         <option key={s} value={s}>{s}</option>

@@ -21,9 +21,11 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # Hilfsskript zum Anlegen von Login-Benutzern + die Module, die es braucht
-# (pg liegt schon im Standalone-Bundle, bcryptjs wird hier ergänzt).
+# (pg liegt schon im Standalone-Bundle, bcryptjs + nodemailer werden hier ergänzt).
 COPY --from=builder --chown=nextjs:nodejs /app/scripts ./scripts
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/bcryptjs ./node_modules/bcryptjs
+# nodemailer (E-Mail-Versand) wird vom Next-Tracer nicht erfasst → explizit kopieren (hat keine eigenen Abhängigkeiten).
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/nodemailer ./node_modules/nodemailer
 USER nextjs
 EXPOSE 3000
 ENV PORT=3000 HOSTNAME=0.0.0.0

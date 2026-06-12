@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { withOfferSystem } from "@/lib/smart-offer";
+import { createFromOffer } from "@/lib/onboarding";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -65,6 +66,10 @@ export async function POST(req: Request) {
       }
       case "changeStatus": {
         const offer = await withOfferSystem((sos) => sos.changeStatus(String(body.id), String(body.status)));
+        // Gewonnenes Angebot startet automatisch das Onboarding (idempotent).
+        if (body.status === "gewonnen") {
+          await createFromOffer(offer).catch(() => null);
+        }
         return NextResponse.json(offer);
       }
       case "completeTask": {

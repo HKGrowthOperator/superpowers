@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamil.de — Website Relaunch · Premium Angebot v4 · HK Growth Operator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root{
+    --rot:#B01E2C;
+    --rot-tief:#8A1722;
+    --gold:#C9A84C;
+    --gold-hell:#E3C778;
+    --anthrazit:#1A1A1C;
+    --anthrazit-2:#26262A;
+    --warmweiss:#FAF7F2;
+    --papier:#F3EFE8;
+    --text:#2A2A2C;
+    --text-leise:#86827B;
+    --linie:#E2DCD1;
+    --gruen:#3E7D5A;
+    --schatten-s:0 2px 20px rgba(26,26,28,.06);
+    --schatten-m:0 12px 48px rgba(26,26,28,.10);
+    --schatten-l:0 24px 80px rgba(26,26,28,.16);
+  }
+
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:#D8D2C7;
+    color:var(--text);
+    line-height:1.7;
+    font-size:clamp(14px,1.5vw,16px);
+    -webkit-font-smoothing:antialiased;
+  }
+  .doc{max-width:1080px;margin:0 auto;background:var(--warmweiss);box-shadow:var(--schatten-l)}
+  .serif{font-family:'Fraunces',Georgia,serif}
+
+  /* ── HK LOGO SVG ── */
+  .hk-svg-logo{display:block;overflow:visible}
+  .collab-x{font-size:clamp(16px,2vw,22px);font-weight:800;color:rgba(255,255,255,.2);flex-shrink:0;line-height:1}
+
+  /* ── STRIP ── */
+  .strip{
+    background:var(--anthrazit);color:var(--gold-hell);
+    font-size:clamp(9px,1.1vw,11px);letter-spacing:2.5px;text-transform:uppercase;
+    text-align:center;padding:11px 24px;font-weight:600;
+    border-bottom:1px solid rgba(201,168,76,.25)
+  }
+
+  /* ── COVER ── */
+  .cover{
+    background:var(--anthrazit);color:#fff;
+    padding:clamp(40px,6vw,80px) clamp(24px,6.5vw,72px) clamp(36px,5.5vw,72px);
+    position:relative;overflow:hidden
+  }
+  .cover::before{content:'';position:absolute;top:-160px;right:-160px;width:480px;height:480px;
+    border-radius:50%;background:radial-gradient(circle,rgba(176,30,44,.22),transparent 65%);pointer-events:none}
+  .cover::after{content:'';position:absolute;bottom:-200px;left:-120px;width:420px;height:420px;
+    border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.10),transparent 65%);pointer-events:none}
+  .cover-top{display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:clamp(32px,5vw,64px);position:relative;z-index:1;flex-wrap:wrap;gap:16px}
+  .cover-logo{font-size:clamp(24px,3.5vw,34px);font-weight:800;letter-spacing:-1px}
+  .cover-logo .t{color:#fff}.cover-logo .d{color:var(--rot)}
+  .cover-logo .sub{display:block;font-size:9px;letter-spacing:4px;color:rgba(255,255,255,.4);
+    font-weight:500;margin-top:3px;text-transform:uppercase}
+  .cover-badge{border:1px solid var(--gold);color:var(--gold-hell);
+    font-size:clamp(9px,1vw,10px);letter-spacing:3px;text-transform:uppercase;
+    padding:9px 20px;font-weight:700;border-radius:2px;white-space:nowrap}
+  .cover-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;position:relative;z-index:1}
+  .cover-eyebrow .bar{width:40px;height:2px;background:var(--rot)}
+  .cover-eyebrow span{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--rot);font-weight:600}
+  .cover-tamil{font-size:clamp(16px,2.2vw,22px);color:var(--gold-hell);font-weight:400;
+    margin-bottom:14px;position:relative;z-index:1}
+  .cover h1{font-size:clamp(36px,6.5vw,68px);line-height:1.02;font-weight:900;
+    letter-spacing:clamp(-1px,-0.03em,-2px);margin-bottom:clamp(18px,2.5vw,28px);position:relative;z-index:1}
+  .cover h1 em{font-style:italic;color:var(--gold-hell)}
+  .cover-intro{font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.6);max-width:560px;
+    line-height:1.75;margin-bottom:clamp(32px,4.5vw,56px);position:relative;z-index:1;font-weight:400}
+  .cover-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,24px);
+    padding-top:clamp(20px,2.5vw,36px);border-top:1px solid rgba(255,255,255,.12);position:relative;z-index:1}
+  .cover-meta .label{font-size:9px;letter-spacing:2px;text-transform:uppercase;
+    color:rgba(255,255,255,.35);margin-bottom:7px;font-weight:600}
+  .cover-meta .val{font-size:clamp(12px,1.3vw,15px);color:#fff;font-weight:600}
+
+  /* ── SECTION BASE ── */
+  .sec{padding:clamp(36px,5.5vw,72px) clamp(24px,6.5vw,72px)}
+  .sec-head{margin-bottom:clamp(28px,3.5vw,44px);max-width:700px}
+  .sec-eyebrow{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+  .sec-eyebrow .bar{width:32px;height:2px;background:var(--rot)}
+  .sec-eyebrow span{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rot);font-weight:700}
+  .sec-head h2{font-size:clamp(26px,3.8vw,40px);font-weight:900;
+    letter-spacing:clamp(-0.5px,-0.03em,-1.2px);line-height:1.1;margin-bottom:8px;color:var(--anthrazit)}
+  .sec-head .tamil-sub{font-size:clamp(15px,1.7vw,18px);color:var(--text-leise);font-weight:400;margin-bottom:18px}
+  .sec-head p{font-size:clamp(13px,1.4vw,16px);color:var(--text);line-height:1.8}
+  .sec-head p + p{margin-top:16px}
+
+  /* ── WEBSITE PREVIEW ── */
+  .preview-wrap{background:var(--papier)}
+  .browser{border-radius:10px;overflow:hidden;box-shadow:var(--schatten-m);border:1px solid var(--linie);background:#fff}
+  .browser-bar{background:#EBE6DD;padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--linie)}
+  .browser-bar .dot{width:11px;height:11px;border-radius:50%}
+  .dot.r{background:#E5614B}.dot.y{background:#E8B04B}.dot.g{background:#5BBF6A}
+  .browser-url{margin-left:14px;background:#fff;border-radius:6px;padding:5px 14px;
+    font-size:12px;color:var(--text-leise);flex:1;max-width:320px;font-weight:500}
+  .m-topbar{background:var(--anthrazit);color:rgba(255,255,255,.55);
+    font-size:clamp(8px,.9vw,10px);padding:7px 22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px}
+  .m-header{padding:clamp(10px,1.5vw,18px) clamp(12px,2vw,22px);
+    display:flex;justify-content:space-between;align-items:center;
+    border-bottom:2px solid var(--rot);background:#fff;flex-wrap:wrap;gap:8px}
+  .m-logo{font-size:clamp(16px,2vw,22px);font-weight:800;letter-spacing:-.5px}
+  .m-logo .d{color:var(--rot)}
+  .m-nav{display:flex;gap:clamp(8px,1.2vw,18px);font-size:clamp(9px,1vw,11px);font-weight:600;color:var(--text);flex-wrap:wrap}
+  .m-nav .more{color:var(--rot)}
+  .m-cta{background:var(--rot);color:#fff;font-size:clamp(8px,.9vw,10px);font-weight:700;padding:7px 14px;border-radius:4px;white-space:nowrap}
+  .m-hero{display:grid;grid-template-columns:2fr 1fr;gap:2px;background:var(--linie)}
+  .m-hero-main{background:linear-gradient(135deg,#3a2a2c,#1A1A1C);
+    aspect-ratio:16/9;position:relative;display:flex;align-items:flex-end;padding:20px}
+  .m-hero-main .tag{position:absolute;top:16px;left:16px;background:var(--rot);
+    color:#fff;font-size:clamp(7px,.8vw,8px);font-weight:700;letter-spacing:1px;padding:4px 9px;border-radius:3px}
+  .m-hero-main .title{color:#fff;font-size:clamp(11px,1.3vw,15px);font-weight:700;line-height:1.3}
+  .m-hero-side{display:flex;flex-direction:column;gap:2px}
+  .m-hero-card{background:#fff;flex:1;padding:clamp(8px,1vw,12px) clamp(10px,1.2vw,14px);
+    display:flex;flex-direction:column;justify-content:center}
+  .m-hero-card .ct{font-size:clamp(9px,1vw,11px);font-weight:600;color:var(--text);line-height:1.35}
+  .m-hero-card .cd{font-size:clamp(8px,.9vw,9px);color:var(--text-leise);margin-top:5px}
+  .m-ticker{background:var(--rot);color:#fff;font-size:clamp(8px,.9vw,10px);font-weight:600;padding:8px 22px;letter-spacing:.3px}
+  .m-grid{padding:clamp(10px,1.5vw,18px) clamp(12px,2vw,22px);background:#fff}
+  .m-grid-label{font-size:clamp(11px,1.2vw,13px);font-weight:800;color:var(--rot);margin-bottom:12px;letter-spacing:-.3px}
+  .m-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.2vw,14px)}
+  .m-card .img{aspect-ratio:16/10;border-radius:5px;background:linear-gradient(135deg,#D8CFC0,#C2B49E)}
+  .m-card .img.v2{background:linear-gradient(135deg,#C9B8B0,#A89088)}
+  .m-card .img.v3{background:linear-gradient(135deg,#BFC4C9,#9AA3AB)}
+  .m-card .mt{font-size:clamp(8px,.9vw,10px);font-weight:600;color:var(--text);margin-top:8px;line-height:1.4}
+  .m-card .md{font-size:clamp(7px,.8vw,8px);color:var(--text-leise);margin-top:4px}
+  .m-banner{margin:clamp(10px,1.5vw,16px) clamp(12px,2vw,22px);
+    border:1px dashed var(--gold);background:rgba(201,168,76,.06);
+    padding:14px;text-align:center;font-size:clamp(8px,.9vw,10px);font-weight:600;color:var(--gold);letter-spacing:1px}
+  .preview-caption{text-align:center;font-size:13px;color:var(--text-leise);margin-top:22px;font-style:italic}
+
+  /* ── PILLS ── */
+  .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .pill{background:#fff;border:1px solid var(--linie);padding:9px 18px;border-radius:2px;
+    font-size:13px;font-weight:600;color:var(--anthrazit)}
+  .pill.new{border-color:var(--gruen);color:var(--gruen)}
+
+  /* ── FEATURE GRID ── */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--linie);margin-top:36px;border:1px solid var(--linie)}
+  .feat{background:var(--warmweiss);padding:clamp(18px,2.5vw,28px) clamp(16px,2.2vw,26px)}
+  .feat .num{font-size:11px;font-weight:800;color:var(--rot);letter-spacing:1px;margin-bottom:12px}
+  .feat h4{font-size:clamp(13px,1.4vw,16px);font-weight:700;color:var(--anthrazit);margin-bottom:8px}
+  .feat p{font-size:clamp(12px,1.2vw,13.5px);color:var(--text-leise);line-height:1.6}
+
+  /* ── SITEMAP TABLE ── */
+  .smap{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--linie);box-shadow:var(--schatten-s)}
+  .smap thead th{background:var(--anthrazit);color:#fff;padding:14px 20px;
+    font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;text-align:left}
+  .smap tbody td{padding:clamp(10px,1.4vw,15px) clamp(14px,1.8vw,20px);
+    border-bottom:1px solid var(--linie);font-size:clamp(12px,1.3vw,14px);vertical-align:middle}
+  .smap tbody tr:last-child td{border-bottom:none}
+  .smap .pg{font-weight:700;color:var(--anthrazit)}
+  .smap .pgd{font-size:12px;color:var(--text-leise);margin-top:2px}
+  .badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.5px;
+    padding:3px 9px;border-radius:2px;white-space:nowrap}
+  .badge.ja{background:rgba(62,125,90,.12);color:var(--gruen)}
+  .badge.mod{background:rgba(201,168,76,.15);color:#9A7B30}
+  .badge.opt{background:rgba(26,26,28,.07);color:var(--text-leise)}
+
+  /* ── BANNER POSITIONS ── */
+  .banner-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.8vw,20px);margin-top:8px}
+  .bpos{background:#fff;border:1px solid var(--linie);padding:clamp(16px,2vw,24px);position:relative}
+  .bpos::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gold)}
+  .bpos .bnum{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+    color:var(--gold);margin-bottom:8px}
+  .bpos h4{font-size:clamp(13px,1.4vw,15px);font-weight:700;color:var(--anthrazit);margin-bottom:6px}
+  .bpos p{font-size:12.5px;color:var(--text-leise);line-height:1.55}
+  .bpos .bsize{font-size:11px;font-weight:600;color:var(--rot);margin-top:8px}
+
+  /* ── PACKAGES ── */
+  .pkgs-sec{background:var(--anthrazit);color:#fff}
+  .pkgs-sec .sec-head h2{color:#fff}
+  .pkgs-sec .sec-head p{color:rgba(255,255,255,.55)}
+  .pkgs-sec .sec-head .tamil-sub{color:var(--gold-hell)}
+  .pkg{background:var(--anthrazit-2);border:1px solid rgba(255,255,255,.08);border-left:5px solid var(--rot);
+    padding:clamp(24px,3.5vw,40px) clamp(20px,3.8vw,44px);margin-bottom:24px;position:relative}
+  .pkg.rec{border-left-color:var(--gold);background:linear-gradient(135deg,#2C2620,#26262A)}
+  .pkg-ribbon{position:absolute;top:0;right:0;background:var(--gold);color:var(--anthrazit);
+    font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:8px 18px}
+  .pkg-head{display:flex;justify-content:space-between;align-items:flex-start;
+    margin-bottom:clamp(18px,2.5vw,28px);flex-wrap:wrap;gap:20px}
+  .pkg-name-block .kicker{font-size:10px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--gold-hell);font-weight:700;margin-bottom:8px}
+  .pkg-name{font-size:clamp(22px,2.8vw,30px);font-weight:900;letter-spacing:-.8px;color:#fff}
+  .pkg-dur{font-size:13px;color:rgba(255,255,255,.45);margin-top:6px}
+  .pkg-price-block{text-align:right}
+  .pkg-price{font-size:clamp(38px,4.8vw,52px);font-weight:900;
+    letter-spacing:clamp(-1px,-0.04em,-2px);color:#fff;line-height:1}
+  .pkg.rec .pkg-price{color:var(--gold-hell)}
+  .pkg-price-suf{font-size:13px;color:rgba(255,255,255,.4);font-weight:500;display:block;margin-top:4px}
+  .pkg-feats{display:grid;grid-template-columns:1fr 1fr;gap:10px clamp(16px,2.5vw,32px);margin-bottom:28px}
+  .feat-item{display:flex;align-items:flex-start;gap:11px;font-size:clamp(12px,1.3vw,14px);
+    color:rgba(255,255,255,.85);line-height:1.5;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+  .feat-item:last-child{border-bottom:none}
+  .feat-item .ind{width:18px;height:18px;border-radius:50%;flex-shrink:0;margin-top:2px;
+    display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800}
+  .feat-item.yes .ind{background:rgba(62,125,90,.2);color:#6FCF97}
+  .feat-item.no{color:rgba(255,255,255,.3)}
+  .feat-item.no .ind{background:rgba(255,255,255,.06);color:rgba(255,255,255,.3)}
+  .feat-item.no span{text-decoration:line-through}
+  .feat-item .feat-body{display:flex;flex-direction:column;gap:3px}
+  .feat-item .feat-label{font-weight:700;color:rgba(255,255,255,.9)}
+  .feat-item .feat-desc{font-size:clamp(11px,1.1vw,12.5px);color:rgba(255,255,255,.45);line-height:1.6;font-weight:400}
+  .feat-divider{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.08);margin:4px 0;
+    font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);
+    font-weight:700;padding-top:12px}
+  .pay{background:rgba(255,255,255,.04);border-radius:6px;padding:20px 24px;margin-top:8px}
+  .pay-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;
+    color:rgba(255,255,255,.4);font-weight:700;margin-bottom:14px}
+  .pay-bar{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:3px;margin-bottom:14px}
+  .pay-bar .seg1{background:var(--rot);flex:50;border-radius:4px}
+  .pay-bar .seg2{background:var(--gold);flex:50;border-radius:4px}
+  .pkg.rec .pay-bar .seg1{background:var(--gold)}
+  .pkg.rec .pay-bar .seg2{background:var(--rot)}
+  .pay-rows{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .pay-row{display:flex;flex-direction:column;gap:3px}
+  .pay-row.right{align-items:flex-end}
+  .pay-row .pct{font-size:13px;font-weight:800;color:#fff}
+  .pay-row .amt{font-size:13px;color:var(--gold-hell);font-weight:700}
+
+  /* ── PKG WHY BLOCK ── */
+  .pkg-why{border-top:1px solid rgba(255,255,255,.1);margin-top:24px;padding-top:20px}
+  .pkg-why-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+    color:rgba(255,255,255,.3);font-weight:700;margin-bottom:12px}
+  .pkg-why p{font-size:clamp(13px,1.4vw,14.5px);color:rgba(255,255,255,.72);line-height:1.8}
+  .pkg-roi{display:flex;gap:12px;margin-top:16px;
+    background:rgba(255,255,255,.05);padding:14px 16px;border-radius:3px;
+    border-left:3px solid var(--gruen)}
+  .pkg-roi::before{content:'↗';font-size:20px;color:var(--gruen);flex-shrink:0;line-height:1.2;font-weight:700}
+  .pkg-roi p{font-size:clamp(12px,1.2vw,13px);color:rgba(255,255,255,.6);line-height:1.7;margin:0}
+  .pkg-roi p strong{color:rgba(255,255,255,.85)}
+  .pkg.rec .pkg-roi{border-left-color:var(--gold)}
+  .pkg.rec .pkg-roi::before{color:var(--gold)}
+
+  /* ── MONETARISIERUNG ── */
+  .mono-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--linie);border:1px solid var(--linie);margin-top:8px}
+  .mono-card{background:#fff;padding:clamp(20px,2.5vw,30px) clamp(16px,2vw,26px)}
+  .mono-icon{font-size:28px;margin-bottom:12px;line-height:1}
+  .mono-card h4{font-size:clamp(15px,1.6vw,18px);font-weight:800;color:var(--anthrazit);
+    margin-bottom:6px;letter-spacing:-.3px}
+  .mono-card .mono-sub{font-size:12px;color:var(--text-leise);margin-bottom:16px;line-height:1.5}
+  .mono-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px}
+  .mono-list li{font-size:clamp(12px,1.2vw,13.5px);color:var(--text);line-height:1.5;
+    display:flex;flex-direction:column;gap:2px;padding-bottom:10px;border-bottom:1px solid var(--linie)}
+  .mono-list li:last-child{border-bottom:none;padding-bottom:0}
+  .mono-list .ml{font-weight:700;color:var(--anthrazit)}
+  .mono-list .mp{font-size:11.5px;color:var(--gruen);font-weight:700;margin-top:2px}
+  .mono-list .md{font-size:11.5px;color:var(--text-leise)}
+  .mono-system{background:var(--anthrazit);color:#fff;
+    padding:clamp(20px,2.5vw,30px) clamp(16px,2vw,26px);margin-top:1px;
+    border:1px solid var(--linie);border-top:none}
+  .mono-system h4{font-size:clamp(14px,1.5vw,17px);font-weight:800;color:var(--gold-hell);
+    margin-bottom:14px}
+  .mono-system-flows{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.5vw,20px)}
+  .mono-flow{background:rgba(255,255,255,.05);padding:14px 16px;border-radius:3px;
+    border-left:3px solid var(--rot)}
+  .mono-flow p{font-size:clamp(11.5px,1.2vw,13px);color:rgba(255,255,255,.7);line-height:1.65}
+  .mono-flow strong{color:#fff}
+
+  /* ── ADD-ONS ── */
+  .addons-sec{background:var(--papier)}
+  .addons{width:100%;border-collapse:collapse;background:#fff;box-shadow:var(--schatten-s);border:1px solid var(--linie)}
+  .addons thead th{background:var(--anthrazit);color:#fff;text-align:left;
+    font-size:clamp(9px,1vw,10px);letter-spacing:1.5px;text-transform:uppercase;padding:16px 22px;font-weight:700}
+  .addons thead th.right{text-align:right}
+  .addons tbody td{padding:clamp(12px,1.6vw,18px) clamp(14px,1.8vw,22px);
+    border-bottom:1px solid var(--linie);font-size:clamp(12px,1.3vw,14px);vertical-align:top}
+  .addons tbody tr:last-child td{border-bottom:none}
+  .addons .ao-name{font-weight:700;color:var(--anthrazit)}
+  .addons .ao-det{font-size:clamp(11px,1.1vw,12.5px);color:var(--text-leise);margin-top:3px}
+  .addons .ao-compat{font-size:11px;color:var(--rot);font-weight:600;white-space:nowrap}
+  .addons .ao-price{text-align:right;font-weight:800;color:var(--anthrazit);
+    font-size:clamp(13px,1.5vw,16px);white-space:nowrap}
+  .addons tr.rabatt td{background:rgba(201,168,76,.08);font-weight:700}
+  .addons tr.rabatt .ao-price{color:var(--rot)}
+
+  /* ── DELIVERABLES ── */
+  .del-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.8vw,20px);margin-top:8px}
+  .del-block{background:#fff;border:1px solid var(--linie);padding:clamp(18px,2.2vw,26px)}
+  .del-block h4{font-size:clamp(13px,1.4vw,15px);font-weight:800;color:var(--anthrazit);
+    margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--rot)}
+  .del-block ul{list-style:none;padding:0}
+  .del-block ul li{font-size:clamp(12px,1.3vw,13.5px);color:var(--text);padding:5px 0;
+    border-bottom:1px solid var(--linie);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+  .del-block ul li:last-child{border-bottom:none}
+  .del-block ul li::before{content:'→';color:var(--rot);font-weight:700;flex-shrink:0;margin-top:1px}
+
+  /* ── SCOPE NOTE ── */
+  .scope-box{background:rgba(176,30,44,.06);border:1px solid rgba(176,30,44,.18);
+    border-left:4px solid var(--rot);padding:clamp(16px,2vw,24px);margin-top:24px}
+  .scope-box h4{font-size:14px;font-weight:800;color:var(--rot);margin-bottom:10px}
+  .scope-box ul{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px}
+  .scope-box ul li{font-size:clamp(12px,1.3vw,13px);color:var(--text);display:flex;gap:8px;align-items:flex-start}
+  .scope-box ul li::before{content:'✕';color:var(--rot);font-size:11px;font-weight:800;flex-shrink:0;margin-top:2px}
+
+  /* ── STEPS ── */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px);margin-top:8px}
+  .step{position:relative;padding:clamp(20px,2.8vw,32px) clamp(16px,2.2vw,28px);background:#fff;
+    border:1px solid var(--linie);border-top:3px solid var(--rot)}
+  .step .n{font-family:'Fraunces',serif;font-size:clamp(36px,4.5vw,48px);font-weight:900;
+    color:var(--rot);line-height:1;margin-bottom:16px;opacity:.9}
+  .step h4{font-size:clamp(15px,1.6vw,18px);font-weight:800;color:var(--anthrazit);margin-bottom:10px}
+  .step p{font-size:clamp(12px,1.3vw,14px);color:var(--text-leise);line-height:1.65}
+
+  /* ── CTA ── */
+  .cta{background:var(--anthrazit);color:#fff;
+    padding:clamp(48px,6.5vw,72px) clamp(24px,6.5vw,72px);text-align:center;position:relative;overflow:hidden}
+  .cta::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+    width:500px;height:300px;background:radial-gradient(ellipse,rgba(176,30,44,.18),transparent 70%)}
+  .cta-tamil{font-size:clamp(15px,1.7vw,18px);color:var(--gold-hell);margin-bottom:14px;position:relative;z-index:1}
+  .cta h2{font-size:clamp(28px,4.3vw,46px);font-weight:900;letter-spacing:-1.5px;
+    margin-bottom:14px;position:relative;z-index:1}
+  .cta h2 em{font-style:italic;color:var(--gold-hell)}
+  .cta p{color:rgba(255,255,255,.5);font-size:clamp(13px,1.5vw,16px);margin-bottom:36px;position:relative;z-index:1}
+  .cta-mail{display:inline-block;font-size:clamp(18px,2.4vw,26px);font-weight:800;color:#fff;
+    border-bottom:2px solid var(--rot);padding-bottom:6px;margin-bottom:18px;position:relative;z-index:1}
+  .cta-note{font-size:13px;color:var(--gold-hell);letter-spacing:1px;position:relative;z-index:1}
+
+  /* ── FOOTER ── */
+  .footer{background:#0F0F11;color:rgba(255,255,255,.4);
+    padding:clamp(24px,3vw,36px) clamp(24px,6.5vw,72px);
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:16px;font-size:12px}
+  .footer .fr{line-height:1.7}
+
+  /* ── PFLICHTUMFANG LIST ── */
+  .pflicht-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--linie);border:1px solid var(--linie);margin-top:8px;counter-reset:pflicht}
+  .pflicht-item{counter-increment:pflicht;background:#fff;
+    padding:clamp(14px,1.8vw,20px) clamp(16px,2vw,22px);
+    display:flex;gap:16px;align-items:flex-start}
+  .pflicht-item::before{content:counter(pflicht,decimal-leading-zero);
+    font-family:'Fraunces',Georgia,serif;font-size:clamp(20px,2.5vw,26px);font-weight:900;
+    color:var(--rot);opacity:.45;line-height:1;flex-shrink:0;width:30px;margin-top:1px}
+  .pflicht-item-body .pt{font-weight:700;font-size:clamp(13px,1.4vw,14.5px);color:var(--anthrazit);line-height:1.3}
+  .pflicht-item-body .pd{font-size:clamp(11px,1.1vw,12.5px);color:var(--text-leise);margin-top:3px;line-height:1.5}
+
+  /* ── PRIORITY BLOCKS ── */
+  .prio-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:36px;
+    border:1px solid var(--linie);overflow:hidden}
+  .prio-block{padding:clamp(24px,3vw,36px) clamp(20px,2.5vw,32px)}
+  .prio-block.p1{background:var(--anthrazit);color:#fff;border-right:1px solid rgba(255,255,255,.08)}
+  .prio-block.p2{background:linear-gradient(160deg,#2C2418,#26262A);border-right:1px solid rgba(201,168,76,.2)}
+  .prio-block.p3{background:#fff}
+  .prio-label{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .prio-block.p1 .prio-label{color:rgba(176,30,44,.8)}
+  .prio-block.p2 .prio-label{color:var(--gold)}
+  .prio-block.p3 .prio-label{color:var(--text-leise)}
+  .prio-label .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .prio-block.p1 .dot{background:var(--rot)}
+  .prio-block.p2 .dot{background:var(--gold)}
+  .prio-block.p3 .dot{background:var(--linie)}
+  .prio-block h3{font-size:clamp(17px,1.8vw,21px);font-weight:800;line-height:1.2;margin-bottom:16px;letter-spacing:-.4px}
+  .prio-block.p1 h3{color:#fff}
+  .prio-block.p2 h3{color:var(--gold-hell)}
+  .prio-block.p3 h3{color:var(--anthrazit)}
+  .prio-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:7px}
+  .prio-list li{font-size:clamp(12px,1.2vw,13.5px);line-height:1.45;display:flex;align-items:flex-start;gap:9px;padding:4px 0;border-bottom:1px solid}
+  .prio-list li:last-child{border-bottom:none}
+  .prio-block.p1 .prio-list li{color:rgba(255,255,255,.75);border-bottom-color:rgba(255,255,255,.06)}
+  .prio-block.p2 .prio-list li{color:rgba(255,255,255,.7);border-bottom-color:rgba(201,168,76,.12)}
+  .prio-block.p3 .prio-list li{color:var(--text);border-bottom-color:var(--linie)}
+  .prio-list li::before{font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px}
+  .prio-block.p1 .prio-list li::before{content:'✓';color:rgba(176,30,44,.8)}
+  .prio-block.p2 .prio-list li::before{content:'★';color:var(--gold)}
+  .prio-block.p3 .prio-list li::before{content:'+';color:var(--text-leise)}
+  .prio-highlight{margin-top:18px;padding:14px 16px;font-size:12.5px;line-height:1.6;border-radius:3px}
+  .prio-block.p2 .prio-highlight{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:rgba(255,255,255,.65)}
+  .prio-block.p2 .prio-highlight strong{color:var(--gold-hell)}
+
+  /* ── AUDIT BEFORE/AFTER ── */
+  .audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--linie);border:1px solid var(--linie);margin-top:8px}
+  .audit-col-head{background:var(--anthrazit-2);padding:12px 20px;
+    font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.5)}
+  .audit-col-head.bad{background:#2C1A1C;color:rgba(176,30,44,.7)}
+  .audit-col-head.good{background:#1A2C1E;color:rgba(62,125,90,.8)}
+  .audit-row{display:contents}
+  .audit-cell{padding:clamp(12px,1.6vw,18px) clamp(14px,1.8vw,20px);
+    border-bottom:1px solid var(--linie);vertical-align:middle;background:#fff;
+    font-size:clamp(12px,1.3vw,13.5px);line-height:1.55}
+  .audit-cell.bad{background:#FFF9F9}
+  .audit-cell.good{background:#F7FBF8}
+  .audit-cell .area{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--text-leise);margin-bottom:5px}
+  .audit-cell.bad .area{color:rgba(176,30,44,.6)}
+  .audit-cell.good .area{color:rgba(62,125,90,.7)}
+  .audit-cell .issue{font-weight:600;color:var(--anthrazit)}
+  .audit-cell.bad .issue{color:#8A1722}
+  .audit-cell.good .issue{color:#2D6343}
+  .audit-cell .detail{font-size:12px;color:var(--text-leise);margin-top:3px}
+
+  /* ── PRINT ── */
+  @media print{
+    body{background:#fff}.doc{box-shadow:none;max-width:100%}
+    .pkg,.feat,.step,.browser{break-inside:avoid}.sec{padding:48px}
+  }
+
+  /* ── MOBILE 600px ── */
+  @media(max-width:600px){
+    .pflicht-grid{grid-template-columns:1fr}
+    .prio-grid{grid-template-columns:1fr}
+    .prio-block.p1,.prio-block.p2{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
+    .audit-grid{grid-template-columns:1fr}
+    .audit-col-head.bad,.audit-col-head.good{padding:10px 14px}
+    .audit-cell{font-size:12px;padding:12px 14px}
+
+    body{background:var(--warmweiss)}.doc{box-shadow:none}
+    .strip{font-size:9px;letter-spacing:1.5px;padding:10px 16px}
+    .cover{padding:32px 20px 36px}
+    .cover-top{flex-direction:column;align-items:center;gap:12px;margin-bottom:28px}
+    .cover-logo{text-align:center;width:100%}
+    .cover-top>div{width:100%;display:flex;justify-content:center}
+    .cover h1{font-size:34px;letter-spacing:-1px}
+    .cover-intro{font-size:14px;margin-bottom:28px}
+    .cover-meta{grid-template-columns:1fr 1fr;gap:16px 12px}
+    .cover-meta .val{font-size:13px}
+    .sec{padding:32px 20px}
+    .sec-head h2{font-size:26px}
+    .sec-head .tamil-sub{font-size:15px}
+    .browser-bar .browser-url{max-width:160px;font-size:10px}
+    .browser{overflow-x:hidden;width:100%}
+    .m-topbar{font-size:9px;padding:6px 10px;gap:2px}
+    .m-topbar span:last-child{display:none}
+    .m-header{padding:10px 14px}
+    .m-nav{display:none}
+    .m-hero{grid-template-columns:1fr}
+    .m-hero-side{display:none}
+    .m-hero-main{aspect-ratio:16/8;padding:14px}
+    .m-hero-main .title{font-size:12px}
+    .m-cards{grid-template-columns:1fr 1fr}
+    .m-banner{margin:10px 14px}
+    .feat-grid{grid-template-columns:1fr 1fr}
+    .feat{padding:18px 14px}
+    .banner-grid{grid-template-columns:1fr}
+    .smap tbody .pgd{display:none}
+    .pkgs-sec{padding-left:20px;padding-right:20px}
+    .pkg{padding:22px 18px;border-left-width:4px}
+    .pkg-ribbon{font-size:9px;padding:6px 12px}
+    .pkg-head{gap:12px}
+    .pkg-name{font-size:22px}
+    .pkg-price{font-size:36px}
+    .pkg-feats{grid-template-columns:1fr;gap:8px}
+    .feat-item{font-size:13px}
+    .pay{padding:16px}
+    .pay-rows{gap:12px}
+    .pay-row.right{align-items:flex-start}
+    .addons thead .compat-col{display:none}
+    .addons tbody .compat-cell{display:none}
+    .addons thead th{padding:12px 14px;font-size:9px}
+    .addons tbody td{padding:12px 14px;font-size:12px}
+    .del-grid{grid-template-columns:1fr}
+    .scope-box ul{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .step{padding:20px 16px}
+    .cta{padding:40px 20px}
+    .cta h2{font-size:28px}
+    .cta-mail{font-size:18px;word-break:break-all}
+    .footer{padding:20px;flex-direction:column;align-items:flex-start;gap:12px}
+    .footer .fr{text-align:left}
+  }
+
+  @media(max-width:400px){
+    .cover h1{font-size:28px}
+    .cover-meta{grid-template-columns:1fr 1fr}
+    .feat-grid{grid-template-columns:1fr}
+    .pkg-price{font-size:30px}
+    .m-cards{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="strip">Angebot gültig bis 30. Juni 2026 · Erstellt für Tamil.de · Ref HKG-2026-TML-004</div>
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="cover-top">
+      <div class="cover-logo">
+        <span class="t">tamil</span><span class="d">.de</span>
+        <span class="sub">portal · lifestyle · entertainment</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <div class="cover-badge">Premium Angebot</div>
+      </div>
+    </div>
+    <div class="cover-eyebrow"><span class="bar"></span><span>Website Relaunch 2026</span></div>
+    <div class="cover-tamil serif">இணையதள மறுவடிவமைப்பு</div>
+    <h1>Kein Theme-Wechsel.<br><em>Ein richtiger Relaunch.</em></h1>
+    <p class="cover-intro">Tamil.de hat einen starken Kern. Was fehlt, ist Struktur. Dieser Relaunch ist kein Theme-Wechsel — es ist der strukturelle Neuaufbau als digitales Magazin-, Event- und Werbeportal für die tamilische Community im DACH-Raum. Fundiert. Analysiert. Planbar.</p>
+    <div class="cover-meta">
+      <div><div class="label">Kunde</div><div class="val">Tamil.de</div></div>
+      <div><div class="label">Agentur</div><div class="val">HK Growth Operator</div></div>
+      <div><div class="label">Datum</div><div class="val">02. Juni 2026</div></div>
+      <div><div class="label">Referenz</div><div class="val">HKG-2026-TML-003</div></div>
+    </div>
+  </section>
+
+  <!-- WEBSITE PREVIEW -->
+  <section class="sec preview-wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Vision</span></div>
+      <h2>So wird sich Tamil.de anfühlen</h2>
+      <div class="tamil-sub serif">முன்னோட்டம் · Eine erste Vorstellung</div>
+      <p>Klares, redaktionelles Magazin-Layout mit kräftigen Headlines, integriertem Kontakt-Header, viel Raum für Bilder und einer Navigation, die alle neun Themenbereiche elegant zusammenführt. Werbeplätze sind fest eingeplant — sichtbar, aber nie störend.</p>
+    </div>
+    <div class="browser">
+      <div class="browser-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="browser-url">https://www.tamil.de</span>
+      </div>
+      <div class="m-topbar"><span>📞 +49 69 123 456 · info@tamil.de</span><span>Facebook · Instagram · YouTube</span></div>
+      <div class="m-header">
+        <div class="m-logo">tamil<span class="d">.de</span></div>
+        <div class="m-nav"><span>Nachrichten</span><span>Entertainment</span><span>Kino</span><span>Events</span><span>Küche</span><span>Sport</span><span class="more">Mehr ▾</span></div>
+        <div class="m-cta">Werbung schalten</div>
+      </div>
+      <div class="m-hero">
+        <div class="m-hero-main">
+          <span class="tag">TOP THEMA</span>
+          <div class="title">Tamilische Kulturwoche begeistert tausende Besucher in Frankfurt</div>
+        </div>
+        <div class="m-hero-side">
+          <div class="m-hero-card"><div class="ct">Neues Kino: Kollywood-Premiere in Berlin</div><div class="cd">vor 2 Stunden</div></div>
+          <div class="m-hero-card"><div class="ct">Rezept der Woche: Authentisches Sambar</div><div class="cd">vor 5 Stunden</div></div>
+          <div class="m-hero-card"><div class="ct">Sport: Tamilisches Team gewinnt Pokalfinale</div><div class="cd">gestern</div></div>
+        </div>
+      </div>
+      <div class="m-ticker">AKTUELL · Neueste Meldungen aus der tamilischen Community in Deutschland</div>
+      <div class="m-grid">
+        <div class="m-grid-label">Nachrichten</div>
+        <div class="m-cards">
+          <div class="m-card"><div class="img"></div><div class="mt">Kulturverein erhält Bundesförderung 2026</div><div class="md">02.06.2026</div></div>
+          <div class="m-card"><div class="img v2"></div><div class="mt">Neue Integrationsinitiative gestartet</div><div class="md">01.06.2026</div></div>
+          <div class="m-card"><div class="img v3"></div><div class="mt">Tamil Nadu stärkt Beziehungen zu Deutschland</div><div class="md">31.05.2026</div></div>
+        </div>
+      </div>
+      <div class="m-banner">WERBEPLATZ · 728 × 90 LEADERBOARD · INTEGRIERT &amp; VERWALTBAR</div>
+    </div>
+    <p class="preview-caption">Designstudie — die finale Gestaltung wird in der Konzeptphase gemeinsam erarbeitet.</p>
+  </section>
+
+  <!-- PFLICHTUMFANG -->
+  <section class="sec">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Pflichtumfang</span></div>
+      <h2>Was dieser Relaunch leisten muss</h2>
+      <div class="tamil-sub serif">கட்டாய நோக்கம் · Bestätigt vom Auftraggeber</div>
+      <p>Der Relaunch von Tamil.de umfasst nicht nur eine optische Modernisierung, sondern den strukturellen Neuaufbau als digitales Magazin- und Nachrichtenportal. Im Fokus stehen klare Kategorien, bessere Nutzerführung, Werbeflächen, ein Eventbereich mit Ticketverlinkungen sowie eine skalierbare Grundlage für zukünftige Inhalte, Partner und Monetarisierung.</p>
+    </div>
+    <div class="pflicht-grid">
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Modernisierung der bestehenden Website</div><div class="pd">Technischer Neuaufbau auf stabiler CMS-Basis, kein bloßes Template-Update</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Beibehaltung &amp; Veredelung des Farbschemas</div><div class="pd">Das bestehende Erscheinungsbild wird modernisiert und konsistent übertragen — kein Markenbruch</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Neue Seiten- &amp; Kategorienstruktur</div><div class="pd">Nachrichten/News, Entertainment, Kino, Events, Küche, Sport, Kontakt — klar gegliedert in Haupt- und Unterkategorien</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Startseitenstruktur mit Top-Themen</div><div class="pd">Magazin-Layout mit steuerbarem Top-Themen-Bereich zur Hervorhebung relevanter Inhalte</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Eventbereich mit Kalenderfunktion</div><div class="pd">Übersicht kommender Veranstaltungen mit Datum, Ort, Beschreibung und Bildmaterial</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Externe Ticketverlinkung (z. B. Eventim)</div><div class="pd">Jede Veranstaltung erhält einen Button mit Link zum externen Ticketanbieter — zuverlässig ohne API-Abhängigkeit</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Werbebanner-System mit festen Platzierungen</div><div class="pd">Header, Sidebar, In-Article, Footer, Mobile — austauschbar direkt im Backend ohne Programmieraufwand</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Kontakt prominent im Header sichtbar</div><div class="pd">Direkter Zugang für Nutzer, Werbepartner und Veranstalter — sichtbar auf jeder Seite</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Mobile Optimierung</div><div class="pd">Alle Seiten für Smartphone und Tablet optimiert — mobile-first, da die Zielgruppe überwiegend mobil liest</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">CMS-Struktur für eigenständige Pflege</div><div class="pd">Beiträge, Events und Banner können nach dem Launch ohne externe Hilfe selbst verwaltet werden</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">SEO-Grundstruktur</div><div class="pd">Technische SEO für Kategorien, Beiträge und Veranstaltungen — damit Tamil.de in Suchmaschinen sichtbar bleibt</div></div></div>
+      <div class="pflicht-item"><div class="pflicht-item-body"><div class="pt">Saubere Navigationsstruktur</div><div class="pd">Klare, logische Navigation für ein Magazin-/Nachrichtenportal mit schneller Erreichbarkeit aller Bereiche</div></div></div>
+    </div>
+  </section>
+
+  <!-- KERNARGUMENTE -->
+  <section class="sec" style="background:var(--anthrazit);color:#fff">
+    <div class="feat-grid" style="margin-top:0;border-color:rgba(255,255,255,.08);background:rgba(255,255,255,.06)">
+      <div class="feat" style="background:transparent">
+        <div class="num" style="color:var(--gold-hell)">01</div>
+        <h4 style="color:#fff">Kein neues Theme — eine neue Plattform</h4>
+        <p style="color:rgba(255,255,255,.5)">Tamil.de hat einen starken Kern: klare Nische, treue Community, viele bestehende Inhalte. Aber das Potenzial wird nicht genutzt. Der Relaunch baut die Struktur, die Tamil.de wirklich braucht.</p>
+      </div>
+      <div class="feat" style="background:transparent">
+        <div class="num" style="color:var(--gold-hell)">02</div>
+        <h4 style="color:#fff">Echte Probleme — direkte Lösungen</h4>
+        <p style="color:rgba(255,255,255,.5)">Kino leer. Events veraltet. Kontakt nicht erreichbar. Sport nicht vorhanden. Wir haben Tamil.de eingehend analysiert — und wissen genau, was neu gebaut werden muss.</p>
+      </div>
+      <div class="feat" style="background:transparent">
+        <div class="num" style="color:var(--gold-hell)">03</div>
+        <h4 style="color:#fff">Werbung verdienen vom ersten Tag an</h4>
+        <p style="color:rgba(255,255,255,.5)">Definierte Bannerpositionen, verwaltbar im CMS. Eine Media-Kit-Seite. Ein Anfrageformular für Werbekunden. Tamil.de kann ab Launch Werbepartner professionell ansprechen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEITENSTRUKTUR -->
+  <section class="sec">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Seitenstruktur</span></div>
+      <h2>Neun Themenbereiche. Eine Plattform.</h2>
+      <div class="tamil-sub serif">வலைத்தள கட்டமைப்பு · Sitemap &amp; Navigation</div>
+      <p>Tamil.de erhält eine klare Navigationsstruktur. Die bestehende und neue Inhaltsstruktur wird in Haupt- und Unterkategorien gegliedert — darunter Nachrichten/News, Entertainment, Kino, Events, Küche und Sport. Falls gewünscht, können Nachrichten und News getrennt dargestellt oder redaktionell sinnvoll zusammengeführt werden.</p>
+    </div>
+
+    <div class="pills">
+      <span class="pill">Nachrichten / News</span>
+      <span class="pill">Community</span>
+      <span class="pill">Entertainment</span>
+      <span class="pill">Kino</span>
+      <span class="pill">Events</span>
+      <span class="pill">Küche</span>
+      <span class="pill">Sport</span>
+      <span class="pill">Kultur</span>
+      <span class="pill">Kontakt</span>
+    </div>
+
+    <div style="margin-top:32px">
+      <table class="smap">
+        <thead>
+          <tr>
+            <th style="width:34%">Seite / Template</th>
+            <th style="width:44%">Funktion</th>
+            <th style="width:22%">Enthalten ab</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><div class="pg">Startseite</div><div class="pgd">Hero, Top Themen, Kategorien, Werbebanner</div></td><td>Wichtigstes Magazin-Layout mit redaktionell steuerbaren Bereichen</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Kategorie-Template</div><div class="pgd">für alle 9 Bereiche</div></td><td>Einheitliches, anpassbares Layout pro Themenbereich</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Artikel-Template</div><div class="pgd">Detail-Seite pro Beitrag</div></td><td>Beitragsseite mit Bild, Text, Teilen-Funktion</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Kontaktseite</div><div class="pgd">+ Kontakt oben im Header</div></td><td>Formular, Adresse, Telefon/E-Mail sichtbar im Header</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Veranstaltungskalender</div><div class="pgd">Liste + Monatsansicht</div></td><td>Events übersichtlich mit Datum, Ort und Ticketlink</td><td><span class="badge mod">Portal Professional</span></td></tr>
+          <tr><td><div class="pg">Event-Detailseite</div></td><td>Einzelne Veranstaltung mit Eventim-Ticketlink</td><td><span class="badge mod">Portal Professional</span></td></tr>
+          <tr><td><div class="pg">Top Themen</div><div class="pgd">redaktionelles Widget</div></td><td>Manuell kuratierter Bereich auf der Startseite</td><td><span class="badge mod">Portal Professional</span></td></tr>
+          <tr><td><div class="pg">Werbung schalten</div><div class="pgd">Media-Kit-Seite</div></td><td>Info für Werbekunden, Bannerformate, Preise</td><td><span class="badge mod">Portal Professional</span></td></tr>
+          <tr><td><div class="pg">Suchseite</div></td><td>Suchergebnisse, gefiltert nach Kategorie</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Impressum / Datenschutz</div></td><td>Pflichtseiten gemäß deutschem Recht</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">404-Fehlerseite</div></td><td>Professionelle Fehlerseite mit Navigation</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Standardseite</div><div class="pgd">für Unterseiten ohne Kategorie</div></td><td>Flexibles Template für weitere Inhaltsseiten</td><td><span class="badge ja">Relaunch Basis</span></td></tr>
+          <tr><td><div class="pg">Rezept-Template</div><div class="pgd">Bereich Küche</div></td><td>Zutatenbox, Zubereitungsschritte, Kochzeit, Druckansicht</td><td><span class="badge mod">Media &amp; Ads</span></td></tr>
+          <tr><td><div class="pg">Kino-Übersicht</div><div class="pgd">Filmkritiken, Kinostarts, Trailer</div></td><td>Tamilische Filme mit Ticketlink, Stadt, Startdatum und Filmarchiv</td><td><span class="badge mod">Portal Professional</span></td></tr>
+          <tr><td><div class="pg">Werbung anfragen</div><div class="pgd">Formular für Werbekunden</div></td><td>Direkte Anfrage für Bannerbuchung, Eventsponsoring, Kooperationen</td><td><span class="badge mod">Portal Professional</span></td></tr>
+          <tr><td><div class="pg">Event einreichen</div><div class="pgd">Community-Formular</div></td><td>Veranstalter können Events direkt über ein Formular einreichen</td><td><span class="badge mod">Portal Professional</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- WERBEPLÄTZE -->
+  <section class="sec" style="background:var(--papier)">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Werbeplätze</span></div>
+      <h2>Feste Bannerpositionen — vermarktbar von Tag 1</h2>
+      <div class="tamil-sub serif">விளம்பர இடங்கள்</div>
+      <p>Alle Werbeplätze sind fest in das Theme integriert und über das CMS-Backend verwaltbar. Bannertausch ohne Programmieraufwand — direkt durch die Redaktion.</p>
+    </div>
+    <div class="banner-grid">
+      <div class="bpos">
+        <div class="bnum">Banner 01</div>
+        <h4>Header Leaderboard</h4>
+        <p>Direkt unter der Navigation — maximale Sichtbarkeit auf jeder Seite</p>
+        <div class="bsize">728 × 90 px (Desktop) / 320 × 50 px (Mobile)</div>
+      </div>
+      <div class="bpos">
+        <div class="bnum">Banner 02</div>
+        <h4>Startseite — Mid Content</h4>
+        <p>Zwischen Nachrichten-Block und nächster Kategorie eingebettet</p>
+        <div class="bsize">970 × 250 px Billboard</div>
+      </div>
+      <div class="bpos">
+        <div class="bnum">Banner 03</div>
+        <h4>Kategorieseite — Sidebar</h4>
+        <p>Rechts neben dem Artikel-Grid, sichtbar beim Scrollen durch Beiträge</p>
+        <div class="bsize">300 × 250 px Medium Rectangle</div>
+      </div>
+      <div class="bpos">
+        <div class="bnum">Banner 04 – 05</div>
+        <h4>Artikel-Seite — In-Content</h4>
+        <p>Innerhalb des Artikeltexts platziert — hohe Aufmerksamkeit, wenig Störwirkung</p>
+        <div class="bsize">300 × 600 px Half Page / 728 × 90 px</div>
+      </div>
+    </div>
+    <div class="scope-box" style="border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.05);border-left-color:var(--gold)">
+      <h4 style="color:#9A7B30">Hinweis Eventim-Anbindung</h4>
+      <p style="font-size:13.5px;color:var(--text)">Die Eventim-Verlinkung erfolgt über <strong>manuell gepflegte Ticketlinks</strong> im Veranstaltungskalender — zuverlässig und wartungsarm. Die vollautomatische Echtzeit-API-Integration ist als separates Add-on zubuchbar.</p>
+    </div>
+  </section>
+
+  <!-- SITE-ANALYSE -->
+  <section class="sec">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Site-Analyse</span></div>
+      <h2>Was Tamil.de heute hat — was danach steht</h2>
+      <div class="tamil-sub serif">இப்போது vs. பிறகு · Jetzt vs. Nach dem Relaunch</div>
+      <p>Wir haben Tamil.de eingehend analysiert. Diese Gegenüberstellung zeigt konkret, was der Relaunch behebt — und was aus dem bestehenden Portal erhalten und verbessert wird.</p>
+    </div>
+    <div class="audit-grid">
+      <div class="audit-col-head bad">Heute: offen / fehlend</div>
+      <div class="audit-col-head good">Nach dem Relaunch</div>
+
+      <div class="audit-cell bad">
+        <div class="area">Kino</div>
+        <div class="issue">Seite leer — kein Inhalt, kein Template</div>
+        <div class="detail">Die Kategorie existiert in der Navigation, hat aber keine Funktion</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Kino</div>
+        <div class="issue">Vollständige Kategorie mit eigenem Template</div>
+        <div class="detail">Film-Reviews, Kollywood-Premieren, strukturiertes Artikel-Layout</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Events</div>
+        <div class="issue">Nur ein einziges Konzert aus 2019 sichtbar</div>
+        <div class="detail">Der Events-Bereich zeigt veraltete Inhalte, kein Kalender, keine Struktur</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Events</div>
+        <div class="issue">Echter Kalender: Liste + Monatsansicht</div>
+        <div class="detail">Events mit Datum, Ort, Beschreibung und manuellem Eventim-Ticketlink</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Top Themen</div>
+        <div class="issue">Statisch, zeigt Artikel aus 2021–2022</div>
+        <div class="detail">Kann nicht durch die Redaktion aktualisiert werden — fest im Code</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Top Themen</div>
+        <div class="issue">Redaktionell steuerbar — immer aktuell</div>
+        <div class="detail">Beliebige Beiträge wählbar, Reihenfolge änderbar, direkt im CMS</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Artikel-Template</div>
+        <div class="issue">Kein Hero-Bild, kein Autor, keine verwandten Beiträge</div>
+        <div class="detail">Textwüste ohne journalistische Struktur — schwache Leserbindung</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Artikel-Template</div>
+        <div class="issue">Professionelles Layout mit Hero, Autor &amp; Related Posts</div>
+        <div class="detail">Teilen-Funktion, Breadcrumb, Kategorie-Tag, Lesezeit-Schätzung</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Impressum / Datenschutz</div>
+        <div class="issue">Unvollständig — verweist noch auf etracker &amp; veraltete Dienste</div>
+        <div class="detail">Rechtliches Risiko durch nicht aktualisierte Datenschutzerklärung</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Impressum / Datenschutz</div>
+        <div class="issue">Technisch sauber integriert, DSGVO-konformes Cookie-Banner</div>
+        <div class="detail">Texts liefert Tamil.de juristisch geprüft — wir integrieren &amp; pflegen technisch</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Kontakt &amp; Navigation</div>
+        <div class="issue">Keine Kontaktseite erreichbar, kein Kontakt im Header</div>
+        <div class="detail">Werbetreibende und Leser finden keinen Ansprechpartner</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Kontakt &amp; Navigation</div>
+        <div class="issue">Kontakt sichtbar im Header + eigene Kontaktseite</div>
+        <div class="detail">Telefon, E-Mail, Formular — direkt erreichbar für Werbekunden &amp; Leser</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Sport</div>
+        <div class="issue">Bereich fehlt komplett in der Navigation</div>
+        <div class="detail">Tamilische Sport-Community in Deutschland hat keine Anlaufstelle</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Sport</div>
+        <div class="issue">Eigene Sport-Kategorie mit Template &amp; Navigation</div>
+        <div class="detail">Eigene Rubrik für tamilischen Vereinssport, Turniere &amp; Sportberichte</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Werbung</div>
+        <div class="issue">Nur ein Gravity Club Banner — nicht verwaltbar</div>
+        <div class="detail">Kein System für eigene Werbekunden, keine Preisliste, kein Media-Kit</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Werbung</div>
+        <div class="issue">Bis zu 5 verwaltbare Werbeplätze + Media-Kit-Seite</div>
+        <div class="detail">Bannertausch direkt im CMS, feste Positionen, eigene Werbetarife vermarktbar</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Küche / Rezepte</div>
+        <div class="issue">Rezepte als einfache Artikel ohne Struktur</div>
+        <div class="detail">Kottu Roti, Payasam & Co. ohne Zutaten, Kochzeit oder Schritt-für-Schritt</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Küche / Rezepte</div>
+        <div class="issue">Echtes Rezept-Template (ab Media &amp; Ads System)</div>
+        <div class="detail">Zutatenbox, Zubereitungsschritte, Kochzeit, Portionen, Druckansicht, Related Recipes</div>
+      </div>
+
+      <div class="audit-cell bad">
+        <div class="area">Navigation / Struktur</div>
+        <div class="issue">„Blog" als Kategorie — unklar, was dahinter steckt</div>
+        <div class="detail">Inhalte wie Kultur, Community, Religion, Gesellschaft vermischt ohne Trennung</div>
+      </div>
+      <div class="audit-cell good">
+        <div class="area">Navigation / Struktur</div>
+        <div class="issue">Klare Navigation: Community, Kultur, Leben statt „Blog"</div>
+        <div class="detail">Alle neun Themenbereiche sichtbar — keine Sackgassen mehr in der Navigation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELAUNCH-PRIORITÄTEN -->
+  <section class="sec" style="background:var(--papier)">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Strategie</span></div>
+      <h2>Relaunch-Prioritäten &amp; Ausbauempfehlung</h2>
+      <div class="tamil-sub serif">முன்னுரிமைகள் · Nicht alles ist gleich wichtig</div>
+      <p>Tamil.de ist kein kaputtes Projekt — es ist ein Portal mit starkem Kern und ungenutztem Potenzial. Wir haben analysiert, priorisiert und denken strategisch: Hier ist, was zählt.</p>
+    </div>
+    <div class="prio-grid">
+
+      <!-- Block 1: Pflicht -->
+      <div class="prio-block p1">
+        <div class="prio-label"><span class="dot"></span>Pflicht für den Relaunch</div>
+        <h3>Was technisch und strukturell sein muss</h3>
+        <ul class="prio-list">
+          <li>Neue Seitenstruktur mit klarer Navigation</li>
+          <li>Moderne Magazin-Startseite</li>
+          <li>Neue Artikel- &amp; Kategorie-Templates</li>
+          <li>Eventkalender mit Ticketlinks</li>
+          <li>Kino-Seite komplett neu aufbauen</li>
+          <li>Definierte Werbebanner-Platzierungen</li>
+          <li>Kontaktseite mit Anfrageformularen</li>
+          <li>Impressum &amp; Datenschutz technisch sauber</li>
+          <li>Mobile Optimierung (mobile-first)</li>
+          <li>Content-Migration + 301-Redirects</li>
+          <li>Cookie-/Consent-System</li>
+        </ul>
+      </div>
+
+      <!-- Block 2: Empfehlung -->
+      <div class="prio-block p2">
+        <div class="prio-label"><span class="dot"></span>Unsere höchste Empfehlung</div>
+        <h3>Tamil.de als Portal-System aufbauen</h3>
+        <ul class="prio-list">
+          <li>Newsportal — moderne Redaktionsstruktur</li>
+          <li>Eventkalender — professionell &amp; aktuell</li>
+          <li>Kino-Übersicht — eigene Kategorie</li>
+          <li>Werbeplattform — Banner &amp; Sponsoring</li>
+          <li>Community-Anlaufstelle — Sport, Küche, Kultur</li>
+          <li>WhatsApp-Integration überall sichtbar</li>
+          <li>Admin-Bereich einfach zu pflegen</li>
+        </ul>
+        <div class="prio-highlight">
+          <strong>Warum das der entscheidende Unterschied ist:</strong><br>
+          So entsteht nicht nur eine modernere Website, sondern eine Plattform, die langfristig Reichweite, Werbeeinnahmen und Community-Bindung aufbaut. Veranstalter, Unternehmen und Vereine können gezielt eingebunden werden.
+        </div>
+      </div>
+
+      <!-- Block 3: Optional -->
+      <div class="prio-block p3">
+        <div class="prio-label"><span class="dot"></span>Optionale Erweiterungen</div>
+        <h3>Was Tamil.de noch stärker macht</h3>
+        <ul class="prio-list">
+          <li>„Werben auf Tamil.de"-Landingpage</li>
+          <li>Media Kit für Werbekunden</li>
+          <li>Newsletter-System (Double-Opt-in)</li>
+          <li>WhatsApp-/Telegram-Broadcast-Konzept</li>
+          <li>Event-Promotion-Pakete für Veranstalter</li>
+          <li>Social-Media-Automation</li>
+          <li>SEO-Content-Cluster (Rezepte, Kino, Events)</li>
+          <li>Business-/Vereins-/Tempel-Verzeichnis</li>
+          <li>Premium Event Landingpages</li>
+          <li>Monatliche Wartung &amp; Content-Betreuung</li>
+          <li>Reporting-Dashboard (Traffic, Banner, Events)</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAKETE -->
+  <section class="sec pkgs-sec">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Leistungspakete</span></div>
+      <h2>Vier Stufen. Ein klares Ziel.</h2>
+      <div class="tamil-sub serif">தொகுப்புகள் · Wählen Sie, was zu Ihnen passt</div>
+      <p>Nicht Paket 1 — das ist der Einstieg. Das sinnvollste Angebot für Tamil.de ist <strong>Portal Professional</strong> oder <strong>Media &amp; Ads System</strong>. Alle Pakete bauen aufeinander auf. Zahlung 50 % bei Projektstart, 50 % bei Projektabschluss.</p>
+    </div>
+
+    <!-- Paket 1 -->
+    <div class="pkg">
+      <div class="pkg-head">
+        <div class="pkg-name-block">
+          <div class="kicker">Paket 01</div>
+          <div class="pkg-name">Relaunch Basis</div>
+          <div class="pkg-dur">Laufzeit 6–8 Wochen</div>
+        </div>
+        <div class="pkg-price-block">
+          <div class="pkg-price">7.900 €</div>
+          <span class="pkg-price-suf">netto zzgl. MwSt.</span>
+        </div>
+      </div>
+      <div class="pkg-feats">
+        <div class="feat-divider">Theme &amp; Seitenstruktur</div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Neues responsives Theme-System</span><span class="feat-desc">Das komplette visuelle Gerüst der Website wird neu gebaut — Schriften, Farben, Abstände, Navigationsleiste, Header, Footer. Funktioniert auf jedem Gerät, ohne dass sich Elemente verschieben oder überlagern.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">9 Kategorie-Templates</span><span class="feat-desc">Für jede Hauptkategorie (Nachrichten, Kultur, Sport, Kino, Küche, Events, Lifestyle, Community, Kontakt) gibt es ein eigenes Seitenlayout — mit passendem Header, Artikel-Grid und Struktur. Nicht mehr alles auf einer einzigen Standard-Seite.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Artikel-Template</span><span class="feat-desc">Jeder Artikel bekommt ein modernes Layout: großes Titelbild, klare Überschrift, Datum, Lesezeit, strukturierter Text. Sieht aus wie ein professionelles Nachrichtenportal — nicht wie ein alter Blog.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Startseite als Magazin-Layout</span><span class="feat-desc">Die Startseite zeigt die wichtigsten Artikel und Kategorien in einem strukturierten Grid — ein großes Hauptbild, darunter Teaser-Kacheln. So wie Spiegel.de oder tagesschau.de. Der erste Eindruck entscheidet, ob ein Besucher bleibt.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Kontaktseite + Kontakt im Header</span><span class="feat-desc">Eine eigene /kontakt-Seite mit Formular, E-Mail-Adresse und — wenn gewünscht — einem WhatsApp-Link. Zusätzlich ist der Kontakt direkt in der Hauptnavigation sichtbar, damit potenzielle Werbekunden Tamil.de sofort erreichen können.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Farbschema übernommen &amp; modernisiert</span><span class="feat-desc">Die bekannten Tamil.de-Farben (Rot, Weiß, Tamil-Schrift) bleiben erhalten — aber alles wird modernisiert und vereinheitlicht. Kein Patchwork mehr aus verschiedenen Schriften und Farben, die nicht zusammenpassen.</span></span></div>
+        <div class="feat-divider">Technik &amp; Werbung</div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">2 Werbebannerplätze (CMS-verwaltbar)</span><span class="feat-desc">Zwei fest definierte Werbeflächen auf der Website — z. B. oben im Header und seitlich im Artikel. Die Redaktion kann die Werbebanner selbst im Backend hochladen und tauschen, ohne Programmierer. Jeder Werbeplatz ist sofort buchbar.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">SSL, Hosting-Setup, Domain-Anbindung</span><span class="feat-desc">Die technische Basis: Das Schloss-Symbol in der Browser-Zeile (SSL-Zertifikat), der Webserver wird konfiguriert, tamil.de zeigt auf die neue Website. Ohne das vertraut kein Browser und kein Google-Algorithmus der Seite.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Basis-SEO-Konfiguration</span><span class="feat-desc">Jede Seite bekommt einen Titel und eine Beschreibung für Google. Die URLs werden sauber strukturiert (z. B. /news/artikel-name statt /?p=123). Das ist die Grundvoraussetzung dafür, dass Google Tamil.de überhaupt indexiert und anzeigt.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Cookie-Banner (DSGVO)</span><span class="feat-desc">Ein rechtssicherer Einwilligungsbanner beim ersten Besuch — ohne diesen drohen Abmahnungen. Tamil.de ist damit auf der sicheren Seite, wenn es um Datenschutz und EU-Recht geht.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Mobile Optimierung</span><span class="feat-desc">Über 70 % der Tamil.de-Besucher kommen vom Smartphone. Alle Seiten, Bilder und Buttons werden gezielt für kleine Bildschirme optimiert — schnelle Ladezeiten, lesbare Schrift, keine horizontale Scroll-Bar.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Redaktionseinweisung (2 Stunden)</span><span class="feat-desc">Eine Live-Schulung per Videocall — wir zeigen der Redaktion, wie Artikel veröffentlicht, Bilder hochgeladen und die Website gepflegt wird. Mit Aufzeichnung zum Nachschauen.</span></span></div>
+        <div class="feat-divider">Nicht enthalten</div>
+        <div class="feat-item no"><span class="ind">✕</span><span class="feat-body"><span class="feat-label">Veranstaltungskalender</span><span class="feat-desc">Kommt in Paket 02</span></span></div>
+        <div class="feat-item no"><span class="ind">✕</span><span class="feat-body"><span class="feat-label">Social-Media-Integration</span><span class="feat-desc">Kommt in Paket 02</span></span></div>
+        <div class="feat-item no"><span class="ind">✕</span><span class="feat-body"><span class="feat-label">Top-Themen-Widget</span><span class="feat-desc">Kommt in Paket 02</span></span></div>
+        <div class="feat-item no"><span class="ind">✕</span><span class="feat-body"><span class="feat-label">Newsletter-Anbindung</span><span class="feat-desc">Kommt in Paket 04</span></span></div>
+      </div>
+      <div class="pkg-why">
+        <div class="pkg-why-label">Was das für Tamil.de bedeutet</div>
+        <p>Tamil.de bekommt neue Räume — komplett neu aufgebaut, schnell, modern und auf dem Smartphone perfekt bedienbar. Besucher sehen sofort eine professionelle Website statt einer veralteten Seite. Die Redaktion kann Artikel veröffentlichen und zwei erste Werbepartner schalten. Das Wichtigste: Ihr habt ein sauberes Fundament, auf dem alles weitere aufgebaut werden kann.</p>
+        <div class="pkg-roi"><p><strong>Warum das sinnvoll ist:</strong> Ohne dieses Fundament kann kein Werbekunde, kein Eventveranstalter und kein neuer Leser ernst genommen werden. Eine veraltete Website kostet täglich Vertrauen — und damit potenzielle Einnahmen. Dieser Schritt macht Tamil.de wieder glaubwürdig.</p></div>
+      </div>
+      <div class="pay">
+        <div class="pay-label">Zahlungsplan</div>
+        <div class="pay-bar"><div class="seg1"></div><div class="seg2"></div></div>
+        <div class="pay-rows">
+          <div class="pay-row"><span class="pct">50 % bei Projektstart</span><span class="amt">3.950 €</span></div>
+          <div class="pay-row right"><span class="pct">50 % bei Projektabschluss</span><span class="amt">3.950 €</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paket 2 EMPFOHLEN -->
+    <div class="pkg rec">
+      <div class="pkg-ribbon">★ Empfehlung</div>
+      <div class="pkg-head">
+        <div class="pkg-name-block">
+          <div class="kicker">Paket 02</div>
+          <div class="pkg-name">Portal Professional</div>
+          <div class="pkg-dur">Laufzeit 8–10 Wochen</div>
+        </div>
+        <div class="pkg-price-block">
+          <div class="pkg-price">12.900 €</div>
+          <span class="pkg-price-suf">netto zzgl. MwSt.</span>
+        </div>
+      </div>
+      <div class="pkg-feats">
+        <div class="feat-divider">Alles aus Relaunch Basis, plus:</div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Kino-Kategorie vollständig aufgebaut</span><span class="feat-desc">Die Kino-Seite war bisher leer — wir bauen sie komplett auf. Filmkritiken, Kinostarts, Premieren, Ticketlinks zu Eventim oder Kino-Webseiten. Jemand, der nach „Tamilischer Film Deutschland" sucht, landet auf Tamil.de und findet echte Inhalte.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Sport-Kategorie neu eingerichtet</span><span class="feat-desc">Cricket, Fußball und tamilische Turniere bekommen eine eigene Seite mit Spielberichten, Ergebnissen und Vereinsnachrichten. Die Community kann ihre eigenen Turnierergebnisse einreichen — Tamil.de wird zur Anlaufstelle für Sport.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Veranstaltungskalender (Liste + Monatsansicht)</span><span class="feat-desc">Ein echter Eventkalender — nicht nur eine Liste von Artikeln. Veranstaltungen werden strukturiert eingetragen: Datum, Uhrzeit, Ort, Kategorie, Bild. Die Monatsansicht zeigt alle Events auf einen Blick. Veranstalter können Events selbst einreichen.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Event-Detailseiten mit Ticketlinks + WhatsApp-Teilen</span><span class="feat-desc">Jedes Event hat eine eigene Seite mit allen Infos — und direkt einem Link zu Eventim oder dem Ticket-Shop. Ein WhatsApp-Knopf ermöglicht es, das Event mit einem Klick in eine Gruppe zu teilen. Das steigert die Reichweite jedes Events organisch.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">„Top Themen" — redaktionell steuerbar</span><span class="feat-desc">Das Widget auf der Startseite zeigt, was gerade wichtig ist — und die Redaktion entscheidet das selbst im Backend, ohne Programmieren. Kein starres System mehr, das immer dieselben Artikel anzeigt. Nach Kategorie filterbar: Top Kino, Top Events, Top Sport.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Modernes Artikel-Template mit Autor &amp; Related Posts</span><span class="feat-desc">Jeder Artikel bekommt ein vollständiges Layout: großes Titelbild (Hero), Autorenname mit Foto, Tags zum Anklicken, eine Quellenbox für Verlinkungen und am Ende automatisch verwandte Artikel. Leser bleiben länger auf der Seite — das verbessert das Google-Ranking.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">WhatsApp-Sharing — Sticky Mobile-Leiste</span><span class="feat-desc">Beim Lesen auf dem Smartphone schwebt unten am Bildschirmrand eine Leiste mit einem WhatsApp-Teilen-Knopf. Kein Suchen mehr — ein Tipp, und der Artikel ist in der Gruppe. Artikel, die leicht geteilt werden können, verbreiten sich in der Community schneller.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">3 Werbeplätze mit Backend-Verwaltung</span><span class="feat-desc">Drei fest definierte Werbeflächen (z. B. Header-Banner, Seitenleiste, Zwischen-Artikel-Banner). Die Redaktion schaltet Werbung selbst im Backend — Bild hochladen, Link eintragen, fertig. Keine Abhängigkeit vom Entwickler für jeden neuen Werbekunden.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Social-Media-Integration (Instagram / YouTube)</span><span class="feat-desc">Instagram-Feed auf der Seite eingebunden, YouTube-Videos direkt im Artikel abspielbar. Wer Tamil.de besucht, sieht auch, was auf Instagram passiert — und kommt zurück. Beide Kanäle verstärken sich gegenseitig.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Seite „Werbung schalten" (Media-Kit)</span><span class="feat-desc">Eine eigene Seite für potenzielle Werbekunden — mit Reichweiten-Zahlen, Preisliste, Werbeplatz-Vorschau und Kontaktformular. Das ist das Erste, was ein Sponsor sieht, bevor er Tamil.de anruft. Ohne diese Seite gibt es keinen professionellen Erstkontakt.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Kontaktformulare: Werbung, Event-Einreichung, allg. Kontakt</span><span class="feat-desc">Drei separate Formulare: eines für Werbeanfragen (mit Felder für Budget und Zielgruppe), eines damit Veranstalter ihre Events eintragen können, und ein allgemeines Kontaktformular. Alle Anfragen landen strukturiert im Postfach — nichts geht verloren.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Content-Migration (bis 100 Beiträge + Weiterleitungen)</span><span class="feat-desc">Bis zu 100 bestehende Artikel werden aus dem alten System übernommen — mit Bildern, Texten und Kategorien. Für jeden alten Link wird eine automatische Weiterleitung eingerichtet (301-Redirect), damit Google die neue Seite als Nachfolger erkennt und das Ranking nicht verloren geht.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Google Analytics 4 + Search Console</span><span class="feat-desc">Tamil.de bekommt ein Messsystem: Wie viele Besucher kommen täglich? Welche Artikel werden am meisten gelesen? Woher kommen die Leser — Google, Instagram, WhatsApp? Diese Daten sind die Grundlage für Werbegespräche und eigene Entscheidungen.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Admin-Schulung (4 Stunden)</span><span class="feat-desc">Vier Stunden Videocall mit allen, die das Backend bedienen werden. Artikel schreiben, Events eintragen, Banner schalten, Statistiken lesen — alles wird gezeigt und erklärt. Mit Aufzeichnung und einer kurzen Bedienungsanleitung zum Nachschlagen.</span></span></div>
+      </div>
+      <div class="pkg-why">
+        <div class="pkg-why-label">Was das für Tamil.de bedeutet</div>
+        <p>Das ist der Moment, wo Tamil.de aufhört eine Website zu sein — und anfängt, ein echtes Portal zu sein. Jemand sucht bei Google nach „tamilische Events Frankfurt" oder „Kollywood Film Deutschland" und findet Tamil.de — mit einem echten Kalender, echten Terminen, einem echten Ticketlink. Die Kino-Seite, die bisher leer war, hat jetzt Inhalte und eine Struktur. Sport hat eine Heimat. Und die Redaktion entscheidet selbst, was oben auf der Startseite steht — ohne einen Programmierer anrufen zu müssen. Drei Werbeplätze sind buchbar und können sofort Einnahmen generieren.</p>
+        <div class="pkg-roi"><p><strong>Return on Investment:</strong> In Deutschland leben über 160.000 Menschen tamilischer Herkunft — und es gibt kein anderes professionelles deutschsprachiges Portal, das diese Zielgruppe direkt anspricht. Für Veranstalter, Restaurants, Kulturinstitutionen und lokale Unternehmen ist Tamil.de dann einzigartig. <strong>Drei Werbeplätze à 200–400 €/Monat = 600–1.200 €/Monat mögliche Einnahmen.</strong> Dieses Paket kann sich innerhalb von 12–18 Monaten vollständig refinanzieren.</p></div>
+      </div>
+      <div class="pay">
+        <div class="pay-label">Zahlungsplan</div>
+        <div class="pay-bar"><div class="seg1"></div><div class="seg2"></div></div>
+        <div class="pay-rows">
+          <div class="pay-row"><span class="pct">50 % bei Projektstart</span><span class="amt">6.450 €</span></div>
+          <div class="pay-row right"><span class="pct">50 % bei Projektabschluss</span><span class="amt">6.450 €</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paket 3 -->
+    <div class="pkg">
+      <div class="pkg-head">
+        <div class="pkg-name-block">
+          <div class="kicker">Paket 03</div>
+          <div class="pkg-name">Media &amp; Ads System</div>
+          <div class="pkg-dur">Laufzeit 10–12 Wochen</div>
+        </div>
+        <div class="pkg-price-block">
+          <div class="pkg-price">18.900 €</div>
+          <span class="pkg-price-suf">netto zzgl. MwSt.</span>
+        </div>
+      </div>
+      <div class="pkg-feats">
+        <div class="feat-divider">Alles aus Portal Professional, plus:</div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">5 Werbeplätze mit automatischer Rotation + Klicktracking</span><span class="feat-desc">Fünf Werbeflächen, auf denen sich mehrere Werbekunden automatisch abwechseln — z. B. Banner-Position A zeigt morgens Restaurant X, nachmittags Reisebüro Y. Für jeden Banner wird gemessen, wie oft er angezeigt wurde und wie oft jemand darauf geklickt hat. Mit diesen Zahlen kann Tamil.de Werbung professionell verkaufen.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">„Werbung auf Tamil.de" — Landingpage für Anzeigenkunden</span><span class="feat-desc">Eine dedizierte Seite, die sich direkt an Unternehmen und Veranstalter richtet. Mit Reichweiten-Zahlen (Besucher pro Monat, Community-Größe), einer Übersicht der Werbeplätze mit Screenshots, Preisliste und einem direkten Buchungsformular. Das ist der Unterschied zwischen „ruf mal an" und einem echten Medienangebot.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Event-Promotion-System</span><span class="feat-desc">Veranstalter können bezahlen, damit ihr Event auf Tamil.de hervorgehoben wird — Artikel dazu, ein Banner, und Platzierung auf der Startseite. Das ist ein fertiges Produkt, das Tamil.de direkt verkaufen kann: „Event-Paket für 200 €: Artikel + Banner + Startseite für 2 Wochen."</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Rezept-Template (Küche-Kategorie)</span><span class="feat-desc">Tamilische Rezepte bekommen eine professionelle Darstellung: Zutaten in einer strukturierten Liste, Zubereitung in nummerierten Schritten, Kochzeit, Portionen, und eine Druckversion ohne Werbung. Rezepte sind bei Google extrem beliebt — wer „Kottu Roti Rezept" sucht, soll auf Tamil.de landen.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Suchfunktion mit Kategorie-Filter</span><span class="feat-desc">Eine echte Suche auf der Website — Besucher können nach Artikeln, Events oder Rezepten suchen und das Ergebnis nach Kategorie filtern. Ohne Suche verlässt ein Besucher die Seite, wenn er etwas Bestimmtes sucht und es nicht sofort findet.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">SEO-Struktur + strukturierte Daten (Schema.org)</span><span class="feat-desc">Für jede Kategorie wird die technische SEO-Struktur aufgebaut: korrekte Überschriften-Hierarchie, strukturierte Daten (damit Google Events als Events erkennt, Rezepte als Rezepte, Artikel als Artikel), Sitemaps und interne Verlinkungslogik. Das ist das Fundament für organischen Traffic ohne bezahlte Werbung.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Redaktions-Freigabe-Workflow</span><span class="feat-desc">Redakteure können Artikel schreiben und zur Prüfung einreichen — ein Chefredakteur oder Admin sieht alle eingereichten Beiträge in einer Warteschlange und kann sie freigeben oder ablehnen. So erscheint kein Artikel versehentlich, bevor er geprüft wurde.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Analytics-Dashboard + Wochenbericht-Vorlage</span><span class="feat-desc">Ein übersichtliches Dashboard zeigt die wichtigsten Zahlen auf einen Blick: Besucher diese Woche vs. letzte Woche, meistgelesene Artikel, Klicks auf Werbebanner, Traffic-Quellen. Dazu eine fertige Vorlage für einen wöchentlichen Bericht — nützlich für Werbegespräche und interne Abstimmungen.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Content-Migration bis 300 Beiträge + Weiterleitungen</span><span class="feat-desc">Bis zu 300 bestehende Artikel werden übertragen — mit Bildern, Texten, Tags und Kategorien. Für jeden alten Link gibt es eine automatische Weiterleitung, damit bestehende Google-Rankings und externe Links weiterhin funktionieren. Kein Besucher landet auf einer 404-Fehlerseite.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Übergabedokumentation + Admin-Schulung (6 Stunden)</span><span class="feat-desc">Sechs Stunden Schulung für die Redaktion — inklusive Werbeverwaltung, Eventkalender, Analytics und Freigabe-Workflow. Dazu eine schriftliche Dokumentation, die erklärt, wie alles funktioniert. Tamil.de ist danach vollständig selbstständig und nicht mehr von uns abhängig.</span></span></div>
+      </div>
+      <div class="pkg-why">
+        <div class="pkg-why-label">Was das für Tamil.de bedeutet</div>
+        <p>Mit diesem Paket wird Werbung kein Zufallsprodukt mehr — sondern ein echtes Geschäftsmodell. Fünf Werbeplätze können mit verschiedenen Kunden belegt werden, die sich automatisch abwechseln. Klicks werden gemessen, sodass Tamil.de Werbekunden mit echten Zahlen überzeugen kann: „Ihr Banner wurde 12.000-mal gesehen und 340-mal geklickt." Das ist das Argument, das Kunden zum Wiederbuchen bringt. Veranstalter können bezahlte Sichtbarkeit für ihre Events kaufen. Und die Küche-Kategorie wird mit echten Rezepten zum Magneten für Google-Suchen — wer „Kottu Roti Rezept" googelt, soll auf Tamil.de landen.</p>
+        <div class="pkg-roi"><p><strong>Return on Investment:</strong> <strong>5 buchbare Werbeplätze × 300–500 €/Monat = bis zu 2.500 €/Monat</strong> potenzielle Anzeigeneinnahmen. Dazu Featured Events für Veranstalter (150–400 € pro Buchung). Tamil.de ist das einzige professionelle tamilische Portal im DACH-Raum — diese Alleinstellung ist bares Geld wert. Bei konservativer Kalkulation amortisiert sich dieses Paket in 9–12 Monaten.</p></div>
+      </div>
+      <div class="pay">
+        <div class="pay-label">Zahlungsplan</div>
+        <div class="pay-bar"><div class="seg1"></div><div class="seg2"></div></div>
+        <div class="pay-rows">
+          <div class="pay-row"><span class="pct">50 % bei Projektstart</span><span class="amt">9.450 €</span></div>
+          <div class="pay-row right"><span class="pct">50 % bei Projektabschluss</span><span class="amt">9.450 €</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paket 4 -->
+    <div class="pkg">
+      <div class="pkg-head">
+        <div class="pkg-name-block">
+          <div class="kicker">Paket 04</div>
+          <div class="pkg-name">Premium Plattform</div>
+          <div class="pkg-dur">Laufzeit 12–16 Wochen</div>
+        </div>
+        <div class="pkg-price-block">
+          <div class="pkg-price">27.500 €</div>
+          <span class="pkg-price-suf">netto zzgl. MwSt.</span>
+        </div>
+      </div>
+      <div class="pkg-feats">
+        <div class="feat-divider">Alles aus Media &amp; Ads System, plus:</div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Google Ad Manager Integration</span><span class="feat-desc">Das ist das professionelle Werbeverwaltungs-System, das große Nachrichtenportale nutzen. Werbeplätze werden über Google Ad Manager verwaltet — Tamil.de kann damit auch externe Werbenetzwerke anbinden und automatisch Werbung aus dem Google-Netzwerk einblenden lassen, wenn kein eigener Kunde gebucht hat. Maximale Auslastung der Werbeflächen.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Zweisprachigkeit Tamil &amp; Deutsch</span><span class="feat-desc">Die gesamte Website kann auf Deutsch und Tamil angezeigt werden — Besucher wählen ihre Sprache, und alle Inhalte erscheinen entsprechend. Redakteure können Artikel auf Tamil schreiben, die parallel zur deutschen Version laufen. Das erschließt eine neue Zielgruppe: Tamil-Muttersprachler, die auf Deutsch lesen könnten, aber lieber auf Tamil möchten.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Newsletter-System mit Double-Opt-in</span><span class="feat-desc">Besucher können sich für einen Newsletter anmelden — rechtssicher mit doppelter Bestätigung (Double-Opt-in). Tamil.de schickt regelmäßig eine E-Mail mit den wichtigsten Artikeln, Events und einem Sponsor-Hinweis. Ein Newsletter mit 5.000 Abonnenten ist eine eigene Werbeeinheit — 200–500 € pro Ausgabe für einen Sponsor.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">WhatsApp-Broadcast-Konzept für die Community</span><span class="feat-desc">Wir entwickeln ein vollständiges Konzept: Wie Tamil.de WhatsApp-Broadcasts strategisch nutzt — welche Inhalte wann verschickt werden, wie Sponsoren eingebunden werden, wie Events beworben werden. Inklusive Vorlagen für die ersten 12 Broadcasts und Empfehlungen für Kanal-Aufbau und Community-Wachstum.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Artikel → Social-Media-Post-Automation</span><span class="feat-desc">Wenn ein neuer Artikel veröffentlicht wird, wird automatisch ein Social-Media-Post vorbereitet — mit Titelbild, Titeltext und Link. Die Redaktion sieht den Entwurf, kann ihn anpassen und mit einem Klick auf Instagram oder Facebook teilen. Keine manuelle Nachbearbeitung mehr für jeden neuen Beitrag.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Business- / Vereins- / Tempel-Verzeichnis</span><span class="feat-desc">Ein durchsuchbares Verzeichnis der tamilischen Community in Deutschland — Restaurants, Friseursalons, Anwälte, Ärzte, Vereine, Tempel, Kulturinitiativen. Jeder Eintrag kann bezahlt werden (z. B. 10–30 €/Monat für einen Premium-Eintrag mit Bild und Kontaktdaten). Tamil.de wird zur zentralen Anlaufstelle — und verdient dabei passiv.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Progressive Web App (auf dem Handy installierbar)</span><span class="feat-desc">Tamil.de kann wie eine echte App auf dem Smartphone-Homescreen installiert werden — ohne App Store, ohne Download. Ein Tipp auf „Zum Homescreen hinzufügen", und Tamil.de erscheint als Icon. Beim nächsten Öffnen funktioniert die Seite auch ohne Internet (offline-fähig). App-Nutzer kommen im Schnitt 5× häufiger zurück als normale Website-Besucher.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Push-Benachrichtigungen</span><span class="feat-desc">Tamil.de kann direkte Benachrichtigungen aufs Smartphone schicken — ohne E-Mail, ohne App. „Neues tamilisches Event in Frankfurt — jetzt ansehen." Besucher, die einmal zugestimmt haben, können jederzeit erreicht werden. Push-Benachrichtigungen haben eine Öffnungsrate von 40–60 % — weit mehr als E-Mails.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Vollständiges Reporting-Dashboard</span><span class="feat-desc">Alle wichtigen Zahlen in einem Dashboard: Tägliche Besucher, Artikel-Aufrufe, Banner-Klicks, Event-Registrierungen, Newsletter-Öffnungsrate, WhatsApp-Broadcast-Reichweite. Tamil.de kann Werbepartnern monatlich einen vollständigen Bericht schicken — das ist der Unterschied zwischen einem Amateur-Portal und einem professionellen Medienpartner.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Priority-Support (Reaktionszeit 4 Stunden)</span><span class="feat-desc">Bei technischen Problemen oder dringenden Änderungen (z. B. ein Banner muss sofort getauscht werden, ein Artikel erscheint nicht) reagiert unser Team innerhalb von 4 Stunden — werktags. Kein Warten tagelang auf eine Antwort. Tamil.de ist ein aktives Portal und braucht aktiven Support.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Dedizierter Projektmanager</span><span class="feat-desc">Tamil.de bekommt eine feste Ansprechperson, die das gesamte Projekt kennt — von der ersten Zeile Code bis zur letzten Schulung. Keine Weiterleitungen, keine Erklärungen von vorne. Ein Anruf, eine E-Mail — und die richtige Person antwortet.</span></span></div>
+        <div class="feat-item yes"><span class="ind">✓</span><span class="feat-body"><span class="feat-label">Umfassende Übergabedokumentation</span><span class="feat-desc">Am Ende des Projekts bekommt Tamil.de ein vollständiges Handbuch: Wie ist die Website aufgebaut? Wo kann ich was ändern? Wie funktioniert das Werbesystem? Wie starte ich den Newsletter? Dieses Dokument macht Tamil.de langfristig unabhängig — auch wenn der Dienstleister wechselt.</span></span></div>
+      </div>
+      <div class="pkg-why">
+        <div class="pkg-why-label">Was das für Tamil.de bedeutet</div>
+        <p>Tamil.de wird zur Medienplattform — wie eine echte Nachrichten-App. Nutzer können die Website auf ihr Smartphone-Homescreen laden und bekommen eine Benachrichtigung direkt aufs Handy, wenn ein neues Event oder ein wichtiger Artikel erscheint. Genauso wie bei Spiegel Online oder Instagram. Ein Newsletter hält die Community regelmäßig auf dem Laufenden — und kann selbst als Werbefläche verkauft werden. Ein Verzeichnis macht Tamil.de zur zentralen Anlaufstelle für die tamilische Community: Restaurants, Vereine, Tempel, Dienstleister. Und das alles auf Deutsch und Tamil.</p>
+        <div class="pkg-roi"><p><strong>Return on Investment:</strong> <strong>Ein Newsletter mit 5.000 Abonnenten ist eine eigene Werbeeinheit</strong> — 200–500 € pro Ausgabe für einen Sponsor. Push-Benachrichtigungen erreichen 40–60 % der Abonnenten direkt — kein anderer Kanal kommt da ran. App-Nutzer besuchen eine Website im Schnitt 5× häufiger als normale Besucher. Ein kostenpflichtiges Verzeichnis (z. B. 10–30 €/Monat für Unternehmen) generiert passives Einkommen. Das ist kein Website-Projekt mehr — das ist der Aufbau eines Medienunternehmens mit mehreren Einnahmequellen.</p></div>
+      </div>
+      <div class="pay">
+        <div class="pay-label">Zahlungsplan</div>
+        <div class="pay-bar"><div class="seg1"></div><div class="seg2"></div></div>
+        <div class="pay-rows">
+          <div class="pay-row"><span class="pct">50 % bei Projektstart</span><span class="amt">13.750 €</span></div>
+          <div class="pay-row right"><span class="pct">50 % bei Projektabschluss</span><span class="amt">13.750 €</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MONETARISIERUNG -->
+  <section class="sec" style="background:var(--warmweiss)">
+    <div class="sec-head">
+      <div class="eyebrow">Monetarisierung</div>
+      <h2>Wie Tamil.de Geld verdient —<br>auf drei Kanälen gleichzeitig</h2>
+      <div class="tamil-sub serif">வருவாய் · Einnahmen · Revenue</div>
+      <p>Tamil.de ist kein Blog — es ist ein Medienportal mit Community-Bindung. Wer das richtig aufstellt, kann auf drei Kanälen gleichzeitig Einnahmen erzielen: über die Website, über Instagram und über WhatsApp. Die Kanäle verstärken sich gegenseitig. Wer auf einem Kanal zahlt, sieht es auf allen anderen.</p>
+    </div>
+
+    <div class="mono-grid">
+
+      <!-- WEBSITE -->
+      <div class="mono-card">
+        <div class="mono-icon">🌐</div>
+        <h4>Website</h4>
+        <div class="mono-sub">Tamil.de als digitales Schaufenster der Community — sichtbar für jeden, der die Seite besucht</div>
+        <ul class="mono-list">
+          <li>
+            <span class="ml">Banner &amp; Display-Werbung</span>
+            <span class="mp">500 – 2.000 €/Monat</span>
+            <span class="md">Feste Werbeplätze auf Start-, Event- und Rezeptseiten — Restaurants, Reisebüros, Kulturveranstalter zahlen für Sichtbarkeit</span>
+          </li>
+          <li>
+            <span class="ml">Sponsored Articles</span>
+            <span class="mp">300 – 800 € pro Artikel</span>
+            <span class="md">Redaktionell aufbereiteter Werbebeitrag — ein Restaurant stellt sich vor, ein Event wird beworben, ein Produkt wird empfohlen</span>
+          </li>
+          <li>
+            <span class="ml">Featured Events</span>
+            <span class="mp">50 – 200 € pro Event</span>
+            <span class="md">Veranstalter zahlen, um ihren Event oben in der Liste, mit Bild und Hervorhebung, zu erscheinen</span>
+          </li>
+          <li>
+            <span class="ml">Eventim-Affiliate</span>
+            <span class="mp">5 – 12 % Provision</span>
+            <span class="md">Tamil.de verlinkt auf Ticket-Seiten — bei jedem Ticketkauf über Tamil.de fließt automatisch eine Provision</span>
+          </li>
+          <li>
+            <span class="ml">Branchenverzeichnis</span>
+            <span class="mp">10 – 50 €/Monat</span>
+            <span class="md">Restaurants, Friseure, Anwälte, Ärzte — jeder Eintrag in der Community-Datenbank ist ein monatliches Abo</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- INSTAGRAM -->
+      <div class="mono-card">
+        <div class="mono-icon">📸</div>
+        <h4>Instagram</h4>
+        <div class="mono-sub">Tamil.de als Reichweiten-Multiplikator — Marken zahlen für Zugang zur Community</div>
+        <ul class="mono-list">
+          <li>
+            <span class="ml">Sponsored Posts</span>
+            <span class="mp">150 – 600 € pro Post</span>
+            <span class="md">Ein Beitrag, der wie ein normaler Tamil.de-Post wirkt — mit dem Hinweis "Bezahlte Partnerschaft". Reichweite ohne Misstrauen</span>
+          </li>
+          <li>
+            <span class="ml">Story-Platzierungen</span>
+            <span class="mp">80 – 250 € pro Story-Set</span>
+            <span class="md">3–5 Stories für einen Sponsor — mit Swipe-Up-Link direkt zu seiner Seite oder seinem Ticket-Shop</span>
+          </li>
+          <li>
+            <span class="ml">Event-Ankündigungen</span>
+            <span class="mp">100 – 300 € pro Ankündigung</span>
+            <span class="md">Veranstalter wollen ihre Events in der Tamil-Community bekannt machen — Instagram-Reichweite ist das schnellste Mittel</span>
+          </li>
+          <li>
+            <span class="ml">Cross-Promotions</span>
+            <span class="mp">nach Vereinbarung</span>
+            <span class="md">Kooperationen mit anderen Community-Accounts, Tamil-Restaurants-Ketten oder Kulturinitiativen — gegenseitige Sichtbarkeit</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- WHATSAPP -->
+      <div class="mono-card">
+        <div class="mono-icon">💬</div>
+        <h4>WhatsApp</h4>
+        <div class="mono-sub">Tamil.de direkt im Smartphone der Community — der intimste und wirkungsvollste Kanal</div>
+        <ul class="mono-list">
+          <li>
+            <span class="ml">Broadcast-Sponsoring</span>
+            <span class="mp">200 – 500 € pro Nachricht</span>
+            <span class="md">Eine gesponserte Nachricht am Anfang oder Ende eines Broadcasts — z. B. "Diese Nachricht wurde präsentiert von Restaurant Tamil Kitchen"</span>
+          </li>
+          <li>
+            <span class="ml">Event-Ankündigungen mit Ticket-Link</span>
+            <span class="mp">150 – 400 € + Affiliate</span>
+            <span class="md">Veranstalter zahlen für den WhatsApp-Blast — Tamil.de bekommt zusätzlich Provision auf jeden Ticketkauf über den Link</span>
+          </li>
+          <li>
+            <span class="ml">Exklusive Community-Deals</span>
+            <span class="mp">Provision 5 – 15 %</span>
+            <span class="md">Tamil.de handelt Sonderkonditionen aus — z. B. 10 % Rabatt bei Restaurant X nur für WhatsApp-Abonnenten. Tamil.de bekommt eine Provision auf jede Einlösung</span>
+          </li>
+          <li>
+            <span class="ml">Premium-Gruppen (Zukunft)</span>
+            <span class="mp">5 – 15 €/Monat pro Nutzer</span>
+            <span class="md">Exklusive WhatsApp-Gruppen mit Mehrwert — Frühzugang zu Events, Rabatte, Tamil-Nachrichten zuerst. Nutzerzahl × Abo = passives Einkommen</span>
+          </li>
+        </ul>
+      </div>
+
+    </div><!-- /mono-grid -->
+
+    <div class="mono-system">
+      <h4>Das System: Wie alle drei Kanäle zusammen mehr einbringen als einzeln</h4>
+      <div class="mono-system-flows">
+        <div class="mono-flow">
+          <p><strong>Ein Veranstalter, drei Kanäle</strong><br>
+          Ein Event wird auf der Website als Featured Event gelistet → Tamil.de postet auf Instagram → Tamil.de schickt einen WhatsApp-Blast. Der Veranstalter zahlt einmal, erreicht aber drei Zielgruppen auf drei verschiedenen Ebenen. Tamil.de rechnet das als Kombipaket ab.</p>
+        </div>
+        <div class="mono-flow">
+          <p><strong>Ein Sponsor, maximale Sichtbarkeit</strong><br>
+          Ein Restaurant bezahlt einen Banner auf der Website → Tamil.de erwähnt sie in einem Instagram-Post → ein WhatsApp-Broadcast nennt das Restaurant als "Partner der Woche". Drei Touchpoints. Ein Deal. Tamil.de kann das für 500 – 1.500 € als Monatspaket anbieten.</p>
+        </div>
+        <div class="mono-flow">
+          <p><strong>Affiliate-Stacking</strong><br>
+          Tamil.de verlinkt auf Eventim-Tickets über die Website, über Instagram und über WhatsApp. Drei Links — drei Quellen, aus denen Provisionen fließen. Je mehr Tickets verkauft werden, desto mehr passives Einkommen für Tamil.de — ohne extra Aufwand.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ADD-ONS -->
+  <section class="sec addons-sec">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Erweiterungen</span></div>
+      <h2>Add-ons nach Bedarf</h2>
+      <div class="tamil-sub serif">கூடுதல் சேவைகள்</div>
+      <p>Flexibel zubuchbar — zu jedem Paket. Bei zwei oder mehr Add-ons gewähren wir einen Kombinationsrabatt von 10 %.</p>
+    </div>
+    <table class="addons">
+      <thead>
+        <tr>
+          <th>Leistung</th>
+          <th class="compat-col">Ab Paket</th>
+          <th class="right">Preis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="ao-name">Zusätzlicher Werbeplatz</div><div class="ao-det">Pro Platzierung, feste Position im Theme</div></td>
+          <td class="compat-cell"><span class="ao-compat">Relaunch Basis</span></td>
+          <td class="ao-price">450 €</td>
+        </tr>
+        <tr>
+          <td><div class="ao-name">Eventim API-Vollintegration</div><div class="ao-det">Live-Ticketdaten automatisch in Echtzeit (statt manueller Links)</div></td>
+          <td class="compat-cell"><span class="ao-compat">Portal Professional</span></td>
+          <td class="ao-price">2.400 €</td>
+        </tr>
+        <tr>
+          <td><div class="ao-name">Social-Media-Monatsbetreuung</div><div class="ao-det">2 Beiträge/Woche, 1 Kanal</div></td>
+          <td class="compat-cell"><span class="ao-compat">Portal Professional</span></td>
+          <td class="ao-price">890 €<small> /Mon.</small></td>
+        </tr>
+        <tr>
+          <td><div class="ao-name">SEO-Jahrespaket</div><div class="ao-det">Monatliches Reporting &amp; laufende Optimierung</div></td>
+          <td class="compat-cell"><span class="ao-compat">Alle Pakete</span></td>
+          <td class="ao-price">3.600 €<small> /Jahr</small></td>
+        </tr>
+        <tr>
+          <td><div class="ao-name">Tamil-Lokalisierung</div><div class="ao-det">Vollständige Sprachversion auf Tamil</div></td>
+          <td class="compat-cell"><span class="ao-compat">Alle Pakete</span></td>
+          <td class="ao-price">1.800 €</td>
+        </tr>
+        <tr>
+          <td><div class="ao-name">Fotoproduktion Tamil.de</div><div class="ao-det">1 Tag Shooting, bis zu 50 lizenzierte Bilder</div></td>
+          <td class="compat-cell"><span class="ao-compat">Alle Pakete</span></td>
+          <td class="ao-price">1.200 €</td>
+        </tr>
+        <tr>
+          <td><div class="ao-name">Wartung &amp; Support (monatlich)</div><div class="ao-det">Updates, Backups, kleiner Anpassungen, Fehlerbeseitigung</div></td>
+          <td class="compat-cell"><span class="ao-compat">Nach Launch</span></td>
+          <td class="ao-price">390 €<small> /Mon.</small></td>
+        </tr>
+        <tr class="rabatt">
+          <td><div class="ao-name">Kombinationsrabatt</div><div class="ao-det">Bei Buchung von 2 oder mehr Add-ons gleichzeitig</div></td>
+          <td class="compat-cell"><span class="ao-compat">—</span></td>
+          <td class="ao-price">−10 %</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- LIEFERUMFANG -->
+  <section class="sec">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Lieferumfang</span></div>
+      <h2>Was Tamil.de am Ende bekommt</h2>
+      <div class="tamil-sub serif">வழங்கல் நோக்கம்</div>
+      <p>Sie kaufen kein generisches Website-Template. Sie bekommen ein vollständiges redaktionelles System — inklusive aller Dateien, Konfigurationen und Anleitungen für einen professionellen Betrieb.</p>
+    </div>
+    <div class="del-grid">
+      <div class="del-block">
+        <h4>Technische Dateien</h4>
+        <ul>
+          <li>WordPress-Theme (eigens entwickelt)</li>
+          <li>CMS-Konfiguration mit allen Templates</li>
+          <li>Plugin-Konfiguration (SEO, Sicherheit, Formular, Cookie, Kalender)</li>
+          <li>Impressum &amp; Datenschutz technisch integriert (DSGVO-konform)</li>
+          <li>301-Redirect-Liste (alte URLs auf neue)</li>
+          <li>Tracking-Konfiguration (Analytics, Search Console)</li>
+          <li>Backup vor und nach Launch</li>
+        </ul>
+      </div>
+      <div class="del-block">
+        <h4>Design-Dateien</h4>
+        <ul>
+          <li>Sitemap / Seitenstruktur</li>
+          <li>Wireframes aller Templates</li>
+          <li>Design-Mockups (Startseite, Kategorie, Artikel)</li>
+          <li>Styleguide (Farben, Schriften, Komponenten)</li>
+          <li>Bannerplatz-Übersicht mit Formaten</li>
+          <li>Mobile-Ansichten aller Hauptseiten</li>
+        </ul>
+      </div>
+      <div class="del-block">
+        <h4>Dokumentation &amp; Übergabe</h4>
+        <ul>
+          <li>Admin-Anleitung für Redaktion</li>
+          <li>Anleitung Veranstaltungskalender pflegen</li>
+          <li>Anleitung Werbebanner austauschen</li>
+          <li>Anleitung Top-Themen steuern</li>
+          <li>Launch-Checkliste</li>
+          <li>Übergabegespräch (video oder vor Ort)</li>
+        </ul>
+      </div>
+      <div class="del-block">
+        <h4>Was Tamil.de liefern muss</h4>
+        <ul>
+          <li>Logo (Vektorformat)</li>
+          <li>Zugangsdaten Hosting / Domain</li>
+          <li>Bestehende Inhalte (Bilder, Texte) — Bildrechte bereits geprüft</li>
+          <li>Finale Bestätigung Kategorie-Struktur</li>
+          <li>Social-Media-Zugangsdaten (ab Portal Professional)</li>
+          <li>Eventim-Ticketlinks für Events</li>
+          <li>Impressum &amp; Datenschutz Texte (juristisch geprüft)</li>
+          <li>Redaktionsverantwortlichen benennen (für Content-Freigabe)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="scope-box">
+      <h4>Nicht enthalten (im Basispreis)</h4>
+      <ul>
+        <li>Rechtstexte (Impressum, Datenschutz) — Tamil.de liefert, wir integrieren technisch</li>
+        <li>Prüfung oder Erstellung von Bildrechten — Verantwortung liegt beim Kunden</li>
+        <li>Laufende Inhaltspflege / Texterstellung nach Launch</li>
+        <li>Fotografie / Bildmaterial</li>
+        <li>Übersetzung bestehender Inhalte</li>
+        <li>Content-Migration über das im Paket definierte Limit hinaus</li>
+        <li>Hosting-Kosten nach Launch</li>
+        <li>Eventim API-Echtzeit-Integration (→ Add-on)</li>
+        <li>Laufende Social-Media-Betreuung (→ Add-on)</li>
+        <li>Laufende Wartung nach Launch (→ Add-on)</li>
+        <li>Redaktionsverantwortung / juristische Freigabe von Inhalten</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- NÄCHSTE SCHRITTE -->
+  <section class="sec" style="background:var(--papier)">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><span class="bar"></span><span>Ablauf</span></div>
+      <h2>So geht es weiter</h2>
+      <div class="tamil-sub serif">அடுத்த படிகள்</div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Paket auswählen</h4><p>Teilen Sie uns Ihre Wahl mit — den Projektvertrag erhalten Sie innerhalb von 24 Stunden per E-Mail.</p></div>
+      <div class="step"><div class="n">2</div><h4>Kick-off-Call</h4><p>60-minütiges Strategiegespräch: Wir klären Zeitplan, Zugänge, Kategorien und erste Meilensteine gemeinsam.</p></div>
+      <div class="step"><div class="n">3</div><h4>Projektstart</h4><p>Nach Eingang der Anzahlung (50 %) starten wir innerhalb von 5 Werktagen mit Sitemap, Wireframes und Konzept.</p></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-tamil serif">தொடர்புகொள்ளுங்கள்</div>
+    <h2>Bereit für den <em>Relaunch?</em></h2>
+    <p>Lassen Sie uns Tamil.de gemeinsam neu denken.</p>
+    <a class="cta-mail">info@hkgrowth-operator.de</a>
+    <div class="cta-note">Wir antworten innerhalb von 4 Stunden</div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="fl">
+      <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:.3px">HK Growth Operator</span>
+    </div>
+    <div class="fr">Dieses Angebot wurde individuell für Tamil.de erstellt und ist nicht übertragbar.<br>
+    Ref HKG-2026-TML-004 · Erstellt 02.06.2026 · Gültig bis 30.06.2026</div>
+  </div>
+
+</div>
+</body>
+</html>

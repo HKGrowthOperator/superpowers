@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamil.de Relaunch — Projektablauf &amp; Was wir von euch brauchen</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root{
+    --rot:#B01E2C;
+    --rot-tief:#8A1722;
+    --gold:#C9A84C;
+    --gold-hell:#E3C778;
+    --anthrazit:#1A1A1C;
+    --anthrazit-2:#26262A;
+    --warmweiss:#FAF7F2;
+    --papier:#F3EFE8;
+    --text:#2A2A2C;
+    --text-leise:#86827B;
+    --linie:#E2DCD1;
+    --gruen:#3E7D5A;
+    --schatten-s:0 2px 20px rgba(26,26,28,.06);
+    --schatten-m:0 12px 48px rgba(26,26,28,.10);
+    --schatten-l:0 24px 80px rgba(26,26,28,.16);
+  }
+
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:#D8D2C7;
+    color:var(--text);
+    line-height:1.7;
+    font-size:clamp(14px,1.5vw,16px);
+    -webkit-font-smoothing:antialiased;
+  }
+  .doc{max-width:1080px;margin:0 auto;background:var(--warmweiss);box-shadow:var(--schatten-l)}
+  .serif{font-family:'Fraunces',Georgia,serif}
+
+  .hk-svg-logo{display:block;overflow:visible}
+  .collab-x{font-size:clamp(16px,2vw,22px);font-weight:800;color:rgba(255,255,255,.2);flex-shrink:0;line-height:1}
+
+  /* ── STRIP ── */
+  .strip{
+    background:var(--anthrazit);color:var(--gold-hell);
+    font-size:clamp(9px,1.1vw,11px);letter-spacing:2.5px;text-transform:uppercase;
+    text-align:center;padding:11px 24px;font-weight:600;
+    border-bottom:1px solid rgba(201,168,76,.25)
+  }
+
+  /* ── COVER ── */
+  .cover{
+    background:var(--anthrazit);color:#fff;
+    padding:clamp(40px,6vw,80px) clamp(24px,6.5vw,72px) clamp(36px,5.5vw,72px);
+    position:relative;overflow:hidden
+  }
+  .cover::before{content:'';position:absolute;top:-160px;right:-160px;width:480px;height:480px;
+    border-radius:50%;background:radial-gradient(circle,rgba(176,30,44,.22),transparent 65%);pointer-events:none}
+  .cover::after{content:'';position:absolute;bottom:-200px;left:-120px;width:420px;height:420px;
+    border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.10),transparent 65%);pointer-events:none}
+  .cover-top{display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:clamp(32px,5vw,64px);position:relative;z-index:1;flex-wrap:wrap;gap:16px}
+  .cover-logo{font-size:clamp(24px,3.5vw,34px);font-weight:800;letter-spacing:-1px}
+  .cover-logo .t{color:#fff}.cover-logo .d{color:var(--rot)}
+  .cover-logo .sub{display:block;font-size:9px;letter-spacing:4px;color:rgba(255,255,255,.4);
+    font-weight:500;margin-top:3px;text-transform:uppercase}
+  .cover-badge{border:1px solid var(--gold);color:var(--gold-hell);
+    font-size:clamp(9px,1vw,10px);letter-spacing:3px;text-transform:uppercase;
+    padding:9px 20px;font-weight:700;border-radius:2px;white-space:nowrap}
+  .cover-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;position:relative;z-index:1}
+  .cover-eyebrow .bar{width:40px;height:2px;background:var(--rot)}
+  .cover-eyebrow span{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--rot);font-weight:600}
+  .cover-tamil{font-size:clamp(16px,2.2vw,22px);color:var(--gold-hell);font-weight:400;
+    margin-bottom:14px;position:relative;z-index:1}
+  .cover h1{font-size:clamp(36px,6.5vw,68px);line-height:1.02;font-weight:900;
+    letter-spacing:clamp(-1px,-0.03em,-2px);margin-bottom:clamp(18px,2.5vw,28px);position:relative;z-index:1}
+  .cover h1 em{font-style:italic;color:var(--gold-hell)}
+  .cover-intro{font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.6);max-width:560px;
+    line-height:1.75;margin-bottom:clamp(32px,4.5vw,56px);position:relative;z-index:1;font-weight:400}
+  .cover-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,24px);
+    padding-top:clamp(20px,2.5vw,36px);border-top:1px solid rgba(255,255,255,.12);position:relative;z-index:1}
+  .cover-meta .label{font-size:9px;letter-spacing:2px;text-transform:uppercase;
+    color:rgba(255,255,255,.35);margin-bottom:7px;font-weight:600}
+  .cover-meta .val{font-size:clamp(12px,1.3vw,15px);color:#fff;font-weight:600}
+
+  /* ── SECTION BASE ── */
+  .sec{padding:clamp(36px,5.5vw,72px) clamp(24px,6.5vw,72px)}
+  .sec-head{margin-bottom:clamp(28px,3.5vw,44px);max-width:700px}
+  .sec-eyebrow{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+  .sec-eyebrow .bar{width:32px;height:2px;background:var(--rot)}
+  .sec-eyebrow span{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rot);font-weight:700}
+  .sec-head h2{font-size:clamp(26px,3.8vw,40px);font-weight:900;
+    letter-spacing:clamp(-0.5px,-0.03em,-1.2px);line-height:1.1;margin-bottom:8px;color:var(--anthrazit)}
+  .sec-head .tamil-sub{font-size:clamp(15px,1.7vw,18px);color:var(--text-leise);font-weight:400;margin-bottom:18px}
+  .sec-head p{font-size:clamp(13px,1.4vw,16px);color:var(--text);line-height:1.8}
+  .sec-head p + p{margin-top:16px}
+
+  /* ── FEATURE GRID ── */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--linie);margin-top:36px;border:1px solid var(--linie)}
+  .feat{background:var(--warmweiss);padding:clamp(18px,2.5vw,28px) clamp(16px,2.2vw,26px)}
+  .feat .num{font-size:11px;font-weight:800;color:var(--rot);letter-spacing:1px;margin-bottom:12px}
+  .feat h4{font-size:clamp(13px,1.4vw,16px);font-weight:700;color:var(--anthrazit);margin-bottom:8px}
+  .feat p{font-size:clamp(12px,1.2vw,13.5px);color:var(--text-leise);line-height:1.6}
+
+  /* ── DELIVERABLES ── */
+  .del-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.8vw,20px);margin-top:8px}
+  .del-block{background:#fff;border:1px solid var(--linie);padding:clamp(18px,2.2vw,26px)}
+  .del-block h4{font-size:clamp(13px,1.4vw,15px);font-weight:800;color:var(--anthrazit);
+    margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--rot)}
+  .del-block ul{list-style:none;padding:0}
+  .del-block ul li{font-size:clamp(12px,1.3vw,13.5px);color:var(--text);padding:5px 0;
+    border-bottom:1px solid var(--linie);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+  .del-block ul li:last-child{border-bottom:none}
+  .del-block ul li::before{content:'→';color:var(--rot);font-weight:700;flex-shrink:0;margin-top:1px}
+
+  /* ── STEPS ── */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px);margin-top:8px}
+  .step{position:relative;padding:clamp(20px,2.8vw,32px) clamp(16px,2.2vw,28px);background:#fff;
+    border:1px solid var(--linie);border-top:3px solid var(--rot)}
+  .step .n{font-family:'Fraunces',serif;font-size:clamp(36px,4.5vw,48px);font-weight:900;
+    color:var(--rot);line-height:1;margin-bottom:16px;opacity:.9}
+  .step h4{font-size:clamp(15px,1.6vw,18px);font-weight:800;color:var(--anthrazit);margin-bottom:10px}
+  .step p{font-size:clamp(12px,1.3vw,14px);color:var(--text-leise);line-height:1.65}
+
+  /* ── CTA ── */
+  .cta{background:var(--anthrazit);color:#fff;
+    padding:clamp(48px,6.5vw,72px) clamp(24px,6.5vw,72px);text-align:center;position:relative;overflow:hidden}
+  .cta::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+    width:500px;height:300px;background:radial-gradient(ellipse,rgba(176,30,44,.18),transparent 70%)}
+  .cta-tamil{font-size:clamp(15px,1.7vw,18px);color:var(--gold-hell);margin-bottom:14px;position:relative;z-index:1}
+  .cta h2{font-size:clamp(28px,4.3vw,46px);font-weight:900;letter-spacing:-1.5px;
+    margin-bottom:14px;position:relative;z-index:1}
+  .cta h2 em{font-style:italic;color:var(--gold-hell)}
+  .cta p{color:rgba(255,255,255,.5);font-size:clamp(13px,1.5vw,16px);margin-bottom:36px;position:relative;z-index:1}
+  .cta-mail{display:inline-block;font-size:clamp(18px,2.4vw,26px);font-weight:800;color:#fff;
+    border-bottom:2px solid var(--rot);padding-bottom:6px;margin-bottom:18px;position:relative;z-index:1}
+  .cta-note{font-size:13px;color:var(--gold-hell);letter-spacing:1px;position:relative;z-index:1}
+
+  /* ── FOOTER ── */
+  .footer{background:#0F0F11;color:rgba(255,255,255,.4);
+    padding:clamp(24px,3vw,36px) clamp(24px,6.5vw,72px);
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:16px;font-size:12px}
+  .footer .fr{line-height:1.7}
+
+  /* ── PRINT ── */
+  @media print{
+    body{background:#fff}.doc{box-shadow:none;max-width:100%}
+    .pkg,.feat,.step,.browser{break-inside:avoid}.sec{padding:48px}
+  }
+
+  /* ── MOBILE 600px ── */
+  @media(max-width:600px){
+    body{background:var(--warmweiss)}.doc{box-shadow:none}
+    .strip{font-size:9px;letter-spacing:1.5px;padding:10px 16px}
+    .cover{padding:32px 20px 36px}
+    .cover-top{flex-direction:column;align-items:center;gap:12px;margin-bottom:28px}
+    .cover-logo{text-align:center;width:100%}
+    .cover-top>div{width:100%;display:flex;justify-content:center}
+    .cover h1{font-size:34px;letter-spacing:-1px}
+    .cover-intro{font-size:14px;margin-bottom:28px}
+    .cover-meta{grid-template-columns:1fr 1fr;gap:16px 12px}
+    .cover-meta .val{font-size:13px}
+    .sec{padding:32px 20px}
+    .sec-head h2{font-size:26px}
+    .sec-head .tamil-sub{font-size:15px}
+    .feat-grid{grid-template-columns:1fr 1fr}
+    .feat{padding:18px 14px}
+    .del-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .step{padding:20px 16px}
+    .cta{padding:40px 20px}
+    .cta h2{font-size:28px}
+    .cta-mail{font-size:18px;word-break:break-all}
+    .footer{padding:20px;flex-direction:column;align-items:flex-start;gap:12px}
+    .footer .fr{text-align:left}
+  }
+
+  @media(max-width:400px){
+    .cover h1{font-size:28px}
+    .cover-meta{grid-template-columns:1fr 1fr}
+    .feat-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="strip">Dokument 2 · Projektablauf &amp; Checkliste · HK Growth Operator</div>
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="cover-top">
+      <div class="cover-logo">
+        <span class="t">tamil</span><span class="d">.de</span>
+        <span class="sub">portal · lifestyle · entertainment</span>
+      </div>
+      <div class="cover-badge">Projektablauf</div>
+    </div>
+    <div class="cover-eyebrow">
+      <div class="bar"></div>
+      <span>Ablauf</span>
+    </div>
+    <div class="cover-tamil">நடைமுறை</div>
+    <h1 class="serif">Was wann passiert —<br><em>und was wir brauchen.</em></h1>
+    <p class="cover-intro">Vom Vertragsschluss bis zum Go-Live — hier seht ihr jeden Schritt des Projekts, was wann passiert und was wir von Tamil.de brauchen, damit alles reibungslos läuft.</p>
+    <div class="cover-meta">
+      <div>
+        <div class="label">Kunde</div>
+        <div class="val">Tamil.de</div>
+      </div>
+      <div>
+        <div class="label">Agentur</div>
+        <div class="val">HK Growth Operator</div>
+      </div>
+      <div>
+        <div class="label">Datum</div>
+        <div class="val">02.06.2026</div>
+      </div>
+      <div>
+        <div class="label">Referenz</div>
+        <div class="val">HKG-2026-TML-004</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZEITPLAN -->
+  <section class="sec">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><div class="bar"></div><span>Zeitplan</span></div>
+      <h2 class="serif">Woche für Woche</h2>
+      <p class="tamil-sub">வாரம் வாரம்</p>
+      <p>Ein realistischer Ablauf bei normaler Rückmeldungsgeschwindigkeit. Verzögerungen bei Zugängen oder Feedback verschieben den Zeitplan entsprechend.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">0</div>
+        <h4>Woche 0: Start</h4>
+        <p>Vertrag unterschreiben und 50% Anzahlung überweisen. Alle Zugänge (CMS, FTP, Domain) bereitstellen.</p>
+      </div>
+      <div class="step">
+        <div class="n">1–2</div>
+        <h4>Wochen 1–2: Kick-off</h4>
+        <p>Gemeinsamer Kick-off-Call. Sitemap abstimmen, Design-Konzept vorstellen, Kategorien freigeben.</p>
+      </div>
+      <div class="step">
+        <div class="n">3–5</div>
+        <h4>Wochen 3–5: Entwicklung</h4>
+        <p>Theme-Entwicklung, Seiten-Templates, Kino-Seite, Event-Kalender und Werbeplätze werden gebaut.</p>
+      </div>
+      <div class="step">
+        <div class="n">6–7</div>
+        <h4>Wochen 6–7: Migration</h4>
+        <p>Artikel übertragen, Weiterleitungen einrichten, Analytics konfigurieren, Testphase starten.</p>
+      </div>
+      <div class="step">
+        <div class="n">8</div>
+        <h4>Woche 8: Review</h4>
+        <p>Präsentation der fertigen Website. Feedback sammeln, zwei Korrekturschleifen durchführen.</p>
+      </div>
+      <div class="step">
+        <div class="n">9–10</div>
+        <h4>Wochen 9–10: Go-Live</h4>
+        <p>Launch der neuen Website, Schulung des Tamil.de-Teams und 50% Abschlusspayment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAS WIR BRAUCHEN -->
+  <section class="sec" style="background:var(--papier)">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><div class="bar"></div><span>Eure Aufgaben</span></div>
+      <h2 class="serif">Was wir von euch brauchen</h2>
+      <p class="tamil-sub">உங்களிடம் என்ன தேவை</p>
+      <p>Damit das Projekt im Zeitplan bleibt, brauchen wir diese Unterlagen und Entscheidungen zu Projektbeginn.</p>
+    </div>
+    <div class="del-grid">
+      <div class="del-block">
+        <h4>📁 Zugänge &amp; Technik</h4>
+        <ul>
+          <li>CMS-Login (WordPress Admin)</li>
+          <li>FTP / Hosting-Zugangsdaten</li>
+          <li>Domain-Zugangsdaten (Registrar)</li>
+          <li>Bestehende Analytics (Google / Matomo)</li>
+        </ul>
+      </div>
+      <div class="del-block">
+        <h4>🎨 Marke &amp; Design</h4>
+        <ul>
+          <li>Logo in SVG oder Vektor-Format</li>
+          <li>Farb-Bestätigung (Rot + Schriften)</li>
+          <li>Header-Bilder / Hintergrundfotos</li>
+          <li>Kontaktdaten fürs Impressum</li>
+        </ul>
+      </div>
+      <div class="del-block">
+        <h4>📝 Inhalte &amp; Entscheidungen</h4>
+        <ul>
+          <li>Artikel-Liste für Migration (Prioritäten)</li>
+          <li>Kategorien freigeben und benennen</li>
+          <li>Impressum &amp; Datenschutztexte</li>
+          <li>Erste Werbepartner benennen</li>
+        </ul>
+      </div>
+      <div class="del-block">
+        <h4>📅 Events &amp; Kalender</h4>
+        <ul>
+          <li>Liste aktueller Events mit Datum</li>
+          <li>Eventim-Links zu bestehenden Events</li>
+          <li>Ansprechperson für Kalender-Pflege</li>
+          <li>Community-Einreichung: ja oder nein?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RAHMENBEDINGUNGEN -->
+  <section class="sec">
+    <div class="sec-head">
+      <div class="sec-eyebrow"><div class="bar"></div><span>Wichtige Hinweise</span></div>
+      <h2 class="serif">Wichtige Rahmenbedingungen</h2>
+      <p class="tamil-sub">முக்கியமான நிபந்தனைகள்</p>
+      <p>Was ihr wissen solltet, bevor das Projekt startet.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="num">01</div>
+        <h4>Laufzeiten</h4>
+        <p>Alle Zeitangaben sind Richtwerte bei normaler Rückmeldungsgeschwindigkeit. Feedback-Verzögerungen verschieben den Zeitplan.</p>
+      </div>
+      <div class="feat">
+        <div class="num">02</div>
+        <h4>Korrekturen</h4>
+        <p>2 Korrekturschleifen sind inklusive. Weitere Schleifen werden nach Aufwand (90€/h) abgerechnet.</p>
+      </div>
+      <div class="feat">
+        <div class="num">03</div>
+        <h4>Inhalte</h4>
+        <p>Artikel, Bilder und redaktionelle Inhalte liefert Tamil.de selbst. Content-Erstellung ist nicht im Paketpreis enthalten.</p>
+      </div>
+      <div class="feat">
+        <div class="num">04</div>
+        <h4>Zugänge</h4>
+        <p>Alle Zugänge, Daten und der gesamte Code bleiben nach Übergabe vollständig im Eigentum von Tamil.de.</p>
+      </div>
+      <div class="feat">
+        <div class="num">05</div>
+        <h4>Scope</h4>
+        <p>Alles, was nicht explizit im Paket steht, ist nicht enthalten. Erweiterungen werden separat beauftragt.</p>
+      </div>
+      <div class="feat">
+        <div class="num">06</div>
+        <h4>Kommunikation</h4>
+        <p>Eine Hauptansprechperson bei Tamil.de — alle Entscheidungen und Freigaben laufen über diese Person.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-tamil">தயாரா?</div>
+    <h2 class="serif">Bereit loszulegen?</h2>
+    <p>Schreibt uns — wir senden den Vertrag und den Fragebogen für den Kick-off innerhalb von 24 Stunden.</p>
+    <a class="cta-mail" href="mailto:info@hkgrowth-operator.de">info@hkgrowth-operator.de</a>
+    <p class="cta-note">↑ Eine E-Mail genügt · Antwort in 24h garantiert</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="fr">HK Growth Operator<br>Tamil.de Relaunch · Projektablauf</div>
+    <div>Ref HKG-2026-TML-004</div>
+  </footer>
+
+</div>
+</body>
+</html>

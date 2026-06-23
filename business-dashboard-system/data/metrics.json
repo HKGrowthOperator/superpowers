@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "company": "HK Growth Operator",
+    "currency": "EUR",
+    "granularity": "monthly",
+    "note": "Demo-/Mock-Daten. Felder bewusst mit einer Datenlücke (2026-02 website_visitors=null) zum Testen der Lückenerkennung."
+  },
+  "months": [
+    { "month": "2025-01", "leads": 60,  "calls": 42, "proposals": 18, "wins": 6,  "impressions": 42000, "website_visitors": 2100, "content_count": 8,  "revenue": 28000, "open_invoices": 9000,  "average_project_value": 4600 },
+    { "month": "2025-02", "leads": 68,  "calls": 47, "proposals": 20, "wins": 7,  "impressions": 47000, "website_visitors": 2350, "content_count": 9,  "revenue": 31000, "open_invoices": 11000, "average_project_value": 4700 },
+    { "month": "2025-03", "leads": 75,  "calls": 50, "proposals": 22, "wins": 8,  "impressions": 52000, "website_visitors": 2600, "content_count": 10, "revenue": 34000, "open_invoices": 12000, "average_project_value": 4750 },
+    { "month": "2025-04", "leads": 81,  "calls": 53, "proposals": 25, "wins": 8,  "impressions": 58000, "website_visitors": 2850, "content_count": 10, "revenue": 35000, "open_invoices": 14000, "average_project_value": 4800 },
+    { "month": "2025-05", "leads": 88,  "calls": 55, "proposals": 28, "wins": 8,  "impressions": 63000, "website_visitors": 3050, "content_count": 11, "revenue": 36000, "open_invoices": 16000, "average_project_value": 4850 },
+    { "month": "2025-06", "leads": 92,  "calls": 57, "proposals": 30, "wins": 9,  "impressions": 67000, "website_visitors": 3200, "content_count": 11, "revenue": 38000, "open_invoices": 18000, "average_project_value": 4900 },
+    { "month": "2025-07", "leads": 85,  "calls": 49, "proposals": 26, "wins": 8,  "impressions": 64000, "website_visitors": 2950, "content_count": 7,  "revenue": 36000, "open_invoices": 19000, "average_project_value": 4900 },
+    { "month": "2025-08", "leads": 90,  "calls": 52, "proposals": 27, "wins": 9,  "impressions": 66000, "website_visitors": 3100, "content_count": 8,  "revenue": 39000, "open_invoices": 17000, "average_project_value": 4950 },
+    { "month": "2025-09", "leads": 102, "calls": 64, "proposals": 33, "wins": 13, "impressions": 72000, "website_visitors": 3600, "content_count": 12, "revenue": 47000, "open_invoices": 15000, "average_project_value": 5000 },
+    { "month": "2025-10", "leads": 110, "calls": 70, "proposals": 36, "wins": 15, "impressions": 78000, "website_visitors": 3900, "content_count": 13, "revenue": 53000, "open_invoices": 14000, "average_project_value": 5050 },
+    { "month": "2025-11", "leads": 118, "calls": 74, "proposals": 39, "wins": 16, "impressions": 83000, "website_visitors": 4200, "content_count": 13, "revenue": 57000, "open_invoices": 13500, "average_project_value": 5100 },
+    { "month": "2025-12", "leads": 96,  "calls": 60, "proposals": 31, "wins": 12, "impressions": 70000, "website_visitors": 3500, "content_count": 9,  "revenue": 49000, "open_invoices": 15000, "average_project_value": 5150 },
+    { "month": "2026-01", "leads": 124, "calls": 80, "proposals": 42, "wins": 18, "impressions": 88000, "website_visitors": 4500, "content_count": 14, "revenue": 62000, "open_invoices": 13000, "average_project_value": 5200 },
+    { "month": "2026-02", "leads": 130, "calls": 84, "proposals": 44, "wins": 19, "impressions": 92000, "website_visitors": null, "content_count": 14, "revenue": 64000, "open_invoices": 12500, "average_project_value": 5250 }
+  ]
+}

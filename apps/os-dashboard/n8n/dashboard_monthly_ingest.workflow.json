@@ -1,0 +1,67 @@
+{
+  "name": "Kennzahlen: Monats-Ingest",
+  "meta": {
+    "description": "Schreibt monatlich einen Kennzahlen-Datensatz in die Tabelle dashboard_metrics (UPSERT), die das Cockpit-Modul /kennzahlen anzeigt. Der 'Monatswerte'-Set-Node ist der Platzhalter: hier echte Quellen (HubSpot, GA4, Lexoffice) per HTTP-/CRM-Nodes anbinden und die Felder fuellen. So loesen echte Daten die Seed-/Mock-Daten ab."
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "cronExpression", "expression": "0 6 1 * *" }] }
+      },
+      "id": "trigger",
+      "name": "Monatlich (1. um 06:00)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "m",  "name": "month",                 "value": "={{ $now.minus({ months: 1 }).toFormat('yyyy-MM') }}", "type": "string" },
+            { "id": "f1", "name": "leads",                 "value": 0, "type": "number" },
+            { "id": "f2", "name": "calls",                 "value": 0, "type": "number" },
+            { "id": "f3", "name": "proposals",             "value": 0, "type": "number" },
+            { "id": "f4", "name": "wins",                  "value": 0, "type": "number" },
+            { "id": "f5", "name": "impressions",           "value": 0, "type": "number" },
+            { "id": "f6", "name": "website_visitors",      "value": 0, "type": "number" },
+            { "id": "f7", "name": "content_count",         "value": 0, "type": "number" },
+            { "id": "f8", "name": "revenue",               "value": 0, "type": "number" },
+            { "id": "f9", "name": "open_invoices",         "value": 0, "type": "number" },
+            { "id": "f10","name": "average_project_value", "value": 0, "type": "number" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "values",
+      "name": "Monatswerte (Quellen hier anbinden)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [470, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO dashboard_metrics (month, data) VALUES ($1, $2::jsonb)\nON CONFLICT (month) DO UPDATE SET data = EXCLUDED.data, updated_at = now()\nRETURNING month;",
+        "options": {
+          "queryReplacement": "={{ $json.month }},{{ JSON.stringify({ month: $json.month, leads: $json.leads, calls: $json.calls, proposals: $json.proposals, wins: $json.wins, impressions: $json.impressions, website_visitors: $json.website_visitors, content_count: $json.content_count, revenue: $json.revenue, open_invoices: $json.open_invoices, average_project_value: $json.average_project_value }) }}"
+        }
+      },
+      "id": "upsert",
+      "name": "dashboard_metrics UPSERT",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [720, 300],
+      "credentials": {
+        "postgres": { "id": "REPLACE_WITH_YOUR_POSTGRES_CREDENTIAL_ID", "name": "Cockpit Postgres" }
+      }
+    }
+  ],
+  "connections": {
+    "Monatlich (1. um 06:00)": { "main": [[{ "node": "Monatswerte (Quellen hier anbinden)", "type": "main", "index": 0 }]] },
+    "Monatswerte (Quellen hier anbinden)": { "main": [[{ "node": "dashboard_metrics UPSERT", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "Kennzahlen" }]
+}

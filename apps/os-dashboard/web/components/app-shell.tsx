@@ -20,6 +20,7 @@ const NAV: NavGroup[] = [
   { group: "Betrieb", items: [
     { href: "/sops", label: "SOPs", icon: "list" },
     { href: "/kundenbedienung", label: "Kundenbedienung", icon: "users" },
+    { href: "/kennzahlen", label: "Kennzahlen", icon: "chart" },
     { href: "/berichte", label: "Berichte", icon: "report" },
     { href: "/automation", label: "Automation", icon: "bolt" },
   ] },
@@ -66,6 +67,7 @@ function Icon({ name }: { name: string }) {
     inbox: <><path d="M22 12h-6l-2 3h-4l-2-3H2" /><path d="M5.5 5h13l3.5 7v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z" /></>,
     doc: <><path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /><path d="M14 3v5h5" /></>,
     rocket: <><path d="M5 13c-1.5 1.5-2 5-2 5s3.5-.5 5-2M9 11a9 9 0 0 1 9-9 9 9 0 0 1-9 9zM9 11l4 4M9 11l-3-1M13 15l1 3" /><circle cx="14.5" cy="6.5" r="1" /></>,
+    chart: <><path d="M3 3v18h18" /><path d="M7 15l3-4 3 2 4-6" /></>,
     library: <><path d="M4 5v14M8 5v14M13 5l4 14" /><path d="M3 19h18" /></>,
     cog: <><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1" /></>,
   };

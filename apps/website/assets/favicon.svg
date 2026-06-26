@@ -1,0 +1,20 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="HK Growth">
+  <rect width="64" height="64" rx="15" fill="#2E3A2A"/>
+  <!-- root/network growth glyph: trunk node, roots below, branches above -->
+  <g stroke="#A2854F" stroke-width="2.4" stroke-linecap="round" fill="none">
+    <path d="M32 41 V30"/>
+    <path d="M32 30 L22 21"/>
+    <path d="M32 30 L42 21"/>
+    <path d="M32 41 L24 49"/>
+    <path d="M32 41 L40 49"/>
+  </g>
+  <g fill="#BB9C68">
+    <circle cx="22" cy="21" r="3.4"/>
+    <circle cx="42" cy="21" r="3.4"/>
+  </g>
+  <circle cx="32" cy="30" r="4.6" fill="#A2854F"/>
+  <g fill="#6B8F71">
+    <circle cx="24" cy="49" r="3"/>
+    <circle cx="40" cy="49" r="3"/>
+  </g>
+</svg>

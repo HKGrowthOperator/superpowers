@@ -21,10 +21,14 @@ Open `http://localhost:4321/`. Legal pages: `/impressum.html`, `/datenschutz.htm
 ```
 apps/website/
 ├── index.html          # Landing page (all sections)
+├── ads.html            # Top-of-funnel ad landing page (cold traffic → onboarding)
+├── onboarding.html     # Onboarding funnel: multi-step intake wizard → offer request
 ├── impressum.html      # Legal — Impressum (contains TODO placeholders)
 ├── datenschutz.html    # Legal — Datenschutz (contains TODO placeholders)
 ├── styles/main.css     # Design system: tokens, components, sections, motion, responsive
+├── styles/funnel.css   # Funnel UI: slim header, outcome grid, FAQ, wizard, choice cards
 ├── js/main.js          # Nav, header states, scroll reveals, growing system line, form
+├── js/funnel.js        # Onboarding wizard: steps, progress, choice cards, recap, submit
 └── assets/
     ├── favicon.svg     # Brand mark (geometric "rooted node")
     └── og-image.svg    # Social share image

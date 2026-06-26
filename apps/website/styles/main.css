@@ -179,6 +179,8 @@ strong { font-weight: 600; }
 .btn:active { transform: scale(0.97); }
 .btn--primary { box-shadow: var(--shadow); }
 .btn--primary:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+.btn:disabled:active { transform: none; }
 .btn--ghost {
   --btn-bg: transparent; --btn-fg: var(--ink);
   border-color: var(--border);

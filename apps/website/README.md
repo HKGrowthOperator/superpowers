@@ -83,3 +83,25 @@ grep -rn "BITTE ERGÄNZEN\|data-cal-link\|cal.com/hk-growth" .
 - **HK Growth Operator**, Weststraße 2, 53709 Marienheide, Deutschland
 - **info@hkgrowth-operator.de** (single email used site-wide)
 - NRW · deutschlandweit
+
+## Tracking & Attribution (`js/analytics.js`)
+
+Privacy-light by design — **loads no third-party tracker on its own** (DSGVO-friendly):
+
+- **UTM attribution end-to-end:** `utm_source/medium/campaign/content/term` (+ `gclid`/`fbclid`)
+  are captured on the ad landing (first-touch), carried across to `onboarding.html`
+  (link rewrite + sessionStorage), and written into the lead email under
+  "Herkunft / Kampagne" — so every inquiry shows which campaign **and which ad
+  angle** produced it (`first_landing` = `ads-diagnose` / `ads-anfragen` / `ads-premium`).
+- **Conversion signal:** on submit, fires `dataLayer.push({event:'lead_submit', …})`
+  and calls `gtag('event','generate_lead')` / `fbq('track','Lead')` **only if you've
+  loaded them**. The success state also sets the URL to `#danke` for URL-based
+  conversion tracking.
+- **To enable ad-platform conversions:** add your GA4/Google Ads/Meta Pixel snippet
+  (ideally behind a consent banner), then update the Datenschutz accordingly. No IDs
+  are hardcoded; nothing tracks until you opt in.
+- Attribution uses **sessionStorage only** (first-party, no cookies), so the default
+  "no tracking cookies" statement in Datenschutz stays accurate.
+
+Run an A/B test: point each campaign at its variant with UTMs, e.g.
+`ads-anfragen.html?utm_source=meta&utm_campaign=q3&utm_content=hookA`.

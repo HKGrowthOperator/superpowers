@@ -128,6 +128,12 @@
       if (get('phone')) lines.push('Telefon: ' + get('phone'));
       if (get('message')) lines.push('', 'Nachricht: ' + get('message'));
 
+      // Attribution: which campaign / ad angle produced this lead
+      var attr = (typeof window.hkAttribution === 'function') ? window.hkAttribution() : {};
+      var attrKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'first_landing', 'gclid', 'fbclid'];
+      var attrLines = attrKeys.filter(function (k) { return attr[k]; }).map(function (k) { return '  ' + k + ': ' + attr[k]; });
+      if (attrLines.length) { lines.push('', 'Herkunft / Kampagne:'); attrLines.forEach(function (l) { lines.push(l); }); }
+
       var href = 'mailto:info@hkgrowth-operator.de'
         + '?subject=' + encodeURIComponent('Wachstumsanalyse-Anfrage von ' + (name || 'Website'))
         + '&body=' + encodeURIComponent(lines.join('\n'));
@@ -144,6 +150,9 @@
         if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
       }
       scrollToTop();
+      // conversion signal (no-op unless gtag/fbq/dataLayer are present) + trackable URL state
+      if (typeof window.hkTrackConversion === 'function') window.hkTrackConversion({ method: 'mailto' });
+      try { history.replaceState(null, '', location.pathname + '#danke'); } catch (e) {}
       window.location.href = href; // open prefilled email (no backend yet — see README)
     });
   }

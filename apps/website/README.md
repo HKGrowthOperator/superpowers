@@ -21,7 +21,9 @@ Open `http://localhost:4321/`. Legal pages: `/impressum.html`, `/datenschutz.htm
 ```
 apps/website/
 ├── index.html          # Landing page (all sections)
-├── ads.html            # Top-of-funnel ad landing page (cold traffic → onboarding)
+├── ads.html            # Top-of-funnel ad landing — angle: free Wachstumsanalyse (diagnostic)
+├── ads-anfragen.html   # Ad variant — angle: "mehr qualifizierte Anfragen"
+├── ads-premium.html    # Ad variant — angle: "Premium-Auftritt / dein Wert sichtbar"
 ├── onboarding.html     # Onboarding funnel: multi-step intake wizard → offer request
 ├── impressum.html      # Legal — Impressum (contains TODO placeholders)
 ├── datenschutz.html    # Legal — Datenschutz (contains TODO placeholders)

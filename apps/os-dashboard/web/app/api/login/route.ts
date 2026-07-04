@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { verifyCredentials } from "@/lib/users";
+import { verifyCredentials, ensureBootstrapUser } from "@/lib/users";
 import { createSession, SESSION_COOKIE, isSecureRequest } from "@/lib/auth";
 
 export async function POST(req: Request) {
@@ -11,6 +11,8 @@ export async function POST(req: Request) {
     );
   }
 
+  // Auf frischer DB (z. B. Neon): Schema + ersten Benutzer sicherstellen.
+  await ensureBootstrapUser();
   const user = await verifyCredentials(email, password);
   if (!user) {
     return NextResponse.json(

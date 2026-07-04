@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { generateReport } from "@/lib/report";
 
 export const dynamic = "force-dynamic";
-export const maxDuration = 120;
+// 60s ist das Maximum auf Vercel Hobby; reicht für einen Report.
+export const maxDuration = 60;
 
 export async function POST(req: Request) {
   const body = (await req.json().catch(() => ({}))) as { clientName?: string; notes?: string; model?: string };

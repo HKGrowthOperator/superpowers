@@ -67,6 +67,18 @@ services:
       AUTH_SECRET: ${AUTH_SECRET}
       NODE_ENV: production
       TZ: ${TZ}
+      # KI-Assistent + Auswertung (optional; ohne Key läuft alles, nur ohne Claude)
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-sonnet-4-6}
+      # E-Mail-Versand (Onboarding/Angebote) via SMTP — optional
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_SECURE: ${SMTP_SECURE:-false}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      MAIL_FROM: ${MAIL_FROM:-}
+      # Öffentliche Basis-URL (für Portal-Links in E-Mails)
+      APP_PUBLIC_URL: ${APP_PUBLIC_URL:-}
     # Kein offener Port — von außen nur über Caddy (https) erreichbar.
 
   # Der "Pförtner": besorgt automatisch https-Zertifikate (Let's Encrypt)

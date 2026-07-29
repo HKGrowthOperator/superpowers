@@ -63,6 +63,16 @@ CREATE TABLE IF NOT EXISTS app_secrets (
 
 let ready: Promise<void> | null = null;
 export function ensureCoreSchema(): Promise<void> {
-  if (!ready) ready = pool.query(DDL).then(() => undefined);
+  if (!ready) {
+    ready = pool.query(DDL).then(
+      () => undefined,
+      (err) => {
+        // Fehlgeschlagene Versuche nicht einfrieren: nächster Aufruf probiert es
+        // erneut (sonst bliebe die App nach einem DB-Schluckauf dauerhaft kaputt).
+        ready = null;
+        throw err;
+      },
+    );
+  }
   return ready;
 }

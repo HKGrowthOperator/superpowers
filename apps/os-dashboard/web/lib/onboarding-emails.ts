@@ -14,6 +14,40 @@ export type OnboardingEmailData = {
 const ACCENT = "#b8893a"; // HK-Gold
 const HEADER = "#1c1c1c";
 
+// HTML-Escaping: Kundendaten (Name, Firma, Projekt) stammen aus Nutzereingaben
+// bzw. Anfragen von außen und dürfen nie ungefiltert in HTML landen.
+function esc(s: string): string {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// Nur echte Web-Links als CTA-Ziel zulassen (kein javascript: o. Ä.).
+function safeUrl(u?: string): string | undefined {
+  if (!u) return undefined;
+  try {
+    const parsed = new URL(u);
+    return parsed.protocol === "https:" || parsed.protocol === "http:" ? parsed.href : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/** Escaped alle Textfelder einmal zentral, bevor sie in Templates laufen. */
+function sanitize(d: OnboardingEmailData): OnboardingEmailData {
+  return {
+    kundeName: esc(d.kundeName),
+    firma: esc(d.firma),
+    projekt: esc(d.projekt),
+    absender: esc(d.absender),
+    firmaName: esc(d.firmaName),
+    portalUrl: safeUrl(d.portalUrl),
+  };
+}
+
 function layout(opts: {
   step: string;
   eyebrow: string;
@@ -51,7 +85,8 @@ const p = (t: string) => `<p style="margin:0 0 16px 0;color:#3c3f45;font-size:15
 export type OnboardingEmail = { subject: string; html: string };
 export type EmailBuilder = (d: OnboardingEmailData) => OnboardingEmail;
 
-export const ONBOARDING_EMAILS: Record<string, EmailBuilder> = {
+// Rohe Vorlagen — nur intern; nach außen geht die escapte Variante unten.
+const RAW_EMAILS: Record<string, EmailBuilder> = {
   vereinbarung: (d) => ({
     subject: `Ihre Vereinbarung zur Unterschrift – ${d.projekt}`,
     html: layout({
@@ -127,6 +162,12 @@ export const ONBOARDING_EMAILS: Record<string, EmailBuilder> = {
     }),
   }),
 };
+
+// Öffentliche Builder: identische Vorlagen, aber jede Eingabe wird zuerst
+// escaped (Fix gegen HTML-Injection in E-Mails).
+export const ONBOARDING_EMAILS: Record<string, EmailBuilder> = Object.fromEntries(
+  Object.entries(RAW_EMAILS).map(([key, builder]) => [key, (d: OnboardingEmailData) => builder(sanitize(d))]),
+);
 
 // Reihenfolge + Anzeigenamen der 6 Schritte.
 export const ONBOARDING_STEPS: { key: string; label: string }[] = [

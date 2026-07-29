@@ -21,6 +21,6 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  // Alles abdecken AUSSER: Login-Seite, Login-API, Next-interne Pfade, Favicon.
-  matcher: ["/((?!login|api/login|_next/static|_next/image|favicon.ico).*)"],
+  // Alles abdecken AUSSER: Login-Seite, Login-API, Health-Check, Next-interne Pfade, Favicon.
+  matcher: ["/((?!login|api/login|api/health|_next/static|_next/image|favicon.ico).*)"],
 };
